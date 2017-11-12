@@ -1,0 +1,1 @@
+module.exports = require('@parkpark.dk/eslint-config')
