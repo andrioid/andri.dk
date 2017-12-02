@@ -9,13 +9,13 @@ import 'semantic-ui-css/semantic.min.css'
 const TemplateWrapper = ({ children }) => (
 	<div>
 		<Helmet
-			title="Gatsby Default Starter"
+			title="andri.dk"
 			meta={[
 				{ name: 'description', content: 'Sample' },
 				{ name: 'keywords', content: 'sample, something' }
 			]}
 		/>
-		<div style={{ minHeight: '100%', borderWidth: 1, borderColor: 'red' }}>
+		<div style={{ minimumHeight: '100vh', borderWidth: 1, borderColor: 'red' }}>
 			<div className="ui aligned center masthead segment vertical">
 				<div className="ui container">
 					<div className="large menu pointing secondary ui">
