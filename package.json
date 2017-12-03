@@ -7,7 +7,7 @@
     "gatsby": "^1.9.99",
     "gatsby-link": "^1.6.24",
     "gatsby-plugin-react-helmet": "^1.0.8",
-    "semantic-ui-react": "^0.77.0",
+    "react-icons": "^2.2.7",
     "typeface-indie-flower": "^0.0.44",
     "typeface-source-code-pro": "^0.0.44",
     "typeface-source-sans-pro": "^0.0.44"
@@ -27,8 +27,7 @@
     "@parkpark.dk/eslint-config": "^1.0.10",
     "@parkpark.dk/prettier-config": "^1.0.0",
     "eslint": "^4.11.0",
-    "prettier": "^1.8.2",
-    "semantic-ui-css": "^2.2.12"
+    "prettier": "^1.8.2"
   },
   "engines": {
     "node": ">= 8.0.0"

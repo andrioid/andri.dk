@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import { Image } from 'semantic-ui-react'
 
+import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import andratar from '../../img/coffee-art.jpg'
 import 'typeface-indie-flower'
 
@@ -45,32 +45,16 @@ const IndexPage = () => (
 				>
 					Hi! I'm Andri
 				</h1>
-				<h3>I like to build stuff</h3>
+				<h3>I like computers.</h3>
+			</div>
+			<div>
+				<Github user="andrioid" />
+				<Twitter user="andrioid" />
+				<LinkedIn user="andriosk" />
 			</div>
 			<div>
 				<i className="big chevron down icon" />
 			</div>
-			{/* <div
-				style={{
-					position: 'absolute',
-					top: '50%',
-					backgroundColor: 'red',
-					transform: [{ translateY: '-50%' }]
-				}}
-			>
-				<div>
-					<h1>If you're reading this, I'm sorry</h1>
-					<p>
-						My plan was to learn Gatsby, migrate all my stuff and learn Netlify
-						deployment.
-					</p>
-					<p>
-						However, I learned to deploy with Netlify before anything else, so
-						bear with me.
-					</p>
-					<Link to="/page-2/">Go to page 2</Link>
-				</div>
-			</div> */}
 		</div>
 		<div
 			style={{
