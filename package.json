@@ -7,6 +7,8 @@
     "gatsby": "^1.9.99",
     "gatsby-link": "^1.6.24",
     "gatsby-plugin-react-helmet": "^1.0.8",
+    "gatsby-source-filesystem": "^1.5.9",
+    "gatsby-transformer-remark": "^1.7.23",
     "react-icons": "^2.2.7",
     "typeface-indie-flower": "^0.0.44",
     "typeface-source-code-pro": "^0.0.44",

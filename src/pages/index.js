@@ -8,7 +8,19 @@ import 'typeface-indie-flower'
 // Colors: https://material.io/guidelines/style/color.html#color-color-palette "indigo"
 
 const IndexPage = () => (
-	<div style={{ display: 'flex', flexDirection: 'column' }}>
+	<div
+		style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}
+	>
+		<div
+			style={{
+				top: 0,
+				left: 0,
+				width: '100%',
+				height: 10,
+				backgroundColor: '#8C9EFF'
+			}}
+		/>
+
 		<div
 			style={{
 				minHeight: '100vh',
