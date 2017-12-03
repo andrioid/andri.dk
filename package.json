@@ -7,7 +7,10 @@
     "gatsby": "^1.9.99",
     "gatsby-link": "^1.6.24",
     "gatsby-plugin-react-helmet": "^1.0.8",
-    "semantic-ui-react": "^0.77.0"
+    "semantic-ui-react": "^0.77.0",
+    "typeface-indie-flower": "^0.0.44",
+    "typeface-source-code-pro": "^0.0.44",
+    "typeface-source-sans-pro": "^0.0.44"
   },
   "keywords": [
     "gatsby"
