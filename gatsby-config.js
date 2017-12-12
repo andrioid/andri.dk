@@ -8,7 +8,7 @@ module.exports = {
 			options: { name: 'src', path: `${__dirname}/src/` }
 		},
 		{
-			resolve: 'gatsby-source-rss',
+			resolve: 'gatsby-source-rss-fork',
 			options: {
 				rssURL:
 					'https://feeds.pinboard.in/rss/secret:16b24ead131e0282c0a9/u:andrioid/'
