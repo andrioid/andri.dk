@@ -3506,9 +3506,9 @@ gatsby-source-filesystem@^1.5.9:
     slash "^1.0.0"
     valid-url "^1.0.9"
 
-gatsby-source-rss@^1.0.0:
+gatsby-source-rss-fork@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/gatsby-source-rss/-/gatsby-source-rss-1.0.0.tgz#67ca6a0d88d13c1d4e4616ff94f807bf6c284c91"
+  resolved "https://registry.yarnpkg.com/gatsby-source-rss-fork/-/gatsby-source-rss-fork-1.0.0.tgz#b1698d963efa02e28a62aa7c7caa9bc8b1cfc573"
   dependencies:
     rss-parser "^2.10.1"
 
