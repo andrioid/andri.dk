@@ -1,6 +1,7 @@
 module.exports = {
 	siteMetadata: {
-		title: `andri.dk`
+		title: `andri.dk`,
+		description: 'Personal homepage, portfolio and tech blog'
 	},
 	plugins: [
 		{
@@ -16,6 +17,7 @@ module.exports = {
 		},
 		'gatsby-transformer-remark',
 		`gatsby-plugin-react-helmet`,
+		'gatsby-plugin-feed',
 		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {
