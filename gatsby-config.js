@@ -1,7 +1,8 @@
 module.exports = {
 	siteMetadata: {
 		title: `andri.dk`,
-		description: 'Personal homepage, portfolio and tech blog'
+		description: 'Personal homepage, portfolio and tech blog',
+		siteUrl: 'https://andri.dk'
 	},
 	plugins: [
 		{
