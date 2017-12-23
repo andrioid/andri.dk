@@ -1,1 +1,6 @@
-module.exports = require('@parkpark.dk/eslint-config')
+module.exports = {
+    extends: '@parkpark.dk/eslint-config',
+    globals: {
+        graphql: true
+    }
+}
