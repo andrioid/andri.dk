@@ -6,8 +6,18 @@ module.exports = {
 	},
 	plugins: [
 		{
-			resolve: 'gatsby-source-filesystem',
-			options: { name: 'src', path: `${__dirname}/src/` }
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `pages`,
+				path: `${__dirname}/src/pages/`
+			}
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `blog`,
+				path: `${__dirname}/src/blog/`
+			}
 		},
 		{
 			resolve: 'gatsby-source-rss-fork',
@@ -19,6 +29,7 @@ module.exports = {
 		'gatsby-transformer-remark',
 		`gatsby-plugin-react-helmet`,
 		'gatsby-plugin-feed',
+		'gatsby-transformer-remark',
 		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {
