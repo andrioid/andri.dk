@@ -28,6 +28,7 @@ module.exports = {
 		},
 		'gatsby-transformer-remark',
 		`gatsby-plugin-react-helmet`,
+		'gatsby-plugin-catch-links',
 		'gatsby-plugin-feed',
 		'gatsby-transformer-remark',
 		{

@@ -1,0 +1,892 @@
+nid,title,body_value,body_summary,created,status,type,tags
+1,Working on it...,"I'm sorry for the downtime. We had a disk failure and the backup isn't quite what it was supposed to be.
+
+I decided to install Drupal 7 (old site was Drupal 6) and repopulate the site manually. Haven't found a good way to migrate the old data. If you know of a good way, feel free to <a href=""/contact"">contact me</a>.",,1301317490,1,article,personal|blog
+4,102 key fix for Icelandic keyboards,"(Note: I stole this from my <a href=""http://dallur.com"">friend's blog</a> - because his site isn't online at the moment)
+
+Using 102 key keyboards with an an Icelandic keyboard layout
+
+One of the most frustrating things about the Icelandic keyboard layout is that the <>| symbols are bound to an extra key only found on 103 + key keyboards, this key is located left of the Z character.
+Despite this you will often find 102 key keyboards and laptops with 102 key keyboards being sold in Iceland, while this isn't much of a problem for your standard windows user it's quite annoying for programmers and *nix users which depend on sh/bash shells.
+
+In my frustration I ended up creating a new custom Icelandic keyboard layout for 102 key keyboards, here is the layout along with a guide on how to install it.
+
+This map uses alt-gr and the ,.þ keys for the <>| symbols, this is handy because it's an easy one hand keypress and because 102 key keyboards will have the <> symbols printed in that place.
+
+<strong>Windows:</strong>
+To use the custom keyboard map on a windows machine download the setup file, extract and run the setup to install a new keyboard layout, you can then select via the ""Text Services and Input Language"" like any regular windows keyboard layout.
+
+<strong>Linux:</strong>
+
+I have only tested the Linux version on Ubuntu 9.10, let me know if this does not work for you so I can fix the guidelines for more distros/versions.
+
+<ol>
+<li>Edit the file /usr/share/X11/xkb/symbols/is and add the following section to the end of the file: (sudo gedit /usr/share/X11/xkb/symbols/is/)
+// Icelandic layout for US 102 key keyboards missing the | < > button next to the Z
+// Instead these keys are also mapped to alt-gr  and , . þ
+partial alphanumeric_keys
+xkb_symbols ""102"" {
+    name[Group1]= ""Iceland - 102 keys"";
+
+    include ""is(basic)""
+    key <AB08>  { [   comma,    semicolon,      less,   multiply ] };
+    key <AB09>  { [  period,    colon,          greater,        division ] };
+    key <AB10>  { [   thorn,    THORN,          bar,    dead_abovedot ] };
+};
+</li>
+<li>Edit the file /usr/share/X11/xkb/rules/evdev.xml , find the Icelandic section and after the variant Dvorak add a new variant called 102 like so (sudo gedit usr/share/X11/xkb/rules/evdev.xml)
+    <variant>
+        <configItem>
+            <name>102</name>
+            <description>102 Key keyboards</description>
+        </configItem>
+    </variant>
+</li>
+<li>Edit the file /usr/share/X11/xkb/rules/evdev.lst , find the is section and add the is: 102 section so that it looks like the following (sudo gedit /usr/share/X11/xkb/rules/evdev.lst):
+  Sundeadkeys     is: Sun dead keys
+  nodeadkeys      is: Eliminate dead keys
+  mac             is: Macintosh
+  dvorak          is: Dvorak
+  102             is: 102
+</li>
+<li>Configure the system to use the new variant, change the default variant by editing the file /etc/default/console-setup (sudo gedit /etc/default/console-setup)
+Add the variant by changing the XKBVARIANT variable to ""102"" so that the config looks like the following:
+XKBMODEL=""pc105""
+XKBLAYOUT=""is""
+XKBVARIANT=""102""
+XKBOPTIONS=""""
+
+Now all you need to do is restart and you should have your new keyboard layout with <>| buttons available</li>
+</ol>","(Note: I stole this from my <a href=""http://dallur.com"">friend's blog</a> - because his site isn't online at the moment)
+
+Using 102 key keyboards with an an Icelandic keyboard layout
+
+One of the most frustrating things about the Icelandic keyboard layout is that the <>| symbols are bound to an extra key only found on 103 + key keyboards, this key is located left of the Z character.
+Despite this you will often find 102 key keyboards and laptops with 102 key keyboards being sold in Iceland, while this isn't much of a problem for your standard windows user it's quite annoying for programmers and *nix users which depend on sh/bash shells.
+
+In my frustration I ended up creating a new custom Icelandic keyboard layout for 102 key keyboards, here is the layout along with a guide on how to install it.
+
+This map uses alt-gr and the ,.þ keys for the <>| symbols, this is handy because it's an easy one hand keypress and because 102 key keyboards will have the <> symbols printed in that place.",1302718068,1,article,blog|tech|linux
+5,Calling your own functions from jQuery,"<strong>As a part of my site restoration, this page was salvaged and may not be up to date</strong>
+
+I've been playing around with jQuery for a week or so, without any prior experience with Javascript. jQuery is absolutely brilliant and it's quite easy to do different things with it. However, when I started doing repetitive tasks, i wanted to create a function to do it; instead of repeating my code at multiple places.
+
+This is where I had problems, because my 'updateTable' function had no idea what $() was and no jQuery functions worked after I started calling my 'updateTable' function from the jQuery context.
+
+Well, today I got it to work by sending the jQuery object to my function.
+
+<strong>Old function (does not work)</strong>
+<blockquote>
+function updateTable () {
+  /* Call jQuery stuff (for example, change forms) */
+}
+
+$(function() {
+  $(document).ready(function() {
+    updateTable();
+  });
+});
+</blockquote>
+
+After spending a couple of days scratching my head and reading a bit about Javascript, this was 'obviously' a problem of my function not knowing the jQuery context or any of the objects inside it.
+
+There is probably a smarter way of doing this; but I at least solved my problem by appending the jQuery object '$' to the function, as follows.
+<!--break-->
+<strong>New, less crappy version</strong>
+<blockquote>
+function updateTable ($) {
+  /* Call jQuery stuff (for example, change forms) */
+}
+
+$(function() {
+  $(document).ready(function() {
+    updateTable($);
+  });
+});
+</blockquote>
+
+<strong>Update: Arnórs' suggestion</strong><br>
+Arnór suggested that declaring the functions after $(document).ready will make all functions after that aware of the jQuery object (makes sense, but I haven't tried it).
+<blockquote>
+$(function() {
+  $(document).ready(function() {
+    function updateTable ($) {
+      /* Call jQuery stuff (for example, change forms) */
+    }
+    updateTable();
+  });
+});
+</blockquote>
+<strong>Update: Guðmundur suggested creating a jQuery plugin</strong><br>
+I decided to go with this advice everything is working so far. I recommend <a href=""http://blog.jeremymartin.name/2008/02/building-your-first-jquery-plugin-that.html"">this article</a> as well.
+
+<blockquote>
+$(function() {
+  $.fn.updateCart = function() {
+    /* Misc jQuery stuff */
+  };
+  $(document).ready(function() {
+    ('#mytable').updateTable();
+  });
+});
+</blockquote>
+
+As a footnote; I'm no Javascript or Jquery expert. Been playing around for a week and I found this information extremely hard to come by, so if it can help anyone else who's beginning to play with jQuery, then great..",,1281457437,1,article,blog
+8,"Logo creation, the (extremely) geeky way!","Recently, me and my excellent group have been working on our semester report and we're currently down to the tiny details and hopefully we'll soon be ready to print. What has annoyed me for a while is the quality of the logo that the university hands out to its students. The only logo that has any actual colors is a JPG version that doesn't scale (or print) very well. There is also a Postscript version, but that only has one color.
+
+I've been creating various graphics with PGF/TikZ (<a href=""http://www.texample.net/tikz/examples/"">other examples</a>) and LaTeX during the semester so why not use this to create the logo as well?
+<!--break-->
+<img src=""/sites/andrioid.net/files/aaueps.png""><img src=""http://www.lfd.learning.aau.dk/Skabelon/aau_logo_en.gif"">
+
+<h3>Plan</h3>
+<ul>
+<li>Extract the actual logo (coordinates of the path) from scalable logo</li>
+<li>Use the coordinates to draw it in TikZ</li>
+<li>Use the original colors from the JPG version</li>
+<li>Use LaTeX to render the text under the logo</li>
+<li>Brag about it on the Internet</li>
+</ul>
+
+<h3>Result</h3>
+
+<img src=""/sites/andrioid.net/files/tikzaaulogo.png"" title=""AAU logo"">
+
+<h3>Howto</h3>
+
+<ol>
+<li>Convert the EPS to a SVG to determine the coordinates (easier than to draw it by hand)<br><a href=""http://chrisdown.wordpress.com/2007/12/29/eps-to-svg-conversion/"">How to convert EPS to SVG</a>. I was lucky enough to find the SVG online.</li>
+<li>Fetch the <a href=""http://code.google.com/p/inkscape2tikz/"">Inkscape to TikZ exporter</a> and export the path to a LaTeX file</li>
+<li>Tweak the TikZ code until you're satisfied with the results and run pdflatex on it.</li>
+</ol>
+
+<h3>Source</h3>
+<ul>
+<li><a href=""/sites/andrioid.net/files/logo.tex"">LaTeX source code</a></li>
+<li><a href=""/sites/andrioid.net/files/logo.pdf"">PDF output, ready to print</a></li>
+</ul>
+
+<h3>Disclaimer</h3>
+The artwork is not of my design. It belongs the University of Aalborg and is a registered trademark. Their official logo is available <a href=""http://adm.aau.dk/ansatte/logo/index.htm"">here</a>.
+I just hope this little experiment of mine is ok with the AAU lawyers.
+
+<strong>Fellow students:</strong>I would appreciate a link back to this story if you decide to use this version of the logo. The LaTeX source is hereby licensed to the public domain.",,1312997551,1,article,Studies|Projects
+9,Semester Project: Lanification,"<img src=""/sites/andrioid.net/files/lanification-front.png"" align=""right"" border=""0""><strong>Semester:</strong> Fall of 2009
+<strong>Authors:</strong> Anders Tornvig, Andreas Møgelsmose, Andri Óskarsson
+
+The idea was to create a software framework for peer-to-peer based office communication. Tasks such as short-term event planning and a common notification platform have no unified solution so the aim was to create one.
+
+It was programmed using Qt 4.5 and C++ and contained over 4000 lines of code. We made use of XML, TCP, UDP, XML querying and SQLite databases. Two protocols were created for this project; one for message transport (LMTP) and one for peer discovery (LPDP).
+
+Further information can be found in the attached report (English). Screenshots inside.
+<!--break-->
+<img src=""/sites/andrioid.net/files/lanmac.png"">
+Apple Macintosh 10.5
+<img src=""/sites/andrioid.net/files/lanlinux.png"">
+Ubuntu 9.10
+<img src=""/sites/andrioid.net/files/lanxp.png"">
+Windows XP",,1312997668,1,article,Studies
+10,Automatic USB backup with Ubuntu,"<strong>As a part of my site restoration, this page was salvaged and may not be up to date</strong>
+
+Everyone has important files like personal photographs, bank statements, a life's accumulation of porn and so and and so forth that would be hard or impossible to recover if that damn hard drive would fail.
+
+I've always been well aware of the dangers of not taking backups but yet still lazy enough to ignore it.
+
+Backup for the lazy includes the following steps:
+<ul><li>Put USB stick in computer</li>
+<li>Wait for computer to BEEP or USB stick to stop flashing</li>
+<li>Unplug USB stick</li>
+<li>Rinse and repeat!</li>
+</ul>
+<!--break-->
+I wrote a package that does the following:
+<ul><li>Detects USB drives connected to the computer and runs the backup script</li>
+<li>Only runs backup on partitions that match the configured volume_id</li>
+<li>Mounts the volume</li>
+<li>Runs rsync and takes an incremental copy of the files that have changed since a last backup.</li>
+<li>Unmounts the volume</li>
+<li>Gives a good or a bad beep through the PC speaker</li>
+</ul>
+
+<h2>Step by Step</h2>
+<ol><li>Insert your USB stick/disk</li>
+<li>Make sure it has a usable partition. I use FAT32 so my Mac can also read it. (hint: System > Administration > Partition Editor)</li>
+<li>Download the two files and put them in the appropriate places
+<ul><li>/etc/udev/rules.d/<a href=""/sites/andrioid.net/files/55-usb-backup.rules"">55-usb-backup.rules</a> (udev rule)</li>
+<li>/usr/local/bin/<a href=""/sites/andrioid.net/files/usb-backup"">usb-backup</a> (shell script)</li></ul>
+</li>
+<li>Find the volume id of your partition and replace mine in the 'usb-backup' file
+<code>root@ubahmaskine: vol_id -u /dev/sdd1
+4507-FB5A
+</code>
+</li>
+<li>Set SRC_DIR to the directory you want backed up within 'usb-backup'</li>
+<li>Make sure the 'usb-backup' file has the execute permission for root:
+<code>chmod 700 /usr/local/bin/usb-backup</code>
+</li>
+<li>Unplug USB stick</li>
+<li>Plug in USB stick</li>
+<li>After it beeps or stops flashing try mounting it f.e.
+<code>mount /dev/sdd1 /mnt/sdd1</code>
+</li>
+<li>Check if all your files made it accross</li>
+<li>Unmount the volume again f.e.
+<code>umount /dev/sdd1</code>
+</li>
+<li>Unplug and plug it in again once a week or so.</li>
+<li>For audio beep to work you need the 'beep' package (apt-get install beep)</li>
+</ol>
+
+<h2>Notes and credit</h2>
+<ul><li>Thanks to <a href=""http://anderstornvig.dk"">Anders</a> for his original idea and implementation of this.</li>
+<li>The script does not check if the volume has enough space to do the backup. If it doesn't, it will fail!</li>
+<li>If umounting seems slow, it's due to delayed write to the USB drive.</li>
+<li>Should work on other Linux distributions as long as udev is present.</li>
+<li>This is provided 'as is' and offers <strong>no guarantee</strong>. Use at your own risk!</li> 
+</ul>",,1281461744,1,article,blog
+11,Taking out the trash: Keeping your computer safe,"<strong>As a part of my site restoration, this page was salvaged and may not be up to date</strong>
+
+<img src=""/sites/andrioid.net/files/comp_fun.gif"" align=right width=250>Who hasn't experienced his computer popping up windows, being slow with strange new programs in your start menu. If that's the case it's likely that you're computer is infected with a virus, trojan or spyware.
+
+I'm writing this article because people keep asking me the same questions and I hope this can provide further help.
+
+This article covers a very wide area in a short period of time so it assumed that the reader has at least basic computer skills.
+<!--break-->
+<h2>How did this get into my computer?</h2>
+<ol>
+<li>Security vulnerabilities in your operating system and/or programs</li>
+<li>Users are being tricked into installing this filth themselves</li>
+<li>""Extras"" with ""free"" software</li>
+</ol>
+
+<h2>The Danger?</h2>
+Way too many users today have considered it normal for their computers to be infected with viruses, spyware and other filth.
+
+<h3>Computers that are infected are being used for</h3>
+<ul>
+<li>Attacks on companies and institutions</li>
+<li>Collection of personal information for marketing companies</li>
+<li>Sending junk-email (spam) and collection of email addresses for that purpose</li>
+<li>Spreading the filth</li>
+</ul>
+
+<h2>What can I do?</h2>
+It's in your power to change this. In fact it's much easier to prevent your computer from becoming infected than it is to fix it afterwards.
+
+<h2>User privileges?</h2>
+If you use an ""Administrator"" account on your computer for daily use you are compromising your computer needlessly. Most daily tasks can be done without that access and it should be purely used when <strong>you</strong> want something installed or changed on the computer.
+
+On Windows XP you can create three types of users. ""Limited User"", ""Power User"" and ""Administrator"". You want to use ""Limited User"" for every person on the computer and only one ""Administrator"" account, password protected for installations or system changes.
+
+If you make sure that everyone in your home use a ""limited"" access you can sleep easy at night knowing that they can probably not mess anything up but their own user account.
+
+<h2>Browser</h2>
+One of the biggest security holes in the Windows operating system is the browser, Internet Explorer and it is the largest cause of infections for computers.
+
+I personally recommend either <a href=""http://www.getfirefox.com"" title=""Firefox"">Firefox</a> or <a href=""http://www.opera.com"" title=""Opera"">Opera</a>. These are both good browsers and a chance of exploitation is less than with Internet Explorer.
+
+Every so often you will visit a web page that requires Internet Explorer...
+
+In that case I recommend <a href=""http://ietab.mozdev.org"">IE Tab</a> for Firefox which allows you to run Internet Explorer from within Firefox for specific web pages.
+
+<h2>Update? What's that?</h2>
+The most common misunderstanding of computer users is that they think it's enough to install the right program and then the computer will work as it should for years without problems.
+
+The fact however is that <strong>all</strong> computer programs have some flaws so it is very important to update your computer regularly.
+
+<h3>Windows Update</h3>
+Windows Update is your best friend (if you bought your copy that is) but there you can update most programs from Microsoft.
+
+In your start button there is usually a link to ""Windows Update"" or under the Tools bar in Internet Explorer. I recommend people updating their computers at least once a week.
+
+If you are the lazy type like I am you can use ""Automatic Updates"" but Microsoft recommends that. Then Windows will let you know when updates are ready for your computer in the bottom right corner (near the clock).
+
+<h2>What about Firewalls?</h2>
+A firewall serves the disputed purpose of keeping other computers from connecting to yours. Not unlike having a moat around your house.
+
+The fact is that if you leave your keys under your welcome mat the moat won't keep the Black Knight at bay, only slow him down.
+
+The core problem lies in the security flaws in the operating system (or programs) but in most cases it won't hurt to have some extra security.
+
+I recommend people keep the Windows XP (SP 2) firewall running by default.
+
+<h2>Free smileys? Free games?</h2>
+One of the most common ways for those who write ""evil"" programs to get them installed is offering it ""FREE"" on the Internet. Some examples are ""Smiley Central"" or ""Weather Applet"". Both of those programs contain a software designed to spy on you.
+
+Free games also have the tenancy to infect computers with filth.
+
+If you are in doubt before installing a program. Just type the name of the program into <a href=""http://google.com"">Google</a> and keep your eyes open for word such as ""trojan"", ""spyware"", ""virus"", ""malware"".
+
+Open Source programs however are in most cases harmless and I do recommend their use.
+
+
+<h2>My computer is infected :'(</h2>
+Unfortunately computers from time to time get infected by all sorts of filth. It's important to be able to identify the two major categories that infect home computers. 
+
+<h2>Spyware</h2>
+Spyware has become very common where marketing companies make money of collecting personal information about people. Information like what web pages you like, what interests you and then they will either sell this information or send you advertisements or popup windows based on your habits. The worst thing you can do is to click or buy something you received through unwanted ads. By doing that you're sponsoring the abuser of your privacy.
+
+Free software to remove Spyware/Adware:
+<ul><li><a href=""http://www.lavasoftusa.com/software/adaware/"" target>AdAware Personal</a></li>
+<li><a href=""http://www.safer-networking.org/en/index.html"">Spybot S&D</a></li>
+<li><a href=""http://www.microsoft.com/athome/security/spyware/default.mspx"" target=""_blank"">Microsoft Anti-Spyware BETA</a></li>
+</ul>
+
+Install <u>one</u> of those tools. Do not mix them on your computers, it will only slow it down and possibly cause conflicts between the programs.
+
+<h2>Viruses and Trojans</h2>
+Viruses are software that will reproduce itself and uses security holes to automatically spread itself. Viruses are though becoming second to trojans and spyware that are spreading faster.
+
+
+Trojans aren't unlike viruses but they gain access to the computers by tricking the user to let them in. As an example is an e-mail that says ""Your computer is infected by a virus. Install this program to clean your computer"". It is very common that the attachment is in fact a trojan and will use your computer to keep spreading.
+
+<h3>Free software to remove viruses and trojans</h3>
+<ul>
+<li><a href=""http://www.clamwin.net"" target=""_blank"">ClamWin</a></li>
+<li><a href=""http://free.grisoft.com/"" target=""_blank"">AVG Antivirus - Free edition</a></li>
+<li><a href=""http://www.avast.com/eng/download-avast-home.html"">Avast home edition</a></li>
+</ul>
+
+<h2>But my computer is still a mess :'(</h2>
+Sometimes the programs dig themselves so deep into the operating system that it's almost impossible to get them out without spending many hours of expert help to fix it.
+
+Then it's usually quickest to copy all your documents, setup your operating system again and learn from the experience.
+
+Most computer stores have some sort of a technical workshop and can clean or re-install for you.
+
+<h3>About the article</h3>
+I wrote this because I felt like i was always answering the same qustions and people in general are very unaware of security on their computers when connected to the Internet.
+
+<h3>References</h3>
+<ul>
+<li><a href=""http://www.google.com"">Google</a></li>
+<li><a href=""http://en.wikipedia.org"">WikiPedia</a></li>
+</ul>",,1281461831,1,article,windows
+12,Mac OS-X for Windows users,"<strong>As a part of my site restoration, this page was salvaged and may not be up to date</strong>
+
+I just got my Macbook a few days ago but I've been a Linux user for 9 years and a Windows user for too long to remember so this was kinda of a shock for me.
+
+The purpose of this article is to document what I found strange or hard to find and solutions to what I'd think are common problems for first-time Mac users.
+<!--break-->
+<h3>Installing new programs</h3>
+
+To install new programs you download the programs in so-called <strong>.dmg</strong> files but they contain the program.
+
+When you double click the file the computer will create a virtual drive on your desktop (simular to if you inserted a cd rom) but if you double-click the drive you'll see the contents.
+
+To install the program onto your computer, drag the program from the drive to your Applications folder (hit SHIFT+MAC+A to make it popup).
+
+<h3>Right clicking</h3>
+
+I got terrified when I saw that the touchpad on the Macbook only had ONE button. But to right click you simply hold the CTRL button while pressing it for the secondary action.
+
+You can also just plug an external USB mouse instead, much easier.
+
+<h3>Where are all my windows?</h3>
+
+Alt+Tab shows some of the windows currently open but I find it unpleasant that some of the windows are hidden somewhere behind others and its hard to find them back.
+
+To solve that problem you can use <strong>F9</strong>, <strong>F10</strong> and <strong>F11</strong> on your keyboard but with those buttons you can rearrange windows or move them back.
+
+<h3>MSN Messenger</h3>
+
+For those who use MSN as a chat program it's essential to have a good client on Mac as well.
+
+<a href=""http://www.adiumx.com"">AdiumX</a> is a chat program but it supports MSN, Jabber (Gtalk), AIM, Yahoo, ICQ and many other protocols so it's pretty nice to have only one program even if your friends are using different networks.
+
+<h3>VNC Viewer</h3>
+
+Not too different from Remote Desktop, VNC is mostly used to connect into other machines and there are daemons and clients available for Windows, MacOS and Linux.
+
+The program that you'd use on Mac to connect to other computers is called <a href=""http://sourceforge.net/projects/cotvnc/"">Chicken of the VNC</a>.
+
+<h3>Browser, the Firefox</h3>
+
+Safari isn't all bad but I find that Firefox is much better because I can run it on all my machines (win, linux, mac) with the same extensions and it's exactly the same everywhere.
+
+I recommend that you download <a href=""http://www.getfirefox.com"">Firefox</a>
+
+<h3>WMV and Xvid on MacOS-X Intel</h3>
+I want to start with recommending VLC for all general viewing purposes. However if you like Frontrow (media center thingy) you'll also need this.
+
+To be able to play WMV files through Quicktime you'll need <a href=""http://www.microsoft.com/windows/windowsmedia/player/wmcomponents.mspx"">Flip4Mac </a> from Microsoft.
+
+For Xvid and DivX you can get <a href=""http://perian.org"">Perian</a> instead if being stuck with the very commercial Divx package.
+
+<h3>Connecting to Windows network shares</h3>
+
+I was unable to browse for my Linux fileserver so I thought I'd mention how to connect directly to a fileserver if you know its name or IP address.
+
+Click the desktop, then your menu changes and in the top left corner it should say <strong>Finder</strong>.
+
+Now click ""Go > Connect to Server"" if you know the name or IP address type it in like this: ""smb://nameoripaddress"". Then either click 'Connect' or the plus sign to add it to bookmarks.
+
+If you don't know the name or IP you can try your luck with the 'Browse' button.
+
+<h3>Firefox keeps poluting my desktop</h3>
+If for some reason Firefox keeps filling up your desktop with every file you decide to open on the Internet you need to open up 'Safari' (yeah, you heard me) and go into 'Preferences' and then change the default download location to something else.
+
+Personally I want those files in /tmp (old Linux habbit)",,1281398400,1,article,mac
+13,Piping remote backups through SSH with tar,"<strong>As a part of my site restoration, this page was salvaged and may not be up to date</strong>
+
+While usually operating some sort of backup systems, it may become necessary to perform at remote backup of a machine without initiating locally. There can be a number of reasons to do this, such as:
+
+<ul>
+<li>You do not trust the operator of the machine you need to backup from. Various tools may be compromised to grab your passwords.</li>
+<li>There is no space left on the machine to store the backup file</li>
+</ul>
+
+<h3>From the receiving machine (backup to)</h3>
+<blockquote>
+# Using bzip2 as compression
+ssh user@remote-machine.com ""tar cj remote_folder_name1 remote_folder_name2"" > backup.tar.bz
+# Using gzip as compression
+ssh user@remote-machine.com ""tar cz remote_folder_name1 remote_folder_name2"" > backup.tar.gz
+</blockquote>
+
+You will be prompted for a password before the command is run. If you need this to be automatic, you can use password-less public key authentication instead (although I will not cover it here). If you risk that your session might die before finishing the copy, try something like 'screen' before running the command.
+
+This shouldn't be much of a revelation to most linux geeks, but useful non the less and written here for documentation purposes.
+",,1281398400,1,article,linux
+14,2D Game Map in Canvas,"<strong>This project is discontinued. The latest version went down with the two hard disks that failed :(</strong>
+
+For the last couple of weeks I've been playing around with HTML5 or more specifically, the canvas element. Coupled with jQuery and some basic Javascript I've created a 2 dimensional game map for a strategy board game (like <a href=""http://www.travian.com"">Travian</a>). Should work in most 2D browser game worlds as long as the coordinates are two dimensional.
+
+<a href=""/sites/andrioid.net/files/maptest1.png""><img src=""/sites/andrioid.net/files/maptest1t.png"" title=""Overview""></a><a href=""/sites/andrioid.net/files/maptest2.png""><img src=""/sites/andrioid.net/files/maptest2t.png"" title=""Closer look""></a>
+
+<h3>Features</h3>
+<ul>
+<li>Map controls Overlay: North, South, East, West. Zoom In, Zoom Out.</li>
+<li>Mouse controls: Zoom with scroll wheel. Drag map to move.</li>
+<li>JSON backend: Dynamically fetches the tiles requested through AJAX.</li>
+<li>Works with Travian: Currently the prototype is running on a dataset from a Danish Travian server.</li>
+<li>Village information: A mouse-over effect showing details about the current village.</li>
+<li>Village details: Possible to click a village for even more information through JSON.</li>
+<li>Dynamic size: Will function in a small element or full screen.</li>
+<li>Ease of deployment: Implemented as a jQuery plugin.</li>
+</ul>",,1312998180,1,article,Projects
+15,Semester Project: RFID Access Control,"<strong>Semester:</strong> Spring of 2009
+<strong>Authors:</strong> Andri Oskarsson, Christoffer Hjortlund
+
+A RFID based access-control system using multi-threading, networking and existing MySQL databases.
+
+The idea was to create a better solution for concerts, sports events and such that rely on paper tickets for access. In particular the student organization of Aalborg University wanted a way of using the student cards for authentication. 
+
+It consists of a server, written in C and libevent for asynchronous socket handling. A client, written in C# for Windows and Windows Mobile (6.5 and below). Both entities make us of a MySQL server for data.",,1312998289,1,article,Studies
+16,Semester Project: Bulletproof,"<strong>Semester:</strong> Spring of 2008
+<strong>Authors:</strong> Anders Tornvig, Andreas Møgelsmose, Andri Óskarsson, Christoffer Hjortlund,  René Therkelsen
+
+Our second semester, the project idea was to create a sniper detection system capable of locating from which direction shots were coming from by using multiple networked computers to listen for the shots and triangulate the source from the difference in time.
+
+Project made use of microphones, GPS dongles, Avahi (for dynamic connections). Second implementation made use of threading as well.
+
+<u>Note: The report attached is written in Danish (and I can't really take credit for any of the writing)</u>",,1312998333,1,article,Studies
+17,Semester Project: NANNY,"<strong>Semester:</strong> Fall of 2007
+<strong>Authors:</strong> Anders Tornvig, Andreas Møgelsmose, Andri Óskarsson,  Mads Høgsgaard, Henrik Holbaek
+
+The project idea was to help schools and other institutions deal with social networks. The idea came up when a certain 'network advisor' was busted in Denmark for seducing young children online.
+
+The system was our first project and our first experience with the programming language C. It made use of libpcap, regular expressions and basically 'sniffed' the network for any traffic intended for specific pages, matches certain (configurable) keywords and notified if any of these triggers were triggered. A good example would be an elementary school where the teacher would want to be notified of all 'person-to-person' messages sent by their students that include the words 'sexy' or 'meet'.",,1312998387,1,article,Studies
+18,Eggdrop: Nosense script,"Between 1997 and 2005 I spent a lot of time on IRC (Internet Relay Chat) as Merlin@IRCnet. During that time I ended up managing a few channels with a bunch of young people in them.
+
+What started to annoy me were certain patterns of people that joined, just to annoy other people. So I decided to create a system to automatically punish those people, but also a system that wouldn't punish actual conversations.
+
+It makes heavy use of regular expressions and is written in TCL.
+
+Recently I came across a version of my script online, so I decided to post it here for safe-keeping.
+
+An unfinished next-gen. version called justice.tcl is also <a href=""http://andrioid.net/sites/andrioid.net/files/justice.tcl"">available</a>.",,997401600,1,article,irc|Projects
+19,Creating a CV in LaTeX and TikZ/pgf,"<strong>As a part of my site restoration, this page was salvaged and may not be up to date</strong>
+
+<img src=""http://dl.dropbox.com/u/25593/cv-andri-thumbnail.jpg"" align=""right"">
+Once in a while, I have to dust off my CV (resume, Curriculum Vitae) and update it a bit. Originally I looked at the various TeX packages for CV making but I didn't really like any of them. So, I decided to create my own template using TikZ for graphics.
+
+You can see a screenshot of my CV on the right of the page or just <a href=""http://dl.dropbox.com/u/25593/cv-andri-en.pdf"">download the PDF file</a> for a closer look.
+<!--break-->
+If you're interested in using my template or changing it, you are free to do so. A link to the site is appreciated but not required.
+
+<a href=""http://dl.dropbox.com/u/25593/cv-andri-source.zip"">Download the CV source package</a>",,1312998554,1,article,blog|latex
+20,Site update,"It has been months since I've written anything here, so here is what has happened:
+
+<ul>
+<li>I went to Iceland as an intern for 4 months at <a href=""http://www.sprettur.is"">Sprettur</a> where I learned a whole bunch of stuff. I also got to attend a Test-Driven-Development and Agile Design courses with <a href=""http://jbrains.ca"">J.B. Rainsberger</a> as a part of my job there.</li>
+<li>I am finishing my studies here, so hopefully I will be looking for a job in February 2011.</li>
+<li>I also vacationed in Iceland for 20 days with my girlfriend - it was very nice, I have pictures!</li>
+<li>I went through the old articles from andrioid.net and andri.dk and posted the good ones here.</li>
+<li>I have an iPad now, courtesy of my friends at Sprettur so I will probably dial down on my Apple bashing for a month or two...</li>
+</ul>","It has been months since I've written anything here, so here is what has happened:
+
+<ul>
+<li>I went to Iceland as an intern for 4 months at <a href=""http://www.sprettur.is"">Sprettur</a> where I learned a whole bunch of stuff. I also got to attend a Test-Driven-Development and Agile Design courses with <a href=""http://jbrains.ca"">J.B. Rainsberger</a> as a part of my job there.</li>
+<li>I am finishing my studies here, so hopefully I will be looking for a job in February 2011.</li>
+<li>I also vacationed in Iceland for 20 days with my girlfriend - it was very nice, I have pictures!</li>
+<li>I went through the old articles from andrioid.net and andri.dk and posted the good ones here.</li>
+<li>I have an iPad now, courtesy of my friends at Sprettur so I will probably dial down on my Apple bashing for a month or two...</li>
+</ul>",1312999300,1,article,blog
+21,AJAX problems with jQuery and IE 7,"I spent the day debugging a specific Javascript error in Internet Explorer. It seemed to have problems with fetching a JSON data file through $.ajax.
+
+For reference, the solution was to force IE to use ActiveX for xhr (found by Bjoggi at the <a href=""https://forum.jquery.com/topic/object-doesn-t-support-this-property-or-method-from-jquery-1-4-1-in-ie7-only#14737000000881695"">jQuery forums</a>):
+
+<blockquote>
+    $.ajaxSetup({
+        xhr: function()
+            {
+            if ($.browser.msie)
+                {
+                return new ActiveXObject(""Microsoft.XMLHTTP"");
+                }
+            else
+                {
+                return new XMLHttpRequest();
+                }
+            }
+    });
+</blockquote>
+
+Hope this helps anyone else - since searching for ""ajax ie"" results in a whole can of worms...",,1313424210,1,article,blog
+22,Social Networks and the future,"I live abroad, disconnected from friends, ex co-workers and family so I try to use social tools to stay in touch. With the rise of Facebook, Twitter, Google+ and every other web 2.0 webpage on the Internet - you can be social everywhere. Now, the problem is simply to pick the right services and try to inform your friends. What is missing, is a way to be social <strong>with your contacts</strong> and not just with the company supplying this specific social service.
+
+We can split social networks into two groups:
+<ul>
+<li><strong>Contact networks</strong> (such as: Twitter, Facebook, Google+) </li>
+<em>Focused on users and user interaction, content services (such as photos) are secondary.</em>
+<li><strong>Content networks</strong> (smaller sites, but also sites like StackExchange, Picasa, Flickr, etc, Quora).</li>
+<em>Focused on rich content, user interaction is secondary. Content networks may also have rich, specialized content such as questions.</em>
+</ul>
+
+The problem with the current social landscape is that content networks are building basic user interaction into their sites, and that contact networks are building basic content services into their sites. We, the user is left in the dark, speculating on what services he should use to write his new exciting social content.
+
+It is unacceptable for social users that they have to browse multiple networks in search content and maintain multiple contact lists. It is unacceptable for content networks, that they have to reinvent the (social) wheel for every site. Every social network is so occupied with maintaining total control of the data (your data, mind you) that co-operation never came into play. These multi-billion dollar companies do not create any content. We, the users do. We deserve better!
+
+We deserve:
+<ul>
+<li>Freedom to manage our contacts, relationships (be it friend or follower) and be able to move between providers.</li>
+<li>Privacy for our relationships and our content and as citizens of different countries, we deserve to know who can access our data.</li>
+<li>Full separation of contact networks and content networks. This ensures that no single authority has access to all your data - it also ensures that the best services (not just the largest) can compete.</li>
+<li>Open Protocols for both content and contact providers and the freedom to choose.</li>
+</ul>
+
+Please note that I am not claiming that large providers shouldn't exist or that social sites shouldn't make money off of advertising or even targeted advertising. All I am trying to get through, is that we can work together and that user-driven networks are being designed, for the users. For competition to work within the social space, it is imperative that we split up the contact networks, from the content networks, at least technically.
+
+The Internet was founded with open protocols. Without open protocols we wouldn't have email or web pages. Unfortunately, in recent years the evolution has been that large corporate entities have been designing online services, so that competition is impossible and to keep <underline>your</underline> data in one place. We need open social protocols, now! ","I live abroad, disconnected from friends, ex co-workers and family so I try to use social tools to stay in touch. With the rise of Facebook, Twitter, Google+ and every other web 2.0 webpage on the Internet - you can be social everywhere. Now, the problem is simply to pick the right services and try to inform your friends. What is missing, is a way to be social <strong>with your contacts</strong> and not just with the company supplying this specific social service.",1313920674,1,article,blog
+24,"Rant on Moblin, Meego and now Tizen","I spend a great deal of time reading about new technologies. Usually, that leaves me excited with all the new cool upcoming stuff and occasionally I feel like developing on it. For a while, I have been a big fan of the Qt development framework. The API is clean, the IDE is nice and it also allows you to create rich applications in QML without much programming experience.
+
+<iframe width=""450"" height=""229"" src=""http://www.youtube.com/embed/nl3VOAf15BU"" frameborder=""0"" allowfullscreen></iframe>
+
+In the video above, the Nokia N9 is demonstrated. This UI, that seems to impress most people - would not be possible without Qt. Now, unfortunately Nokia's new CEO (fresh from Microsoft) decided that Meego was a burning platform and abandoned it. That left Meego in the hands of Intel, who said that ""they were fully committed"". Which, today, we found out <a href=""https://meego.com/community/blogs/imad/2011/whats-next-meego"">was a lie</a>.
+
+Tizen (or Tarzan as I will remember it) is a joint effort between two hardware companies, Intel and Samsung and Meego will transition into it.
+
+<strong>The good:</strong>
+<ul>
+<li>Intel and Samsung are working together on a Linux platform</li>
+</ul>
+
+<strong>The bad:</strong>
+<ul>
+<li>Developers do not like to be kicked in the groin. That is, learning a platform, only to discover that it is no longer preferred.</li>
+<li>Intel and Samsung are not software companies, their focus will always be hardware.</li>
+<li>So much effort has been put into transitioning the old Moblin onto Qt/Meego - I somehow doubt that those people are willing to rewrite everything in HTML5.</li>
+<li>There are already projects that are focused on bringing HTML5 based UI to the mobile.</li>
+</ul>
+
+<h3>Summary</h3>
+
+<strong>Stop shaking the foundations!</strong> It is hurting everyone involved. It seems that these hardware companies think that open-source developers somehow grow on trees and are not sensitive to constant changes. ""We will just grow new developers!"".
+
+I fear that this recent action will further diminish developer interest for the mobile space and encourage people to go with a more stable platform, such as Apple's Objective-C or Android's Java based platform. ","I spend a great deal of time reading about new technologies. Usually, that leaves me excited with all the new cool upcoming stuff and occasionally I feel like developing on it. For a while, I have been a big fan of the Qt development framework. The API is clean, the IDE is nice and it also allows you to create rich applications in QML without much programming experience.
+
+<iframe width=""450"" height=""229"" src=""http://www.youtube.com/embed/nl3VOAf15BU"" frameborder=""0"" allowfullscreen></iframe>
+
+In the video above, the Nokia N9 is demonstrated. This UI, that seems to impress most people - would not be possible without Qt. Now, unfortunately Nokia's new CEO (fresh from Microsoft) decided that Meego was a burning platform and abandoned it. That left Meego in the hands of Intel, who said that ""they were fully committed"". Which, today, we found out <a href=""https://meego.com/community/blogs/imad/2011/whats-next-meego"">was a lie</a>.",1317200059,1,article,blog|rant
+25,Icelandic Virtual Keyboard for Meego Harmattan,"Coming from a nation of 300.000 people has its downsides, like lack of keyboard support on various platforms. So, when I got my awesome Nokia N9, I wasn't all that surprised that there was no text input option for ""Íslenska"" or Icelandic. Fortunately, The Nokia N9 is mostly open source and the on screen keyboard uses <a href=""https://wiki.maliit.org/"">Maliit</a>. For those who like custom keyboards, they can check out <a href=""http://mesinput.com"">MesInput</a>.
+
+I have created a virtual keyboard file for Icelandic and contributed it to the MesInput project (awaiting confirmation).
+
+Until then, you can download the file from <a href=""http://dl.dropbox.com/u/25593/andrioid.net/is.xml"">here</a>:
+
+Then place it into:
+<code>
+/home/user/.config/meego-keyboard/layouts
+</code>
+
+The file can be uploaded through the SDK (sftp/ssh) or through USB mass storage (untested).
+
+Edit: Óli mentioned that Hátækni made a similar VKB file. It can be downloaded as a .deb file from <a href=""http://www.hataekni.is/gogn/gogn/is_keyboard_0.2.deb"">their site</a>. I've looked through the file and the main difference is that they do not provide all of the accented characters, common to Nordic languages. In any case, it's all good.",,1323251704,1,article,meego|Projects
+26,What I love about Gnome 3,"There has been a lot written about Gnome 3 in the past half a year. People do not like change, and the fact that we now have Unity, Gnome 3 and KDE 4 leaves many people wanting their <strike>fucking</strike> old desktop back. I tried Unity for a few months, didn't really get used it. In this article, I would like to focus on the positive part of my Gnome Shell experience (with Ubuntu 11.10).
+
+<h3>It stays out of your way</h3>
+
+<ul>
+<li>Instant messaging notifications only peek at you at the bottom of the screen. You can also easily answer them from there instead of going into IM mode.</li>
+<li>There is nothing constantly reminding you of the programs you should have running, like a dock or an application bar.</li>
+<li>When switching between applications, it respects your workspace and only shows you the apps you need. Still doesn't prevent you from switching.</li>
+</ul>
+
+<h3>Multi Monitor Support</h3>
+
+I use two monitors where I use one for ""working"" and the other one used for occasional documentation or just to host my jukebox (see screenshot). Unity for example insists on splitting my second monitor onto workspaces. I never ever use workspaces for my second monitor, I find it confusing.
+
+<h3>Plays nice with Games</h3>
+
+I occasionally play <a href=""http://heroesofnewerth.com"">Heroes of Newerth</a>, a DoTA style game on my Linux machine. I simply start it from a new workspace and Gnome 3 plays very nicely with it; I get OSD notifications and can easily switch over to my browser or whatever by using ALT+CTRL <arrowkeys> to navigate workspaces.
+
+<h3>It's extendable</h3>
+
+I have a pomodoro timer, time tracking and weather extensions on my Gnome 3 desktop. They recently opened a <a href=""https://extensions.gnome.org/"">new website</a> where you can download all the latest extensions.
+
+<h3>It is still Gnome</h3>
+
+<ul>
+<li>It's clean. Doesn't clutter you with too many options, but still offers the ones that matter.</li>
+<li>It's pretty, or can be.</li>
+<li>Focuses on you getting work done.</li>
+</ul>
+
+It took me a while to start loving it, but I can't imagine going back. Your views may differ, feel free to share them below. Other excellent resources on Gnome 3 include <a href=""http://www.webupd8.org/search/label/gnome%20shell?max-results=10"">WebUpd8</a>.",,1323696490,1,article,blog
+27,Predictions for 2012,"Please don't call me cheesy, but I am going to attempt to do some predictions for the year 2012 - like so many others.
+
+<ul>
+<li>2012 will not be the year of the Linux desktop. We're already there, but nobody noticed.</li>
+<li>The patent war will escalate even further and continue to halt innovation.</li>
+<li>Apple will release its first device without Steve Jobs. It will receive mixed reviews.</li>
+<li>Google+ becomes the new Facebook - except the old Facebook will still be there.</li>
+<li><a href=""http://buddycloud.com"">Buddycloud</a> will see its first public release and pave a way for distributed social networks</li>
+<li>Google will reveal that Google+ is in fact a federated social network through XMPP</li>
+<li>Twitter will be shaken with a privacy scandal that forces its users to reconsider.</li>
+<li>Windows Phone 7 will continue to lack adoption, compared to Android and iPhone</li>
+<li>Steve Ballmer will be fired.</li>
+<li>Stephen Elop will be fired. (maybe just wishful thinking)</li>
+<li>Energy Storage breakthrough will see the light of day.</li>
+</ul>
+
+That's all I can think of - I will review this next year and we can see if anything held up..",,1325273897,1,article,blog
+28,"Why I consider Sony to be ""evil""","Some time ago I decided that I would no longer buy any Sony products. It's not because anyone told me to or because it was ""hip"" to boycott them. Lately, I have seen Sony releasing some compelling commercial products and it is hard to tell your friends why they shouldn't buy Sony products without sounding like some sort of zealot.
+
+I like lists, so I am making a list of Sony's evil doings with sources so people can form opinions of their own. Please excuse the dramatic title, but actions do speak louder than words and I do believe Sony's actions reflect that it is a self-serving, evil corporation that will stop at nothing, to get it's way.
+
+<ul>
+<li>2000 - <a href=""http://en.wikipedia.org/wiki/Sony_BMG_copy_protection_rootkit_scandal"">Rootkit Incident</a>:
+<em>Sony autoloated rootkit software from audio CDs inserted into computers of their customers.</em>
+<li>2010 - <a href=""http://en.wikipedia.org/wiki/OtherOS"">OtherOS removal from the Playstation 3</a>
+<em>Researches and others were using Linux (and other operating systems) for research, computing clusters and more all the sudden were unable to do so after updating the firmware on their machines. There was a class-action suit, but it was dismissed in 2011.</em>
+</li>
+</li>
+<li>2011 - <a href=""http://www.engadget.com/2011/01/12/sony-follows-up-officially-sues-geohot-and-fail0verflow-over-ps/"">Suing ""hackers"" for tinkering with their own hardware</a></li>
+<li>2011 - <a href=""http://www.escapistmagazine.com/news/view/115005-EA-Sony-and-Nintendo-Withdraw-SOPA-Support-UPDATED"">Supporting SOPA</a></li>
+<li>2011 - <a href=""http://en.wikipedia.org/wiki/Anti-Counterfeiting_Trade_Agreement"">Supporting ACTA</a></li>
+<li>2011 - <a href=""http://www.guardian.co.uk/technology/2011/apr/27/playstation-users-identity-theft-data-leak"">Leaking user data of 77 million PSN users</a></li>
+</ul>
+
+If I have forgotten anything, just leave a comment. I have no doubt, that Sony will give me reason to update this post.",,1326191650,0,article,NULL
+30,Modern PHP Development Links,"I started hacking around with PHP in 1998 but never really considered it development until I learned what I used to consider ""superior languages"". A decade later, PHP is going strong and I am actually employed at a company where we do a lot of PHP (my opinions are my own). I've been wanting to implement something smart for deploying PHP projects (like continuous-integration) and decided to compile a list of useful links here. Wouldn't really consider this an article, just a placeholder of links.
+
+<h3>Test Frameworks</h3>
+<ul>
+<li><a href=""http://codeception.com/"">Codeception</a>: BDD inspired testing framework. MIT licensed.</li>
+<li><a href=""http://simpletest.org/"">SimpleTest</a>: Unit Testing framework, written in PHP. LGPL licensed.</li>
+<li><a href=""http://phpunit.de"">PHPunit</a>. Unit Testing framework. BSD licensed.</li>
+<li><a href=""http://www.enhance-php.com/"">Enhance PHP</a>.</li>
+</ul>
+
+<h3>Object Relational Mapping (ORM)</h3>
+<ul>
+<li><a href=""http://docs.doctrine-project.org/en/latest/index.html"">Doctrine</a>: Doctrine ORM, used by Symfoni and others.</li>
+<li><a href=""http://www.redbeanphp.com/"">RedBeanPHP</a></li>
+<li><a href=""http://www.phpactiverecord.org/"">PHP ActiveRecord</a></li>
+<li><a href=""http://code.google.com/p/datasourceorm/"">DataSourceORM</a></li>
+<li><a href=""https://github.com/j4mie/idiorm/"">idiorm</a> BSD licensed</li>
+</ul>
+
+<h3>Build Systems</h3>
+
+<h3>Code Tools</h3>
+
+<h3>Message Queues</h3>
+<ul>
+<li><a href=""http://www.rabbitmq.com/devtools.html"">RabbitMQ</a>: AMQP compatible server.</li>
+<li><a href=""http://activemq.apache.org/"">ActiveMQ</a>: AMQP compatible server.</li>
+<li><a href=""http://www.zeromq.org"">0MQ</a>: server (not AMQP compatible AFAIK).</li>
+</ul>
+
+<h3>Other useful libraries</h3>
+<ul>
+<li><a href=""http://opauth.org/"">Opauth</a></li>
+</ul>
+
+<h3>Frameworks</h3>
+<ul>
+<li><a href=""http://flourishlib.com/"">Flourish</a>: Modular</li>
+<li><a href=""http://www.symfony-project.org/"">Symfoni</a>: Modular.</li>
+<li><a href=""http://auraphp.github.com/"">Aurora PHP</a></li>
+</ul>
+
+<h3>Articles</h3>
+
+<ul>
+<li><a href=""http://marcelog.github.com/articles/ci_jenkins_hudson_continuous_integration_php_phing.html"">PHP Continuous integration, with Jenkins and Phing</a></li>
+<li><a href=""http://bradley-holt.com/2011/07/exploring-rabbitmq-and-php/"">Exploring RabbitMQ and PHP</a></li>
+<li><a href=""http://cakephp.org/"">CakePHP</a></li>
+</ul>",,1337528184,1,article,ci|bdd|tdd|php|blog
+172,How I lost my love of programming and regained it,"As a kid in Iceland, I was always fascinated by all things technical. Be it light-switches at my grandmothers house or what is generally described as the idiot-box. I have always loved this stuff, and still do.
+
+When I was eight years old, I discovered the delightful world of computers and in retrospect, many of my friends were handpicked, because they had interesting toys to play with. I spent all of the time I could playing and ""messing"" with computers. It started with computer games, but eventually I ran out of games for our Amstrad CPC 128k and had to resort to reading the computer manual to retype some of the programming examples in the back. I still remember the light-bulb-moment when I was at school and figured out what ""IF"" really meant through our English class. I created all sorts of simple menu programs with pixel graphics for our first family computer in BASIC, without having any idea of what I was doing was actually programming.
+
+Then years went by, and I think the next time I did anything that I would classify as programming, was in my teens, when I discovered IRC and started making scripts for mIRC. Among my proudest creations included a little script that I installed on my cousins computer that replaced all of his cursing with cute little words like ""flower"", ""honey"" and ""love"". When he discovered my little program I received a message on the lines of ""what the love have you done with my honeying computer?!"". Needless to say, IRC dominated my life back then and as someone who was mercilessly bullied throughout high-school - it was easier to hide behind the computer screen. I went from mIRC to creating scripts for Eggdrop, a bot that sits on IRC channels 24/7. We had a pretty large channel back then (#Iceland on IRCnet) and it was filled with immature, angry and horny teens and at times, the noise levels were too loud to handle manually. This prompted me to create ""nosense.tcl"", a score based system that would give you penalty points for shouting, repeating yourself and other annoying things. In time, the bot would ""forgive"" - so it didn't really affect normal chatting, but wrecked havoc on those poor teens. Today, I still think of systems, that might benefit for such noise control, such as MMO games.
+
+Around the same time, I was introduced to Pascal and Delphi, but neither really interested me. The exercises were easy enough, I was just never passionate enough about creating anything with it. Then after learning HTML, some people at school were using PHP (v3 at the time) for creating a lot of dynamic things in a world that had been awfully static at the time. Around the time when PHP reached 4.0 (around 1999, as I recall), I was hired by a bunch of friends at a startup as a web developer. This was the first time someone was actually willing to pay me to play with computers, and I was excited. My boss at the time however, was not content with me using PHP as a top-down language as I had learned with v3 and wanted to replace my function files with classes. Being extremely stubborn, and proud, I just ignored him until they finally fired me on the grounds of not having enough work for me. 
+
+After working as a network engineer for a year, I took a job as a web developer again and I created 3 custom solutions for a small company in a short time. Unfortunately, they were run by a sociopath who's idea of running a business was to hire people, never pay them and excuse himself until people gave up and left. People's salary was always ""in-the-mail"" or ""just on the way"". At the time, I had created a small CMS for cinemas as a freelancer and our interaction ended with him selling _my_ system to a customer and never paying me for it.
+ 
+Being unemployed, I couldn't afford a lawyer, so I decided to to focus on IT between the years of 2000 and 2006, satisfying my other interests; computer systems and computer networks and the only programming I did was an occasional shell script or personal homepage in good-old functional PHP. Much later, I realized that I was so hurt by someone stealing my programming work, that I had concluded that professional programming was not for me and I would just keep it as a hobby instead.
+
+In 2006, I did something crazy. I quit my job as a sysadmin and applied for a pre-admission college course in Denmark. It helped that I knew people here who were as a second family to me and I couldn't have done it without them. The University of Aalborg has a group-based approach to learning, so most of your grade is determined by a group project, each semester. During my years in IT, I had tried multiple times to learn C, but I was never able to retain focus after a few hours. These group projects essentially helped me learn C, C++ and C#. Not because they taught us these languages, but because our groups had decided on a software project and were motivated to create a great project. Living at a dorm and not having a day-job also gave me the free time to learn new technologies.
+
+Before graduating with a bachelor's degree, I had an internship with a software/consultancy company in Iceland. They took a chance on me, and gave me a paid internship, despite that I hadn't worked as a professional programmer before. Before this internship, I was always torn between IT and software in terms of what to do after my studies. They introduced me to the Learn and Agile way of doing things, and while these words are becoming less and less meaningful, they weren't pushing procedures or workflows on me. Instead (without going into too much detail), the work mostly consisted of much more hands-on and communication, than requirements, design and documentation. I met with customers every week and if at any point, the customer wasn't getting what they were expecting, we talked.
+
+During this internship, I felt something awakening. My passion for programming was back. And not as it was before, as a means to an end. The ambition of making the best piece of software possible was there. Design patterns were suddenly interesting, as opposed to ""I like my way better"" and I could see the point of doing software testing. During my early years, software tests were just for people who made mistakes. If my code works, why test? Right? For me, this revelation was that instead of fearing change of a large program and ending up rewriting the whole thing, tests allowed me to change fundamental things in the program with confidence.
+
+Today, I just started a job as a Java programmer and I am hoping that my ambitions will be fulfilled by creating some awesome solutions there. I still program for fun, although my focus switches a lot. I also still do IT, but on a much smaller scale.
+
+I would like to end with thanking a few people for my self-development in software development.
+<ul>
+<li>Beggi & Sonja: For taking care of me in Denmark. This wouldn't have been possible without you guys.</li>
+<li>Árni Arent: For firing me from Firmanet. I was angry about this for a long time, but later realized that my heart wasn't in programming at the time, and I would've just kept on doing the bare minimum and never would've learned anything new.</li>
+<li>Bjöggi from <a href=""http://stockvault.net"" target=""_blank"">Stockvault</a>: For pushing me to do a little freelance work during my studies, even after I insisted that I wasn't a programmer. It helped me realize that not only, is other people's code not better - it is often worse. That helped me set a more realistic expectations for myself.</li>
+<li><a href=""http://www.sprettur.is"" target=""_blank"">Sprettur</a>: For the internship, friendship and the inspiration. They are hiring in Iceland!</li>
+</ul>
+
+<em>To be clear, I haven't really blogged anything for a while and I just needed to get this out. I am perfectly content with nobody reading this.</em>",,1363423087,1,article,blog
+173,How a Computer should behave,"I am sure many would call me a Linux zealot, but I have been around the block, so to speak. I have used (on a daily basis), in order: Amstrad CPC, DOS, Windows 3.0, Windows 3.1, Windows 95, Windows 98, Windows ME, Windows NT, Linux, Windows 2000, MacOS X, Windows 7. I could probably take the rest of this article listing the different flavors of Linux that I have tried, but that is not the point of this article. I know many companies employ ""values"" as some sort of buzzwords that look good on paper, but don't really follow them. I would like to list the core values of a well behaving system as well as I can.
+
+http://bgr.com/2013/04/05/apple-sales-windows-sales-2013-gartner-416934/
+
+<h3>A Computer should be...</h3>
+
+<ol>
+<li><strong>Ready, when you are</strong></li>
+good: tablets
+bad: windows, linux
+<li><strong>Updated</strong>:</li>
+All software has security issues. Just update automatically and advise the user to restart. Stop forcing it!
+good: chromeos
+bad: linux, osx
+ugly: windows
+<li><strong>Consistent</strong>:</li>
+Do the applications work the same. How does a confirmation box look like?
+good: osx
+ugly: windows, linux
+<li><strong>Out of the way</strong>:</li>
+Are you sure? Are you sure? Complex interfaces
+<li><strong>Less is more</strong>:</li>
+Sane defaults are far more important than customization options. Don't ask the user unless it's an answer you expect the user to know better. 
+<ol>",,1365242976,0,article,NULL
+174,PHP on nginx with fastcgi-caching,"I have a little VPS that hosts my blog and other various small projects. With a recent nginx update, my configuration files stopped working and I had to cut fastcgi-caching from my setup. I spent about 2 hours searching for this, so I am putting it up here - in case anyone has uses for it.
+
+This setup uses php5-fpm and nginx.
+
+<!--break-->
+
+<h3>cache.conf</h3>
+Include this from the nginx.conf (include /etc/nginx/cache.conf).
+
+<code>
+fastcgi_cache_path      /var/lib/nginx/cache    levels=1:2
+                        keys_zone=DEFAULT:10m
+                        inactive=5m;
+fastcgi_cache_key ""$scheme$request_method$host$request_uri"";
+
+map $request_method $no_cache {
+        default 0;
+        POST 1; #no caching on post
+}
+
+map $http_cookie $no_cache {
+        default 0;
+        ~SESS 1; # PHP Session cookie
+}
+</code>
+
+<h3>php.conf</h3>
+Include this from site configuration (for example: /etc/nginx/sites-enabled/example.com)
+
+<code>
+location ~ \.php {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        # A handy function that became available in 0.7.31 that breaks down
+        # The path information based on the provided regex expression
+        # This is handy for requests such as file.php/some/paths/here/
+
+        fastcgi_param  PATH_INFO          $fastcgi_path_info;
+        fastcgi_param  PATH_TRANSLATED    $document_root$fastcgi_path_info;
+
+        fastcgi_param  QUERY_STRING       $query_string;
+        fastcgi_param  REQUEST_METHOD     $request_method;
+        fastcgi_param  CONTENT_TYPE       $content_type;
+        fastcgi_param  CONTENT_LENGTH     $content_length;
+
+        fastcgi_param  SCRIPT_NAME        $fastcgi_script_name;
+        fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+        fastcgi_param  REQUEST_URI        $request_uri;
+        fastcgi_param  DOCUMENT_URI       $document_uri;
+        fastcgi_param  DOCUMENT_ROOT      $document_root;
+        fastcgi_param  SERVER_PROTOCOL    $server_protocol;
+
+        fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;
+        fastcgi_param  SERVER_SOFTWARE    nginx;
+
+        fastcgi_param  REMOTE_ADDR        $remote_addr;
+        fastcgi_param  REMOTE_PORT        $remote_port;
+        fastcgi_param  SERVER_ADDR        $server_addr;
+        fastcgi_param  SERVER_PORT        $server_port;
+        fastcgi_param  SERVER_NAME        $server_name;
+
+        fastcgi_pass   unix:/var/run/php5-fpm.sock;
+        fastcgi_index  index.php;
+
+        fastcgi_cache   DEFAULT;
+        fastcgi_cache_valid 200 302     1h;
+        fastcgi_cache_valid 301         1d;
+        fastcgi_cache_valid 404         1m;
+        fastcgi_cache_valid any         1m;
+        fastcgi_cache_min_uses          1;
+        fastcgi_cache_use_stale error   timeout invalid_header http_500;
+        fastcgi_cache_bypass            $no_cache;
+        fastcgi_no_cache                $no_cache;
+        fastcgi_ignore_headers Cache-Control Expires;
+}
+</code>
+
+<h3>example.com - Site configuration</h3>
+<code>
+server {
+        listen 80 default;
+
+        server_name *.example.com;
+        access_log  /var/log/nginx/example.access.log;
+        root    /home/andri/www/example.org;
+
+        location / {
+                root   /var/www/example/scrolls.org;
+                index  index.html index.htm index.php;
+        }
+        include php.conf;
+
+        location ~ /\.ht {
+                deny  all;
+        }
+}
+</code>",,1368361267,1,article,caching|fastcgi|php|nginx|blog
+175,2013 Tech Stack,"As I do pretty much, every year. 2013 was spent learning new technologies. Here's a short list.
+
+<ul>
+<li>Go: I taught myself a little bit of Golang and made a few small prototypes in it. I love the language so far, and while it is a bit restrictive, it's for my own good, as the code is easier to handle.</li>
+<li>PostgreSQL: While a pain in the ass to setup, pgsql is an awesome database and with HSTORE and JSON data types, it can also be used as a key/value storage. I am mostly using it to replace MySQL in some pet projects.</li>
+<li>KnockoutJS: A declarative JS library that makes it possible to create rich applications without dealing too much with markup. I have been using it for a small project that deals with nesting templates in a tree.</li> 
+<li>Redis: A fast, distributed key/value database that I was using for a small prototype dashboard project. Especially the queue features are nice, although I wouldn't use this as a persistent storage.</li>
+<li>D3js: Create SVG diagrams from data. I was also experimenting with D3 for my dashboard project and while I can't say that I am 100% comfortable with it, it is extremely powerful.</li>
+<li>Java: Most people learn Java early, but not me. I spent 3 months at a new job programming Java and I must say that I like the language, although I hate the toolkit.</li>
+<li>Docker: Absolutely a game-changer in 2013. Docker allows you to create containers for your applications that you can use for development, testing and eventually production without encumbering you with virtual machines. I've been using it for development and hope to do more soon.</li>
+</ul>
+
+I am probably forgetting something, but these are the highlights of 2013. I look forward to playing with even more new stuff in 2014.
+",,1388737194,1,article,blog
