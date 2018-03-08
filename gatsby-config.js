@@ -5,6 +5,7 @@ module.exports = {
 		siteUrl: 'https://andri.dk'
 	},
 	plugins: [
+		'gatsby-transformer-remark',
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
@@ -19,18 +20,8 @@ module.exports = {
 				path: `${__dirname}/src/blog/`
 			}
 		},
-		{
-			resolve: 'gatsby-source-rss-fork',
-			options: {
-				rssURL:
-					'https://feeds.pinboard.in/rss/secret:16b24ead131e0282c0a9/u:andrioid/'
-			}
-		},
-		'gatsby-transformer-remark',
 		`gatsby-plugin-react-helmet`,
 		'gatsby-plugin-catch-links',
-		'gatsby-plugin-feed',
-		'gatsby-transformer-remark',
 		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {

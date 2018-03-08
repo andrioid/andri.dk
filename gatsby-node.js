@@ -43,9 +43,13 @@ exports.createPages = async ({ boundActionCreators, graphql }) => {
 		}
 	`).then(result => {
 		if (result.errors) {
+			console.log('wtf man', result.errors)
 			return Promise.reject(result.errors)
 		}
 		result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+			if (!node.frontmatter.path) {
+				throw new Error(JSON.stringify(node))
+			}
 			createPage({
 				path: node.frontmatter.path,
 				component: blogPostTemplate,
