@@ -3,3 +3,6 @@ backend:
   accept_roles: #optional - accepts all users if left out
     - admin
     - editor
+
+media_folder: static/img
+public_folder: /img
