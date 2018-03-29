@@ -7,6 +7,9 @@ module.exports = {
 	plugins: [
 		`gatsby-plugin-netlify-cms`,
 		'gatsby-transformer-remark',
+		`gatsby-transformer-sharp`,
+		`gatsby-plugin-sharp`,
+
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
@@ -19,6 +22,13 @@ module.exports = {
 			options: {
 				name: `blog`,
 				path: `${__dirname}/src/blog/`
+			}
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `img`,
+				path: `${__dirname}/static/img/`
 			}
 		},
 		`gatsby-plugin-react-helmet`,

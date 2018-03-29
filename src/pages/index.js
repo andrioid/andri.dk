@@ -4,10 +4,11 @@ import Link from 'gatsby-link'
 import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import andratar from '../../img/coffee-art.jpg'
 import 'typeface-indie-flower'
+import Img from 'gatsby-image'
 
 // Colors: https://material.io/guidelines/style/color.html#color-color-palette "indigo"
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
 	<div
 		style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}
 	>
@@ -42,11 +43,12 @@ const IndexPage = () => (
 					textAlign: 'center'
 				}}
 			>
-				<img
-					src={andratar}
+				<Img
+					resolutions={data.file.childImageSharp.resolutions}
 					style={{
 						borderRadius: '50%',
 						width: 250,
+						height: 250,
 						boxShadow:
 							'0 0 0 3px #dddddd, 0 0 0 4px #ddd, 0 2px 5px 4px rgba(0, 0, 0, 0.2)'
 					}}
@@ -86,5 +88,19 @@ const IndexPage = () => (
 		</div>
 	</div>
 )
+
+export const query = graphql`
+	query GatsbyImageSampleQuery {
+		file(relativePath: { eq: "coffee-art.jpg" }) {
+			childImageSharp {
+				# Specify the image processing specifications right in the query.
+				# Makes it trivial to update as your page's design changes.
+				resolutions(width: 125, height: 125) {
+					...GatsbyImageSharpResolutions
+				}
+			}
+		}
+	}
+`
 
 export default IndexPage
