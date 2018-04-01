@@ -79,7 +79,12 @@ const IndexPage = ({ data }) => (
 						'UX',
 						'Product Development',
 						'Programming',
-						'DevOps'
+						'DevOps',
+						'Arcade Games',
+						'Cooking',
+						'Coffee',
+						'Gadgets',
+						'Sci-Fi'
 					]}
 				/>
 			</div>
