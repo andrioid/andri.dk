@@ -5,6 +5,7 @@ import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import andratar from '../../img/coffee-art.jpg'
 import 'typeface-indie-flower'
 import Img from 'gatsby-image'
+import { ILike } from '../components/ilike'
 
 // Colors: https://material.io/guidelines/style/color.html#color-color-palette "indigo"
 
@@ -59,7 +60,28 @@ const IndexPage = ({ data }) => (
 				>
 					Hi! I'm Andri
 				</h1>
-				<h3>I like computers.</h3>
+				<ILike
+					like={[
+						'React',
+						'Go',
+						'Docker',
+						'Kubernetes',
+						'Javascript',
+						'Networking',
+						'Cloud Computing',
+						'DadOps',
+						'LaTeX',
+						'PostgreSQL',
+						'GraphQL',
+						'Linux',
+						'GatsbyJS',
+						'React Native',
+						'UX',
+						'Product Development',
+						'Programming',
+						'DevOps'
+					]}
+				/>
 			</div>
 			<div>
 				<Github user="andrioid" />
