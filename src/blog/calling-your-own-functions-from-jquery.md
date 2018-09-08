@@ -19,7 +19,7 @@ Arnór suggested that declaring the functions after $(document).ready will make 
 > $(function() { $(document).ready(function() { function updateTable ($) { /* Call jQuery stuff (for example, change forms) */ } updateTable(); }); });
 
 **Update: Guðmundur suggested creating a jQuery plugin**  
-I decided to go with this advice everything is working so far. I recommend [this article](http://blog.jeremymartin.name/2008/02/building-your-first-jquery-plugin-that.html) as well.
+I decided to go with this advice everything is working so far. I recommend [this article](https://blog.jeremymartin.name/2008/02/building-your-first-jquery-plugin-that.html) as well.
 
 > $(function() { $.fn.updateCart = function() { /* Misc jQuery stuff */ }; $(document).ready(function() { ('#mytable').updateTable(); }); });
 

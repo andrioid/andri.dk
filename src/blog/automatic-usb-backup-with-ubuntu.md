@@ -43,7 +43,7 @@ Step by Step
 Notes and credit
 ----------------
 
-*   Thanks to [Anders](http://anderstornvig.dk) for his original idea and implementation of this.
+*   Thanks to [Anders](https://anderstornvig.dk) for his original idea and implementation of this.
 *   The script does not check if the volume has enough space to do the backup. If it doesn't, it will fail!
 *   If umounting seems slow, it's due to delayed write to the USB drive.
 *   Should work on other Linux distributions as long as udev is present.

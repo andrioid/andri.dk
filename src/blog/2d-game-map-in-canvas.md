@@ -5,7 +5,7 @@ title: "2D Game Map in Canvas"
 tags: ["Projects"]
 ---
 
-**This project is discontinued. The latest version went down with the two hard disks that failed :(** For the last couple of weeks I've been playing around with HTML5 or more specifically, the canvas element. Coupled with jQuery and some basic Javascript I've created a 2 dimensional game map for a strategy board game (like [Travian](http://www.travian.com)). Should work in most 2D browser game worlds as long as the coordinates are two dimensional. [![](/sites/andrioid.net/files/maptest1t.png "Overview")](/sites/andrioid.net/files/maptest1.png)[![](/sites/andrioid.net/files/maptest2t.png "Closer look")](/sites/andrioid.net/files/maptest2.png)
+**This project is discontinued. The latest version went down with the two hard disks that failed :(** For the last couple of weeks I've been playing around with HTML5 or more specifically, the canvas element. Coupled with jQuery and some basic Javascript I've created a 2 dimensional game map for a strategy board game (like [Travian](https://www.travian.com)). Should work in most 2D browser game worlds as long as the coordinates are two dimensional. [![](/sites/andrioid.net/files/maptest1t.png "Overview")](/sites/andrioid.net/files/maptest1.png)[![](/sites/andrioid.net/files/maptest2t.png "Closer look")](/sites/andrioid.net/files/maptest2.png)
 
 ### Features
 
