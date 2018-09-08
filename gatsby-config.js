@@ -31,6 +31,13 @@ module.exports = {
 				path: `${__dirname}/static/img/`
 			}
 		},
+		{
+			resolve: `gatsby-plugin-typography`,
+			options: {
+			  pathToConfigModule: `src/utils/typography`,
+			  omitGoogleFont: true
+			},
+		},
 		`gatsby-plugin-react-helmet`,
 		'gatsby-plugin-catch-links',
 		{

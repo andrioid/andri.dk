@@ -55,7 +55,7 @@ const IndexPage = ({ data }) => (
 					}}
 				/>
 				<h1
-					style={{ fontFamily: 'indie flower', fontSize: '3.2em' }}
+					style={{ marginTop: '0.5em', fontFamily: 'indie flower', fontSize: '2.4em' }}
 					className="ui heading"
 				>
 					Hi! I'm Andri
