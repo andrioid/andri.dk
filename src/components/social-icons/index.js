@@ -1,8 +1,10 @@
 import React from 'react'
 
-import GithubIcon from 'react-icons/lib/fa/github'
-import LinkedInIcon from 'react-icons/lib/fa/linkedin'
-import TwitterIcon from 'react-icons/lib/fa/twitter'
+import {
+	FaTwitter as TwitterIcon,
+	FaLinkedin as LinkedInIcon,
+	FaGithub as GithubIcon
+} from 'react-icons/fa'
 
 const width = 36
 const height = 36

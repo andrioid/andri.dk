@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import HeartIcon from 'react-icons/lib/fa/heart'
+import { FaHeart as HeartIcon } from 'react-icons/fa'
 
 export class ILike extends React.Component {
 	static propTypes = {
