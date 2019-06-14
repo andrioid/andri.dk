@@ -18,6 +18,19 @@ exports.onCreatePage = async ({ page, boundActionCreators }) => {
 	})
 }
 
+exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
+	const oldConfig = getConfig()
+	const config = {
+		...oldConfig,
+		output: {
+			...oldConfig.output,
+			globalObject: 'this'
+		}
+	}
+
+	actions.replaceWebpackConfig(config)
+}
+
 exports.createPages = async ({ boundActionCreators, graphql }) => {
 	const { createPage } = boundActionCreators
 	const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
