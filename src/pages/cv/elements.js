@@ -11,8 +11,9 @@ import ReactPDF, {
 	Font
 } from '@react-pdf/renderer'
 
-const colors = {
-	borders: '#d3d3d3'
+export const colors = {
+	borders: '#d3d3d3',
+	devops: 'hotpink'
 }
 
 export const Head = ({ src }) => (
@@ -30,14 +31,14 @@ export const Head = ({ src }) => (
 	/>
 )
 
-export const SectionHeader = ({ children }) => (
+export const SectionHeader = ({ children, borderColor = colors.borders }) => (
 	<>
 		<Text style={{ fontWeight: 'bold' }}>{children.toUpperCase()}</Text>
 		<View
 			style={{
 				width: 'auto',
 				height: 1,
-				borderBottomColor: colors.borders,
+				borderBottomColor: borderColor,
 				borderBottomWidth: 1,
 				marginBottom: 10
 			}}
@@ -85,7 +86,7 @@ export const ExperienceItem = ({
 							marginRight: 2.5,
 							marginVertical: 2.5,
 							padding: 2.5,
-							backgroundColor: '#e3e3d3'
+							backgroundColor: colors.devops
 						}}
 					>
 						<Text
@@ -101,9 +102,9 @@ export const ExperienceItem = ({
 	</View>
 )
 
-export const Box = ({ children, title }) => (
+export const Box = ({ children, title, borderColor }) => (
 	<View style={{ marginBottom: 20 }}>
-		<SectionHeader>{title}</SectionHeader>
+		<SectionHeader borderColor={borderColor}>{title}</SectionHeader>
 		{children}
 	</View>
 )

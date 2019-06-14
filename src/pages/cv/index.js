@@ -16,7 +16,14 @@ import andriPic from '../../../static/img/coffee-art.jpg'
 import Defaultfont from '../../../static/fonts/Montserrat-Regular.otf'
 
 import HeaderFont from '../../../static/fonts/Montserrat-Regular.otf'
-import { SectionHeader, Headline, Head, ExperienceItem, Box } from './elements'
+import {
+	SectionHeader,
+	Headline,
+	Head,
+	ExperienceItem,
+	Box,
+	colors
+} from './elements'
 
 Font.register({
 	family: 'HeaderFont',
@@ -68,12 +75,25 @@ const MyDocument = () => (
 						<Text style={{ fontSize: 12 }}>Computer Engineer</Text>
 					</View>
 
-					<Box title="Core skills">
-						<Text>React, and stuff</Text>
+					<Box title="Frontend skills">
+						<Text>React, JavaScript, HTML, CSS, React Native</Text>
 					</Box>
-					<SectionHeader>Core skills</SectionHeader>
-					<SectionHeader>Languages</SectionHeader>
-					<SectionHeader>Interests</SectionHeader>
+					<Box title="Backend skills">
+						<Text>Go, PHP, Node.js, MySQL, Postgres</Text>
+					</Box>
+					<Box title="DevOps skills" borderColor={colors.devops}>
+						<Text>Linux, Mac, Windows, Build systems, Cloud Computing</Text>
+					</Box>
+					<Box title="Languages">
+						<Text>Icelandic (native), English (fluent), Danish (fluent)</Text>
+					</Box>
+					<Box title="Interests">
+						<Text>Technology, Photography, Walking, Basketball</Text>
+					</Box>
+
+					<Box title="Contact">
+						<Text>m@andri.dk</Text>
+					</Box>
 				</View>
 				<View style={styles.right}>
 					<Box title="Experience">
