@@ -5,7 +5,7 @@ module.exports = {
 		siteUrl: 'https://andri.dk'
 	},
 	plugins: [
-		`gatsby-plugin-netlify-cms`,
+		// `gatsby-plugin-netlify-cms`,
 		'gatsby-transformer-remark',
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
@@ -34,9 +34,9 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-typography`,
 			options: {
-			  pathToConfigModule: `src/utils/typography`,
-			  omitGoogleFont: true
-			},
+				pathToConfigModule: `src/utils/typography`,
+				omitGoogleFont: true
+			}
 		},
 		`gatsby-plugin-react-helmet`,
 		'gatsby-plugin-catch-links',
