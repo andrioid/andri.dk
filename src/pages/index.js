@@ -4,67 +4,23 @@ import { graphql } from 'gatsby'
 
 import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import andratar from '../../img/coffee-art.jpg'
-import 'typeface-indie-flower'
+//import 'typeface-indie-flower'
 import Img from 'gatsby-image'
 import { ILike } from '../components/ilike'
 
 // Colors: https://material.io/guidelines/style/color.html#color-color-palette "indigo"
 
 const IndexPage = ({ data }) => (
-	<div
-		style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}
-	>
-		<div
-			style={{
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: 10,
-				backgroundColor: '#8C9EFF'
-			}}
-		/>
+	<div className="container mx-auto px-4">
+		<div />
 
-		<div
-			style={{
-				minHeight: '100vh',
-				backgroundColor: '#3D5AFE',
-				color: 'lightgrey',
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'space-around',
-				alignItems: 'center'
-			}}
-		>
-			<div
-				style={{
-					// backgroundColor: 'darkorange',
-					// flexDirection: 'row',
-					justifyContent: 'center',
-					alignItems: 'center',
-					padding: 30,
-					textAlign: 'center'
-				}}
-			>
+		<div>
+			<div>
 				<Img
 					resolutions={data.file.childImageSharp.resolutions}
-					style={{
-						borderRadius: '50%',
-						width: 250,
-						height: 250,
-						boxShadow:
-							'0 0 0 3px #dddddd, 0 0 0 4px #ddd, 0 2px 5px 4px rgba(0, 0, 0, 0.2)'
-					}}
+					className="h-16 w-16 rounded-full mx-auto "
 				/>
-				<h1
-					style={{
-						marginTop: '0.5em',
-						fontFamily: 'indie flower',
-						fontSize: '2.4em'
-					}}
-					className="ui heading"
-				>
-					Hi! I'm Andri
-				</h1>
+				<h1>Hi! I'm Andri</h1>
 				<ILike
 					like={[
 						'React',

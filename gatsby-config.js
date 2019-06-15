@@ -6,6 +6,7 @@ module.exports = {
 	},
 	plugins: [
 		// `gatsby-plugin-netlify-cms`,
+		'gatsby-plugin-postcss',
 		'gatsby-transformer-remark',
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
@@ -29,13 +30,6 @@ module.exports = {
 			options: {
 				name: `img`,
 				path: `${__dirname}/static/img/`
-			}
-		},
-		{
-			resolve: `gatsby-plugin-typography`,
-			options: {
-				pathToConfigModule: `src/utils/typography`,
-				omitGoogleFont: true
 			}
 		},
 		`gatsby-plugin-react-helmet`,

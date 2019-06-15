@@ -52,8 +52,10 @@
 		"@parkpark.dk/eslint-config": "^1.0.10",
 		"@parkpark.dk/prettier-config": "^1.0.0",
 		"eslint": "^4.11.0",
+		"gatsby-plugin-postcss": "^2.0.7",
 		"prettier": "^1.8.2",
 		"prop-types": "^15.6.1",
+		"tailwindcss": "^1.0.4",
 		"webpack": "^4.34.0"
 	},
 	"engines": {
