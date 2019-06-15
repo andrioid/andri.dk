@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import { graphql } from 'gatsby'
 
 // import '../css/index.css'; // add some style if you want!
 

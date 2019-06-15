@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import { graphql } from 'gatsby'
 
 import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import andratar from '../../img/coffee-art.jpg'
@@ -55,7 +56,11 @@ const IndexPage = ({ data }) => (
 					}}
 				/>
 				<h1
-					style={{ marginTop: '0.5em', fontFamily: 'indie flower', fontSize: '2.4em' }}
+					style={{
+						marginTop: '0.5em',
+						fontFamily: 'indie flower',
+						fontSize: '2.4em'
+					}}
 					className="ui heading"
 				>
 					Hi! I'm Andri
