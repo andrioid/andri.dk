@@ -49,9 +49,11 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
+		"@babel/register": "^7.4.4",
 		"@parkpark.dk/eslint-config": "^1.0.10",
 		"@parkpark.dk/prettier-config": "^1.0.0",
 		"eslint": "^4.11.0",
+		"esm": "^3.2.25",
 		"prettier": "^1.8.2",
 		"prop-types": "^15.6.1",
 		"webpack": "^4.34.0"

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 	}
 })
 // Create Document Component
-const MyDocument = () => (
+export const MyDocument = () => (
 	<Document>
 		<Page size="A4" style={styles.page}>
 			<View style={{ flexDirection: 'row' }}>
@@ -220,9 +220,15 @@ const CVPage = () => {
 	const [viewMode, setViewMode] = useState()
 	useEffect(() => {
 		setViewMode('web')
-	}, [])
+		if (!window) {
+			setViewMode('server')
+		}
+	})
 	if (!viewMode) {
 		return <p>moo</p>
+	}
+	if (viewMode === 'server') {
+		ReactPDF.render(<MyDocument />, `${__dirname}/example.pdf`)
 	}
 	return (
 		<div style={{ display: 'flex', minHeight: '100vh' }}>
