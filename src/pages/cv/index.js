@@ -12,6 +12,9 @@ import ReactPDF, {
 import Link from 'gatsby-link'
 
 import andriPic from '../../../static/img/coffee-art.jpg'
+import MontserratRegular from '../../../static/fonts/Montserrat-Regular.otf'
+import MontserratSemiBold from '../../../static/fonts/Montserrat-SemiBold.otf'
+import MontserratItalic from '../../../static/fonts/Montserrat-Italic.otf'
 
 import {
 	SectionHeader,
@@ -27,25 +30,24 @@ import {
 Font.register({
 	family: 'DefaultFont',
 	fonts: [
-		{ src: require('../../../static/fonts/Montserrat-Regular.otf') },
+		{ src: MontserratRegular },
 		{
-			src: require('../../../static/fonts/Montserrat-SemiBold.otf'),
+			src: MontserratSemiBold,
 			fontWeight: 700
 		},
 		{
-			src: require('../../../static/fonts/Montserrat-Italic.otf'),
+			src: MontserratItalic,
 			fontStyle: 'italic'
 		}
 	]
 })
-
 // Create styles
 const styles = StyleSheet.create({
 	page: {
 		paddingVertical: 40,
 		paddingHorizontal: 40,
-		fontSize: 10,
-		fontFamily: 'DefaultFont'
+		fontSize: 10
+		//fontFamily: 'DefaultFont'
 	},
 	section: {
 		margin: 10,
