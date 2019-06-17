@@ -12,9 +12,9 @@ import ReactPDF, {
 import Link from 'gatsby-link'
 
 import andriPic from '../../../static/img/coffee-art.jpg'
-import MontserratRegular from '../../../static/fonts/Montserrat-Regular.otf'
-import MontserratSemiBold from '../../../static/fonts/Montserrat-SemiBold.otf'
-import MontserratItalic from '../../../static/fonts/Montserrat-Italic.otf'
+import MontserratRegular from '../../../static/fonts/Montserrat-Regular.ttf'
+import MontserratSemiBold from '../../../static/fonts/Montserrat-SemiBold.ttf'
+import MontserratItalic from '../../../static/fonts/Montserrat-Italic.ttf'
 
 import {
 	SectionHeader,
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
 	page: {
 		paddingVertical: 40,
 		paddingHorizontal: 40,
-		fontSize: 10
-		//fontFamily: 'DefaultFont'
+		fontSize: 10,
+		fontFamily: 'DefaultFont'
 	},
 	section: {
 		margin: 10,

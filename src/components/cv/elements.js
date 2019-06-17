@@ -79,36 +79,39 @@ export const TimelineItem = ({
 	period,
 	children,
 	employer,
-	tags,
+	tags = [],
 	location
-}) => (
-	<View style={{ marginBottom: 10 }}>
-		<View
-			style={{
-				flexDirection: 'row',
-				justifyContent: 'space-between',
-				marginBottom: 2.5
-			}}
-		>
-			<Text style={{ fontWeight: 'bold' }}>
-				{title}, <Text style={{ fontWeight: 'normal' }}>{employer}</Text>
-			</Text>
-			<Text>{period}</Text>
-		</View>
-
-		{children && <Text style={{ marginBottom: 5 }}>{children}</Text>}
-		{tags && (
-			<View style={{ flexDirection: 'row' }}>
-				{tags &&
-					tags.map(m => (
-						<Tag key={m} color={tagColors[m.toLowerCase()]}>
-							{m}
-						</Tag>
-					))}
+}) => {
+	tags = tags.sort()
+	return (
+		<View style={{ marginBottom: 10 }}>
+			<View
+				style={{
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					marginBottom: 2.5
+				}}
+			>
+				<Text style={{ fontWeight: 'bold' }}>
+					{title}, <Text style={{ fontWeight: 'normal' }}>{employer}</Text>
+				</Text>
+				<Text>{period}</Text>
 			</View>
-		)}
-	</View>
-)
+
+			{children && <Text style={{ marginBottom: 2.5 }}>{children}</Text>}
+			{tags && (
+				<View style={{ flexDirection: 'row' }}>
+					{tags &&
+						tags.map(m => (
+							<Tag key={m} color={tagColors[m.toLowerCase()]}>
+								{m}
+							</Tag>
+						))}
+				</View>
+			)}
+		</View>
+	)
+}
 
 export const Tag = ({ color = colors.borders, children }) => (
 	<View
