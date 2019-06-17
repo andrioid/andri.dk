@@ -25,7 +25,10 @@ export const tagColors = {
 	linux: colors.operations,
 	gcp: colors.operations,
 	mysql: colors.databases,
-	firestore: colors.databases
+	firestore: colors.databases,
+	php: colors.programming,
+	typescript: colors.programming,
+	javascript: colors.programming
 }
 
 export const Head = ({ src }) => (
