@@ -7,9 +7,9 @@ import ReactPDF, {
 	StyleSheet,
 	PDFViewer,
 	Image,
-	Font
+	Font,
+	Link
 } from '@react-pdf/renderer'
-import Link from 'gatsby-link'
 
 import andriPic from '../../../static/img/coffee-art.jpg'
 import MontserratRegular from '../../../static/fonts/Montserrat-Regular.ttf'
@@ -41,18 +41,14 @@ Font.register({
 		}
 	]
 })
+
 // Create styles
 const styles = StyleSheet.create({
 	page: {
 		paddingVertical: 40,
 		paddingHorizontal: 40,
-		fontSize: 10,
+		fontSize: 9,
 		fontFamily: 'DefaultFont'
-	},
-	section: {
-		margin: 10,
-		padding: 10,
-		flexGrow: 1
 	},
 	left: {
 		flex: 1,
@@ -66,10 +62,10 @@ const styles = StyleSheet.create({
 // Create Document Component
 const MyDocument = () => (
 	<Document>
-		<Page size="A4" style={styles.page}>
+		<Page wrap={false} size="A4" style={styles.page}>
 			<View style={{ flexDirection: 'row' }}>
 				<View style={styles.left}>
-					<View style={{ alignItems: 'center', marginBottom: 20 }}>
+					<View style={{ alignItems: 'center', paddingBottom: 20 }}>
 						<Head src={andriPic} />
 						<Headline>Andri Óskarsson</Headline>
 						<Text style={{ fontSize: 12 }}>Computer Engineer</Text>
@@ -96,23 +92,31 @@ const MyDocument = () => (
 					</Box>
 
 					<Box title="Languages">
-						<Text>Icelandic (native), English (fluent), Danish (fluent)</Text>
+						<Text>Icelandic (native)</Text>
+						<Text>English (fluent)</Text>
+						<Text>Danish (fluent)</Text>
+					</Box>
+
+					<Box title="Social">
+						<Text>Co-organizer Aalborg React Meetup</Text>
+						<Text>Co-organizer Aalborg Hackathon</Text>
 					</Box>
 
 					<Box title="Contact">
-						<Text>m@andri.dk</Text>
+						<Link src="mailto:m@andri.dk">
+							<Text>m@andri.dk</Text>
+						</Link>
 					</Box>
 				</View>
 				<View style={styles.right}>
 					<Box title="Profile">
 						<Text>
-							Driven, independent Software Developer with a flair for System
-							Administration
+							Driven, independent Software Developer with a broad skill set.
 						</Text>
 					</Box>
 					<Box title="Experience">
 						<TimelineItem
-							title="Software Developer"
+							title="Senior Developer"
 							period="2019-Present"
 							employer="Redia A/S"
 							tags={['React', 'Firebase', 'Firestore', 'TypeScript']}
@@ -132,7 +136,9 @@ const MyDocument = () => (
 								'MySQL',
 								'JavaScript',
 								'PHP',
-								'DevOps'
+								'Go',
+								'Kubernetes',
+								'Docker'
 							]}
 						>
 							Pitched and developed our new app on both Android and iOS.
@@ -153,10 +159,11 @@ const MyDocument = () => (
 							title="IT Specialist"
 							period="2013-2015"
 							employer="YouSee A/S"
-							tags={['PHP', 'MySQL', 'Linux', 'DevOps']}
+							tags={['PHP', 'MySQL', 'Linux', 'DevOps', 'JavaScript']}
 						>
-							Did stuff there, very important stuff. Nobody does more important
-							stuff than me
+							Continued to work on an internal billing and CRM system that
+							powered M1 A/S. Did phone-system integrations to our dashboards,
+							managed Linux servers and handled DevOps.
 						</TimelineItem>
 						<TimelineItem
 							title="Software Developer"
@@ -202,8 +209,8 @@ const MyDocument = () => (
 							photos and go for walks.
 						</Paragraph>
 						<Paragraph>
-							I've been facinated by computers since age 8 and spend every
-							waking minute learing some thing new about them.
+							I've been facinated by computers since age 8 and spend much of my
+							free time, learning more about them.
 						</Paragraph>
 					</Box>
 				</View>
@@ -224,7 +231,7 @@ const CVPage = () => {
 		setViewMode('web')
 	}, [])
 	if (!viewMode) {
-		return <p>moo</p>
+		return <p>One moment, please</p>
 	}
 	return (
 		<div style={{ display: 'flex', minHeight: '100vh' }}>

@@ -137,14 +137,16 @@ export const Tag = ({ color = colors.borders, children }) => (
 	</View>
 )
 
-export const Box = ({ children, title, color }) => (
+export const Box = ({ children, title, color, style = {} }) => (
 	<View style={{ marginBottom: 20 }}>
 		<SectionHeader color={color}>{title}</SectionHeader>
-		{children && typeof children === 'string' ? (
-			<Text>{children}</Text>
-		) : (
-			children
-		)}
+		<View style={{ ...style }}>
+			{children && typeof children === 'string' ? (
+				<Text>{children}</Text>
+			) : (
+				children
+			)}
+		</View>
 	</View>
 )
 
