@@ -1,8 +1,3 @@
-import React from 'react'
-import ReactPDF from '@react-pdf/renderer'
-
-import { CVFrontpage } from './src/pages/cv'
-
 const path = require('path')
 
 // Implement the Gatsby API “onCreatePage”. This is
@@ -76,7 +71,7 @@ exports.createPages = async ({ boundActionCreators, graphql }) => {
 		})
 	})
 }
-
+/*
 exports.onPostBuild = async function onPostBuild() {
 	ReactPDF.render(
 		<Document>
@@ -85,3 +80,4 @@ exports.onPostBuild = async function onPostBuild() {
 		'moo.pdf'
 	)
 }
+*/

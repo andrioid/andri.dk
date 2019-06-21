@@ -11,10 +11,10 @@ import ReactPDF, {
 	Link
 } from '@react-pdf/renderer'
 
-//import andriPic from '../../../static/img/coffee-art.jpg'
-import MontserratRegular from '../../../static/fonts/Montserrat-Regular.ttf'
-import MontserratSemiBold from '../../../static/fonts/Montserrat-SemiBold.ttf'
-import MontserratItalic from '../../../static/fonts/Montserrat-Italic.ttf'
+// import andriPic from '../../../static/img/coffee-art.jpg'
+// import MontserratRegular from '../../../static/fonts/Montserrat-Regular.ttf'
+// import MontserratSemiBold from '../../../static/fonts/Montserrat-SemiBold.ttf'
+// import MontserratItalic from '../../../static/fonts/Montserrat-Italic.ttf'
 
 import {
 	SectionHeader,
@@ -26,7 +26,7 @@ import {
 	TimelineItem,
 	Paragraph
 } from '../../components/cv/elements'
-
+/*
 Font.register({
 	family: 'DefaultFont',
 	fonts: [
@@ -41,14 +41,14 @@ Font.register({
 		}
 	]
 })
-
+*/
 // Create styles
 const styles = StyleSheet.create({
 	page: {
 		paddingVertical: 40,
 		paddingHorizontal: 40,
-		fontSize: 9,
-		fontFamily: 'DefaultFont'
+		fontSize: 9
+		// fontFamily: 'DefaultFont'
 	},
 	left: {
 		flex: 1,
@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
 	}
 })
 
-export const CVFrontpage = () => (
+export const CVFrontpage = ({ image }) => (
 	<Page wrap={false} size="A4" style={styles.page}>
 		<View style={{ flexDirection: 'row' }}>
 			<View style={styles.left}>
 				<View style={{ alignItems: 'center', paddingBottom: 20 }}>
-					<Head src={andriPic} />
+					<Head src={image} />
 					<Headline>Andri Óskarsson</Headline>
 					<Text style={{ fontSize: 12 }}>Computer Engineer</Text>
 				</View>
