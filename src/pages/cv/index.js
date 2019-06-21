@@ -11,7 +11,7 @@ import ReactPDF, {
 	Link
 } from '@react-pdf/renderer'
 
-import andriPic from '../../../static/img/coffee-art.jpg'
+//import andriPic from '../../../static/img/coffee-art.jpg'
 import MontserratRegular from '../../../static/fonts/Montserrat-Regular.ttf'
 import MontserratSemiBold from '../../../static/fonts/Montserrat-SemiBold.ttf'
 import MontserratItalic from '../../../static/fonts/Montserrat-Italic.ttf'
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 	}
 })
 
-const CVFrontpage = () => (
+export const CVFrontpage = () => (
 	<Page wrap={false} size="A4" style={styles.page}>
 		<View style={{ flexDirection: 'row' }}>
 			<View style={styles.left}>
