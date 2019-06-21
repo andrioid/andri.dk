@@ -33,7 +33,7 @@ export const replaceRenderer = ({
 try {
 	ReactPDF.render(
 		<Document>
-			<CVFrontpage image={imagePath} />
+			<CVFrontpage />
 		</Document>,
 		`./example.pdf`
 	)

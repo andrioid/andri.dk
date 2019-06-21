@@ -65,7 +65,7 @@ export const CVFrontpage = ({ image }) => (
 		<View style={{ flexDirection: 'row' }}>
 			<View style={styles.left}>
 				<View style={{ alignItems: 'center', paddingBottom: 20 }}>
-					<Head src={image} />
+					{/* <Head src={image} /> */}
 					<Headline>Andri Óskarsson</Headline>
 					<Text style={{ fontSize: 12 }}>Computer Engineer</Text>
 				</View>
