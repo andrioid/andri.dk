@@ -1,5 +1,5 @@
 require('@babel/register')({
-	presets: ['babel-preset-gatsby']
+	presets: [['babel-preset-gatsby', { targets: { node: 'current' } }]]
 })
 //require('@babel/polyfill')
 // require('react')
