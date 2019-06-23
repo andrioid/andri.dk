@@ -34,4 +34,7 @@ const imageB64 = fs.readFileSync(
 	'base64'
 )
 
-ReactPDF.render(<CVDoc image={imageB64} />, `${__dirname}/output.pdf`)
+ReactPDF.render(
+	<CVDoc image={imageB64} />,
+	path.join(__dirname, '../../public/cv.pdf')
+)

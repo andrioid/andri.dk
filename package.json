@@ -47,13 +47,15 @@
 		"dev": "gatsby develop",
 		"format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build-cv": "cd src/cv && babel-node build.js"
+		"build-cv": "cd src/cv && babel-node build.js",
+		"watch-cv": "cd src/cv && nodemon --exec babel-node build.js"
 	},
 	"devDependencies": {
 		"@babel/node": "^7.4.5",
 		"@parkpark.dk/eslint-config": "^1.0.10",
 		"@parkpark.dk/prettier-config": "^1.0.0",
 		"eslint": "^4.11.0",
+		"nodemon": "^1.19.1",
 		"prettier": "^1.8.2",
 		"prop-types": "^15.6.1",
 		"webpack": "^4.34.0"

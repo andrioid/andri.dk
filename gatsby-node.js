@@ -1,4 +1,5 @@
 const path = require('path')
+const cp = require('child_process')
 
 // Implement the Gatsby API “onCreatePage”. This is
 // called after every page is created.
@@ -70,4 +71,8 @@ exports.createPages = async ({ boundActionCreators, graphql }) => {
 			})
 		})
 	})
+}
+
+exports.onPostBuild = () => {
+	cp.execSync('yarn run build-cv')
 }
