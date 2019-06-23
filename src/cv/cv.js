@@ -11,11 +11,6 @@ import ReactPDF, {
 	Link
 } from '@react-pdf/renderer'
 
-import andriPic from '../../../static/img/coffee-art.jpg'
-import MontserratRegular from '../../../static/fonts/Montserrat-Regular.ttf'
-import MontserratSemiBold from '../../../static/fonts/Montserrat-SemiBold.ttf'
-import MontserratItalic from '../../../static/fonts/Montserrat-Italic.ttf'
-
 import {
 	SectionHeader,
 	Headline,
@@ -25,22 +20,8 @@ import {
 	colors,
 	TimelineItem,
 	Paragraph
-} from '../../components/cv/elements'
-
-Font.register({
-	family: 'DefaultFont',
-	fonts: [
-		{ src: MontserratRegular },
-		{
-			src: MontserratSemiBold,
-			fontWeight: 700
-		},
-		{
-			src: MontserratItalic,
-			fontStyle: 'italic'
-		}
-	]
-})
+} from './elements'
+import { Andri } from './pictures'
 
 // Create styles
 const styles = StyleSheet.create({
@@ -60,12 +41,12 @@ const styles = StyleSheet.create({
 	}
 })
 
-const CVFrontpage = () => (
+const CVFrontpage = ({ image }) => (
 	<Page wrap={false} size="A4" style={styles.page}>
 		<View style={{ flexDirection: 'row' }}>
 			<View style={styles.left}>
 				<View style={{ alignItems: 'center', paddingBottom: 20 }}>
-					<Head src={andriPic} />
+					<Head src={Andri} />
 					<Headline>Andri Óskarsson</Headline>
 					<Text style={{ fontSize: 12 }}>Computer Engineer</Text>
 				</View>
@@ -218,34 +199,8 @@ const CVFrontpage = () => (
 )
 
 // Create Document Component
-const MyDocument = () => (
+export const CVDoc = ({ image }) => (
 	<Document>
-		<CVFrontpage />
+		<CVFrontpage image={image} />
 	</Document>
 )
-
-const CV = () => (
-	<PDFViewer style={{ flex: 1 }}>
-		<MyDocument />
-	</PDFViewer>
-)
-
-const CVPage = () => {
-	const [viewMode, setViewMode] = useState()
-	useEffect(() => {
-		if (window === undefined) {
-			console.log('ssr baby')
-		}
-		setViewMode('web')
-	})
-	if (!viewMode) {
-		return <p>One moment, please</p>
-	}
-	return (
-		<div style={{ display: 'flex', minHeight: '100vh' }}>
-			<CV />
-		</div>
-	)
-}
-
-export default CVPage
