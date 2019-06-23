@@ -9,26 +9,29 @@ import ReactPDF, {
 	Font,
 	StyleSheet
 } from '@react-pdf/renderer'
+import path from 'path'
+import fs from 'fs'
 
 import { CVDoc } from './cv'
-
-//import MontserratRegular from '../../static/fonts/Montserrat-Regular.ttf'
-//import MontserratSemiBold from '../../static/fonts/Montserrat-SemiBold.ttf'
-//import MontserratItalic from '../../static/fonts/Montserrat-Italic.ttf'
 
 Font.register({
 	family: 'DefaultFont',
 	fonts: [
-		{ src: `${__dirname}/fonts/Montserrat-Regular.ttf` },
+		{ src: path.join(__dirname, '../../static/fonts/Montserrat-Regular.ttf') },
 		{
-			src: `${__dirname}/fonts/Montserrat-SemiBold.ttf`,
+			src: path.join(__dirname, '../../static/fonts/Montserrat-SemiBold.ttf'),
 			fontWeight: 700
 		},
 		{
-			src: `${__dirname}/fonts/Montserrat-Italic.ttf`,
+			src: path.join(__dirname, '../../static/fonts/Montserrat-Italic.ttf'),
 			fontStyle: 'italic'
 		}
 	]
 })
 
-ReactPDF.render(<CVDoc />, `${__dirname}/output.pdf`)
+const imageB64 = fs.readFileSync(
+	path.join(__dirname, '../../static/img/coffee-art.jpg'),
+	'base64'
+)
+
+ReactPDF.render(<CVDoc image={imageB64} />, `${__dirname}/output.pdf`)

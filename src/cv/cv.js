@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 	}
 })
 
-const CVFrontpage = () => (
+const CVFrontpage = ({ image }) => (
 	<Page wrap={false} size="A4" style={styles.page}>
 		<View style={{ flexDirection: 'row' }}>
 			<View style={styles.left}>
@@ -199,8 +199,8 @@ const CVFrontpage = () => (
 )
 
 // Create Document Component
-export const CVDoc = () => (
+export const CVDoc = ({ image }) => (
 	<Document>
-		<CVFrontpage />
+		<CVFrontpage image={image} />
 	</Document>
 )
