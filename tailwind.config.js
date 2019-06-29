@@ -1,7 +1,10 @@
 module.exports = {
-  theme: {
-    extend: {}
-  },
-  variants: {},
-  plugins: []
+	theme: {
+		fontFamily: {
+			headline: ['indie-flower']
+		},
+		extend: {}
+	},
+	variants: {},
+	plugins: []
 }
