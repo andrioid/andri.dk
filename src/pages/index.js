@@ -12,44 +12,36 @@ import andratar from '../../static/img/coffee-art.jpg'
 
 const IndexPage = ({ data }) => (
 	<div className="flex flex-col font-sans min-h-screen text-gray-900">
-		<div className="items-center flex-col">
-			<div className="text-center">
-				<Img
-					resolutions={data.file.childImageSharp.resolutions}
-					className="rounded-full block sm:w-12 mx-auto w-1/2"
-				/>
-				<h2 className="font-headline bg-yellow-400 text-2xl font-bold inline-block my-8 p-3">
-					Hi! I'm Andri
+		<nav className="p-8 h-16 border-b border-gray-400 bg-blue-800">
+			<ul className="flex">
+				<li className="mr-6">
+					<a className="text-white hover:text-gray-400" href="#">
+						About
+					</a>
+				</li>
+				<li className="block">CV</li>
+				<li>Blog</li>
+			</ul>
+		</nav>
+		<div className="flex flex-row m-8 flex-wrap">
+			<div className="flex-1 text-gray-900">
+				<h2 className="font-headline text-4xl font-bold inline-block my-2">
+					Hi, I'm Andri
 				</h2>
+				<p>I've been glued to screen since I was 8 years old.</p>
+				<p>&nbsp;</p>
+				<p>Follow me on</p>
 			</div>
-
-			<ILike
-				like={[
-					'React',
-					'Go',
-					'Docker',
-					'Kubernetes',
-					'Javascript',
-					'Networking',
-					'Cloud Computing',
-					'DadOps',
-					'LaTeX',
-					'PostgreSQL',
-					'GraphQL',
-					'Linux',
-					'GatsbyJS',
-					'React Native',
-					'UX',
-					'Product Development',
-					'Programming',
-					'DevOps',
-					'Arcade Games',
-					'Cooking',
-					'Coffee',
-					'Gadgets',
-					'Sci-Fi'
-				]}
-			/>
+			<div className="p-4 items-end align-top flex mr-6">
+				<img
+					src={andratar}
+					className="rounded-full shadow-2xl block mx-auto w-32 h-32 md:w-48 md:h-48"
+				/>
+			</div>
+		</div>
+		<div className="items-center flex-col">
+			<div className="text-center" />
+			<div />
 		</div>
 		<div className="bg-blue-800 text-center flex-row flex justify-center">
 			<Github user="andrioid" />
