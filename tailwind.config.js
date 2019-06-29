@@ -1,7 +1,7 @@
 module.exports = {
 	theme: {
 		fontFamily: {
-			headline: ['indie-flower']
+			headline: ['indie flower']
 		},
 		extend: {}
 	},

@@ -12,7 +12,7 @@ import andratar from '../../static/img/coffee-art.jpg'
 
 const IndexPage = ({ data }) => (
 	<div className="flex flex-col font-sans min-h-screen text-gray-900">
-		<div className="items-center flex-col" style={{ border: '1px solid red' }}>
+		<div className="items-center flex-col">
 			<div className="text-center">
 				<Img
 					resolutions={data.file.childImageSharp.resolutions}
@@ -21,21 +21,8 @@ const IndexPage = ({ data }) => (
 				<h2 className="font-headline bg-yellow-400 text-2xl font-bold inline-block my-8 p-3">
 					Hi! I'm Andri
 				</h2>
-				<h2 style={{ fontFamily: 'indie-flower', fontSize: 40 }}>sdfasdf</h2>
 			</div>
-			<div>
-				<div className="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
-					<div className="flex-shrink-0">
-						<img className="h-12 w-12" src={andratar} alt="ChitChat Logo" />
-					</div>
-					<div className="ml-6 pt-1">
-						<h4 className="text-xl text-gray-900 leading-tight">ChitChat</h4>
-						<p className="text-base text-gray-600 leading-normal">
-							You have a new message!
-						</p>
-					</div>
-				</div>
-			</div>
+
 			<ILike
 				like={[
 					'React',
@@ -64,7 +51,7 @@ const IndexPage = ({ data }) => (
 				]}
 			/>
 		</div>
-		<div>
+		<div className="bg-blue-800 text-center flex-row flex justify-center">
 			<Github user="andrioid" />
 			<Twitter user="andrioid" />
 			<LinkedIn user="andriosk" />
