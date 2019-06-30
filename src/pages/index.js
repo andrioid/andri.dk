@@ -7,11 +7,9 @@ import Img from 'gatsby-image'
 import { ILike } from '../components/ilike'
 import andratar from '../../static/img/coffee-art.jpg'
 
-// Colors: https://material.io/guidelines/style/color.html#color-color-palette "indigo"
-
 const IndexPage = ({ data }) => (
 	<>
-		<div className="flex flex-col font-sans min-h-one-third-screen text-white bg-blue-600">
+		<div className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-600">
 			<nav className="flex items-end justify-end p-6">
 				<ul className="flex flex-row">
 					<NavLink href="#">About</NavLink>
@@ -19,7 +17,7 @@ const IndexPage = ({ data }) => (
 					<NavLink href="#">Blog</NavLink>
 				</ul>
 			</nav>
-			<div className="mx-10 md:mx-20 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
+			<div className="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
 				<div className="flex-1">
 					<h2 className="font-headline md:text-6xl text-3xl font-semibold inline-block my-2">
 						Hi, I'm Andri 👋
@@ -33,10 +31,10 @@ const IndexPage = ({ data }) => (
 						</p>
 					</div>
 				</div>
-				<div className="p-4 items-start justify-start flex mr-6">
+				<div className="hidden md:block p-4 items-start justify-start flex mr-6">
 					<img
 						src={andratar}
-						className="rounded-full shadow-2xl block mx-auto w-32 h-32 md:w-48 md:h-48"
+						className="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
 					/>
 				</div>
 			</div>
