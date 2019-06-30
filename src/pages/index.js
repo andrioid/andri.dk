@@ -12,7 +12,7 @@ import andratar from '../../static/img/coffee-art.jpg'
 
 const IndexPage = ({ data }) => (
 	<>
-		<div className="flex flex-col font-sans min-h-one-third-screen text-white bg-indigo-900">
+		<div className="flex flex-col font-sans min-h-one-third-screen text-white bg-blue-600">
 			<nav className="flex items-end justify-end p-6">
 				<ul className="flex flex-row">
 					<NavLink href="#">About</NavLink>
@@ -22,10 +22,17 @@ const IndexPage = ({ data }) => (
 			</nav>
 			<div className="mx-10 md:mx-20 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
 				<div className="flex-1">
-					<h2 className="font-headline md:text-6xl text-3xl font-bold inline-block my-2">
+					<h2 className="font-headline md:text-6xl text-3xl font-semibold inline-block my-2">
 						Hi, I'm Andri 👋
 					</h2>
-					<p>I've been glued to screen since I was 8 years old.</p>
+					<div className="text-lg md:text-2xl">
+						<p>Computer Engineer from 🇮🇸 living in 🇩🇰</p>
+						<p>&nbsp;</p>
+						<p>
+							I make websites, create apps, manage infrastructure, develop
+							products and more.
+						</p>
+					</div>
 				</div>
 				<div className="p-4 items-start justify-start flex mr-6">
 					<img
@@ -36,14 +43,9 @@ const IndexPage = ({ data }) => (
 			</div>
 		</div>
 		<Section title="Latest Articles">
-			<div className="flex flex-row flex-wrap justify-start">
-				<Card />
-				<Card />
-				<Card />
-				<Card />
-				<Card />
-				<Card />
-				<Card />
+			<ArticleList posts={data.allMarkdownRemark.edges} />
+			<div className="btn mt-8 border-gray-400 border bg-gray-200 text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+				<Link to="/blog">More blog posts...</Link>
 			</div>
 		</Section>
 		<Section title="Skills" bgColorLevel={100}>
@@ -53,10 +55,29 @@ const IndexPage = ({ data }) => (
 		<Section className="bg-pink-300" title="Woof">
 			bla bla
 		</Section>
-		<div className="font-headline text-xl flex flex-row font-sans h-16 text-white bg-indigo-900 align-middle items-center justify-center">
+		<div className="font-headline text-xl flex flex-row font-sans h-16 text-white bg-blue-600 align-middle items-center justify-center">
 			That's all folks
 		</div>
 	</>
+)
+
+const ArticleList = ({ posts }) => (
+	<div className="flex flex-row flex-wrap justify-start">
+		{posts
+			.filter(post => post.node.frontmatter.title.length > 0)
+			.map(({ node: post }) => {
+				return (
+					<Card
+						key={post.id}
+						title={post.frontmatter.title}
+						link={post.frontmatter.path}
+						description={post.excerpt}
+						tags={post.frontmatter.tags}
+						date={post.frontmatter.date}
+					/>
+				)
+			})}
+	</div>
 )
 
 const NavLink = ({ href, children }) => (
@@ -81,51 +102,63 @@ const Section = ({
 	<div
 		className={`pt-10 pb-20 px-10 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
 	>
-		<h2 className="font-headline font-bold text-3xl md:text-4xl mb-2">
+		<h2 className="font-headline font-semibold text-xl md:text-2xl mb-2 uppercase">
 			{title}
 		</h2>
 		{children}
 	</div>
 )
 
-function classes(existing = '', overrides = '') {
-	const cl = classNames.split(' ')
-}
-
-const Card = ({ children }) => (
+const Card = ({ title, description, date, link, tags = [] }) => (
 	<div className="pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
 		<div className="overflow-hidden shadow-lg bg-white ">
-			<div className="px-6 py-4 ">
-				<div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-				<p className="text-gray-700 text-base">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-					quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-					nihil.
-				</p>
+			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start">
+				<p>{date}</p>
+			</div>
+			<div className="px-6 pb-4 ">
+				<div className="font-bold text-xl mb-2">
+					<Link to={link}>{title}</Link>
+				</div>
+				<p className="text-gray-700 text-base">{description}</p>
 			</div>
 			<div className="px-6 py-4">
-				<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-					#photography
-				</span>
-				<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-					#travel
-				</span>
-				<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-					#winter
-				</span>
+				{tags.map(t => (
+					<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+						#{t}
+					</span>
+				))}
 			</div>
 		</div>
 	</div>
 )
 
 export const query = graphql`
-	query GatsbyImageSampleQuery {
-		file(relativePath: { eq: "coffee-art.jpg" }) {
-			childImageSharp {
-				# Specify the image processing specifications right in the query.
-				# Makes it trivial to update as your page's design changes.
-				resolutions(width: 250, height: 250) {
-					...GatsbyImageSharpResolutions
+	# query GatsbyImageSampleQuery {
+	# 	file(relativePath: { eq: "coffee-art.jpg" }) {
+	# 		childImageSharp {
+	# 			# Specify the image processing specifications right in the query.
+	# 			# Makes it trivial to update as your page's design changes.
+	# 			resolutions(width: 250, height: 250) {
+	# 				...GatsbyImageSharpResolutions
+	# 			}
+	# 		}
+	# 	}
+	# }
+	query ArticleList {
+		allMarkdownRemark(
+			limit: 4
+			sort: { order: DESC, fields: [frontmatter___date] }
+		) {
+			edges {
+				node {
+					excerpt(pruneLength: 150)
+					id
+					frontmatter {
+						title
+						date(formatString: "YYYY-MM-DD")
+						path
+						tags
+					}
 				}
 			}
 		}

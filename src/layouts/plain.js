@@ -7,7 +7,7 @@ import 'typeface-source-code-pro'
 import 'typeface-indie-flower'
 import 'typeface-source-sans-pro'
 
-import '../css/global.css'
+//import '../css/global.css'
 
 // import 'semantic-ui-css/semantic.min.css'
 

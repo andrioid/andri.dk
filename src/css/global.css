@@ -2,4 +2,12 @@
 
 @tailwind components;
 
+.btn {
+	@apply bg-blue-500 text-white font-semibold py-2 px-4 rounded;
+}
+
+.btn:hover {
+	@apply bg-blue-700;
+}
+
 @tailwind utilities;

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import 'typeface-montserrat'
-// import './index.css'
-import '../css/global.css'
-// import 'semantic-ui-css/semantic.min.css'
+// import '../css/global.css'
 
 const TemplateWrapper = ({ children }) => (
 	<div>
