@@ -4,7 +4,6 @@ import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 
 import 'typeface-source-code-pro'
-import 'typeface-indie-flower'
 import 'typeface-source-sans-pro'
 
 //import '../css/global.css'

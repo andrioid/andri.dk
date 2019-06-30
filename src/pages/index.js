@@ -3,7 +3,6 @@ import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
 
 import { Twitter, LinkedIn, Github } from '../components/social-icons'
-import 'typeface-indie-flower'
 import Img from 'gatsby-image'
 import { ILike } from '../components/ilike'
 import andratar from '../../static/img/coffee-art.jpg'
