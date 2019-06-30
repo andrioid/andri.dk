@@ -16,8 +16,8 @@ module.exports = {
 		minHeight: sizes.height,
 		maxHeight: sizes.height,
 		fontFamily: {
-			sans: ['Montserrat', 'helvetica', 'arial'],
-			headline: ['Montserrat']
+			sans: ['montserrat', 'helvetica', 'arial'],
+			headline: ['montserrat', 'helvetica', 'arial']
 		},
 		extend: {}
 	},
