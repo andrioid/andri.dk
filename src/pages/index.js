@@ -11,45 +11,102 @@ import andratar from '../../static/img/coffee-art.jpg'
 // Colors: https://material.io/guidelines/style/color.html#color-color-palette "indigo"
 
 const IndexPage = ({ data }) => (
-	<div className="flex flex-col font-sans min-h-screen text-gray-900">
-		<nav className="p-8 h-16 border-b border-gray-400 bg-blue-800">
-			<ul className="flex">
-				<li className="mr-6">
-					<a className="text-white hover:text-gray-400" href="#">
-						About
-					</a>
-				</li>
-				<li className="block">CV</li>
-				<li>Blog</li>
-			</ul>
-		</nav>
-		<div className="flex flex-row m-8 flex-wrap">
-			<div className="flex-1 text-gray-900">
-				<h2 className="font-headline text-4xl font-bold inline-block my-2">
-					Hi, I'm Andri
-				</h2>
-				<p>I've been glued to screen since I was 8 years old.</p>
-				<p>&nbsp;</p>
-				<p>Follow me on</p>
-			</div>
-			<div className="p-4 items-end align-top flex mr-6">
-				<img
-					src={andratar}
-					className="rounded-full shadow-2xl block mx-auto w-32 h-32 md:w-48 md:h-48"
-				/>
+	<>
+		<div className="flex flex-col font-sans min-h-one-third-screen text-white bg-indigo-900">
+			<nav className="flex items-end justify-end p-6">
+				<ul className="flex flex-row">
+					<NavLink href="#">About</NavLink>
+					<NavLink href="#">CV</NavLink>
+					<NavLink href="#">Blog</NavLink>
+				</ul>
+			</nav>
+			<div className="mx-10 md:mx-20 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
+				<div className="flex-1">
+					<h2 className="font-headline md:text-6xl text-3xl font-bold inline-block my-2">
+						Hi, I'm Andri 👋
+					</h2>
+					<p>I've been glued to screen since I was 8 years old.</p>
+				</div>
+				<div className="p-4 items-start justify-start flex mr-6">
+					<img
+						src={andratar}
+						className="rounded-full shadow-2xl block mx-auto w-32 h-32 md:w-48 md:h-48"
+					/>
+				</div>
 			</div>
 		</div>
-		<div className="items-center flex-col">
-			<div className="text-center" />
-			<div />
+		<Section title="Latest Articles">
+			<div className="flex flex-row flex-wrap justify-between">
+				<Card />
+				<Card />
+				<Card />
+				<Card />
+				<Card />
+			</div>
+		</Section>
+		<Section title="Skills" bgColorLevel={100}>
+			all is good
+		</Section>
+
+		<Section className="bg-pink-300" title="Woof">
+			bla bla
+		</Section>
+	</>
+)
+
+const NavLink = ({ href, children }) => (
+	<li className="mr-6">
+		<a className="text-white hover:text-gray-400" href={href}>
+			{children}
+		</a>
+	</li>
+)
+
+// Wraps the text and handles margins
+const BodyContainer = ({ children, className }) => (
+	<div className="mt-10 mx-10 md:mx-20 lg:mx-40 text-xl">{children}</div>
+)
+
+const Section = ({
+	children,
+	title,
+	bgColorBase = 'gray',
+	bgColorLevel = 200
+}) => (
+	<div
+		className={`py-5 px-10 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
+	>
+		<h2 className="font-headline font-bold text-xl md:text-4xl mb-4">
+			{title}
+		</h2>
+		{children}
+	</div>
+)
+
+function classes(existing = '', overrides = '') {
+	const cl = classNames.split(' ')
+}
+
+const Card = ({ children }) => (
+	<div className="mr-1 mb-2 max-w-sm rounded overflow-hidden shadow-lg bg-white">
+		<div className="px-6 py-4">
+			<div className="font-bold text-xl mb-2">The Coldest Sunset</div>
+			<p className="text-gray-700 text-base">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+				quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+				nihil.
+			</p>
 		</div>
-		<div className="bg-blue-800 text-center flex-row flex justify-center">
-			<Github user="andrioid" />
-			<Twitter user="andrioid" />
-			<LinkedIn user="andriosk" />
-		</div>
-		<div>
-			<i className="big chevron down icon" />
+		<div className="px-6 py-4">
+			<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+				#photography
+			</span>
+			<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+				#travel
+			</span>
+			<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+				#winter
+			</span>
 		</div>
 	</div>
 )
