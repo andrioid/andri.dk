@@ -10,12 +10,18 @@ import andratar from '../../static/img/coffee-art.jpg'
 const IndexPage = ({ data }) => (
 	<>
 		<div className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-600">
-			<nav className="flex items-end justify-end p-6">
-				<ul className="flex flex-row">
-					<NavLink href="#">About</NavLink>
-					<NavLink href="#">CV</NavLink>
-					<NavLink href="#">Blog</NavLink>
-				</ul>
+			<nav className="flex items-end justify-end justify-between items-center p-8">
+				<img
+					src={andratar}
+					className="rounded-full shadow-2xl w-16 h-16 md:invisible"
+				/>
+				<div>
+					<ul className="flex flex-row">
+						<NavLink href="#">About</NavLink>
+						<NavLink href="#">CV</NavLink>
+						<NavLink href="#">Blog</NavLink>
+					</ul>
+				</div>
 			</nav>
 			<div className="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
 				<div className="flex-1">
@@ -39,10 +45,10 @@ const IndexPage = ({ data }) => (
 				</div>
 			</div>
 		</div>
-		<Section title="Latest Articles">
+		<Section title="Latest Posts">
 			<ArticleList posts={data.allMarkdownRemark.edges} />
-			<div className="btn mt-8 border-gray-400 border bg-gray-200 text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-				<Link to="/blog">More blog posts...</Link>
+			<div className="btn mt-8 border-gray-400 border bg-gray-200 text-gray-700 hover:bg-gray-100 hover:text-gray-900 m-2">
+				<Link to="/blog">More posts...</Link>
 			</div>
 		</Section>
 		<Section title="Skills" bgColorLevel={100}>
@@ -97,9 +103,9 @@ const Section = ({
 	bgColorLevel = 200
 }) => (
 	<div
-		className={`pt-10 pb-20 px-10 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
+		className={`pt-10 pb-20 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
 	>
-		<h2 className="font-headline font-semibold text-xl md:text-2xl mb-2 uppercase">
+		<h2 className="font-headline ml-2 md:ml-0 font-semibold text-xl md:text-2xl mb-2 uppercase">
 			{title}
 		</h2>
 		{children}
