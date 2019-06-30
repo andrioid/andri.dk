@@ -36,7 +36,9 @@ const IndexPage = ({ data }) => (
 			</div>
 		</div>
 		<Section title="Latest Articles">
-			<div className="flex flex-row flex-wrap justify-between">
+			<div className="flex flex-row flex-wrap justify-start">
+				<Card />
+				<Card />
 				<Card />
 				<Card />
 				<Card />
@@ -51,6 +53,9 @@ const IndexPage = ({ data }) => (
 		<Section className="bg-pink-300" title="Woof">
 			bla bla
 		</Section>
+		<div className="font-headline text-xl flex flex-row font-sans h-16 text-white bg-indigo-900 align-middle items-center justify-center">
+			That's all folks
+		</div>
 	</>
 )
 
@@ -74,9 +79,9 @@ const Section = ({
 	bgColorLevel = 200
 }) => (
 	<div
-		className={`py-5 px-10 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
+		className={`pt-10 pb-20 px-10 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
 	>
-		<h2 className="font-headline font-bold text-xl md:text-4xl mb-4">
+		<h2 className="font-headline font-bold text-3xl md:text-4xl mb-2">
 			{title}
 		</h2>
 		{children}
@@ -88,25 +93,27 @@ function classes(existing = '', overrides = '') {
 }
 
 const Card = ({ children }) => (
-	<div className="mr-1 mb-2 max-w-sm rounded overflow-hidden shadow-lg bg-white">
-		<div className="px-6 py-4">
-			<div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-			<p className="text-gray-700 text-base">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-				quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-				nihil.
-			</p>
-		</div>
-		<div className="px-6 py-4">
-			<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-				#photography
-			</span>
-			<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-				#travel
-			</span>
-			<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-				#winter
-			</span>
+	<div className="pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+		<div className="overflow-hidden shadow-lg bg-white ">
+			<div className="px-6 py-4 ">
+				<div className="font-bold text-xl mb-2">The Coldest Sunset</div>
+				<p className="text-gray-700 text-base">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+					quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+					nihil.
+				</p>
+			</div>
+			<div className="px-6 py-4">
+				<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+					#photography
+				</span>
+				<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+					#travel
+				</span>
+				<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+					#winter
+				</span>
+			</div>
 		</div>
 	</div>
 )
