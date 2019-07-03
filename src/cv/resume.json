@@ -155,7 +155,7 @@
 			"company": "Titan Communication hf (now Vodafone Iceland)",
 			"position": "Network Technician and Sysadmin",
 			"startDate": "2000-01-01",
-			"endDate": "2001-01-1",
+			"endDate": "2001-01-01",
 			"summary": "Installed and supported our B2B customers with DSL and fiber connections. Did some minor system administration as well.",
 			"skills": ["Cisco", "DSL", "Telco", "AIX"]
 		},
@@ -163,7 +163,7 @@
 			"company": "Firmanet ehf",
 			"position": "Web Developer",
 			"startDate": "1999-01-01",
-			"endDate": "2000-01-1",
+			"endDate": "2000-01-01",
 			"summary": "Custom PHP solutions for our customers.",
 			"skills": ["PHP", "MySQL", "HTML", "CSS"]
 		},
@@ -171,7 +171,7 @@
 			"company": "Frisk Software ehf",
 			"position": "Tester",
 			"startDate": "1998-01-01",
-			"endDate": "1999-01-1",
+			"endDate": "1999-01-01",
 			"summary": "Tested releases, collected binaries on the Internet for a false-positive database. Did some minor web development."
 		}
 	],
