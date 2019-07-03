@@ -26,7 +26,7 @@ const IndexPage = ({ data }) => (
 			<div className="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
 				<div className="flex-1">
 					<h2 className="font-headline md:text-6xl text-3xl font-semibold inline-block my-2">
-						Hi, I'm Andri 👋
+						Hi, I'm Andri &nbsp; 👋
 					</h2>
 					<div className="text-lg md:text-2xl">
 						<p>Computer Engineer from 🇮🇸 living in 🇩🇰</p>
@@ -51,8 +51,9 @@ const IndexPage = ({ data }) => (
 				<Link to="/blog">More posts...</Link>
 			</div>
 		</Section>
-		<Section title="Skills" bgColorLevel={100}>
-			all is good
+		<Section title="Technology" bgColorLevel={100}>
+			todo: extract all of the tags from my CV and categorize after programming,
+			ops, etc like my CV
 		</Section>
 
 		<Section className="bg-pink-300" title="Woof">
