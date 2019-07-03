@@ -105,7 +105,7 @@ const Section = ({
 	<div
 		className={`pt-10 pb-20 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
 	>
-		<h2 className="font-headline ml-2 md:ml-0 font-semibold text-xl md:text-2xl mb-2 uppercase">
+		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl mb-2 uppercase">
 			{title}
 		</h2>
 		{children}
