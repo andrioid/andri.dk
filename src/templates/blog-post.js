@@ -13,7 +13,7 @@ export default function Template({
 			className="blog-post-container"
 			style={{ margin: '3rem auto', maxWidth: 600 }}
 		>
-			<Helmet title={`Your Blog Name - ${post.frontmatter.title}`} />
+			<Helmet title={`andri.dk - ${post.frontmatter.title}`} />
 			<div className="blog-post">
 				<h1>{post.frontmatter.title}</h1>
 				<div
