@@ -4,10 +4,9 @@ import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 
 import 'typeface-source-code-pro'
-import 'typeface-indie-flower'
 import 'typeface-source-sans-pro'
 
-import './index.css'
+//import '../css/global.css'
 
 // import 'semantic-ui-css/semantic.min.css'
 

@@ -2,9 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
-import "typeface-montserrat"
-import './index.css'
-// import 'semantic-ui-css/semantic.min.css'
+import 'typeface-montserrat'
+// import '../css/global.css'
 
 const TemplateWrapper = ({ children }) => (
 	<div>
@@ -15,9 +14,7 @@ const TemplateWrapper = ({ children }) => (
 				{ name: 'keywords', content: 'sample, something' }
 			]}
 		/>
-		<div style={{ margin: '3rem auto', maxWidth: 600 }}>
-				{children()}
-		</div>
+		<div style={{ margin: '3rem auto', maxWidth: 600 }}>{children()}</div>
 	</div>
 )
 

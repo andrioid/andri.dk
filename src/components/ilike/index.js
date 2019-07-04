@@ -28,7 +28,7 @@ export class ILike extends React.Component {
 	}
 
 	componentWillUnmount() {
-		this.rotation()
+		this.rotation && typeof this.rotation === 'function' && this.rotation()
 	}
 
 	randomIndex(max) {

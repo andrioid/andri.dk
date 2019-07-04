@@ -6,6 +6,7 @@ module.exports = {
 	},
 	plugins: [
 		// `gatsby-plugin-netlify-cms`,
+		'gatsby-plugin-postcss',
 		'gatsby-transformer-remark',
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
@@ -31,11 +32,11 @@ module.exports = {
 				path: `${__dirname}/static/img/`
 			}
 		},
+		'gatsby-transformer-json', // Resume JSON
 		{
-			resolve: `gatsby-plugin-typography`,
+			resolve: 'gatsby-source-filesystem',
 			options: {
-				pathToConfigModule: `src/utils/typography`,
-				omitGoogleFont: true
+				path: './src/cv'
 			}
 		},
 		`gatsby-plugin-react-helmet`,
