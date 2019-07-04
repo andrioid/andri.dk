@@ -6,6 +6,7 @@ import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import Img from 'gatsby-image'
 import { ILike } from '../components/ilike'
 import andratar from '../../static/img/coffee-art.jpg'
+import { SkillDataTransform, Skills } from '../components/skills/skills'
 
 const IndexPage = ({ data }) => (
 	<>
@@ -52,13 +53,14 @@ const IndexPage = ({ data }) => (
 			</div>
 		</Section>
 		<Section title="Technology" bgColorLevel={100}>
-			todo: extract all of the tags from my CV and categorize after programming,
-			ops, etc like my CV
+			<SkillDataTransform
+				workSkills={data.cvJson.work}
+				rootSkills={data.cvJson.skills}
+			>
+				{categories => <Skills categories={categories} />}
+			</SkillDataTransform>
 		</Section>
 
-		<Section className="bg-pink-300" title="Woof">
-			bla bla
-		</Section>
 		<div className="font-headline text-xl flex flex-row font-sans h-16 text-white bg-blue-600 align-middle items-center justify-center">
 			That's all folks
 		</div>
@@ -106,7 +108,7 @@ const Section = ({
 	<div
 		className={`pt-10 pb-20 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
 	>
-		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl mb-2 uppercase">
+		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl mb-4 uppercase">
 			{title}
 		</h2>
 		{children}
@@ -127,7 +129,10 @@ const Card = ({ title, description, date, link, tags = [] }) => (
 			</div>
 			<div className="px-6 py-4">
 				{tags.map(t => (
-					<span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+					<span
+						key={t}
+						className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+					>
 						#{t}
 					</span>
 				))}
@@ -137,17 +142,6 @@ const Card = ({ title, description, date, link, tags = [] }) => (
 )
 
 export const query = graphql`
-	# query GatsbyImageSampleQuery {
-	# 	file(relativePath: { eq: "coffee-art.jpg" }) {
-	# 		childImageSharp {
-	# 			# Specify the image processing specifications right in the query.
-	# 			# Makes it trivial to update as your page's design changes.
-	# 			resolutions(width: 250, height: 250) {
-	# 				...GatsbyImageSharpResolutions
-	# 			}
-	# 		}
-	# 	}
-	# }
 	query ArticleList {
 		allMarkdownRemark(
 			limit: 4
@@ -164,6 +158,17 @@ export const query = graphql`
 						tags
 					}
 				}
+			}
+		}
+		cvJson {
+			skills {
+				name
+				level
+				keywords
+				color
+			}
+			work {
+				skills
 			}
 		}
 	}

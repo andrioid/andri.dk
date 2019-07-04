@@ -216,23 +216,48 @@
 	],
 	"skills": [
 		{
-			"name": "Software Development",
+			"name": "Programming",
 			"level": "Senior",
-			"keywords": ["HTML", "CSS", "Javascript", "React"]
+			"color": "#2460A7",
+			"keywords": [
+				"Go",
+				"PHP",
+				"HTML",
+				"CSS",
+				"JavaScript",
+				"React",
+				"React Native",
+				"C#",
+				"TCL",
+				"Lua"
+			]
 		},
 		{
 			"name": "Operations",
+			"color": "#259490",
 			"level": "Senior",
-			"keywords": ["Linux", "AWS", "Google Cloud"]
+			"keywords": [
+				"Linux",
+				"AWS",
+				"Google Cloud",
+				"Terraform",
+				"Kubernetes",
+				"Docker",
+				"DNS",
+				"SMTP",
+				"Cisco"
+			]
 		},
 		{
 			"name": "Databases",
+			"color": "#491D70",
 			"level": "Senior",
 			"keywords": [
 				"MySQL",
 				"Postgres",
 				"MongoDB",
 				"Firestore",
+				"Memcache",
 				"Redis",
 				"SQLite"
 			]

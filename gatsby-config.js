@@ -32,6 +32,13 @@ module.exports = {
 				path: `${__dirname}/static/img/`
 			}
 		},
+		'gatsby-transformer-json', // Resume JSON
+		{
+			resolve: 'gatsby-source-filesystem',
+			options: {
+				path: './src/cv'
+			}
+		},
 		`gatsby-plugin-react-helmet`,
 		'gatsby-plugin-catch-links',
 		{
