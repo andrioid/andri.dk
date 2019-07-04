@@ -8,6 +8,8 @@ module.exports = {
 		// `gatsby-plugin-netlify-cms`,
 		'gatsby-plugin-postcss',
 		'gatsby-transformer-remark',
+		'gatsby-plugin-mdx',
+
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
 
