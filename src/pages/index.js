@@ -18,9 +18,8 @@ const IndexPage = ({ data }) => (
 				/>
 				<div>
 					<ul className="flex flex-row">
-						<NavLink href="#">About</NavLink>
-						<NavLink href="#">CV</NavLink>
-						<NavLink href="#">Blog</NavLink>
+						<NavLink href="blog/">Blog</NavLink>
+						<NavLink href="cv.pdf">CV</NavLink>
 					</ul>
 				</div>
 			</nav>
@@ -30,7 +29,11 @@ const IndexPage = ({ data }) => (
 						Hi, I'm Andri &nbsp; 👋
 					</h2>
 					<div className="text-lg md:text-2xl">
-						<p>Computer Engineer from 🇮🇸 living in 🇩🇰</p>
+						<p>
+							Computer Engineer from <span ariaHidden>🇮🇸</span>
+							<span hidden>Iceland</span> living in <span ariaHidden>🇩🇰</span>
+							<span hidden>Denmark</span>
+						</p>
 						<p>&nbsp;</p>
 						<p>
 							I make websites, create apps, manage infrastructure, develop

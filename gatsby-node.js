@@ -1,5 +1,6 @@
 const path = require('path')
 const cp = require('child_process')
+const { createFilePath } = require('gatsby-source-filesystem')
 
 // Implement the Gatsby API “onCreatePage”. This is
 // called after every page is created.
@@ -70,6 +71,18 @@ exports.createPages = async ({ boundActionCreators, graphql }) => {
 			})
 		})
 	})
+}
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+	const { createNodeField } = actions
+	if (node.internal.type === `MarkdownRemark`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value
+		})
+	}
 }
 
 exports.onPostBuild = () => {

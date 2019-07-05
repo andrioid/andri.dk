@@ -5,6 +5,7 @@ module.exports = {
 		siteUrl: 'https://andri.dk'
 	},
 	plugins: [
+		'gatsby-plugin-feed',
 		// `gatsby-plugin-netlify-cms`,
 		'gatsby-plugin-postcss',
 		'gatsby-transformer-remark',
