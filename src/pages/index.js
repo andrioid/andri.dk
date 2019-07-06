@@ -128,12 +128,7 @@ const Card = ({ title, description, date, link, tags = [], draft = false }) => (
 			'pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'
 		)}
 	>
-		<div
-			className={classNames(
-				'overflow-hidden shadow-lg bg-white ',
-				draft ? 'bg-gray-100' : 'bg-white'
-			)}
-		>
+		<div className={classNames('overflow-hidden shadow-lg bg-white ')}>
 			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start">
 				<p>{date}</p>
 			</div>
@@ -144,12 +139,13 @@ const Card = ({ title, description, date, link, tags = [], draft = false }) => (
 				<p className="text-gray-700 text-base">{description}</p>
 			</div>
 			<div className="px-6 py-4">
+				{draft ? (
+					<span className="tag text-white bg-red-400">Draft</span>
+				) : null}
+
 				{tags.map(t => (
-					<span
-						key={t}
-						className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-					>
-						#{t}
+					<span key={t} className="tag">
+						{t}
 					</span>
 				))}
 			</div>

@@ -43,7 +43,6 @@ module.exports = {
 									node {
 										excerpt
 										html
-										fields { slug }
 										frontmatter {
 											path
 											title

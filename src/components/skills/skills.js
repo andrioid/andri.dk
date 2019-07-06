@@ -33,7 +33,7 @@ export function Skills({ categories }) {
 						{c.keywords.map(s => (
 							<span
 								key={s}
-								className="inline-block bg-gray-300 rounded-lg px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md"
+								className="tag"
 								style={{
 									backgroundColor: c.color
 								}}
