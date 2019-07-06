@@ -76,6 +76,9 @@ const ArticleList = ({ posts }) => (
 		{posts
 			.filter(post => post.node.frontmatter.title.length > 0)
 			.map(({ node: post }) => {
+				if (process.env.NODE_ENV === 'production' && post.frontmatter.draft) {
+					return null // don't show drafts unless in dev
+				}
 				return (
 					<Card
 						key={post.id}
