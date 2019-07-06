@@ -7,12 +7,14 @@ import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import Img from 'gatsby-image'
 import { ILike } from '../components/ilike'
 import andratar from '../../static/img/coffee-art.jpg'
+import { FaHeart } from 'react-icons/fa'
 import { FaCalendarAlt as FaCalendar } from 'react-icons/fa'
 import { SkillDataTransform, Skills } from '../components/skills/skills'
+import ReactCountryFlag from 'react-country-flag'
 
 const IndexPage = ({ data }) => (
 	<>
-		<div className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-600">
+		<div className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700">
 			<nav className="flex items-end justify-end justify-between items-center p-8">
 				<img
 					src={andratar}
@@ -32,8 +34,12 @@ const IndexPage = ({ data }) => (
 					</h2>
 					<div className="text-lg md:text-2xl">
 						<p>
-							Computer Engineer from <span aria-hidden>🇮🇸</span>
-							<span hidden>Iceland</span> living in <span aria-hidden>🇩🇰</span>
+							Computer Engineer from{' '}
+							<span aria-hidden>
+								<ReactCountryFlag code="is" />
+							</span>
+							<span hidden>Iceland</span> living in{' '}
+							<ReactCountryFlag code="dk" />
 							<span hidden>Denmark</span>
 						</p>
 						<p>&nbsp;</p>
@@ -59,7 +65,8 @@ const IndexPage = ({ data }) => (
 		</Section>
 		<Section title="Technology" bgColorLevel={100}>
 			<div className="text-sm mb-4 italic">
-				Ordered by experience. Heart indicates "want to work with".
+				Sorted by experience. Preference indicated by{' '}
+				<FaHeart className="inline text-red-700" />
 			</div>
 			<SkillDataTransform
 				workSkills={data.cvJson.work}
@@ -68,13 +75,20 @@ const IndexPage = ({ data }) => (
 				{categories => (
 					<Skills
 						categories={categories}
-						focus={['React', 'Go', 'Linux', 'Postgres', 'React Native']}
+						focus={[
+							'React',
+							'Go',
+							'Linux',
+							'Postgres',
+							'React Native',
+							'Kubernetes'
+						]}
 					/>
 				)}
 			</SkillDataTransform>
 		</Section>
 
-		<div className="font-headline text-xl flex flex-row font-sans h-16 text-white bg-blue-600 align-middle items-center justify-center">
+		<div className="font-headline text-xl flex flex-row font-sans h-16 text-white bg-blue-700 align-middle items-center justify-center">
 			That's all folks
 		</div>
 	</>
@@ -132,11 +146,7 @@ const Section = ({
 )
 
 const Card = ({ title, description, date, link, tags = [], draft = false }) => (
-	<div
-		className={classNames(
-			'pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'
-		)}
-	>
+	<div className="pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
 		<div className={classNames('overflow-hidden shadow-lg bg-white ')}>
 			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start items-center">
 				<FaCalendar />

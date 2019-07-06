@@ -219,7 +219,7 @@
 		{
 			"name": "Programming",
 			"level": "Senior",
-			"color": "#2460A7",
+			"color": "#2B6CB0",
 			"keywords": [
 				"Go",
 				"PHP",
@@ -228,6 +228,8 @@
 				"JavaScript",
 				"React",
 				"React Native",
+				"C",
+				"C++",
 				"C#",
 				"TCL",
 				"Lua",
@@ -237,7 +239,7 @@
 		},
 		{
 			"name": "Operations",
-			"color": "#259490",
+			"color": "#4C51BF",
 			"level": "Senior",
 			"keywords": [
 				"Linux",
@@ -248,12 +250,15 @@
 				"Docker",
 				"DNS",
 				"SMTP",
-				"Cisco"
+				"Cisco",
+				"Asterisk",
+				"Jenkins",
+				"Gitlab"
 			]
 		},
 		{
 			"name": "Databases",
-			"color": "#491D70",
+			"color": "#319795",
 			"level": "Senior",
 			"keywords": [
 				"MySQL",
