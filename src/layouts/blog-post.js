@@ -22,7 +22,9 @@ export default function Template({
 						</div>
 						<div className="mb-4 ">
 							{post.frontmatter.tags.map(t => (
-								<span className="tag text-xs">{t}</span>
+								<span key={t} className="tag text-xs">
+									{t}
+								</span>
 							))}
 						</div>
 					</div>
