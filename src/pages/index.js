@@ -7,6 +7,7 @@ import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import Img from 'gatsby-image'
 import { ILike } from '../components/ilike'
 import andratar from '../../static/img/coffee-art.jpg'
+import { FaCalendarAlt as FaCalendar } from 'react-icons/fa'
 import { SkillDataTransform, Skills } from '../components/skills/skills'
 
 const IndexPage = ({ data }) => (
@@ -137,8 +138,9 @@ const Card = ({ title, description, date, link, tags = [], draft = false }) => (
 		)}
 	>
 		<div className={classNames('overflow-hidden shadow-lg bg-white ')}>
-			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start">
-				<p>{date}</p>
+			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start items-center">
+				<FaCalendar />
+				<span className="ml-2">{date}</span>
 			</div>
 			<div className="px-6 pb-4 ">
 				<div className="font-bold text-xl mb-2">
