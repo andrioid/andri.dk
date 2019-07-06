@@ -48,7 +48,6 @@ export function SkillDataTransform({ workSkills, rootSkills, children }) {
 }
 
 export function Skills({ categories, focus = [] }) {
-	console.log(categories)
 	if (!categories) {
 		return null
 	}
