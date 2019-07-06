@@ -11,16 +11,26 @@ const sizes = {
 
 module.exports = {
 	theme: {
-		minWidth: sizes.width,
-		maxWidth: sizes.width,
-		minHeight: sizes.height,
-		maxHeight: sizes.height,
-		fontFamily: {
-			sans: ['montserrat', 'helvetica', 'arial'],
-			headline: ['montserrat', 'helvetica', 'arial']
-		},
-		extend: {}
+		extend: {
+			minWidth: sizes.width,
+			maxWidth: sizes.width,
+			minHeight: sizes.height,
+			maxHeight: sizes.height,
+			fontFamily: {
+				sans: ['montserrat', 'helvetica', 'arial'],
+				headline: ['montserrat', 'helvetica', 'arial'],
+				mono: ['source code pro']
+			}
+		}
 	},
 	variants: {},
-	plugins: []
+	plugins: [
+		function({ addBase, config }) {
+			addBase({
+				h1: { fontSize: config('theme.fontSize.2xl') },
+				h2: { fontSize: config('theme.fontSize.xl') },
+				h3: { fontSize: config('theme.fontSize.lg') }
+			})
+		}
+	]
 }

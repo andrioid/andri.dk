@@ -35,7 +35,7 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
 
 exports.createPages = async ({ boundActionCreators, graphql }) => {
 	const { createPage } = boundActionCreators
-	const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
+	const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`)
 	return graphql(`
 		{
 			allMarkdownRemark(
