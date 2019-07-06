@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 
 export function SkillDataTransform({ workSkills, rootSkills, children }) {
-	for (const c of rootSkills) {
-		c.keywords = c.keywords.sort((a, b) => {
-			return a > b
-		})
-	}
+	const skills = useMemo(() => {
+		const newSkills = rootSkills.slice()
+		for (const c of newSkills) {
+			c.keywords = c.keywords.sort((a, b) => {
+				return a > b
+			})
+		}
+		return newSkills
+	}, [workSkills, rootSkills])
 
-	return children(rootSkills)
+	return children(skills)
 }
 
 export function Skills({ categories }) {

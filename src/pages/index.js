@@ -31,8 +31,8 @@ const IndexPage = ({ data }) => (
 					</h2>
 					<div className="text-lg md:text-2xl">
 						<p>
-							Computer Engineer from <span ariaHidden>🇮🇸</span>
-							<span hidden>Iceland</span> living in <span ariaHidden>🇩🇰</span>
+							Computer Engineer from <span aria-hidden>🇮🇸</span>
+							<span hidden>Iceland</span> living in <span aria-hidden>🇩🇰</span>
 							<span hidden>Denmark</span>
 						</p>
 						<p>&nbsp;</p>
