@@ -234,7 +234,8 @@
 				"TCL",
 				"Lua",
 				"Vue.js",
-				"TypeScript"
+				"TypeScript",
+				"Java"
 			]
 		},
 		{
@@ -244,7 +245,7 @@
 			"keywords": [
 				"Linux",
 				"AWS",
-				"Google Cloud",
+				"GCP",
 				"Terraform",
 				"Kubernetes",
 				"Docker",
