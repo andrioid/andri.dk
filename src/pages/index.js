@@ -76,9 +76,6 @@ const ArticleList = ({ posts }) => (
 		{posts
 			.filter(post => post.node.frontmatter.title.length > 0)
 			.map(({ node: post }) => {
-				if (process.env.NODE_ENV === 'production' && post.frontmatter.draft) {
-					return null // don't show drafts unless in dev
-				}
 				return (
 					<Card
 						key={post.id}
@@ -157,10 +154,11 @@ const Card = ({ title, description, date, link, tags = [], draft = false }) => (
 )
 
 export const query = graphql`
-	query ArticleList {
+	query ArticleList($isProduction: Boolean) {
 		allMarkdownRemark(
 			limit: 4
 			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { draft: { ne: $isProduction } } }
 		) {
 			edges {
 				node {
