@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
+import classNames from 'classnames'
 
 import { Twitter, LinkedIn, Github } from '../components/social-icons'
 import Img from 'gatsby-image'
@@ -83,6 +84,9 @@ const ArticleList = ({ posts }) => (
 						description={post.excerpt}
 						tags={post.frontmatter.tags}
 						date={post.frontmatter.date}
+						draft={
+							process.env.NODE_ENV !== 'production' && post.frontmatter.draft
+						}
 					/>
 				)
 			})}
@@ -118,9 +122,18 @@ const Section = ({
 	</div>
 )
 
-const Card = ({ title, description, date, link, tags = [] }) => (
-	<div className="pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
-		<div className="overflow-hidden shadow-lg bg-white ">
+const Card = ({ title, description, date, link, tags = [], draft = false }) => (
+	<div
+		className={classNames(
+			'pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'
+		)}
+	>
+		<div
+			className={classNames(
+				'overflow-hidden shadow-lg bg-white ',
+				draft ? 'bg-gray-100' : 'bg-white'
+			)}
+		>
 			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start">
 				<p>{date}</p>
 			</div>
@@ -159,6 +172,7 @@ export const query = graphql`
 						date(formatString: "YYYY-MM-DD")
 						path
 						tags
+						draft
 					}
 				}
 			}

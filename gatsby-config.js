@@ -9,17 +9,17 @@ module.exports = {
 			resolve: `gatsby-plugin-feed`,
 			options: {
 				query: `
-			{
-			  site {
-				siteMetadata {
-				  title
-				  description
-				  siteUrl
-				  site_url: siteUrl
+				{
+					site {
+						siteMetadata {
+							title
+							description
+							siteUrl
+							site_url: siteUrl
+						}
+					}
 				}
-			  }
-			}
-		  `,
+		  		`,
 				feeds: [
 					{
 						serialize: ({ query: { site, allMarkdownRemark } }) => {
@@ -34,27 +34,27 @@ module.exports = {
 							})
 						},
 						query: `
-				{
-				  allMarkdownRemark(
-					sort: { order: DESC, fields: [frontmatter___date] },
-				  ) {
-					edges {
-					  node {
-						excerpt
-						html
-						fields { slug }
-						frontmatter {
-							path
-						  title
-						  date
+						{
+							allMarkdownRemark(
+								sort: { order: DESC, fields: [frontmatter___date] },
+								filter: { frontmatter: { draft: { ne: true } } }
+							) {
+								edges {
+									node {
+										excerpt
+										html
+										fields { slug }
+										frontmatter {
+											path
+											title
+											date
+										}
+									}
+								}
+							}
 						}
-					  }
-					}
-				  }
-				}
-			  `,
+						`,
 						output: '/rss.xml',
-						title: "Your Site's RSS Feed",
 						// optional configuration to insert feed reference in pages:
 						// if `string` is used, it will be used to create RegExp and then test if pathname of
 						// current page satisfied this regular expression;
