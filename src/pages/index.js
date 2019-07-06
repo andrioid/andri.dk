@@ -30,15 +30,15 @@ const IndexPage = ({ data }) => (
 			<div className="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
 				<div className="flex-1">
 					<h2 className="font-headline md:text-6xl text-3xl font-semibold inline-block my-2">
-						Hi, I'm Andri &nbsp; 👋
+						Hi, I'm Andri
 					</h2>
 					<div className="text-lg md:text-2xl">
 						<p>
-							Computer Engineer from{' '}
+							Computer Engineer from&nbsp;
 							<span aria-hidden>
 								<ReactCountryFlag code="is" svg />
 							</span>
-							<span hidden>Iceland</span> living in{' '}
+							<span hidden>Iceland</span> living in&nbsp;
 							<ReactCountryFlag code="dk" svg />
 							<span hidden>Denmark</span>
 						</p>
@@ -64,7 +64,7 @@ const IndexPage = ({ data }) => (
 			</div>
 		</Section>
 		<Section title="Technology" bgColorLevel={100}>
-			<div className="text-sm mb-4 italic">
+			<div className="pl-6 md:pl-0 text-sm mb-4 italic">
 				Sorted by experience. Preference indicated by{' '}
 				<FaHeart className="inline text-red-700" />
 			</div>
