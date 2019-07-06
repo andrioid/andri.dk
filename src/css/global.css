@@ -21,9 +21,9 @@
 	@apply mb-2;
 }
 
-.markdown code {
-	@apply block p-4 bg-gray-800 text-gray-100 my-4 font-mono;
-}
+/* .markdown code {
+	@apply block p-4 bg-blue-900 text-gray-100 my-4 font-mono;
+} */
 
 .markdown h1,
 h2,

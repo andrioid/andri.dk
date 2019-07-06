@@ -65,8 +65,17 @@ module.exports = {
 			}
 		},
 		// `gatsby-plugin-netlify-cms`,
+		{
+			resolve: 'gatsby-transformer-remark',
+			options: {
+				plugins: [
+					{
+						resolve: 'gatsby-remark-vscode'
+					}
+				]
+			}
+		},
 		'gatsby-plugin-postcss',
-		'gatsby-transformer-remark',
 		'gatsby-mdx',
 
 		`gatsby-transformer-sharp`,
