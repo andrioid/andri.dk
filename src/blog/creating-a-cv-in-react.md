@@ -8,6 +8,8 @@ draft: true
 
 # Creating a CV in React
 
+Code
+
 ```js
 const testing = ({ title }) => (
 	<div>
@@ -15,3 +17,16 @@ const testing = ({ title }) => (
 	</div>
 )
 ```
+
+> All I wanna do is have some fun
+> The sun's gone up and
+
+1. Love
+2. Honor
+3. Booty
+
+test
+
+- some
+- die
+- young

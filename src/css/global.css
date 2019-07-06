@@ -17,12 +17,20 @@
 .markdown ul {
 	@apply list-disc;
 }
+
+.markdown ol {
+	@apply list-decimal my-1;
+}
 .markdown li {
-	@apply mb-2;
+	@apply ml-4 mb-2;
 }
 
 .markdown p {
 	@apply mb-2;
+}
+
+.markdown blockquote {
+	@apply block border-l-8 border-gray-700 mx-2 my-4 px-4 py-4;
 }
 
 /* .markdown code {

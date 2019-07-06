@@ -12,13 +12,18 @@ export default function Template({
 		<>
 			<Helmet title={`andri.dk - ${post.frontmatter.title}`} />
 			<div className="blog-post-container bg-gray-200 p-4 min-h-screen">
-				<div className="markdown px-10 bg-white max-w-6xl py-10 shadow">
-					<h1 className="text-gray-900 font-semibold text-2xl">
-						{post.frontmatter.title}
-					</h1>
+				<div className="px-10 bg-white max-w-6xl py-10 shadow">
+					<div className="mb-6">
+						<h1 className="text-gray-900 font-semibold text-2xl">
+							{post.frontmatter.title}
+						</h1>
+						<div className="text-sm text-gray-600 flex justify-start">
+							<p>{post.frontmatter.date}</p>
+						</div>
+					</div>
 
 					<div
-						className="blog-post-content"
+						className="markdown"
 						dangerouslySetInnerHTML={{ __html: post.html }}
 					/>
 				</div>
