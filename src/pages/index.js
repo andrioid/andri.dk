@@ -136,7 +136,9 @@ const Card = ({ title, description, date, link, tags = [], draft = false }) => (
 				<div className="font-bold text-xl mb-2">
 					<Link to={link}>{title}</Link>
 				</div>
-				<p className="text-gray-700 text-base">{description}</p>
+				<div className="text-gray-700 text-base whitespace-pre-line">
+					{description}
+				</div>
 			</div>
 			<div className="px-6 py-4">
 				{draft ? (
