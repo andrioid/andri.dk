@@ -172,7 +172,8 @@
 			"position": "Tester",
 			"startDate": "1998-01-01",
 			"endDate": "1999-01-01",
-			"summary": "Tested releases, collected binaries on the Internet for a false-positive database. Did some minor web development."
+			"summary": "Tested releases, collected binaries on the Internet for a false-positive database. Did some minor web development.",
+			"skills": ["PHP", "MySQL", "Testing"]
 		}
 	],
 	"volunteer": [

@@ -57,11 +57,19 @@ const IndexPage = ({ data }) => (
 			</div>
 		</Section>
 		<Section title="Technology" bgColorLevel={100}>
+			<div className="text-sm mb-4 italic">
+				Ordered by experience. Heart indicates "want to work with".
+			</div>
 			<SkillDataTransform
 				workSkills={data.cvJson.work}
 				rootSkills={data.cvJson.skills}
 			>
-				{categories => <Skills categories={categories} />}
+				{categories => (
+					<Skills
+						categories={categories}
+						focus={['React', 'Go', 'Linux', 'Postgres', 'React Native']}
+					/>
+				)}
 			</SkillDataTransform>
 		</Section>
 
@@ -115,7 +123,7 @@ const Section = ({
 	<div
 		className={`pt-10 pb-20 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
 	>
-		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl mb-4 uppercase">
+		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl mb-0 uppercase">
 			{title}
 		</h2>
 		{children}
@@ -184,6 +192,9 @@ export const query = graphql`
 				color
 			}
 			work {
+				company
+				startDate
+				endDate
 				skills
 			}
 		}

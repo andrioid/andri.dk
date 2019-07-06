@@ -1,23 +1,55 @@
 import React, { useEffect, useState, useMemo } from 'react'
 
-export function SkillDataTransform({ workSkills, rootSkills, children }) {
-	const skills = useMemo(() => {
-		const newSkills = rootSkills.slice()
-		for (const c of newSkills) {
-			c.keywords = c.keywords.sort((a, b) => {
-				return a > b
-			})
-		}
-		return newSkills
-	}, [workSkills, rootSkills])
+import { FaHeart } from 'react-icons/fa'
 
-	return children(skills)
+function durationForWork(work) {
+	const start = work.startDate && new Date(work.startDate)
+	const end = (work.endDate && new Date(work.endDate)) || new Date()
+
+	const diff = (end.getTime() - start.getTime()) / 1000
+	return Math.floor(diff)
 }
 
-export function Skills({ categories }) {
+function durationForSkill(work, skill) {
+	let sum = 0
+	for (const w of work) {
+		const dur = durationForWork(w)
+		if (w.skills && w.skills.includes(skill)) {
+			sum += dur
+		}
+	}
+	return sum
+}
+
+export function SkillDataTransform({ workSkills, rootSkills, children }) {
+	const categories = useMemo(() => {
+		const sortedCategories = rootSkills.map(c => {
+			const nk = c.keywords
+				.map(k => {
+					return {
+						name: k,
+						// score is currently just duration
+						score: (workSkills && durationForSkill(workSkills, k)) || 0
+					}
+				})
+				.sort((a, b) => {
+					return b.score - a.score
+				})
+			return {
+				...c,
+				keywords: nk
+			}
+		})
+
+		return sortedCategories
+	}, [workSkills, rootSkills])
+
+	return children(categories)
+}
+
+export function Skills({ categories, focus = [] }) {
 	console.log(categories)
 	if (!categories) {
-		console.log(categories)
 		return null
 	}
 	return (
@@ -34,17 +66,21 @@ export function Skills({ categories }) {
 						{c.name}
 					</h2>
 					<div className="">
-						{c.keywords.map(s => (
-							<span
-								key={s}
-								className="tag"
-								style={{
-									backgroundColor: c.color
-								}}
-							>
-								{s}
-							</span>
-						))}
+						{c.keywords &&
+							c.keywords.map(s => (
+								<span
+									key={s.name}
+									className="tag"
+									style={{
+										backgroundColor: c.color
+									}}
+								>
+									{s.name}
+									{focus.includes(s.name) ? (
+										<FaHeart className="ml-2 inline text-red-700" />
+									) : null}
+								</span>
+							))}
 					</div>
 				</div>
 			))}
