@@ -17,8 +17,13 @@ export default function Template({
 						<h1 className="text-gray-900 font-semibold text-2xl">
 							{post.frontmatter.title}
 						</h1>
-						<div className="text-sm text-gray-600 flex justify-start">
+						<div className="text-sm text-gray-600 flex justify-start mb-4">
 							<p>{post.frontmatter.date}</p>
+						</div>
+						<div className="mb-4 ">
+							{post.frontmatter.tags.map(t => (
+								<span className="tag text-xs">{t}</span>
+							))}
 						</div>
 					</div>
 
@@ -40,6 +45,7 @@ export const pageQuery = graphql`
 				date(formatString: "MMMM DD, YYYY")
 				path
 				title
+				tags
 			}
 		}
 	}
