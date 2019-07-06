@@ -8,16 +8,16 @@ import { graphql } from 'gatsby'
 export default function Index({ data }) {
 	const { edges: posts } = data.allMarkdownRemark
 	return (
-		<div className="blog-posts">
+		<div className="">
 			{posts
 				.filter(post => post.node.frontmatter.title.length > 0)
 				.map(({ node: post }) => {
 					return (
-						<div className="blog-post-preview" key={post.id}>
-							<h1>
+						<div className="p-4 max-w-xl" key={post.id}>
+							<h1 className="text-xl uppercase">
 								<Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
 							</h1>
-							<h2>{post.frontmatter.date}</h2>
+							<h2 className="text-gray-500">{post.frontmatter.date}</h2>
 							<p>{post.excerpt}</p>
 						</div>
 					)
@@ -37,6 +37,7 @@ export const pageQuery = graphql`
 						title
 						date(formatString: "YYYY-MM-DD")
 						path
+						tags
 					}
 				}
 			}
