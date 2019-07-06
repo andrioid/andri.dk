@@ -154,11 +154,11 @@ const Card = ({ title, description, date, link, tags = [], draft = false }) => (
 )
 
 export const query = graphql`
-	query ArticleList($isProduction: Boolean) {
+	query ArticleList {
 		allMarkdownRemark(
 			limit: 4
 			sort: { order: DESC, fields: [frontmatter___date] }
-			filter: { frontmatter: { draft: { ne: $isProduction } } }
+			filter: { fields: { draft: { ne: true } } }
 		) {
 			edges {
 				node {

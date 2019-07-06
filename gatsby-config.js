@@ -65,6 +65,13 @@ module.exports = {
 		},
 		// `gatsby-plugin-netlify-cms`,
 		{
+			resolve: 'gatsby-plugin-draft',
+			options: {
+				publishDraft: process.env.NODE_ENV !== 'production'
+			}
+		},
+
+		{
 			resolve: 'gatsby-transformer-remark',
 			options: {
 				plugins: [
@@ -76,7 +83,6 @@ module.exports = {
 		},
 		'gatsby-plugin-postcss',
 		'gatsby-mdx',
-
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
 
@@ -108,6 +114,7 @@ module.exports = {
 				path: './src/cv'
 			}
 		},
+
 		`gatsby-plugin-react-helmet`,
 		'gatsby-plugin-catch-links',
 		{

@@ -1,6 +1,6 @@
 ---
 path: '/blog/2019/07/breaking-the-silence'
-date: '2019-07-10T00:00:00.000Z'
+date: '2019-07-06T00:00:00.000Z'
 title: 'Breaking the silence'
 tags: ['portfolio', 'personal']
 ---

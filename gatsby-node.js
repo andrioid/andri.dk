@@ -67,9 +67,7 @@ exports.createPages = async ({ boundActionCreators, graphql }) => {
 			createPage({
 				path: node.frontmatter.path,
 				component: blogPostTemplate,
-				context: {
-					isProduction: process.env.NODE_ENV === `production` ? [true] : []
-				}
+				context: {}
 			})
 		})
 	})
