@@ -59,7 +59,7 @@ const IndexPage = ({ data }) => (
 		</div>
 		<Section title="Latest Posts">
 			<ArticleList posts={data.allMarkdownRemark.edges} />
-			<div className="btn mt-8 border-gray-400 border bg-gray-200 text-gray-700 hover:bg-gray-100 hover:text-gray-900 m-2">
+			<div className="my-4 px-4 md:px-0">
 				<Link to="/blog">More posts...</Link>
 			</div>
 		</Section>
@@ -136,9 +136,9 @@ const Section = ({
 	bgColorLevel = 200
 }) => (
 	<div
-		className={`pt-10 pb-20 md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel}`}
+		className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} pb-4`}
 	>
-		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl mb-0 uppercase">
+		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl pt-4 uppercase">
 			{title}
 		</h2>
 		{children}
@@ -146,7 +146,7 @@ const Section = ({
 )
 
 const Card = ({ title, description, date, link, tags = [], draft = false }) => (
-	<div className="pb-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+	<div className="pt-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
 		<div className={classNames('overflow-hidden shadow-lg bg-white ')}>
 			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start items-center">
 				<FaCalendar />
