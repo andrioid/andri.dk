@@ -5,7 +5,9 @@ title: 'Piping remote backups through SSH with tar'
 tags: ['linux']
 ---
 
-**As a part of my site restoration, this page was salvaged and may not be up to date** While usually operating some sort of backup systems, it may become necessary to perform at remote backup of a machine without initiating locally. There can be a number of reasons to do this, such as:
+**As a part of my site restoration, this page was salvaged and may not be up to date**
+
+While usually operating some sort of backup systems, it may become necessary to perform at remote backup of a machine without initiating locally. There can be a number of reasons to do this, such as:
 
 - You do not trust the operator of the machine you need to backup from. Various tools may be compromised to grab your passwords.
 - There is no space left on the machine to store the backup file
