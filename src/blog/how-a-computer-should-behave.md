@@ -1,7 +1,7 @@
 ---
-path: "/blog/how-a-computer-should-behave"
-date: "2013-04-06T10:09:36.000Z"
-title: "How a Computer should behave"
+path: '/blog/how-a-computer-should-behave'
+date: '2013-04-06T10:09:36.000Z'
+title: 'How a Computer should behave'
 tags: []
 ---
 
@@ -10,8 +10,11 @@ I am sure many would call me a Linux zealot, but I have been around the block, s
 ### A Computer should be...
 
 1.  **Ready, when you are**
-good: tablets bad: windows, linux2.  **Updated**:
-All software has security issues. Just update automatically and advise the user to restart. Stop forcing it! good: chromeos bad: linux, osx ugly: windows3.  **Consistent**:
-Do the applications work the same. How does a confirmation box look like? good: osx ugly: windows, linux4.  **Out of the way**:
-Are you sure? Are you sure? Complex interfaces5.  **Less is more**:
-Sane defaults are far more important than customization options. Don't ask the user unless it's an answer you expect the user to know better.
+    good: tablets bad: windows, linux
+2.  **Updated**:
+    All software has security issues. Just update automatically and advise the user to restart. Stop forcing it! good: chromeos bad: linux, osx ugly: windows
+3.  **Consistent**:
+    Do the applications work the same. How does a confirmation box look like? good: osx ugly: windows, linux
+4.  **Out of the way**:
+    Are you sure? Are you sure? Complex interfaces5. **Less is more**:
+    Sane defaults are far more important than customization options. Don't ask the user unless it's an answer you expect the user to know better.

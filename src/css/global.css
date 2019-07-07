@@ -43,6 +43,9 @@
 		@apply block bg-black p-4 rounded;
 	}
 	 */
+	& code {
+		@apply font-mono whitespace-pre-line;
+	}
 	& blockquote {
 		@apply border-l-8 border-gray-700 mx-2 my-4 px-4 py-4;
 	}
