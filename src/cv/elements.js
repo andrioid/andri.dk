@@ -84,7 +84,7 @@ export const TimelineItem = ({
 }) => {
 	tags = tags.sort()
 	return (
-		<View style={{ marginBottom: 10 }}>
+		<View wrap={false} style={{ marginBottom: 10 }}>
 			<View
 				style={{
 					flexDirection: 'row',
@@ -113,6 +113,32 @@ export const TimelineItem = ({
 	)
 }
 
+export const EducationItem = ({
+	institution,
+	startDate,
+	endDate,
+	area,
+	studyType
+}) => (
+	<View wrap={false} style={{ marginBottom: 10 }}>
+		<View
+			style={{
+				flexDirection: 'row',
+				justifyContent: 'space-between',
+				marginBottom: 2.5
+			}}
+		>
+			<Text style={{ fontWeight: 'bold' }}>
+				{area}, {studyType}
+			</Text>
+			<Text>
+				{startDate} - {endDate}
+			</Text>
+		</View>
+		<Text style={{ fontWeight: 'normal' }}>{institution}</Text>
+	</View>
+)
+
 export const Tag = ({ color = colors.borders, children }) => (
 	<View
 		style={{
@@ -137,8 +163,9 @@ export const Tag = ({ color = colors.borders, children }) => (
 	</View>
 )
 
+// Not meant for anything wrapping pages
 export const Box = ({ children, title, color, style = {} }) => (
-	<View style={{ marginBottom: 20 }}>
+	<View wrap={false} style={{ marginBottom: 20 }}>
 		<SectionHeader color={color}>{title}</SectionHeader>
 		<View style={{ ...style }}>
 			{children && typeof children === 'string' ? (

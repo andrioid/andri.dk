@@ -188,7 +188,7 @@
 	"education": [
 		{
 			"institution": "Aalborg University",
-			"area": "Computer Engineer",
+			"area": "Computer Engineering",
 			"studyType": "BSc",
 			"startDate": "2007-08-01",
 			"endDate": "2012-03-01"
@@ -209,7 +209,7 @@
 		},
 		{
 			"institution": "Aalborg University",
-			"area": "Engineering Entrance Course",
+			"area": "Engineering Entrance",
 			"studyType": "Course",
 			"startDate": "2006-08-01",
 			"endDate": "2007-08-01"
