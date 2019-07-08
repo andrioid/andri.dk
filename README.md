@@ -1,13 +1,25 @@
-# gatsby-starter-default
-The default Gatsby starter
+# [andri.dk](https://www.andri.dk)
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/)
+Personal site and playground.
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-```
-gatsby new gatsby-example-site
-```
+## Tech Stack
 
-## Deploy
+- React
+- TailwindCSS
+- Gatsby
+- Netlify
+- JavaScript
+- React-PDF
+- JSON Resume
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+## Features
+
+### Latest posts
+
+Fetches MD and MDX files through Gatsby, then uses GraphQL to list them.
+
+### Technology
+
+Fetches all skills from my resume.json, then sorts it by years of experience from the work part of the resume.json file.
+
+The preference is configured by a prop manually.
