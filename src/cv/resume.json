@@ -74,12 +74,8 @@
 			"startDate": "2015-11-01",
 			"endDate": "2017-01-01",
 			"summary": "Resumed my previous job on M1's billing and CRM system.",
-			"highlights": [
-				"Managed releases and handled deployment pipelines",
-				"Scrum-master on MinUddannelse",
-				"Helped to introduce React to the organization"
-			],
-			"skills": ["React", "DevOps", "JavaScript", "CSS", "HTML", "jQuery"]
+			"highlights": ["Handled deployment pipelines"],
+			"skills": ["PHP", "MySQL", "JavaScript", "CSS", "HTML", "jQuery"]
 		},
 		{
 			"company": "Lyngsø Systems A/S",
@@ -87,7 +83,7 @@
 			"startDate": "2013-03-01",
 			"endDate": "2013-06-01",
 			"summary": "Worked on automatic sorting machines for a large, American clothing store.",
-			"skills": ["Java"]
+			"skills": ["Java", "Linux", "Windows"]
 		},
 		{
 			"company": "M1 A/S (now Fullrate)",
@@ -102,7 +98,7 @@
 		},
 		{
 			"company": "Sprettur ehf (now Kolibri)",
-			"position": "Software Developer - Paid Internship",
+			"position": "Intern",
 			"startDate": "2011-03-01",
 			"endDate": "2011-07-01",
 			"summary": "Worked closely with one of our customers on creating a shipping calculator for their website, and a reverse-engineered thermal printer solution.",
@@ -111,7 +107,7 @@
 		{
 			"company": "Curly Eskimo",
 			"website": "http://www.curlyeskimo.com",
-			"position": "Software Developer / System Administrator",
+			"position": "Software Developer",
 			"startDate": "2010-06-01",
 			"endDate": "2010-08-01",
 			"summary": "Developed a custom CMS for stock photography site. Still runs to this day.",
@@ -127,7 +123,7 @@
 			"skills": ["Java", "Python", "Django", "XML", "Android"]
 		},
 		{
-			"company": "Calidris (now Sabre Iceland)",
+			"company": "Calidris (now Sabre)",
 			"position": "Systems Administrator",
 			"startDate": "2004-01-01",
 			"endDate": "2006-07-01",

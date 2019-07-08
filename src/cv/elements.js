@@ -12,6 +12,8 @@ import ReactPDF, {
 } from '@react-pdf/renderer'
 
 import { hex } from 'wcag-contrast'
+import dayjs from 'dayjs'
+import 'dayjs/locale/en'
 
 export const colors = {
 	borders: '#d3d3d3',
@@ -180,3 +182,19 @@ export const Box = ({ children, title, color, style = {} }) => (
 export const Paragraph = ({ children }) => (
 	<Text style={{ marginBottom: 5 }}>{children}</Text>
 )
+
+export const periodToString = (startDate, endDate) => {
+	const start = dayjs(startDate)
+	const end = dayjs(endDate)
+	const dateformat = 'YYYY'
+
+	if (endDate === startDate) {
+		return `${start.format(dateformat)}`
+	}
+
+	if (!endDate) {
+		return `${start.format(dateformat)} - Present`
+	}
+
+	return `${start.format(dateformat)} - ${end.format(dateformat)}`
+}

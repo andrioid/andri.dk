@@ -20,8 +20,15 @@ import {
 	colors,
 	TimelineItem,
 	Paragraph,
-	EducationItem
+	EducationItem,
+	periodToString
 } from './elements'
+
+import resolveConfig from 'tailwindcss/resolveConfig'
+
+import localConfig from '../../tailwind.config'
+
+const { theme } = resolveConfig(localConfig)
 
 import resume from './resume.json'
 
@@ -30,28 +37,31 @@ import { Andri } from './pictures'
 // Create styles
 const styles = StyleSheet.create({
 	page: {
-		paddingVertical: 40,
-		paddingHorizontal: 40,
+		paddingVertical: 30,
+		paddingHorizontal: 30,
 		fontSize: 9,
+		color: theme.colors.gray[900],
 		fontFamily: 'DefaultFont'
 	},
+	leftHeader: {
+		alignItems: 'center',
+		paddingBottom: 20
+	},
 	left: {
-		flex: 1,
-		paddingRight: 20
+		width: '30vw',
+		marginRight: 20
 	},
 	right: {
-		paddingLeft: 20,
-		flex: 2
+		marginLeft: 20,
+		flex: 1
 	}
 })
-
-console.log('resume data', resume)
 
 const CVFrontpage = ({ image }) => (
 	<Page size="A4" style={styles.page}>
 		<View style={{ flexDirection: 'row' }}>
 			<View style={styles.left}>
-				<View wrap={false} style={{ alignItems: 'center', paddingBottom: 20 }}>
+				<View wrap={false} style={styles.leftHeader}>
 					<Head src={Andri} />
 					<Headline>Andri Óskarsson</Headline>
 					<Text style={{ fontSize: 12 }}>Computer Engineer</Text>
@@ -94,19 +104,24 @@ const CVFrontpage = ({ image }) => (
 				</Box>
 			</View>
 			<View style={styles.right}>
-				<Box title="Profile">
-					<Text>
-						Driven, independent Software Developer with a broad skill set.
-					</Text>
-				</Box>
+				<View
+					style={{
+						marginBottom: 10,
+						backgroundColor: theme.colors.gray[100],
+						padding: 4
+					}}
+				>
+					<SectionHeader>Profile</SectionHeader>
+					<Text>{resume.basics.summary}</Text>
+				</View>
 				<View>
 					<SectionHeader>Experience</SectionHeader>
-					{resume.work.slice(0, 5).map(w => (
+					{resume.work.slice(0, 100).map(w => (
 						<TimelineItem
 							key={`${w.company + w.startDate}`}
 							title={w.position}
 							employer={w.company}
-							period={`${w.startDate} - ${w.endDate || 'Present'}`}
+							period={periodToString(w.startDate, w.endDate)}
 							tags={w.skills}
 						>
 							{w.summary}
