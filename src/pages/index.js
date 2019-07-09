@@ -11,6 +11,7 @@ import { FaHeart } from 'react-icons/fa'
 import { FaCalendarAlt as FaCalendar } from 'react-icons/fa'
 import { SkillDataTransform, Skills } from '../components/skills/skills'
 import ReactCountryFlag from 'react-country-flag'
+import { Card } from '../components/card'
 
 const IndexPage = ({ data }) => (
 	<>
@@ -34,11 +35,11 @@ const IndexPage = ({ data }) => (
 					</h2>
 					<div className="text-lg md:text-2xl">
 						<p>
-							Computer Engineer from&nbsp;
+							Computer Engineer from &nbsp;
 							<span aria-hidden>
 								<ReactCountryFlag code="is" svg />
 							</span>
-							<span hidden>Iceland</span> living in&nbsp;
+							&nbsp;<span hidden>Iceland</span> living in &nbsp;
 							<ReactCountryFlag code="dk" svg />
 							<span hidden>Denmark</span>
 						</p>
@@ -142,36 +143,6 @@ const Section = ({
 			{title}
 		</h2>
 		{children}
-	</div>
-)
-
-const Card = ({ title, description, date, link, tags = [], draft = false }) => (
-	<div className="pt-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
-		<div className={classNames('overflow-hidden shadow-lg bg-white ')}>
-			<div className="px-6 pt-4 text-sm text-gray-600 flex justify-start items-center">
-				<FaCalendar />
-				<span className="ml-2">{date}</span>
-			</div>
-			<div className="px-6 pb-4 ">
-				<div className="font-bold text-xl mb-2">
-					<Link to={link}>{title}</Link>
-				</div>
-				<div className="text-gray-700 text-base whitespace-pre-line">
-					{description}
-				</div>
-			</div>
-			<div className="px-6 py-4">
-				{draft ? (
-					<span className="tag text-white bg-red-400">Draft</span>
-				) : null}
-
-				{tags.map(t => (
-					<span key={t} className="tag">
-						{t}
-					</span>
-				))}
-			</div>
-		</div>
 	</div>
 )
 

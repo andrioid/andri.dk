@@ -49,7 +49,6 @@ export const Head = ({ src }) => (
 )
 
 export const SectionHeader = ({ children, color = 'black' }) => {
-	//const first = children.substring(0, 1)
 	const first = children.toUpperCase()
 	const last = children.substring(1)
 	return (
@@ -91,7 +90,8 @@ export const TimelineItem = ({
 				style={{
 					flexDirection: 'row',
 					justifyContent: 'space-between',
-					marginBottom: 2.5
+					marginBottom: 2.5,
+					flexWrap: 'wrap'
 				}}
 			>
 				<Text style={{ fontWeight: 'bold' }}>

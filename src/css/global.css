@@ -6,7 +6,7 @@
 	@apply inline-block bg-gray-500 rounded-lg px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
 }
 
-a {
+a.link {
 	@apply text-indigo-900;
 	&:hover {
 		@apply underline;

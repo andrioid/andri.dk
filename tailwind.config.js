@@ -23,7 +23,9 @@ module.exports = {
 			}
 		}
 	},
-	variants: {},
+	variants: {
+		boxShadow: ['responsive', 'hover', 'focus']
+	},
 	plugins: [
 		function({ addBase, config }) {
 			addBase({

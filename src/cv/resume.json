@@ -148,8 +148,8 @@
 			"skills": ["PHP", "MySQL", "HTML", "CSS"]
 		},
 		{
-			"company": "Titan Communication hf (now Vodafone Iceland)",
-			"position": "Network Technician and Sysadmin",
+			"company": "Titan hf (now Vodafone)",
+			"position": "Network Technician",
 			"startDate": "2000-01-01",
 			"endDate": "2001-01-01",
 			"summary": "Installed and supported our B2B customers with DSL and fiber connections. Did some minor system administration as well.",
