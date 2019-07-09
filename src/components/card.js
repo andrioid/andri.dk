@@ -11,7 +11,7 @@ export const Card = ({
 	tags = [],
 	draft = false
 }) => (
-	<div className="pt-2 sm:p-2 md:p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+	<div className="pt-2 sm:pt-4 sm:pr-4 lg:pr-6 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
 		<Link to={link}>
 			<div
 				className={classNames(
@@ -33,7 +33,7 @@ export const Card = ({
 						<span className="tag text-white bg-red-400">Draft</span>
 					) : null}
 
-					{tags.map(t => (
+					{tags.slice(0, 3).map(t => (
 						<span key={t} className="tag">
 							{t}
 						</span>
