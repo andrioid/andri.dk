@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 
-const TemplateWrapper = ({ children }) => (
+export const PlainLayout = ({ children }) => (
 	<div>
 		<Helmet
 			title="Andri"
@@ -12,12 +12,10 @@ const TemplateWrapper = ({ children }) => (
 				{ name: 'keywords', content: 'sample, something' }
 			]}
 		/>
-		<div>{children()}</div>
+		<div className="pineapple">{children()}</div>
 	</div>
 )
 
-TemplateWrapper.propTypes = {
+PlainLayout.propTypes = {
 	children: PropTypes.func
 }
-
-export default TemplateWrapper

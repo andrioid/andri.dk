@@ -39,13 +39,8 @@ const BaseLink = (user, type) => {
 	const Icon = iconResolver(type)
 	const href = linkResolver(user, type)
 	return (
-		<a
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			style={{ margin: 5 }}
-		>
-			<Icon style={{ color: 'white', width, height }} />
+		<a href={href} target="_blank" rel="noopener noreferrer" className="mr-2">
+			<Icon className="inline-block" />
 		</a>
 	)
 }

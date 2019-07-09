@@ -14,7 +14,9 @@ const TemplateWrapper = ({ children }) => (
 				{ name: 'keywords', content: 'sample, something' }
 			]}
 		/>
-		<div style={{ margin: '3rem auto', maxWidth: 600 }}>{children()}</div>
+		<div className="layoutplain" style={{ margin: '3rem auto', maxWidth: 600 }}>
+			{children()}
+		</div>
 	</div>
 )
 

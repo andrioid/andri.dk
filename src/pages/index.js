@@ -14,7 +14,7 @@ import ReactCountryFlag from 'react-country-flag'
 import { Card } from '../components/card'
 
 const IndexPage = ({ data }) => (
-	<>
+	<div className="">
 		<div className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700">
 			<nav className="flex items-end justify-end justify-between items-center p-8">
 				<img
@@ -60,8 +60,10 @@ const IndexPage = ({ data }) => (
 		</div>
 		<Section title="Latest Posts">
 			<ArticleList posts={data.allMarkdownRemark.edges} />
-			<div className="my-4 px-4 md:px-0">
-				<Link to="/blog">More posts...</Link>
+			<div className="mt-4 px-4 md:px-0">
+				<Link className="link" to="/blog">
+					More posts...
+				</Link>
 			</div>
 		</Section>
 		<Section title="Technology" bgColorLevel={100}>
@@ -88,11 +90,15 @@ const IndexPage = ({ data }) => (
 				)}
 			</SkillDataTransform>
 		</Section>
-
-		<div className="font-headline text-xl flex flex-row font-sans h-16 text-white bg-blue-700 align-middle items-center justify-center">
-			That's all folks
+		<div className="text-lg px-10 md:px-20 lg:px-40 py-10 flex justify-between">
+			<span className="italic">Andri Óskarsson</span>
+			<div>
+				<Twitter user="andrioid" />
+				<Github user="andrioid" />
+				<LinkedIn user="andriosk" />
+			</div>
 		</div>
-	</>
+	</div>
 )
 
 const ArticleList = ({ posts }) => (
@@ -137,9 +143,9 @@ const Section = ({
 	bgColorLevel = 200
 }) => (
 	<div
-		className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} pb-4`}
+		className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}
 	>
-		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl pt-4 uppercase">
+		<h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase">
 			{title}
 		</h2>
 		{children}
