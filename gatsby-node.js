@@ -2,31 +2,6 @@ const path = require('path')
 const cp = require('child_process')
 const { createFilePath } = require('gatsby-source-filesystem')
 
-// Implement the Gatsby API “onCreatePage”. This is
-// called after every page is created.
-exports.onCreatePage = async ({ page, boundActionCreators }) => {
-	const { createPage } = boundActionCreators
-
-	return new Promise((resolve, reject) => {
-		console.log('matching...', page.path)
-		if (page.path === '/') {
-			console.log(page.path, 'wants plain layout')
-			page.layout = 'plain'
-			createPage(page)
-		}
-
-		// if (page.path.match(/^\/$/)) {
-		// 	// It's assumed that `landingPage.js` exists in the `/layouts/` directory
-		// 	page.layout = 'plain'
-
-		// 	// Update the page.
-		// 	createPage(page)
-		// }
-
-		resolve()
-	})
-}
-
 exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
 	const oldConfig = getConfig()
 	const config = {

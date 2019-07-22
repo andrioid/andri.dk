@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
+import { Nav } from '../components/nav'
 
 // import '../css/blog-post.css'; // make it pretty!
 
@@ -11,7 +12,8 @@ export default function Template({
 	return (
 		<>
 			<Helmet title={`andri.dk - ${post.frontmatter.title}`} />
-			<div className="blog-post-container bg-gray-200 py-2 md:px-4 min-h-screen">
+			<Nav />
+			<div className="blog-post-container pt-4 bg-gray-200 py-2 md:px-4 min-h-screen">
 				<div className="px-10 bg-white max-w-6xl py-10 shadow">
 					<div className="mb-6">
 						<h1 className="text-gray-900 font-semibold text-2xl">
