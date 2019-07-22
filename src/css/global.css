@@ -23,6 +23,7 @@ a.link {
 
 .markdown {
 	@apply text-lg text-gray-900 leading-normal;
+
 	& > * + *,
 	& li + li,
 	& li > p + p {
@@ -37,11 +38,14 @@ a.link {
 	& strong a {
 		@apply font-bold;
 	}
+	& h1 {
+		@apply leading-tight text-2xl font-bold text-gray-900 mb-2 mt-10;
+	}
 	& h2 {
-		@apply leading-tight text-xl font-bold text-black mb-2 mt-10;
+		@apply leading-tight text-xl font-bold text-gray-900 mb-2 mt-10;
 	}
 	& h3 {
-		@apply leading-tight text-lg font-bold text-black mt-8 -mb-2;
+		@apply leading-tight text-lg font-bold text-gray-900 mt-8 mb-2;
 	}
 	/* & code {
 		@apply font-mono text-sm inline bg-gray-400 px-1;
@@ -50,6 +54,10 @@ a.link {
 		@apply block bg-black p-4 rounded;
 	}
 	 */
+	& .vscode-highlight {
+		@apply rounded-none;
+	}
+
 	& code,
 	pre {
 		@apply font-mono whitespace-pre;

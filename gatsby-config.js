@@ -76,7 +76,11 @@ module.exports = {
 			options: {
 				plugins: [
 					{
-						resolve: 'gatsby-remark-vscode'
+						resolve: 'gatsby-remark-vscode',
+						options: {
+							wrapperClassName: 'full-width',
+							injectStyles: false
+						}
 					}
 				]
 			}

@@ -14,20 +14,22 @@ export default function Template({
 			<Helmet title={`andri.dk - ${post.frontmatter.title}`} />
 			<Nav />
 			<div className="blog-post-container pt-4 bg-gray-200 py-2 md:px-4 min-h-screen">
-				<div className="px-10 bg-white max-w-6xl py-10 shadow">
+				<div className="bg-white max-w-6xl py-10 shadow px-5 lg:px-10">
 					<div className="mb-6">
-						<h1 className="text-gray-900 font-semibold text-2xl">
-							{post.frontmatter.title}
-						</h1>
-						<div className="text-sm text-gray-600 flex justify-start mb-4">
-							<p>{post.frontmatter.date}</p>
-						</div>
-						<div className="mb-4 ">
-							{post.frontmatter.tags.map(t => (
-								<span key={t} className="tag text-xs">
-									{t}
-								</span>
-							))}
+						<div>
+							<h1 className="text-gray-900 font-semibold text-3xl">
+								{post.frontmatter.title}
+							</h1>
+							<div className="text-sm text-gray-600 flex justify-start mb-4">
+								<p>{post.frontmatter.date}</p>
+							</div>
+							<div className="mb-4 ">
+								{post.frontmatter.tags.map(t => (
+									<span key={t} className="tag text-xs">
+										{t}
+									</span>
+								))}
+							</div>
 						</div>
 					</div>
 
