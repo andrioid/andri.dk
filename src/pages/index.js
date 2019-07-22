@@ -38,6 +38,8 @@ const IndexPage = ({ data }) => (
 					<div>
 						<ul className="flex flex-row">
 							<NavLink href="blog/">Blog</NavLink>
+
+							<NavLink href="now/">Now</NavLink>
 							<NavLink href="cv.pdf">CV</NavLink>
 						</ul>
 					</div>
@@ -147,7 +149,7 @@ const NavLink = ({ href, children }) => (
 )
 
 // Wraps the text and handles margins
-const BodyContainer = ({ children, className }) => (
+export const BodyContainer = ({ children, className }) => (
 	<div className="mt-10 mx-10 md:mx-20 lg:mx-40 text-xl">{children}</div>
 )
 

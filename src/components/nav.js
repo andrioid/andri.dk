@@ -27,6 +27,7 @@ export const Nav = props => (
 		<div className="block flex-grow text-right">
 			<NavItem href="/">Home</NavItem>
 			<NavItem href="/blog/">Blog</NavItem>
+			<NavItem href="/now/">Now</NavItem>
 		</div>
 	</nav>
 )

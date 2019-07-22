@@ -2,13 +2,10 @@ import React from 'react'
 import { Nav } from '../components/nav'
 
 const PagesLayout = ({ children }) => (
-	<>
+	<div className="font-sans">
 		<Nav />
-		<div className="markdown">
-			<h1>Pages</h1>
-			{children}
-		</div>
-	</>
+		<div className="">{children}</div>
+	</div>
 )
 
 export default PagesLayout
