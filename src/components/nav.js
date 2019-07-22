@@ -4,7 +4,7 @@ import andratar from '../../static/img/coffee-art.jpg'
 export const NavItem = ({ children, href }) => (
 	<a
 		href={href}
-		className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+		className="mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
 	>
 		{children}
 	</a>
@@ -24,11 +24,9 @@ export const Nav = props => (
 			</div>
 		</a>
 
-		<div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-			<div className="text-sm lg:flex-grow lg:text-right">
-				<NavItem href="/">Home</NavItem>
-				<NavItem href="/blog/">Blog</NavItem>
-			</div>
+		<div className="block flex-grow text-right">
+			<NavItem href="/">Home</NavItem>
+			<NavItem href="/blog/">Blog</NavItem>
 		</div>
 	</nav>
 )
