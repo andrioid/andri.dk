@@ -81,20 +81,15 @@ module.exports = {
 							wrapperClassName: 'full-width',
 							injectStyles: false
 						}
+					},
+					{
+						resolve: 'gatsby-remark-images',
+						tracedSVG: true
 					}
 				]
 			}
 		},
 		'gatsby-plugin-postcss',
-		{
-			resolve: 'gatsby-mdx',
-			options: {
-				defaultLayouts: {
-					posts: require.resolve('./src/layouts/posts.js'),
-					default: require.resolve('./src/layouts/pages.js')
-				}
-			}
-		},
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
 

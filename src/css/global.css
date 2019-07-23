@@ -24,28 +24,29 @@ a.link {
 .markdown {
 	@apply text-lg text-gray-900 leading-normal;
 
-	& > * + *,
-	& li + li,
 	& li > p + p {
-		@apply mt-6;
+		@apply mt-2;
+	}
+	& p {
+		@apply mb-4;
 	}
 	& strong {
-		@apply text-black font-bold;
+		@apply text-gray-900 font-bold;
 	}
 	& a {
-		@apply text-black font-semibold;
+		@apply text-blue-800 font-semibold;
 	}
 	& strong a {
 		@apply font-bold;
 	}
 	& h1 {
-		@apply leading-tight text-2xl font-bold text-gray-900 mb-2 mt-10;
+		@apply leading-tight text-2xl font-semibold text-gray-900 mb-2 mt-10;
 	}
 	& h2 {
-		@apply leading-tight text-xl font-bold text-gray-900 mb-2 mt-10;
+		@apply leading-tight text-xl font-semibold text-gray-900 mb-2 mt-10;
 	}
 	& h3 {
-		@apply leading-tight text-lg font-bold text-gray-900 mt-8 mb-2;
+		@apply leading-tight text-lg font-semibold text-gray-900 mt-8 mb-2;
 	}
 	/* & code {
 		@apply font-mono text-sm inline bg-gray-400 px-1;
@@ -66,10 +67,10 @@ a.link {
 		@apply border-l-8 border-gray-700 mx-2 my-4 px-4 py-4;
 	}
 	& ol {
-		@apply list-decimal pl-5;
+		@apply list-decimal pl-5 mb-4;
 	}
 	& ul {
-		@apply list-disc list-inside;
+		@apply list-disc list-inside mb-4;
 	}
 }
 

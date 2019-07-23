@@ -16,7 +16,7 @@ Personal site and playground.
 
 ### Latest posts
 
-Fetches MD and MDX files through Gatsby, then uses GraphQL to list them.
+Fetches MD files through Gatsby, then uses GraphQL to list them.
 
 ### Technology
 
