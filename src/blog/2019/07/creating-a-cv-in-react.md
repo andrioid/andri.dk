@@ -110,6 +110,4 @@ export const TimelineItem = ({
 }
 ```
 
-I looked at various designs on Dribbble and other places until I decided on a layout.
-
 React-pdf uses Yoga for layouts, and if that sounds familiar, then it's because it's react-native's layout engine. It uses flex-box and while very similar to the web version of flex-box, it's not quite the same.
