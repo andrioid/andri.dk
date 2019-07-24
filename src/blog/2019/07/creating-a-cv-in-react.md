@@ -4,7 +4,6 @@ date: '2019-07-22T00:00:00.000Z'
 title: 'Creating a CV in React'
 tags: ['cv', 'projects']
 cover: './cvscreenshot.png'
-draft: true
 ---
 
 ## TLDR;
@@ -22,7 +21,6 @@ I wanted the following features:
 
 - Use [JSON resume](https://jsonresume.org/schema/) for the CV data
 - Components for for work-experience, education and sections
-- My own layout
 - Built automatically with my Gatsby site into a PDF file
 
 ## A good starting point
@@ -110,4 +108,60 @@ export const TimelineItem = ({
 }
 ```
 
-React-pdf uses Yoga for layouts, and if that sounds familiar, then it's because it's react-native's layout engine. It uses flex-box and while very similar to the web version of flex-box, it's not quite the same.
+## Build with Gatsby
+
+Originally, I wanted Gatsby to render my CV as a page, using react-dom on the client and pdf on the server. That turned out to be very hard to do, with little gain. So now we just generate the PDF file seperately.
+
+In retrospect, I should probably move this into pkg/cv instead of src/cv.
+
+### package.json
+
+```js
+	"scripts": {
+		"build-cv": "cd src/cv && babel-node build.js",
+		"watch-cv": "cd src/cv && nodemon --exec babel-node build.js"
+	},
+```
+
+### gatsby-config.js
+
+```js
+exports.onPostBuild = () => {
+	const cp = require('child_process')
+	cp.execSync('yarn run build-cv')
+}
+```
+
+### src/cv/.babelrc
+
+From the react-pdf repo. I also tried to adapt Gatsby's babel configuration here, but without luck.
+
+```js
+{
+	"presets": [
+		[
+			"@babel/preset-env",
+			{
+				"loose": true,
+				"targets": {
+					"node": "current"
+				}
+			}
+		],
+		"@babel/preset-react"
+	],
+	"plugins": [
+		"@babel/plugin-transform-runtime",
+		"@babel/plugin-proposal-class-properties"
+	]
+}
+
+```
+
+### Workflow
+
+Then just run `yarn run watch-cv` while developing it. I use evince on Linux as my PDF viewer, because it automatically reloads the file on-write. So almost like hot-reloading.
+
+## Conclusion
+
+This was a fun project for me. I'm not seeking employment, so I'm not motivated to polish it further at this time. I hope this gave a few bread-crumbs, if you're considering something similar.
