@@ -9,6 +9,8 @@ const sizes = {
 	}
 }
 
+// primary color: #2B6CB0
+
 module.exports = {
 	theme: {
 		extend: {

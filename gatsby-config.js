@@ -63,7 +63,6 @@ module.exports = {
 				]
 			}
 		},
-		// `gatsby-plugin-netlify-cms`,
 		{
 			resolve: 'gatsby-plugin-draft',
 			options: {
@@ -85,6 +84,9 @@ module.exports = {
 					{
 						resolve: 'gatsby-remark-images',
 						tracedSVG: true
+					},
+					{
+						resolve: 'gatsby-remark-copy-linked-files'
 					}
 				]
 			}
