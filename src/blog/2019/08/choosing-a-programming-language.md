@@ -3,6 +3,7 @@ path: '/blog/2019/08/choosing-a-programming-language'
 date: '2019-08-04T00:00:00.000Z'
 title: 'Choosing a programming language'
 tags: ['programming', 'discussion']
+draft: false
 ---
 
 Imagine that you're a CTO, a Tech Lead or someone that has to make an early technical decision that will effect the company for years to come. What programming language do you choose?
