@@ -173,13 +173,13 @@ const Section = ({
 export const query = graphql`
 	query ArticleList {
 		allMarkdownRemark(
-			limit: 4
+			limit: 3
 			sort: { order: DESC, fields: [frontmatter___date] }
 			filter: { fields: { draft: { ne: true } } }
 		) {
 			edges {
 				node {
-					excerpt(pruneLength: 100)
+					excerpt(pruneLength: 250, format: PLAIN)
 					id
 					frontmatter {
 						title

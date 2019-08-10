@@ -3,7 +3,7 @@
 @tailwind components;
 
 .tag {
-	@apply inline-block bg-gray-500 rounded-lg px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
+	@apply inline-block bg-gray-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
 }
 
 a.link {

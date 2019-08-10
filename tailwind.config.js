@@ -14,6 +14,10 @@ const sizes = {
 module.exports = {
 	theme: {
 		extend: {
+			height: {
+				300: '300px',
+				350: '350px'
+			},
 			minWidth: sizes.width,
 			maxWidth: sizes.width,
 			minHeight: sizes.height,
