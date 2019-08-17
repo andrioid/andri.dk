@@ -1,7 +1,8 @@
 module.exports = {
 	siteMetadata: {
 		title: `andri.dk`,
-		description: 'Personal homepage, portfolio and tech blog',
+		description:
+			'I make websites, create apps, manage infrastructure, develop products and more.',
 		siteUrl: 'https://andri.dk'
 	},
 	plugins: [
@@ -88,6 +89,9 @@ module.exports = {
 					{
 						resolve: 'gatsby-remark-copy-linked-files'
 					}
+					// {
+					// 	resolve: 'gatsby-remark-social-cards'
+					// }
 				]
 			}
 		},

@@ -2,23 +2,23 @@ const path = require('path')
 const cp = require('child_process')
 const { createFilePath } = require('gatsby-source-filesystem')
 
-exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
-	const oldConfig = getConfig()
-	const config = {
-		...oldConfig,
-		output: {
-			...oldConfig.output,
-			globalObject: 'this'
-		}
-	}
+// exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
+// 	const oldConfig = getConfig()
+// 	const config = {
+// 		...oldConfig,
+// 		output: {
+// 			...oldConfig.output,
+// 			globalObject: 'this'
+// 		}
+// 	}
 
-	actions.replaceWebpackConfig(config)
-}
+// 	actions.replaceWebpackConfig(config)
+// }
 
-exports.createPages = async ({ boundActionCreators, graphql }) => {
-	const { createPage } = boundActionCreators
+exports.createPages = async ({ actions, graphql }) => {
+	const { createPage } = actions
 	const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`)
-	return graphql(`
+	const result = await graphql(`
 		{
 			allMarkdownRemark(
 				sort: { order: DESC, fields: [frontmatter___date] }
@@ -38,19 +38,17 @@ exports.createPages = async ({ boundActionCreators, graphql }) => {
 				}
 			}
 		}
-	`).then(result => {
-		if (result.errors) {
-			return Promise.reject(result.errors)
-		}
-		result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-			if (!node.frontmatter.path) {
-				throw new Error(JSON.stringify(node))
-			}
-			createPage({
-				path: node.frontmatter.path,
-				component: blogPostTemplate,
-				context: {}
-			})
+	`)
+	if (result.errors) {
+		console.log(result.errors)
+		throw new Error('Things broke, see console output above')
+	}
+
+	result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+		createPage({
+			path: node.frontmatter.path,
+			component: blogPostTemplate,
+			context: {}
 		})
 	})
 }
