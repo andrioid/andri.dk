@@ -1,8 +1,10 @@
 module.exports = {
 	siteMetadata: {
 		title: `andri.dk`,
-		description: 'Personal homepage, portfolio and tech blog',
-		siteUrl: 'https://andri.dk'
+		description:
+			'I make websites, create apps, manage infrastructure, develop products and more.',
+		siteUrl: 'https://andri.dk',
+		author: 'Andri Óskarsson'
 	},
 	plugins: [
 		{
@@ -69,28 +71,6 @@ module.exports = {
 				publishDraft: process.env.NODE_ENV !== 'production'
 			}
 		},
-
-		{
-			resolve: 'gatsby-transformer-remark',
-			options: {
-				plugins: [
-					{
-						resolve: 'gatsby-remark-vscode',
-						options: {
-							wrapperClassName: 'full-width',
-							injectStyles: false
-						}
-					},
-					{
-						resolve: 'gatsby-remark-images',
-						tracedSVG: true
-					},
-					{
-						resolve: 'gatsby-remark-copy-linked-files'
-					}
-				]
-			}
-		},
 		'gatsby-plugin-postcss',
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
@@ -132,6 +112,46 @@ module.exports = {
 				trackingId: 'UA-1081252-4',
 				// Setting this parameter is optional
 				anonymize: true
+			}
+		},
+		{
+			resolve: 'gatsby-transformer-remark',
+			options: {
+				plugins: [
+					{
+						resolve: 'gatsby-remark-vscode',
+						options: {
+							wrapperClassName: 'full-width',
+							injectStyles: false
+						}
+					},
+					{
+						resolve: 'gatsby-remark-images',
+						tracedSVG: true
+					},
+					{
+						resolve: 'gatsby-remark-copy-linked-files'
+					},
+					{
+						resolve: 'gatsby-remark-social-cards',
+						options: {
+							title: {
+								color: 'white'
+							},
+							meta: {
+								parts: [
+									{ field: 'date', format: 'mmmm dS yyyy' },
+									' » ',
+									'andri.dk'
+								],
+
+								color: 'white'
+							},
+
+							background: '#2B6CB0'
+						}
+					}
+				]
 			}
 		}
 	]
