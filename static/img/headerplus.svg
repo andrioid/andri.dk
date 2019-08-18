@@ -17,14 +17,14 @@
 
     <g filter="url(#shadow)">
         <g clip-path="url(#clip)" stroke="2">
-            <image x="60" y="-75" width="60" height="60" xlink:href="coffee-art.jpg" />
-            <rect id="rect" x="60" y="-75" width="60" height="60" rx="50" style="fill: none; stroke: #2B6CB0; stroke-width:1" />
+            <image x="60" y="-70" width="60" height="60" xlink:href="coffee-art.jpg" />
+            <rect id="rect" x="60" y="-70" width="60" height="60" rx="50" style="fill: none; stroke: #2B6CB0; stroke-width:1" />
 
         </g>
 
         <g style="stroke: none; fill: #ffffff; font-family: montserrat;">
-            <text x="-130" y="60" style="font-size: 22px;">Andri Óskarsson</text>
-            <text x="-130" y="80" style="font-size: 10px;">Computer Engineer from Iceland</text>
+            <text x="-130" y="40" style="font-size: 22px;">Andri Óskarsson</text>
+            <text x="-130" y="60" style="font-size: 10px;">Computer Engineer from Iceland</text>
         </g>
     </g>
 
