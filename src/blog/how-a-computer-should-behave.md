@@ -2,6 +2,7 @@
 path: '/blog/how-a-computer-should-behave'
 date: '2013-04-06T10:09:36.000Z'
 title: 'How a Computer should behave'
+author: 'Andri Óskarsson'
 tags: []
 ---
 

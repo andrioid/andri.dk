@@ -39,6 +39,7 @@ exports.createPages = async ({ actions, graphql }) => {
 			}
 		}
 	`)
+
 	if (result.errors) {
 		console.log(result.errors)
 		throw new Error('Things broke, see console output above')
@@ -51,6 +52,18 @@ exports.createPages = async ({ actions, graphql }) => {
 			context: {}
 		})
 	})
+}
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+	const { createNodeField } = actions
+	if (node.internal.type === `MarkdownRemark`) {
+		const slug = createFilePath({ node, getNode, basePath: `pages` })
+		createNodeField({
+			node,
+			name: `slug`,
+			value: slug
+		})
+	}
 }
 
 exports.onPostBuild = () => {
