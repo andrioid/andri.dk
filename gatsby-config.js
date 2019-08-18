@@ -131,25 +131,6 @@ module.exports = {
 					},
 					{
 						resolve: 'gatsby-remark-copy-linked-files'
-					},
-					{
-						resolve: 'gatsby-remark-social-cards',
-						options: {
-							title: {
-								color: 'white'
-							},
-							meta: {
-								parts: [
-									{ field: 'date', format: 'mmmm dS yyyy' },
-									' » ',
-									'andri.dk'
-								],
-
-								color: 'white'
-							},
-
-							background: '#2B6CB0'
-						}
 					}
 				]
 			}

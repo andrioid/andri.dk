@@ -1,0 +1,31 @@
+<svg width="100%" height="100%" viewBox="-150 -100 300 100" version="1.1" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+    <defs>
+        <clipPath id="clip">
+            <use xlink:href="#rect"/>
+        </clipPath>
+        <filter id="shadow">
+            <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2"/>
+        </filter>
+
+    </defs>
+
+    <image x="-150" y="-100" width="100%" height="200" xlink:href="header.svg" />
+
+    <g filter="url(#shadow)">
+        <g clip-path="url(#clip)" stroke="2">
+            <image x="60" y="-75" width="60" height="60" xlink:href="coffee-art.jpg" />
+            <rect id="rect" x="60" y="-75" width="60" height="60" rx="50" style="fill: none; stroke: #2B6CB0; stroke-width:1" />
+
+        </g>
+
+        <g style="stroke: none; fill: #ffffff; font-family: montserrat;">
+            <text x="-130" y="60" style="font-size: 22px;">Andri Óskarsson</text>
+            <text x="-130" y="80" style="font-size: 10px;">Computer Engineer from Iceland</text>
+        </g>
+    </g>
+
+</svg>
