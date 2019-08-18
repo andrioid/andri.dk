@@ -11,7 +11,7 @@ import { FaHeart } from 'react-icons/fa'
 import { FaCalendarAlt as FaCalendar } from 'react-icons/fa'
 import { SkillDataTransform, Skills } from '../components/skills/skills'
 import ReactCountryFlag from 'react-country-flag'
-import { Card } from '../components/card'
+import { Card, Card2 } from '../components/card'
 
 const IndexPage = ({ data }) => (
 	<div className="">
@@ -118,7 +118,7 @@ const IndexPage = ({ data }) => (
 )
 
 const ArticleList = ({ posts }) => (
-	<div className="flex flex-row flex-wrap justify-start">
+	<div className="flex flex-wrap justify-start items-stretch">
 		{posts
 			.filter(post => post.node.frontmatter.title.length > 0)
 			.map(({ node: post }) => {
