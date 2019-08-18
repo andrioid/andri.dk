@@ -47,7 +47,6 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => (
 						<meta property="og:title" content={title} />
 						<meta property="og:description" content={description} />
 						<meta property="og:image" content={image} />
-						<meta property="fb:app_id" content={seo.social.fbAppID} />
 
 						{/* Twitter Card tags */}
 						<meta name="twitter:card" content="summary_large_image" />
