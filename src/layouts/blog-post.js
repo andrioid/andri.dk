@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { Nav } from '../components/nav'
 import Img from 'gatsby-image'
 import { Layout } from './layout'
+import { SEO } from '../components/seo'
 
 // import '../css/blog-post.css'; // make it pretty!
 
@@ -16,6 +17,7 @@ export default function Template({
 	const { cover } = post.frontmatter
 	return (
 		<Layout slug={data.markdownRemark.fields.slug}>
+			<SEO frontmatter={post.frontmatter} />
 			<Nav />
 			<div className="blog-post-container pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen">
 				<div className="bg-white max-w-4xl py-10 shadow px-5 lg:px-10">

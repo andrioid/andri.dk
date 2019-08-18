@@ -4,7 +4,10 @@ module.exports = {
 		description:
 			'I make websites, create apps, manage infrastructure, develop products and more.',
 		siteUrl: 'https://andri.dk',
-		author: 'Andri Óskarsson'
+		author: 'Andri Óskarsson',
+		social: {
+			twitter: 'andrioid'
+		}
 	},
 	plugins: [
 		{

@@ -12,9 +12,12 @@ import { FaCalendarAlt as FaCalendar } from 'react-icons/fa'
 import { SkillDataTransform, Skills } from '../components/skills/skills'
 import ReactCountryFlag from 'react-country-flag'
 import { Card, Card2 } from '../components/card'
+import { Layout } from '../layouts/layout'
+import { SEO } from '../components/seo'
 
 const IndexPage = ({ data }) => (
-	<div className="">
+	<Layout>
+		<SEO />
 		<div
 			className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed"
 			style={{
@@ -114,7 +117,7 @@ const IndexPage = ({ data }) => (
 				<LinkedIn user="andriosk" />
 			</div>
 		</div>
-	</div>
+	</Layout>
 )
 
 const ArticleList = ({ posts }) => (
