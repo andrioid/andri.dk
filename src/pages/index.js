@@ -125,6 +125,7 @@ const ArticleList = ({ posts }) => (
 		{posts
 			.filter(post => post.node.frontmatter.title.length > 0)
 			.map(({ node: post }) => {
+				console.log(post)
 				return (
 					<Card
 						key={post.id}
@@ -139,6 +140,21 @@ const ArticleList = ({ posts }) => (
 					/>
 				)
 			})}
+	</div>
+)
+
+// TODO: Finish image cards later
+const NewCard = ({ post }) => (
+	<div className="bg-white mr-2 flex justify-between flex-stretch flex-col">
+		<h3>{post.frontmatter.title}</h3>
+		{post.frontmatter.cover ? (
+			<Img
+				//sizes={cover.childImageSharp.sizes}
+				//className="max-w-xl flex items-center justify-center"
+				fluid={post.frontmatter.cover.childImageSharp.fluid}
+				//className="max-h-one-third-screen"
+			/>
+		) : null}
 	</div>
 )
 
@@ -190,6 +206,20 @@ export const query = graphql`
 						path
 						tags
 						draft
+						cover {
+							publicURL
+							childImageSharp {
+								fluid(
+									maxWidth: 400
+									quality: 90
+									maxHeight: 200
+									fit: COVER
+									background: "#ffffff"
+								) {
+									...GatsbyImageSharpFluid
+								}
+							}
+						}
 					}
 				}
 			}
