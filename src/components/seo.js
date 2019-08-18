@@ -28,7 +28,9 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => (
 			const title = postMeta.title || seo.title
 			const description =
 				postMeta.plainTextDescription || postMeta.description || seo.description
-			const image = `${seo.siteUrl}${metaImage || defaultMetaImage}`
+			const image = `${seo.siteUrl}${(postMeta.cover &&
+				postMeta.cover.publicURL) ||
+				defaultMetaImage}`
 			const url = postMeta.path ? `${seo.siteUrl}${postMeta.path}` : seo.siteUrl
 
 			return (
