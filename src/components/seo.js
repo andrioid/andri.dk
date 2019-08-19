@@ -23,13 +23,13 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => (
 			}
 		`}
 		render={({ site: { siteMetadata: seo } }) => {
+			console.log(postData)
 			const postMeta =
 				frontmatter || postData.childMarkdownRemark.frontmatter || {}
 			const title = postMeta.title || seo.title
 			const description =
 				postMeta.plainTextDescription || postMeta.description || seo.description
-			const image = `${seo.siteUrl}${(postMeta.cover &&
-				postMeta.cover.publicURL) ||
+			const image = `${seo.siteUrl}/${postData.fields.socialcard ||
 				defaultMetaImage}`
 			const url = postMeta.path ? `${seo.siteUrl}${postMeta.path}` : seo.siteUrl
 

@@ -10,6 +10,7 @@ module.exports = {
 		}
 	},
 	plugins: [
+		'social-card',
 		{
 			resolve: `gatsby-plugin-feed`,
 			options: {
@@ -135,6 +136,7 @@ module.exports = {
 					{
 						resolve: 'gatsby-remark-copy-linked-files'
 					}
+					//'social-card'
 				]
 			}
 		}
