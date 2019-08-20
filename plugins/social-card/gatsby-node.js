@@ -34,6 +34,7 @@ exports.onCreateNode = ({ node, getNode, actions, graphql }, options) => {
 				title: post.title,
 				subtitle,
 				backgroundImage: cover,
+				design: options.design,
 				authorImage64
 			},
 			output

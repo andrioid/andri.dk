@@ -18,7 +18,8 @@ module.exports = {
 			options: {
 				authorImage: './static/img/coffee-art.jpg',
 				backgroundImage: './static/img/hvitserkur.JPG',
-				defaultAuthor: 'Andri Óskarsson'
+				defaultAuthor: 'Andri Óskarsson',
+				design: 'card'
 			}
 		},
 		{

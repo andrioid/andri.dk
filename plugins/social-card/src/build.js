@@ -5,7 +5,9 @@ const buffer = require('buffer')
 
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { Overlay } from './overlay'
+
+import Overlay from './overlay'
+import Card from './card'
 
 // Default background from: https://pixabay.com/photos/lake-water-wave-mirroring-texture-2063957/
 // Only used if nothing specified by options, or node.frontmatter.cover
@@ -19,7 +21,8 @@ export async function generateCard(
 		title = '',
 		subtitle = '',
 		backgroundImage = defaultBackgroundImage,
-		authorImage64
+		authorImage64,
+		design = 'default' // default, card, split
 	},
 	oname
 ) {
@@ -27,9 +30,18 @@ export async function generateCard(
 		backgroundImage = defaultBackgroundImage
 	}
 
+	let OverlayComponent
+	switch (design) {
+		case 'card':
+			OverlayComponent = Card
+			break
+		default:
+			OverlayComponent = Overlay
+	}
+
 	const svgbuffer = Buffer.from(
 		ReactDOMServer.renderToStaticMarkup(
-			<Overlay
+			<OverlayComponent
 				title={title}
 				subtitle={subtitle}
 				authorImage64={authorImage64}

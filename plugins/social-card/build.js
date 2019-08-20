@@ -9,7 +9,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _server = _interopRequireDefault(require("react-dom/server"));
 
-var _overlay = require("./overlay");
+var _overlay = _interopRequireDefault(require("./overlay"));
+
+var _card = _interopRequireDefault(require("./card"));
 
 const sharp = require('sharp');
 
@@ -27,13 +29,26 @@ async function generateCard({
   title = '',
   subtitle = '',
   backgroundImage = defaultBackgroundImage,
-  authorImage64
+  authorImage64,
+  design = 'default' // default, card, split
+
 }, oname) {
   if (!fs.existsSync(backgroundImage)) {
     backgroundImage = defaultBackgroundImage;
   }
 
-  const svgbuffer = Buffer.from(_server.default.renderToStaticMarkup(_react.default.createElement(_overlay.Overlay, {
+  let OverlayComponent;
+
+  switch (design) {
+    case 'card':
+      OverlayComponent = _card.default;
+      break;
+
+    default:
+      OverlayComponent = _overlay.default;
+  }
+
+  const svgbuffer = Buffer.from(_server.default.renderToStaticMarkup(_react.default.createElement(OverlayComponent, {
     title: title,
     subtitle: subtitle,
     authorImage64: authorImage64

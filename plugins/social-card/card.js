@@ -7,6 +7,8 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _inspector = require("inspector");
+
 const Overlay = ({
   title = '',
   subtitle = '',
@@ -22,7 +24,7 @@ const Overlay = ({
 
   const iwidth = 400;
   const iheight = 200;
-  const xMargin = 20;
+  const xMargin = 40;
   const authorWidth = 32;
   let texty = 170;
 
@@ -42,26 +44,32 @@ const Overlay = ({
   }, _react.default.createElement("use", {
     xlinkHref: "#rect"
   })), _react.default.createElement("filter", {
-    id: "shadow"
-  }, _react.default.createElement("feDropShadow", {
-    dx: "0.2",
-    dy: "1.2",
-    stdDeviation: "0.2",
-    floodOpacity: "0.5"
-  }))), _react.default.createElement("g", {
-    filter: "#shadow"
+    id: "shadow",
+    asx: "0",
+    asy: "0",
+    swidth: "200%",
+    hseight: "200%"
+  }, _react.default.createElement("feGaussianBlur", {
+    in: "SourceAlpha",
+    stdDeviation: "3"
+  }), _react.default.createElement("feOffset", {
+    dx: "0.5",
+    dy: "-0.5"
+  }), _react.default.createElement("feMerge", null, _react.default.createElement("feMergeNode", null), _react.default.createElement("feMergeNode", {
+    in: "SourceGraphic"
+  })))), _react.default.createElement("g", {
+    filter: "url(#shadow)"
   }, _react.default.createElement("rect", {
-    width: "400",
-    height: "60",
-    x: "0",
+    width: "360",
+    height: "120",
+    x: "20",
     y: "140",
-    opacity: "0.6",
+    rx: "10",
     style: {
-      fill: backgroundColor
+      fill: '#fff',
+      strokeWidth: 0
     }
   })), authorImage64 ? _react.default.createElement("g", {
-    filter: "#shadow"
-  }, _react.default.createElement("g", {
     stroke: "2",
     clipPath: "url(#clip)"
   }, _react.default.createElement("rect", {
@@ -80,10 +88,10 @@ const Overlay = ({
     x: iwidth - authorWidth - xMargin,
     y: "156",
     xlinkHref: authorImage64
-  }))) : null, _react.default.createElement("g", {
+  })) : null, _react.default.createElement("g", {
     style: {
-      fill: '#fff',
-      fontSize: 14
+      fill: '#000',
+      fontSize: 12
     }
   }, _react.default.createElement("text", {
     x: xMargin,

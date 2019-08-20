@@ -1,4 +1,5 @@
 import React from 'react'
+import { url } from 'inspector'
 
 const Overlay = ({
 	title = '',
@@ -14,7 +15,7 @@ const Overlay = ({
 
 	const iwidth = 400
 	const iheight = 200
-	const xMargin = 20
+	const xMargin = 40
 	const authorWidth = 32
 
 	let texty = 170
@@ -35,52 +36,50 @@ const Overlay = ({
 				<clipPath id="clip">
 					<use xlinkHref="#rect" />
 				</clipPath>
-				<filter id="shadow">
-					<feDropShadow
-						dx="0.2"
-						dy="1.2"
-						stdDeviation="0.2"
-						floodOpacity="0.5"
-					/>
+				<filter id="shadow" asx="0" asy="0" swidth="200%" hseight="200%">
+					<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+					<feOffset dx="0.5" dy="-0.5" />
+					<feMerge>
+						<feMergeNode />
+						<feMergeNode in="SourceGraphic" />
+					</feMerge>
 				</filter>
 			</defs>
 
-			<g filter="#shadow">
+			<g filter="url(#shadow)">
 				<rect
-					width="400"
-					height="60"
-					x="0"
+					width="360"
+					height="120"
+					x="20"
 					y="140"
-					opacity="0.6"
-					style={{ fill: backgroundColor }}
+					rx="10"
+					style={{ fill: '#fff', strokeWidth: 0 }}
 				/>
 			</g>
 			{authorImage64 ? (
-				<g filter="#shadow">
-					<g stroke="2" clipPath="url(#clip)">
-						<rect
-							id="rect"
-							width={authorWidth}
-							height={authorWidth}
-							x={iwidth - authorWidth - xMargin}
-							y="156"
-							fill="none"
-							stroke="#2b6cb0"
-							strokeWidth="1"
-							rx="50"
-						/>
-						<image
-							width={authorWidth}
-							height={authorWidth}
-							x={iwidth - authorWidth - xMargin}
-							y="156"
-							xlinkHref={authorImage64}
-						/>
-					</g>
+				<g stroke="2" clipPath="url(#clip)">
+					<rect
+						id="rect"
+						width={authorWidth}
+						height={authorWidth}
+						x={iwidth - authorWidth - xMargin}
+						y="156"
+						fill="none"
+						stroke="#2b6cb0"
+						strokeWidth="1"
+						rx="50"
+					/>
+					<image
+						width={authorWidth}
+						height={authorWidth}
+						x={iwidth - authorWidth - xMargin}
+						y="156"
+						xlinkHref={authorImage64}
+					/>
 				</g>
 			) : null}
 
-			<g style={{ fill: '#fff', fontSize: 14 }}>
+			<g style={{ fill: '#000', fontSize: 12 }}>
 				<text x={xMargin} y={texty}>
 					{title}
 				</text>
