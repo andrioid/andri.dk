@@ -47,9 +47,9 @@ const Overlay = ({
     dx: "0.2",
     dy: "1.2",
     stdDeviation: "0.2",
-    floodOpacity: "0.2"
+    floodOpacity: "0.5"
   }))), _react.default.createElement("g", {
-    filterUrl: "#shadow"
+    filter: "#shadow"
   }, _react.default.createElement("rect", {
     width: "400",
     height: "60",
@@ -60,7 +60,7 @@ const Overlay = ({
       fill: backgroundColor
     }
   })), authorImage64 ? _react.default.createElement("g", {
-    filterUrl: "#shadow"
+    filter: "#shadow"
   }, _react.default.createElement("g", {
     stroke: "2",
     clipPath: "url(#clip)"

@@ -40,12 +40,12 @@ export const Overlay = ({
 						dx="0.2"
 						dy="1.2"
 						stdDeviation="0.2"
-						floodOpacity="0.2"
+						floodOpacity="0.5"
 					/>
 				</filter>
 			</defs>
 
-			<g filterUrl="#shadow">
+			<g filter="#shadow">
 				<rect
 					width="400"
 					height="60"
@@ -56,7 +56,7 @@ export const Overlay = ({
 				/>
 			</g>
 			{authorImage64 ? (
-				<g filterUrl="#shadow">
+				<g filter="#shadow">
 					<g stroke="2" clipPath="url(#clip)">
 						<rect
 							id="rect"
