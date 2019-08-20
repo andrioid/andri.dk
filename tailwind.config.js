@@ -4,6 +4,7 @@ const sizes = {
 		'one-third-screen': '33vh'
 	},
 	width: {
+		none: '0px',
 		'half-screen': '50vw',
 		'one-third-screen': '33vw'
 	}

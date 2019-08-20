@@ -24,7 +24,6 @@ export default function Template({
 					{cover ? (
 						<Img
 							//sizes={cover.childImageSharp.sizes}
-							//className="max-w-xl flex items-center justify-center"
 							fluid={cover.childImageSharp.fluid}
 							//className="max-h-one-third-screen"
 						/>

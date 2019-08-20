@@ -5943,6 +5943,16 @@ gatsby-remark-images@^3.1.7:
     unist-util-select "^1.5.0"
     unist-util-visit-parents "^2.0.1"
 
+gatsby-remark-responsive-image@^1.0.0-alpha13-alpha.435e0178:
+  version "1.0.0-alpha13-alpha.435e0178"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-responsive-image/-/gatsby-remark-responsive-image-1.0.0-alpha13-alpha.435e0178.tgz#dc6d2995de371d86ef279a2f444efd46133f70ca"
+  integrity sha1-3G0pld43HYbvJ5ovRE79RhM/cMo=
+  dependencies:
+    image-size "^0.5.1"
+    is-relative-url "^2.0.0"
+    lodash "^4.17.4"
+    unist-util-select "^1.5.0"
+
 gatsby-remark-vscode@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/gatsby-remark-vscode/-/gatsby-remark-vscode-1.0.6.tgz#c7e625de059dbcbb4feb0893fd83b376b6bf7b54"
@@ -7079,6 +7089,11 @@ ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
+
+image-size@^0.5.1:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
+  integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
 
 imagemin-mozjpeg@^8.0.0:
   version "8.0.0"

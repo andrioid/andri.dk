@@ -59,6 +59,10 @@ a.link {
 		@apply rounded-none;
 	}
 
+	& .gatsby-resp-image-wrapper {
+		@apply max-w-none mr-0 ml-0;
+	}
+
 	& code,
 	pre {
 		@apply font-mono whitespace-pre;

@@ -16,10 +16,11 @@ module.exports = {
 		{
 			resolve: require.resolve('./plugins/social-card'),
 			options: {
-				authorImage: './static/img/coffee-art.jpg',
+				//authorImage: './static/img/coffee-art.jpg',
+				authorImage: './static/img/cloudfu.jpg',
 				backgroundImage: './static/img/hvitserkur.JPG',
 				defaultAuthor: 'Andri Óskarsson',
-				design: 'card'
+				design: 'default'
 			}
 		},
 		{
@@ -142,7 +143,11 @@ module.exports = {
 					},
 					{
 						resolve: 'gatsby-remark-images',
-						tracedSVG: true
+						//tracedSVG: true,
+						options: {
+							maxWidth: 896,
+							wrapperStyle: 'max-width: 896px;'
+						}
 					},
 					{
 						resolve: 'gatsby-remark-copy-linked-files'
