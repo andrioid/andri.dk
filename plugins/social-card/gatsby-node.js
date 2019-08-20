@@ -1,19 +1,45 @@
 const generateCard = require('./build').generateCard
 const path = require('path')
-const uuid = require('uuid')
+const fs = require('fs')
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
+function base64file(path) {
+	const b64 = fs.readFileSync(path, 'base64')
+	return `data:image/jpeg;base64,${b64}`
+}
+
+exports.onCreateNode = ({ node, getNode, actions, graphql }, options) => {
 	const { createNodeField } = actions
 	if (node.internal.type === `MarkdownRemark`) {
-		//console.log('from plugin', node, node.internal.type)
 		const post = node.frontmatter
-		//console.log('from plugin', post)
-		const filename = 'social-card-' + uuid() + '.jpg'
+
+		let authorImage64
+		if (options.authorImage && fs.existsSync(options.authorImage)) {
+			authorImage64 = base64file(options.authorImage)
+		}
+
+		let cover = options.backgroundImage
+
+		if (post.cover) {
+			const { dir } = getNode(node.parent)
+			cover = path.join(dir, post.cover)
+		}
+		const filename = 'social-card-' + node.id + '.jpg'
 		const output = path.join('./public', filename)
 
-		generateCard({ title: post.title }, output)
+		const author = post.author || options.defaultAuthor
+		const subtitle = author ? `by ${author}` : ''
+
+		generateCard(
+			{
+				title: post.title,
+				subtitle,
+				backgroundImage: cover,
+				authorImage64
+			},
+			output
+		)
 			.then(() => {
-				console.log('Social card generated: ' + output)
+				console.log(post.title, 'generated: ' + output)
 				createNodeField({
 					node,
 					name: `socialcard`,

@@ -1,14 +1,14 @@
 {
-	"name": "gatsby-remark-svg-card",
+	"name": "@andrioid/gatsby-plugin-social-card",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Generates social cards for your markdown posts and adds a field so you can reference them in your meta-tags.",
 	"main": "index.js",
 	"scripts": {
 		"build": "BABEL_ENV=production babel src/ --out-dir .",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"watch": "babel -w src --out-dir ."
 	},
-	"author": "",
-	"license": "ISC",
+	"author": "Andri Óskarsson <andri@andri.dk>",
+	"license": "MIT",
 	"dependencies": {
 		"@babel/cli": "^7.5.5",
 		"@babel/core": "^7.5.5",

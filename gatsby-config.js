@@ -3,14 +3,24 @@ module.exports = {
 		title: `andri.dk`,
 		description:
 			'I make websites, create apps, manage infrastructure, develop products and more.',
-		siteUrl: 'https://andri.dk',
+		siteUrl:
+			process.env.NODE_ENV === 'production'
+				? 'https://andri.dk'
+				: 'http://localhost:8000',
 		author: 'Andri Óskarsson',
 		social: {
 			twitter: 'andrioid'
 		}
 	},
 	plugins: [
-		'social-card',
+		{
+			resolve: require.resolve('./plugins/social-card'),
+			options: {
+				authorImage: './static/img/coffee-art.jpg',
+				backgroundImage: './static/img/hvitserkur.JPG',
+				defaultAuthor: 'Andri Óskarsson'
+			}
+		},
 		{
 			resolve: `gatsby-plugin-feed`,
 			options: {
@@ -136,7 +146,6 @@ module.exports = {
 					{
 						resolve: 'gatsby-remark-copy-linked-files'
 					}
-					//'social-card'
 				]
 			}
 		}
