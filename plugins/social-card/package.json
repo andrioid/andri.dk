@@ -1,6 +1,6 @@
 {
 	"name": "@andrioid/gatsby-plugin-social-card",
-	"version": "1.0.0",
+	"version": "0.5.3",
 	"description": "Generates social cards for your markdown posts and adds a field so you can reference them in your meta-tags.",
 	"main": "index.js",
 	"scripts": {
@@ -8,6 +8,15 @@
 		"watch": "babel -w src --out-dir ."
 	},
 	"author": "Andri Óskarsson <andri@andri.dk>",
+	"keywords": [
+		"gatsby",
+		"gatsby-plugin",
+		"gatsby-transformer-plugin",
+		"open-graph",
+		"social",
+		"twitter",
+		"card"
+	],
 	"license": "MIT",
 	"dependencies": {
 		"@babel/cli": "^7.5.5",
