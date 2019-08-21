@@ -16,8 +16,7 @@ module.exports = {
 		{
 			resolve: require.resolve('./plugins/social-card'),
 			options: {
-				//authorImage: './static/img/coffee-art.jpg',
-				authorImage: './static/img/cloudfu.jpg',
+				authorImage: './static/img/coffee-art.jpg',
 				backgroundImage: './static/img/hvitserkur.JPG',
 				defaultAuthor: 'Andri Óskarsson',
 				design: 'default'

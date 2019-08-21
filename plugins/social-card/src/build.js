@@ -8,6 +8,7 @@ import ReactDOMServer from 'react-dom/server'
 
 import Overlay from './overlay'
 import Card from './card'
+import Split from './designs/split'
 
 // Default background from: https://pixabay.com/photos/lake-water-wave-mirroring-texture-2063957/
 // Only used if nothing specified by options, or node.frontmatter.cover
@@ -36,7 +37,9 @@ export async function generateCard(
 			OverlayComponent = Card
 			break
 		default:
+			// temp
 			OverlayComponent = Overlay
+		// OverlayComponent = Split
 	}
 
 	const svgbuffer = Buffer.from(

@@ -13,6 +13,8 @@ var _overlay = _interopRequireDefault(require("./overlay"));
 
 var _card = _interopRequireDefault(require("./card"));
 
+var _split = _interopRequireDefault(require("./designs/split"));
+
 const sharp = require('sharp');
 
 const fs = require('fs');
@@ -45,7 +47,9 @@ async function generateCard({
       break;
 
     default:
+      // temp
       OverlayComponent = _overlay.default;
+    // OverlayComponent = Split
   }
 
   const svgbuffer = Buffer.from(_server.default.renderToStaticMarkup(_react.default.createElement(OverlayComponent, {
