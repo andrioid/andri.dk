@@ -1,24 +1,26 @@
 # gatsby-plugin-social-card
 
-**Note: Work in progress. It might blow up**## Features
+**Note: Work in progress. It might blow up**
+
+## Features
 
 ### Backgrounds
 
 You can put a cover frontmatter on your post, and we'll use that. Otherwise, we'll use a default-background that you can specify or if that fails, we'll use a fallback one.
 
-![default card design](img/default-design.jpg)
+![default card design](https://github.com/andrioid/andri.dk/blob/master/plugins/social-card/img/default-design.jpg?raw=true)
 
 ### Designs
 
 There are two design available now, "card" and "default". But we can expand that later.
 
-![default card design](img/card-design.jpg)
+![default card design](https://github.com/andrioid/andri.dk/blob/master/plugins/social-card/img/card-design.jpg?raw=true)
 
 ### Author image
 
 If specified, an author image is shown on the image. That is also configurable.
 
-![default card design](img/cover-custom-author.jpg)
+![default card design](https://github.com/andrioid/andri.dk/blob/master/plugins/social-card/img/cover-custom-author.jpg?raw=true)
 
 ### Custom author-image
 
