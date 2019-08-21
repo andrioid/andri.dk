@@ -36,6 +36,7 @@ The author image can be ommitted if it's not wanted, or customized in the config
 
 ```sh
 yarn add @andrioid/gatsby-plugin-social-cards
+# or npm install --save @andrioid/gatsby-plugin-social-cards
 ```
 
 ## How to use
