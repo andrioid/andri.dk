@@ -21,5 +21,9 @@
 	"devDependencies": {
 		"@babel/cli": "^7.5.5",
 		"@babel/core": "^7.5.5"
+	},
+	"peerDependencies": {
+		"gatsby": "^2.0.0",
+		"gatsby-plugin-sharp": "^2.0.0-beta.5"
 	}
 }
