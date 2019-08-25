@@ -1,30 +1,38 @@
 # gatsby-plugin-social-card
 
-**Note: Work in progress. It might blow up**
+Automatically parses your posts and generates social cards for Twitter, Slack, Facebook and other sites.
+
+To learn more about social-cards in general, check out [open graph](https://ogp.me/#structured), [twitter cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards.html) and this [CSS tricks article on meta-tags for social](https://css-tricks.com/essential-meta-tags-social-media/).
+
+### Current Status: Beta
+
+I'm using this for [andri.dk](https://andri.dk) and it works for me, both locally and for Netlify builds. Contact me on [Twitter](https://twitter.com/andrioid) if you're testing this and it fails.
+
+Only works for remark nodes at the moment.
 
 ## Features
-
-### Backgrounds
-
-You can put a cover frontmatter on your post, and we'll use that. Otherwise, we'll use a default-background that you can specify or if that fails, we'll use a fallback one.
-
-![default card design](https://github.com/andrioid/andri.dk/blob/master/plugins/social-card/img/default-design.jpg?raw=true)
 
 ### Designs
 
 There are two design available now, "card" and "default". But we can expand that later.
 
+![default card design](https://github.com/andrioid/andri.dk/blob/master/plugins/social-card/img/default-design.jpg?raw=true)
+
 ![default card design](https://github.com/andrioid/andri.dk/blob/master/plugins/social-card/img/card-design.jpg?raw=true)
-
-### Author image
-
-If specified, an author image is shown on the image. That is also configurable.
 
 ![default card design](https://github.com/andrioid/andri.dk/blob/master/plugins/social-card/img/cover-custom-author.jpg?raw=true)
 
-### Custom author-image
+### Custom Backgrounds
 
-The author image can be ommitted if it's not wanted, or customized in the configuration.
+You can put a cover frontmatter on your post, and we'll use that. Otherwise, we'll use a default-background that you can specify or if that fails, we'll use a fallback one.
+
+### Custom Author image
+
+If specified, an author image is shown on the image. That is also configurable.
+
+### Powerd by SVG, React and Sharp
+
+We use the same underlying library that powers gatsby-images to convert our React generated SVG files into images.
 
 ## Install
 
@@ -35,9 +43,17 @@ yarn add @andrioid/gatsby-plugin-social-cards
 
 ## How to use
 
-First configure our site to use the plugin. You don't need to specify options.
+Configure our site to use the plugin by editing `gatsby-config.js`. You don't need to specify options.
 
-_gatsby-config.js_
+```js
+plugins: [
+	{
+		'@andrioid/gatsby-plugin-social-cards',
+	}
+]
+```
+
+If you want to customise the look of the cards, try these options.
 
 ```js
 plugins: [
@@ -57,44 +73,33 @@ plugins: [
 ]
 ```
 
-Then you need to add the meta tags to your site. An example of that:
+Then you need to add the meta tags to your site. For a more complete example of meta tags, check out [seo.js](https://github.com/kentcdodds/kentcdodds.com/blob/master/src/components/seo/index.js)
+from [Kent C. Dodds](www.kentcdodds.com).
 
 ```jsx
-// Borrowed and adapted from Kent C. Dodds - Thank Kent!
-// https://github.com/kentcdodds/kentcdodds.com/blob/master/src/components/seo/index.js
-
 import Helmet from 'react-helmet'
+
+const image = node.frontmatter.socialcard
 
 export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => (
 	<Helmet>
-		{/* General tags */}
-		<title>{title}</title>
-		<meta name="description" content={description} />
+		{/* Your other meta tags... */}
 		<meta name="image" content={image} />
-
-		{/* OpenGraph tags */}
-		<meta property="og:url" content={url} />
-		{isBlogPost ? <meta property="og:type" content="article" /> : null}
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
 		<meta property="og:image" content={image} />
-
-		{/* Twitter Card tags */}
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:creator" content={seo.social.twitter} />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
+		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:image" content={image} />
 	</Helmet>
 )
 ```
-
-I'm not going to tell you how to best set your meta-tags. You might have a layout file that does it, you might do something like the above. The choice is yours.
-
-All you need to know is that your node has a `socialcard` field on it that tells you where the image is.
 
 ## Pitfalls
 
 ### Fonts
 
 We use sharp to convert our SVG images to JPG. The means that the fonts available to you are limited to those of the build-machine.
+
+### VIPS image library
+
+Depending on your installation, SVG support in [libvips](https://libvips.github.io/libvips/) (used by Sharp) might be missing.
+
+It needs to be built with JPEG and SVG support.
