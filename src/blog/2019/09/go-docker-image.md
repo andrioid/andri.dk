@@ -1,6 +1,6 @@
 ---
 path: "/blog/2019/09/slim-docker-images-for-golang"
-date: "2019-12-31T00:00:00.000Z"
+date: "2019-09-06T00:00:00.000Z"
 title: "Slim Docker images for your Go application"
 tags: ["hosting", "docker", "golang"]
 draft: false
