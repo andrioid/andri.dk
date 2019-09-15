@@ -3,7 +3,7 @@ path: '/blog/2019/09/announcing-gatsby-plugin-social-cards'
 date: '2019-09-15T00:00:00.000Z'
 title: 'Announcing gatsby-plugin-social-cards'
 tags: ['react', 'gatsbyjs', 'open-graph']
-draft: true
+draft: false
 ---
 
 Ever seen those images shown next to posts on Twitter, Slack or Facebook? Ever wonder where they come from? Me too!
