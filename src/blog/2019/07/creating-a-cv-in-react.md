@@ -1,9 +1,9 @@
 ---
-path: '/blog/2019-07/creating-a-cv-in-react'
-date: '2019-07-22T00:00:00.000Z'
-title: 'Creating a CV in React'
-tags: ['cv', 'projects']
-cover: './cvscreenshot.png'
+path: "/blog/2019-07/creating-a-cv-in-react"
+date: "2019-07-22T00:00:00.000Z"
+title: "Creating a CV in React"
+tags: ["cv", "projects"]
+cover: "./cvscreenshot.png"
 ---
 
 ## TLDR;
@@ -49,17 +49,17 @@ A simple box, with an headline.
 
 ```jsx
 export const Box = ({ children, title, color, style = {} }) => (
-	<View wrap={false} style={{ marginBottom: 20 }}>
-		<SectionHeader color={color}>{title}</SectionHeader>
-		<View style={{ ...style }}>
-			{children && typeof children === 'string' ? (
-				<Text>{children}</Text>
-			) : (
-				children
-			)}
-		</View>
-	</View>
-)
+  <View wrap={false} style={{ marginBottom: 20 }}>
+    <SectionHeader color={color}>{title}</SectionHeader>
+    <View style={{ ...style }}>
+      {children && typeof children === "string" ? (
+        <Text>{children}</Text>
+      ) : (
+        children
+      )}
+    </View>
+  </View>
+);
 ```
 
 ### Work Item
@@ -68,44 +68,44 @@ export const Box = ({ children, title, color, style = {} }) => (
 
 ```jsx
 export const TimelineItem = ({
-	title,
-	period,
-	children,
-	employer,
-	tags = [],
-	location
+  title,
+  period,
+  children,
+  employer,
+  tags = [],
+  location
 }) => {
-	tags = tags.sort()
-	return (
-		<View wrap={false} style={{ marginBottom: 10 }}>
-			<View
-				style={{
-					flexDirection: 'row',
-					justifyContent: 'space-between',
-					marginBottom: 2.5,
-					flexWrap: 'wrap'
-				}}
-			>
-				<Text style={{ fontWeight: 'bold' }}>
-					{title}, <Text style={{ fontWeight: 'normal' }}>{employer}</Text>
-				</Text>
-				<Text>{period}</Text>
-			</View>
+  tags = tags.sort();
+  return (
+    <View wrap={false} style={{ marginBottom: 10 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 2.5,
+          flexWrap: "wrap"
+        }}
+      >
+        <Text style={{ fontWeight: "bold" }}>
+          {title}, <Text style={{ fontWeight: "normal" }}>{employer}</Text>
+        </Text>
+        <Text>{period}</Text>
+      </View>
 
-			{children && <Text style={{ marginBottom: 2.5 }}>{children}</Text>}
-			{tags && (
-				<View style={{ flexDirection: 'row' }}>
-					{tags &&
-						tags.map(m => (
-							<Tag key={m} color={tagColors[m.toLowerCase()]}>
-								{m}
-							</Tag>
-						))}
-				</View>
-			)}
-		</View>
-	)
-}
+      {children && <Text style={{ marginBottom: 2.5 }}>{children}</Text>}
+      {tags && (
+        <View style={{ flexDirection: "row" }}>
+          {tags &&
+            tags.map(m => (
+              <Tag key={m} color={tagColors[m.toLowerCase()]}>
+                {m}
+              </Tag>
+            ))}
+        </View>
+      )}
+    </View>
+  );
+};
 ```
 
 ## Build with Gatsby
@@ -127,9 +127,9 @@ In retrospect, I should probably move this into pkg/cv instead of src/cv.
 
 ```js
 exports.onPostBuild = () => {
-	const cp = require('child_process')
-	cp.execSync('yarn run build-cv')
-}
+  const cp = require("child_process");
+  cp.execSync("yarn run build-cv");
+};
 ```
 
 ### src/cv/.babelrc
