@@ -37,8 +37,8 @@ We use the same underlying library that powers gatsby-images to convert our Reac
 ## Install
 
 ```sh
-yarn add @andrioid/gatsby-plugin-social-card
-# or npm install --save @andrioid/gatsby-plugin-social-card
+yarn add gatsby-plugin-social-cards
+# or npm install --save gatsby-plugin-social-cards
 ```
 
 ## How to use
@@ -48,7 +48,7 @@ Configure our site to use the plugin by editing `gatsby-config.js`. You don't ne
 ```js
 plugins: [
 	{
-		'@andrioid/gatsby-plugin-social-card',
+		'gatsby-plugin-social-cards',
 	}
 ]
 ```
@@ -58,7 +58,7 @@ If you want to customise the look of the cards, try these options.
 ```js
 plugins: [
 	{
-		resolve: '@andrioid/gatsby-plugin-social-card',
+		resolve: 'gatsby-plugin-social-cards',
 		options: {
 			// ommit to skip
 			authorImage: './static/img/coffee-art.jpg',

@@ -1,8 +1,8 @@
 ---
-path: '/blog/2019/09/announcing-gatsby-plugin-social-cards'
-date: '2019-09-15T00:00:00.000Z'
-title: 'Announcing gatsby-plugin-social-cards'
-tags: ['react', 'gatsbyjs', 'open-graph']
+path: "/blog/2019/09/announcing-gatsby-plugin-social-cards"
+date: "2019-09-15T00:00:00.000Z"
+title: "Announcing gatsby-plugin-social-cards"
+tags: ["react", "gatsbyjs", "open-graph"]
 draft: false
 ---
 
@@ -45,10 +45,10 @@ The author image can be ommitted if it's not wanted, or customized in the config
 ## Install
 
 ```sh
-yarn add @andrioid/gatsby-plugin-social-cards
-# or npm install --save @andrioid/gatsby-plugin-social-cards
+yarn add gatsby-plugin-social-cards
+# or npm install --save gatsby-plugin-social-cards
 ```
 
 ## How to use
 
-Please see the [README](https://www.npmjs.com/package/@andrioid/gatsby-plugin-social-card) for how to use.
+Please see the [README](https://www.npmjs.com/package/gatsby-plugin-social-cards) for how to use.
