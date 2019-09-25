@@ -1,4 +1,4 @@
-# gatsby-plugin-social-card
+# gatsby-plugin-social-cards
 
 Automatically parses your posts and generates social cards for Twitter, Slack, Facebook and other sites.
 
@@ -57,20 +57,20 @@ If you want to customise the look of the cards, try these options.
 
 ```js
 plugins: [
-	{
-		resolve: '@andrioid/gatsby-plugin-social-cards',
-		options: {
-			// ommit to skip
-			authorImage: './static/img/coffee-art.jpg',
-			// image to use when no cover in frontmatter
-			backgroundImage: './static/img/hvitserkur.JPG',
-			// author to use when no auth in frontmatter
-			defaultAuthor: 'Andri Óskarsson',
-			// card design
-			design: 'default' // 'default' or 'card'
-		}
-	}
-]
+  {
+    resolve: "@andrioid/gatsby-plugin-social-cards",
+    options: {
+      // ommit to skip
+      authorImage: "./static/img/coffee-art.jpg",
+      // image to use when no cover in frontmatter
+      backgroundImage: "./static/img/hvitserkur.JPG",
+      // author to use when no auth in frontmatter
+      defaultAuthor: "Andri Óskarsson",
+      // card design
+      design: "default" // 'default' or 'card'
+    }
+  }
+];
 ```
 
 Then you need to add the meta tags to your site. For a more complete example of meta tags, check out [seo.js](https://github.com/kentcdodds/kentcdodds.com/blob/master/src/components/seo/index.js)
