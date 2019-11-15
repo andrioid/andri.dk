@@ -102,6 +102,7 @@ const IndexPage = ({ data }) => (
               "React",
               "Go",
               "Linux",
+              "TypeScript",
               "Postgres",
               "React Native",
               "Kubernetes"
