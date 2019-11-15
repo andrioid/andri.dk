@@ -30,8 +30,8 @@
 			"position": "Senior Software Developer",
 			"website": "https://www.redia.dk",
 			"startDate": "2019-05-01",
-			"summary": "Working on a custom platform with CMS features. Running entirely on the Firebase platform.",
-			"skills": ["React", "TypeScript", "Firestore", "Firebase"]
+			"summary": "Did frontend work on a Teaching Platform, created a image-scaling microservice in Go. Currently working on an internal configuration tool in Go and GraphQL and an unreleased app in React Native.",
+			"skills": ["React", "TypeScript", "Firestore", "Firebase", "Go", "Microservices", "React Native", "Serverless"]
 		},
 		{
 			"company": "PARKPARK A/S",

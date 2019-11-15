@@ -66,7 +66,6 @@ const CVFrontpage = ({ image }) => (
 					<Headline>Andri Óskarsson</Headline>
 					<Text style={{ fontSize: 12 }}>Computer Engineer</Text>
 				</View>
-				<Box title="Current Status">Not Seeking Employment</Box>
 
 				<Box title="Programming" color={colors.programming}>
 					<Text>
