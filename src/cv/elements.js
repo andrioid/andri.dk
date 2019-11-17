@@ -129,9 +129,6 @@ export const EducationItem = ({
       <Text style={{ fontWeight: "bold" }}>
         {area}, {studyType}
       </Text>
-      <Text>
-        {startDate} - {endDate}
-      </Text>
     </View>
     <Text style={{ fontWeight: "normal" }}>{institution}</Text>
   </View>
