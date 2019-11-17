@@ -86,6 +86,37 @@ const CVFrontpage = ({ image }) => (
           ))}
         </Box>
 
+        <Box title="Skills">
+          <Text>
+            Frontend, Backend, Mobile, System Design, Message Queues, Git,
+            Subversion
+          </Text>
+        </Box>
+
+        <Box title="Operations" color={colors.operations}>
+          <Text>
+            Cloud Computing, Firebase, Linux, Monitoring, Backups, CI, CD,
+            Deployment, Docker
+          </Text>
+        </Box>
+
+        <Box title="Databases" color={colors.databases}>
+          <Text>MySQL, Postgres, MongoDB, Firestore, Redis, SQLite</Text>
+        </Box>
+
+        <Box title="About">
+          <Paragraph>
+            I come from Reykjavík, Iceland and am the oldest of 5 brothers. In
+            2006 I moved to Denmark to study. I now live near Aalborg, Denmark
+            with my girlfriend and son. In my off-time I like to cook, take
+            photos and go for walks.
+          </Paragraph>
+          <Paragraph>
+            I've been facinated by computers since age 8 and spend much of my
+            free time, learning more about them.
+          </Paragraph>
+        </Box>
+
         <Box title="Languages">
           <Text>Icelandic (native)</Text>
           <Text>English (fluent)</Text>
@@ -118,19 +149,6 @@ const CVFrontpage = ({ image }) => (
             </TimelineItem>
           ))}
         </View>
-
-        <Box title="About">
-          <Paragraph>
-            I come from Reykjavík, Iceland and am the oldest of 5 brothers. In
-            2006 I moved to Denmark to study. I now live near Aalborg, Denmark
-            with my girlfriend and son. In my off-time I like to cook, take
-            photos and go for walks.
-          </Paragraph>
-          <Paragraph>
-            I've been facinated by computers since age 8 and spend much of my
-            free time, learning more about them.
-          </Paragraph>
-        </Box>
       </View>
     </View>
   </Page>

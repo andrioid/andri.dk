@@ -52,7 +52,7 @@ export const SectionHeader = ({ children, color = "black" }) => {
   const first = children.toUpperCase();
   const last = children.substring(1);
   return (
-    <>
+    <View style={{}}>
       <Text style={{ fontWeight: "bold", fontSize: 12 }}>
         <Text style={{ color: color }}>{first}</Text>
       </Text>
@@ -63,7 +63,7 @@ export const SectionHeader = ({ children, color = "black" }) => {
           marginBottom: 5
         }}
       />
-    </>
+    </View>
   );
 };
 
