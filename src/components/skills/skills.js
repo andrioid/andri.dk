@@ -1,25 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 
 import { FaHeart } from "react-icons/fa";
-
-function durationForWork(work) {
-  const start = work.startDate && new Date(work.startDate);
-  const end = (work.endDate && new Date(work.endDate)) || new Date();
-
-  const diff = (end.getTime() - start.getTime()) / 1000;
-  return Math.floor(diff);
-}
-
-function durationForSkill(work, skill) {
-  let sum = 0;
-  for (const w of work) {
-    const dur = durationForWork(w);
-    if (w.skills && w.skills.includes(skill)) {
-      sum += dur;
-    }
-  }
-  return sum;
-}
+import { durationForSkill } from "../../lib/skills";
 
 export function SkillDataTransform({ workSkills, rootSkills, children }) {
   const categories = useMemo(() => {

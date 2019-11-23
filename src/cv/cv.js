@@ -21,7 +21,8 @@ import {
   TimelineItem,
   Paragraph,
   EducationItem,
-  periodToString
+  periodToString,
+  Tag
 } from "./elements";
 
 import resolveConfig from "tailwindcss/resolveConfig";
@@ -32,7 +33,26 @@ const { theme } = resolveConfig(localConfig);
 
 import resume from "./resume.json";
 
+const sortedCategories = resume.skills.map(c => {
+  const nk = c.keywords
+    .map(k => {
+      return {
+        name: k,
+        // score is currently just duration
+        score: (resume.work && durationForSkill(resume.work, k)) || 0
+      };
+    })
+    .sort((a, b) => {
+      return b.score - a.score;
+    });
+  return {
+    ...c,
+    keywords: nk
+  };
+});
+
 import { Andri } from "./pictures";
+import { durationForSkill } from "../lib/skills";
 
 const CVFrontpage = ({ image }) => (
   <Page size="A4" style={styles.page}>
@@ -79,29 +99,33 @@ const CVFrontpage = ({ image }) => (
               key={`${e.institution + e.startDate}`}
               institution={e.institution}
               area={e.area}
+              period={periodToString(e.startDate, e.endDate)}
               studyType={e.studyType}
-              startDate={e.startDate}
-              endDate={e.endDate}
             />
           ))}
         </Box>
 
         <Box title="Skills">
-          <Text>
-            Frontend, Backend, Mobile, System Design, Message Queues, Git,
-            Subversion
+          <Text style={{ color: "grey", fontSize: 8, marginTop: -5 }}>
+            Ordered by experience
           </Text>
-        </Box>
-
-        <Box title="Operations" color={colors.operations}>
-          <Text>
-            Cloud Computing, Firebase, Linux, Monitoring, Backups, CI, CD,
-            Deployment, Docker
-          </Text>
-        </Box>
-
-        <Box title="Databases" color={colors.databases}>
-          <Text>MySQL, Postgres, MongoDB, Firestore, Redis, SQLite</Text>
+          {sortedCategories.map(s => (
+            <View key={s.name} wrap={true} style={{ marginTop: 10 }}>
+              <Text style={{ fontWeight: "bold", color: s.color }} key={s.name}>
+                {s.name}
+              </Text>
+              <View
+                style={{ flexWrap: "wrap", flexDirection: "row", marginTop: 5 }}
+              >
+                {s.keywords &&
+                  s.keywords.map(kw => (
+                    <Tag key={kw.name} color={s.color}>
+                      {kw.name}
+                    </Tag>
+                  ))}
+              </View>
+            </View>
+          ))}
         </Box>
 
         <Box title="About">
@@ -124,8 +148,8 @@ const CVFrontpage = ({ image }) => (
         </Box>
 
         <Box title="Social">
-          <Text>Co-organizer Aalborg React Meetup</Text>
-          <Text>Co-organizer Aalborg Hackathon</Text>
+          <Text>Co-organizer & Speaker Aalborg React Meetup</Text>
+          <Text>Co-organizer & Speaker Aalborg Hackathon</Text>
         </Box>
 
         <Box title="Contact">
@@ -137,18 +161,33 @@ const CVFrontpage = ({ image }) => (
       <View wrap={true} style={styles.right}>
         <View>
           <SectionHeader>Experience</SectionHeader>
-          {resume.work.slice(0, 100).map(w => (
+          {resume.work.slice(0, 100).map((w, idx) => (
             <TimelineItem
+              idx={idx}
               key={`${w.company + w.startDate}`}
               title={w.position}
               employer={w.company}
               period={periodToString(w.startDate, w.endDate)}
               tags={w.skills}
+              skills={resume.skills}
             >
               {w.summary}
             </TimelineItem>
           ))}
         </View>
+      </View>
+    </View>
+    <View fixed style={styles.footer}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>{resume.basics.name}</Text>
+
+        <Text>{resume.basics.email}</Text>
+        <Text
+          fixed
+          render={({ pageNumber, totalPages }) =>
+            `${pageNumber} / ${totalPages}`
+          }
+        />
       </View>
     </View>
   </Page>
@@ -164,7 +203,10 @@ export const CVDoc = ({ image }) => (
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    paddingVertical: 30,
+    //paddingVertical: 30,
+    position: "relative",
+    paddingTop: 20,
+    paddingBottom: 40,
     paddingHorizontal: 30,
     //marginHorizontal: 30,
     fontSize: 8,
@@ -190,5 +232,15 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: "50%"
     //flex: 1
+  },
+  footer: {
+    marginHorizontal: 10,
+    borderTopColor: "#d3d3d3",
+    borderTopWidth: 0.5,
+    paddingVertical: 10,
+    width: "100%",
+    position: "absolute",
+    bottom: 20,
+    left: 20
   }
 });

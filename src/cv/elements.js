@@ -68,57 +68,80 @@ export const SectionHeader = ({ children, color = "black" }) => {
 };
 
 export const Headline = ({ children }) => (
-  <Text style={{ fontWeight: "bold", fontSize: 15, marginBottom: 5 }}>
+  <Text
+    style={{ fontWeight: "bold", fontSize: 15, marginBottom: 0, marginTop: 5 }}
+  >
     {children}
   </Text>
 );
 
 export const TimelineItem = ({
+  idx = 0,
   title,
   period,
   children,
   employer,
   tags = [],
-  location
+  location,
+  skills
 }) => {
-  tags = tags.sort();
+  //tags = tags.sort();
   return (
-    <View wrap={false} style={{ marginTop: 5 }}>
+    <View
+      wrap={false}
+      style={{
+        marginTop: 5
+        //arginBottom: 5
+      }}
+    >
       <View
         style={{
           flexDirection: "row",
-          //justifyContent: "space-between",
+          justifyContent: "space-between",
           marginBottom: 2.5,
           flexWrap: "wrap"
         }}
       >
-        <Text style={{ fontWeight: "bold" }}>
-          {title}, <Text style={{ fontWeight: "normal" }}>{employer}</Text>
-        </Text>
+        <View>
+          <Text style={{ fontWeight: "bold" }}>{title}</Text>
+          <Text>{employer}</Text>
+        </View>
+        <Text style={{ color: "grey", fontSize: 8 }}>{period}</Text>
       </View>
 
       {children && <Text style={{ marginBottom: 2.5 }}>{children}</Text>}
       {tags && (
         <View wrap style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {tags &&
-            tags.map(m => (
-              <Tag key={m} color={tagColors[m.toLowerCase()]}>
-                {m}
-              </Tag>
-            ))}
+            tags.map(m => {
+              let color;
+              if (skills) {
+                const idx = skills.findIndex(skill => {
+                  const match = skill.keywords.findIndex(
+                    k => k.toLowerCase() === m.toLowerCase()
+                  );
+                  if (match > -1) {
+                    return true;
+                  }
+                  return false;
+                });
+                if (idx > -1) {
+                  color = skills[idx].color;
+                }
+              }
+              return (
+                <Tag key={m} color={color}>
+                  {m}
+                </Tag>
+              );
+            })}
         </View>
       )}
     </View>
   );
 };
 
-export const EducationItem = ({
-  institution,
-  startDate,
-  endDate,
-  area,
-  studyType
-}) => (
+export const EducationItem = ({ institution, period, area, studyType }) => (
   <View wrap={false} style={{ marginTop: 5 }}>
     <View
       style={{
@@ -129,6 +152,7 @@ export const EducationItem = ({
       <Text style={{ fontWeight: "bold" }}>
         {area}, {studyType}
       </Text>
+      <Text style={{ color: "grey" }}>{period}</Text>
     </View>
     <Text style={{ fontWeight: "normal" }}>{institution}</Text>
   </View>
@@ -137,7 +161,7 @@ export const EducationItem = ({
 export const Tag = ({ color = colors.borders, children }) => (
   <View
     style={{
-      borderRadius: 2.5,
+      //borderRadius: 2.5,
       borderWidth: 0.5,
       borderColor: color,
       marginRight: 2.5,
@@ -149,7 +173,7 @@ export const Tag = ({ color = colors.borders, children }) => (
     <Text
       style={{
         fontSize: 6,
-        fontWeight: "bold",
+        //fontWeight: "bold",
         //color: hex("#00000", color) < 10 ? "white" : "black"
         color: "black"
       }}
@@ -161,7 +185,7 @@ export const Tag = ({ color = colors.borders, children }) => (
 
 // Not meant for anything wrapping pages
 export const Box = ({ children, title, color, style = {} }) => (
-  <View wrap={false} style={{ marginBottom: 10 }}>
+  <View wrap={true} style={{ marginBottom: 10 }}>
     <SectionHeader color={color}>{title}</SectionHeader>
     <View style={{ ...style }}>
       {children && typeof children === "string" ? (
@@ -174,10 +198,13 @@ export const Box = ({ children, title, color, style = {} }) => (
 );
 
 export const Paragraph = ({ children }) => (
-  <Text style={{ marginBottom: 5 }}>{children}</Text>
+  <Text style={{ marginTop: 5 }}>{children}</Text>
 );
 
 export const periodToString = (startDate, endDate) => {
+  if (!startDate) {
+    throw new Error("no startDate");
+  }
   const start = dayjs(startDate);
   const end = dayjs(endDate);
   const dateformat = "YYYY";
