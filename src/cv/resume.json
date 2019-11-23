@@ -39,12 +39,13 @@
       "skills": [
         "React",
         "TypeScript",
-        "Firestore",
+        "Docker",
         "Firebase",
         "Go",
         "Microservices",
         "React Native",
-        "Serverless"
+        "Serverless",
+        "Postgres"
       ]
     },
     {
@@ -66,7 +67,8 @@
         "JavaScript",
         "MySQL",
         "Kubernetes",
-        "Docker"
+        "Docker",
+        "Linux"
       ]
     },
     {
@@ -83,6 +85,17 @@
       "skills": ["React", "DevOps", "JavaScript", "CSS", "HTML", "jQuery"]
     },
     {
+      "company": "M1 A/S (later TDC)",
+      "position": "System Developer",
+      "startDate": "2012-03-01",
+      "endDate": "2015-11-01",
+      "summary": "Worked on an internal billing and CRM system as a part of the backend team. I pitched a delivered an automatic plan-upgrade system for usage-warnings that was generating revenue.",
+      "highlights": [
+        "Pitched and delivered automatic product upgrades with usage-warning SMS to customers."
+      ],
+      "skills": ["PHP", "MySQL", "Linux", "jQuery", "Docker", "JavaScript"]
+    },
+    {
       "company": "Lyngsø Systems A/S",
       "position": "Software Developer",
       "startDate": "2013-03-01",
@@ -90,20 +103,10 @@
       "summary": "Worked on automatic sorting machines for a large, American clothing store.",
       "skills": ["Java", "Linux", "Windows"]
     },
-    {
-      "company": "M1 A/S (later TDC)",
-      "position": "System Developer",
-      "startDate": "2012-03-01",
-      "endDate": "2017-01-01",
-      "summary": "Worked on an internal billing and CRM system as a part of the backend team. I pitched a delivered an automatic plan-upgrade system for usage-warnings that was generating revenue.",
-      "highlights": [
-        "Pitched and delivered automatic product upgrades with usage-warning SMS to customers."
-      ],
-      "skills": ["PHP", "MySQL", "Linux", "jQuery"]
-    },
+
     {
       "company": "Sprettur ehf (now Kolibri)",
-      "position": "Intern",
+      "position": "Software Developer / Intern",
       "startDate": "2011-03-01",
       "endDate": "2011-07-01",
       "summary": "Worked closely with one of our customers on creating a shipping calculator for their website, and a reverse-engineered thermal printer solution.",
@@ -124,7 +127,7 @@
       "startDate": "2004-01-01",
       "endDate": "2006-07-01",
       "summary": "Managed our systems and network. Supported our developers. Built our VoIP PBX.",
-      "skills": ["Linux", "Asterisk", "Java"]
+      "skills": ["Linux", "Asterisk", "Cisco"]
     },
     {
       "company": "Hringiðan ehf",
@@ -246,7 +249,9 @@
         "Cisco",
         "Asterisk",
         "Jenkins",
-        "Gitlab"
+        "Gitlab",
+        "Windows",
+        "Mac"
       ]
     },
     {
