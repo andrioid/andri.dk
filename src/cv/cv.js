@@ -58,7 +58,12 @@ const CVFrontpage = ({ image }) => (
   <Page size="A4" style={styles.page}>
     <View style={styles.top}>
       <Head src={Andri} />
-      <View style={{ marginLeft: 20 }}>
+      <View
+        style={{
+          marginLeft: 40
+          //alignItems: "center"
+        }}
+      >
         <Text style={{ fontSize: 20, fontWeight: "semibold" }}>
           Andri Óskarsson
         </Text>
