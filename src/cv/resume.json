@@ -119,7 +119,7 @@
       "startDate": "2009-06-01",
       "endDate": "2009-08-01",
       "summary": "Developed an Android app and a backend that used geolocation to provide the users with location-aware ads.",
-      "skills": ["Java", "Python", "Django", "XML", "Android"]
+      "skills": ["Java", "Python", "Django", "XML", "Android", "HTML", "CSS"]
     },
     {
       "company": "Calidris (now Sabre)",

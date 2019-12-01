@@ -158,16 +158,18 @@ export const EducationItem = ({ institution, period, area, studyType }) => (
   </View>
 );
 
-export const Tag = ({ color = colors.borders, children }) => (
+export const Tag = ({ color = colors.borders, children, badgeText }) => (
   <View
     style={{
       //borderRadius: 2.5,
       borderWidth: 0.5,
       borderColor: color,
-      marginRight: 2.5,
+      marginRight: badgeText ? 7 : 2.5,
       marginVertical: 2.5,
       padding: 2.5,
-      borderColor: color
+      minWidth: 20,
+      borderColor: color,
+      position: "relative"
     }}
   >
     <Text
@@ -180,6 +182,27 @@ export const Tag = ({ color = colors.borders, children }) => (
     >
       {children}
     </Text>
+    {badgeText && (
+      <View
+        style={{
+          position: "absolute",
+          borderRadius: 10,
+          top: -5,
+          right: -5,
+          padding: 2,
+          backgroundColor: color
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 5,
+            color: "white"
+          }}
+        >
+          {badgeText}
+        </Text>
+      </View>
+    )}
   </View>
 );
 

@@ -124,7 +124,11 @@ const CVFrontpage = ({ image }) => (
               >
                 {s.keywords &&
                   s.keywords.map(kw => (
-                    <Tag key={kw.name} color={s.color}>
+                    <Tag
+                      key={kw.name}
+                      color={s.color}
+                      //badgeText={kw.score > 0 && `${kw.score}y`}
+                    >
                       {kw.name}
                     </Tag>
                   ))}

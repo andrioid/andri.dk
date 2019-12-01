@@ -2,7 +2,7 @@ function durationForWork(work) {
   const start = work.startDate && new Date(work.startDate);
   const end = (work.endDate && new Date(work.endDate)) || new Date();
 
-  const diff = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24;
+  const diff = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24 / 365;
   return Math.floor(diff);
 }
 
