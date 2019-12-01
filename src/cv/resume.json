@@ -212,7 +212,7 @@
   ],
   "skills": [
     {
-      "name": "Programming",
+      "name": "Software Development",
       "level": "Senior",
       "color": "#2B6CB0",
       "keywords": [
@@ -230,14 +230,17 @@
         "Lua",
         "Vue.js",
         "TypeScript",
-        "Java"
+        "Java",
+        "jQuery"
       ]
     },
     {
-      "name": "Operations",
+      "name": "System Operations",
       "color": "#4C51BF",
       "level": "Senior",
       "keywords": [
+        "Github",
+        "DevOps",
         "Linux",
         "AWS",
         "GCP",
@@ -267,6 +270,11 @@
         "Redis",
         "SQLite"
       ]
+    },
+    {
+      "name": "Processes and methodologies",
+      "level": "Senior",
+      "keywords": ["Agile", "Kanban", "Scrum"]
     }
   ],
   "languages": [
