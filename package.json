@@ -41,9 +41,9 @@
     "react-icons": "^3.7.0",
     "react-typography": "^0.16.19",
     "typeface-indie-flower": "^0.0.72",
-    "typeface-montserrat": "^0.0.54",
+    "typeface-montserrat": "^0.0.75",
     "typeface-source-code-pro": "^0.0.71",
-    "typeface-source-sans-pro": "^0.0.54",
+    "typeface-source-sans-pro": "^0.0.75",
     "typography": "^0.16.19",
     "typography-theme-alton": "^0.16.19",
     "wcag-contrast": "^2.1.1"
