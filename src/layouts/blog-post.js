@@ -20,7 +20,7 @@ export default function Template({
       <SEO frontmatter={post.frontmatter} postData={post} />
       <Nav />
       <div className="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
-        <div className="bg-white max-w-4xl py-10 shadow px-5 lg:px-10">
+        <div className="bg-white max-w-4xl py-10 shadow px-5 lg:px-10 min-w-half-screen">
           {cover ? (
             <Img
               //sizes={cover.childImageSharp.sizes}

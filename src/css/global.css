@@ -28,7 +28,7 @@ a.link {
     @apply mt-2;
   }
   & p {
-    @apply mb-2;
+    @apply mt-4;
   }
   & strong {
     @apply text-gray-900 font-bold;
