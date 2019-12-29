@@ -25,7 +25,7 @@ a.link {
   @apply text-lg text-gray-900 leading-normal;
 
   & li > p + p {
-    @apply mt-2;
+    @apply mt-4;
   }
   & p {
     @apply mt-4;
@@ -71,10 +71,10 @@ a.link {
     @apply border-l-8 border-gray-700 mx-2 my-4 px-4 py-4;
   }
   & ol {
-    @apply list-decimal pl-5 mb-4;
+    @apply list-decimal pl-5 mt-4;
   }
   & ul {
-    @apply list-disc list-inside mb-4;
+    @apply list-disc list-inside mt-4;
   }
 }
 

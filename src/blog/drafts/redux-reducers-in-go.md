@@ -1,6 +1,6 @@
 ---
 path: "/blog/2019/08/react-redux-go-webassembly"
-date: "2020-01-30T00:00:00.000Z"
+date: "2019-12-01T00:00:00.000Z"
 title: "React Redux, with Go reducers in Webassembly"
 tags: ["react", "redux", "go", "webassembly"]
 draft: true
