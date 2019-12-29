@@ -3,7 +3,7 @@ path: "/blog/2019/12/2019-in-tech"
 date: "2019-12-29T00:00:00.000Z"
 title: "2019 in Tech"
 tags: ["technology"]
-draft: true
+draft: false
 ---
 
 Every year, or that was my plan back in 2013; I do a review of what technology I've been using during the year and reflect on my experiences.
