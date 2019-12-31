@@ -36,12 +36,11 @@ It feels like being on the same team. We all use the same formatting, the standa
 
 In 2019 I have created GraphQL API's, microservices and small tools and Go is by far my favourite backend language.
 
-
 ## TypeScript
 
 In May, I joined a new company and they were doing all of their new code in TypeScript. The project I joined has `alwaysStrict=true` and I hated it very much. Everything I was used to do in JavaScript was now something that the compiler refused to make work. I spent 2/3 of the time defining types for something I thought was obvious.
 
-Later, I moved to another project where we also did TypeScript with React, but without strict-mode this time. This time, it clicked for me. It helped that I had 6 months experience with TypeScript at the time, but being free to *use TypeScript* without the feeling that I was being used by it.
+Later, I moved to another project where we also did TypeScript with React, but without strict-mode this time. This time, it clicked for me. It helped that I had 6 months experience with TypeScript at the time, but being free to _use TypeScript_ without the feeling that I was being used by it.
 
 Bottom line. Would I use TypeScript again? Yes. Being able to define types for props and state really speeds up development. Strict-mode? It's too verbose and results in some very ugly code without any good reason.
 
@@ -54,12 +53,15 @@ Then, I was dealing with some internal state in React that included messing with
 Immer is lovely. It's a function that takes the current state, gives you a "draft-state" that you can mutate. Then it produces a new output and returns it. The best part
 
 So you can simply do
+
 ```js
-import produce from 'immer'
-const [animals, setAnimals] = useState(['Cock', 'Raven', 'Dog', 'Pig']);
-setAnimals(produce(draftAnimals => {
-    draftItems[0] = 'Rooster'
-}))
+import produce from "immer";
+const [animals, setAnimals] = useState(["Cock", "Raven", "Dog", "Pig"]);
+setAnimals(
+  produce(draftAnimals => {
+    draftAnimals[0] = "Rooster";
+  })
+);
 ```
 
 This will produce a new array with the changes applied and React will render the changes as expected.
@@ -76,7 +78,7 @@ Expo was a really positive experience for me. I didn't have a big team, so being
 
 So when I started on a new React Native project this year, where we had to do all of the native parts ourselves, I was a bit scared. To my surprise, it wasn't as hard as I thought. I managed to do some minor changes to a Swift library without knowing anything about Swift or Xcode with help from my co-workers. And making the native bits talk to the JS bits was quite simple too.
 
-All in all, a positive experience. Would do again. 
+All in all, a positive experience. Would do again.
 
 ## For 2020?
 
