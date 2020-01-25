@@ -169,6 +169,7 @@ export const Tag = ({ color = colors.borders, children, badgeText }) => (
       padding: 2.5,
       minWidth: 20,
       borderColor: color,
+      alignItems: "center",
       position: "relative"
     }}
   >
