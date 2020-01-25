@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactPDF, {
+  Svg,
+  Circle,
   Page,
+  Rect,
   Text,
   View,
   Document,
@@ -170,19 +173,20 @@ const CVFrontpage = ({ image }) => (
       <View wrap={true} style={styles.right}>
         <View>
           <SectionHeader>Experience</SectionHeader>
-          {resume.work.slice(0, 100).map((w, idx) => (
-            <TimelineItem
-              idx={idx}
-              key={`${w.company + w.startDate}`}
-              title={w.position}
-              employer={w.company}
-              period={periodToString(w.startDate, w.endDate)}
-              tags={w.skills}
-              skills={resume.skills}
-            >
-              {w.summary}
-            </TimelineItem>
-          ))}
+          {resume.work &&
+            resume.work.slice(0, 100).map((w, idx) => (
+              <TimelineItem
+                idx={idx}
+                key={`${w.company + w.startDate}`}
+                title={w.position}
+                employer={w.company}
+                period={periodToString(w.startDate, w.endDate)}
+                tags={w.skills}
+                skills={resume.skills}
+              >
+                {w.summary}
+              </TimelineItem>
+            ))}
         </View>
       </View>
     </View>
