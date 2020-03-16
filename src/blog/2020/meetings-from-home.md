@@ -1,6 +1,6 @@
 ---
 path: "/blog/2020/03/meetings-from-home"
-date: "2020-02-01T00:00:00.000Z"
+date: "2020-03-16T00:00:00.000Z"
 title: "Meetings from Home: Tools"
 tags: ["working-from-home", "tools"]
 draft: false
