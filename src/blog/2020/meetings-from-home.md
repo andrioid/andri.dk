@@ -69,7 +69,18 @@ Microsoft's answer to Slack. Needs your organization to have a Microsoft account
 
 ### [OpenVidu](https://openvidu.io)
 
-Free, but you have to host it yourself or pay for it.
+Free, but you have to host it yourself or pay for it. Has multiple types of rooms.
+
+- No account required: 🚫
+- No organization required: 🚫
+- Open Source: ✅
+- Self Hostable: ✅
+- Screen Sharing: ✅
+- Chat: ✅
+
+### [BigBlueButton](https://bigbluebutton.org/)
+
+More focused on teaching than meetings. Integrates to learning-systems. You need to host it yourself or pay for the hosting.
 
 - No account required: 🚫
 - No organization required: 🚫
