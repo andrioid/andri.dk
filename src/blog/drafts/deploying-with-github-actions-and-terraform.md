@@ -3,10 +3,13 @@ path: "/blog/2020/devops/app-stack-with-terraform-on-gcp"
 date: "2020-05-31T00:00:00.000Z"
 title: "Deploying a Full-Stack app on Google with Terraform"
 tags: ["hosting", "cloud"]
-draft: true
+draft: false
 ---
 
-In this post, we are going to setup continuous deployment on Github Actions that will deploy a full environment in the cloud. Then we will setup a scheduled action to tear it all down, if we're not using it.
+In this series, we are going to setup continuous deployment on Github Actions that will deploy a full environment in the cloud. Then we will setup a scheduled action to tear it all down, if we're not using it.
+
+- Part 1: Covers the infrastructure setup and backend
+- Part 2: Covers Github Actions
 
 > Note: While this is perfectly fine for development-environments, you should probably NOT do this in production.
 
