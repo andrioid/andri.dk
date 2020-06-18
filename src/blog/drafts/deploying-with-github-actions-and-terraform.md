@@ -1,6 +1,6 @@
 ---
 path: "/blog/2020/devops/app-stack-with-terraform-on-gcp"
-date: "2020-05-31T00:00:00.000Z"
+date: "2020-06-18T00:00:00.000Z"
 title: "Deploying a Full-Stack app on Google with Terraform"
 tags: ["hosting", "cloud"]
 draft: false
