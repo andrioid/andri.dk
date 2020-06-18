@@ -142,6 +142,12 @@ module.exports = {
           },
         ],
       },
-    }, "gatsby-plugin-goatcounter"
+    },
+    {
+      resolve: "gatsby-plugin-goatcounter",
+      options: {
+        code: "https://andrioid.goatcounter.com/count"
+      }
+    }
   ],
 };
