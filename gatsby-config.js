@@ -146,7 +146,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-goatcounter",
       options: {
-        code: "https://andrioid.goatcounter.com/count"
+        code: "https://andrioid.goatcounter.com"
       }
     }
   ],
