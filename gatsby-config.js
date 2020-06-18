@@ -122,14 +122,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     "gatsby-plugin-catch-links",
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: "UA-1081252-4",
-        // Setting this parameter is optional
-        anonymize: true,
-      },
-    },
-    {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
@@ -150,6 +142,6 @@ module.exports = {
           },
         ],
       },
-    },
+    }, "gatsby-plugin-goatcounter"
   ],
 };
