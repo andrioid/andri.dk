@@ -20,21 +20,46 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: |
-            node_modules
             ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm install
-      - run: npm run build
+      - run: npm install --prefer-offline
       - uses: actions/cache@v2
         with:
           path: .cache
           key: ${{ runner.os }}-cache-${{ hashFiles('.cache/**') }}
+      - run: npm run build
       - uses: actions/upload-artifact@v2
         with:
           name: static-site
           path: public/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: static-site
+          path: devops/
+  web:
+    name: "Web"
+    needs: [node]
+    runs-on: ubuntu-latest
+    steps:
+        uses: actions/download-artifact@v2
+          with:
+            name: static-site
+        run: ls -alh
+        uses: docker/build-push-action@v1.1.0
+        with:
+          dockerfile: devops/Dockerfile
+          repository: andrioid/andri.dk/web
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          path: public
+          target: web
+          tag_with_sha: true
+          tag_with_ref: true
+          build_args: BUILDKIT_INLINE_CACHE=1      
+
   # dependencies:
   #   name: "Dependencies"
   #   runs-on: ubuntu-latest
