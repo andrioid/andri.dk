@@ -24,13 +24,13 @@ const IndexPage = ({ data }) => (
         background: `url(${require("../../static/img/header.svg")})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        backgroundBlendMode: "darken"
+        backgroundBlendMode: "darken",
       }}
     >
       <div
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.33)",
-          flex: 1
+          flex: 1,
         }}
       >
         <nav className="flex items-end justify-end justify-between items-center p-8">
@@ -95,7 +95,7 @@ const IndexPage = ({ data }) => (
         workSkills={data.cvJson.work}
         rootSkills={data.cvJson.skills}
       >
-        {categories => (
+        {(categories) => (
           <Skills
             categories={categories}
             focus={[
@@ -105,7 +105,7 @@ const IndexPage = ({ data }) => (
               "TypeScript",
               "Postgres",
               "React Native",
-              "Kubernetes"
+              "Kubernetes",
             ]}
           />
         )}
@@ -125,9 +125,8 @@ const IndexPage = ({ data }) => (
 const ArticleList = ({ posts }) => (
   <div className="flex flex-wrap justify-start items-stretch">
     {posts
-      .filter(post => post.node.frontmatter.title.length > 0)
+      .filter((post) => post.node.frontmatter.title.length > 0)
       .map(({ node: post }) => {
-        console.log(post);
         return (
           <Card
             key={post.id}
@@ -179,7 +178,7 @@ const Section = ({
   children,
   title,
   bgColorBase = "gray",
-  bgColorLevel = 200
+  bgColorLevel = 200,
 }) => (
   <div
     className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}
