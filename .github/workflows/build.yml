@@ -66,22 +66,22 @@ jobs:
           tag_with_sha: true
           tag_with_ref: true
           build_args: BUILDKIT_INLINE_CACHE=1
-    web2:
-      name: "Web on Vercel"
-      needs: [node]
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/download-artifact@v2
-          with:
-            name: static-site
-        - uses: amondnet/vercel-action@v19
-          with:
-            vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-            github-token: ${{ secrets.GITHUB_TOKEN }} #Optional
-            vercel-args: "--prod" #Optional
-            vercel-org-id: ${{ secrets.VERCEL_ORG}} #Required
-            vercel-project-id: ${{ secrets.VERCEL_PROJECT}} #Required
-            working-directory: .
+  web2:
+    name: "Web on Vercel"
+    needs: [node]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-site
+      - uses: amondnet/vercel-action@v19
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional
+          vercel-args: "--prod" #Optional
+          vercel-org-id: ${{ secrets.VERCEL_ORG}} #Required
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT}} #Required
+          working-directory: .
   # dependencies:
   #   name: "Dependencies"
   #   runs-on: ubuntu-latest
