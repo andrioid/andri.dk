@@ -39,9 +39,10 @@ jobs:
       - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
       - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest || true
       - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
+      - run: docker build . -t dependencies --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest --build-arg BUILDKIT_INLINE_CACHE=1
       - run: docker build . -t gatsby --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest --build-arg BUILDKIT_INLINE_CACHE=1
-      - run: docker tag gatsby docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby
-      - run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby
+      - run: docker tag gatsby docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby && docker tags dependencies docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies
+      - run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest
       # - name: Docker Build and Push
       #   uses: docker/build-push-action@v1.1.0
       #   with:
