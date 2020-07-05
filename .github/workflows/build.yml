@@ -78,7 +78,7 @@ jobs:
         with:
           node-version: "12.x"
       - run: npm install -g vercel
-      - run: vercel . -t=${{ secrets.VERCEL_TOKEN }}
+      - run: vercel --token=${{ secrets.VERCEL_TOKEN }} .
   # dependencies:
   #   name: "Dependencies"
   #   runs-on: ubuntu-latest
