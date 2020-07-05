@@ -9,6 +9,28 @@ on:
       - master
 
 jobs:
+  node:
+    name: "Node"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run build
+      - uses: actions/cache@v2
+        with:
+          path: .cache
+          key: ${{ runner.os }}-cache-${{ hashFiles('.cache/**') }}
   # dependencies:
   #   name: "Dependencies"
   #   runs-on: ubuntu-latest
@@ -23,32 +45,30 @@ jobs:
   #         repository: andrioid/andri.dk/dependencies
   #         username: ${{ github.actor }}
   #         password: ${{ secrets.GITHUB_TOKEN }}
-
   #         registry: docker.pkg.github.com
   #         target: dependencies
   #         tag_with_sha: true
   #         tag_with_ref: true
   #         build_args: BUILDKIT_INLINE_CACHE=1
-
-  deps:
-    name: "Dependencies"
-    #needs: [dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-      - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
-      - run: docker build . --target dependencies -t dependencies --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest --build-arg BUILDKIT_INLINE_CACHE=1
-      - run: docker tag dependencies docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies
-      - run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest
-  site:
-    name: "Gatsby"
-    needs: [deps]
-    runs-on: ubuntu-latest
-    container:
-      image: andrioid/andri.dk/dependencies:latest
-      volumes:
-        - .:/home/node/app
-    steps:
-      - run: ls -alh
-      - run: npm run build
+  # deps:
+  #   name: "Dependencies"
+  #   #needs: [dependencies]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+  #     - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
+  #     - run: docker build . --target dependencies -t dependencies --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest --build-arg BUILDKIT_INLINE_CACHE=1
+  #     - run: docker tag dependencies docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies
+  #     - run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest
+  # site:
+  #   name: "Gatsby"
+  #   needs: [deps]
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: andrioid/andri.dk/dependencies:latest
+  #     volumes:
+  #       - .:/home/node/app
+  #   steps:
+  #     - run: ls -alh
+  #     - run: npm run build
