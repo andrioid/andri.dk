@@ -26,7 +26,7 @@ RUN npm run build
 FROM nginx:alpine as web
 
 COPY devops/nginx.conf.template /etc/nginx/conf.d/configfile.template
-COPY --from=gatsby /home/node/app/public /usr/share/nginx/html
+COPY . /usr/share/nginx/html
 
 ENV PORT 8080
 ENV HOST 0.0.0.0

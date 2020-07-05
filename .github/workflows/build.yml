@@ -37,7 +37,7 @@ jobs:
           path: public/
       - uses: actions/upload-artifact@v2
         with:
-          name: static-site
+          name: devops
           path: devops/
   web:
     name: "Web"
@@ -47,6 +47,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-site
+      - uses: actions/download-artifact@v2
+        with:
+          name: devops
+          path: devops
+
       - run: ls -alh
       - uses: docker/build-push-action@v1.1.0
         with:
