@@ -13,13 +13,14 @@ const sizes = {
 // primary color: #2B6CB0
 
 module.exports = {
-  purge: [
-    "./src/**/*.jsx",
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.html",
-    "./src/**/*.js",
-  ],
+  // not working atm, seems to fuck markdown parsing up
+  //   purge: [
+  //     "./src/**/*.jsx",
+  //     "./src/**/*.ts",
+  //     "./src/**/*.tsx",
+  //     "./src/**/*.html",
+  //     "./src/**/*.js",
+  //   ],
   theme: {
     extend: {
       height: {
