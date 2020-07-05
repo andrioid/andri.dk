@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Docker Build and Push
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v1.1.0
         with:
           cache_froms: andrioid/andri.dk/dependencies:latest
           repository: andrioid/andri.dk/dependencies
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Docker Build and Push
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v1.1.0
         with:
           cache_froms: andrioid/andri.dk/dependencies:latest,andrioid/andri.dk/gatsby:latest
           repository: andrioid/andri.dk/gatsby
