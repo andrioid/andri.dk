@@ -41,31 +41,31 @@ jobs:
         with:
           name: devops
           path: devops/
-  web:
-    name: "Web"
-    needs: [node]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: static-site
-      - uses: actions/download-artifact@v2
-        with:
-          name: devops
-          path: devops
+  # web:
+  #   name: "Web"
+  #   needs: [node]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: static-site
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: devops
+  #         path: devops
 
-      - run: ls -alh
-      - uses: docker/build-push-action@v1.1.0
-        with:
-          dockerfile: devops/Dockerfile
-          repository: andrioid/andri.dk/web
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          target: web
-          tag_with_sha: true
-          tag_with_ref: true
-          build_args: BUILDKIT_INLINE_CACHE=1
+  #     - run: ls -alh
+  #     - uses: docker/build-push-action@v1.1.0
+  #       with:
+  #         dockerfile: devops/Dockerfile
+  #         repository: andrioid/andri.dk/web
+  #         username: ${{ github.actor }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
+  #         registry: docker.pkg.github.com
+  #         target: web
+  #         tag_with_sha: true
+  #         tag_with_ref: true
+  #         build_args: BUILDKIT_INLINE_CACHE=1
   web2:
     name: "Web on Vercel"
     needs: [node]
