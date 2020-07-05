@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-      - run: docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
+      - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
       - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest || true
-      - run: docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
+      - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
