@@ -28,8 +28,10 @@ jobs:
       - run: npm install --prefer-offline
       - uses: actions/cache@v2
         with:
-          path: .cache
-          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('.cache/**') }}
+          path: |
+            .cache
+            public/
+          key: ${{ runner.os }}-gatsby-${{ hashFiles('.cache/**') }}
       - run: npm run build
       - uses: actions/upload-artifact@v2
         with:
