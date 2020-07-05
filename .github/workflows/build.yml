@@ -1,5 +1,8 @@
 name: Gatsby Build
 
+env:
+  DOCKER_BUILDKIT: 1
+
 on:
   push:
     branches:
@@ -25,6 +28,7 @@ jobs:
           target: dependencies
           tag_with_sha: true
           tag_with_ref: true
+          build_args: BUILDKIT_INLINE_CACHE=1
 
   gatsby:
     name: "Static Site Generation"
@@ -47,3 +51,4 @@ jobs:
           target: gatsby
           tag_with_sha: true
           tag_with_ref: true
+          build_args: BUILDKIT_INLINE_CACHE=1
