@@ -33,6 +33,7 @@ jobs:
             public/
           key: ${{ runner.os }}-gatsby-${{ hashFiles('.cache/**') }}
       - run: npm run build
+      - run: cp -r .vercel/ public/
       - uses: actions/upload-artifact@v2
         with:
           name: static-site
