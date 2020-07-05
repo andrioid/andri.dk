@@ -46,7 +46,7 @@ jobs:
     needs: [deps]
     runs-on: ubuntu-latest
     container:
-      image: docker.pkg.github.com/andrioid/andri.dk/dependencies:latest
+      image: andrioid/andri.dk/dependencies:latest
       volumes:
         - .:/home/node/app
     steps:
