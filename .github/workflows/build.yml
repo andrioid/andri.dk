@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Pull Cache
+        run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
@@ -30,6 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Pull Cache
+        run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
