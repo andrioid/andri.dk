@@ -74,12 +74,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-site
-      - uses: amondnet/vercel-action@v19
+      - uses: actions/setup-node@v1
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          vercel-org-id: ${{ secrets.VERCEL_ORG}} #Required
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT}} #Required
-          working-directory: .
+          node-version: "12.x"
+      - run: npm install -g vercel
+      - run: vercel . -t=${{ secrets.VERCEL_TOKEN }}
   # dependencies:
   #   name: "Dependencies"
   #   runs-on: ubuntu-latest
