@@ -56,10 +56,10 @@ const IndexPage = ({ data }) => (
               <p>
                 Computer Engineer from &nbsp;
                 <span aria-hidden>
-                  <ReactCountryFlag code="is" svg />
+                  <ReactCountryFlag countryCode="is" svg />
                 </span>
                 &nbsp;<span hidden>Iceland</span> living in &nbsp;
-                <ReactCountryFlag code="dk" svg />
+                <ReactCountryFlag countryCode="dk" svg />
                 <span hidden>Denmark</span>
               </p>
               <p>&nbsp;</p>
