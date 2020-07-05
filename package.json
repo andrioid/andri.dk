@@ -66,7 +66,7 @@
   },
   "devDependencies": {
     "@babel/node": "^7.4.5",
-    "@fullhuman/postcss-purgecss": "^1.2.0",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "eslint": "^6.4.0",
     "gatsby-plugin-goatcounter": "^0.3.1",
     "gatsby-plugin-postcss": "^2.3.4",

@@ -13,7 +13,13 @@ const sizes = {
 // primary color: #2B6CB0
 
 module.exports = {
-  purge: ["./src/**/*.jsx", "./src/**/*.tsx", "./src/**/*.html"],
+  purge: [
+    "./src/**/*.jsx",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.html",
+    "./src/**/*.js",
+  ],
   theme: {
     extend: {
       height: {
