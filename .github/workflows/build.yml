@@ -26,10 +26,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm install --prefer-offline
-      # - uses: actions/cache@v2
-      #   with:
-      #     path: .cache
-      #     key: ${{ runner.os }}-cache-${{ hashFiles('.cache/**/*.json') }}
+      - uses: actions/cache@v2
+        with:
+          path: .cache
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('.cache/**') }}
       - run: npm run build
       - uses: actions/upload-artifact@v2
         with:
@@ -55,7 +55,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          path: public
           target: web
           tag_with_sha: true
           tag_with_ref: true
