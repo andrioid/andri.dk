@@ -43,11 +43,11 @@ jobs:
     needs: [node]
     runs-on: ubuntu-latest
     steps:
-        uses: actions/download-artifact@v2
-          with:
-            name: static-site
-        run: ls -alh
-        uses: docker/build-push-action@v1.1.0
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-site
+      - run: ls -alh
+      - uses: docker/build-push-action@v1.1.0
         with:
           dockerfile: devops/Dockerfile
           repository: andrioid/andri.dk/web
@@ -58,8 +58,7 @@ jobs:
           target: web
           tag_with_sha: true
           tag_with_ref: true
-          build_args: BUILDKIT_INLINE_CACHE=1      
-
+          build_args: BUILDKIT_INLINE_CACHE=1
   # dependencies:
   #   name: "Dependencies"
   #   runs-on: ubuntu-latest
