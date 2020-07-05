@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Login to docker.pkg.github.com
+        run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
       - name: Pull Cache
         run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - name: Docker Build and Push
@@ -32,6 +34,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Login to docker.pkg.github.com
+        run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
       - name: Pull Cache
         run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - name: Docker Build and Push
