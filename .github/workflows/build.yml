@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-      - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
-      - name: Docker Build and Push
+      #- run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+      #- run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
+      #- name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
-          cache_froms: docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest
+          cache_froms: ${{ env.GITHUB_REPOSITORY }}/dependencies:latest
           repository: andrioid/andri.dk/dependencies
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -36,13 +36,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-      - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest || true
-      - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
+      #- run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+      #- run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest || true
+      #- run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
-          cache_froms: docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest,docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest
+          cache_froms: ${{ env.GITHUB_REPOSITORY }}/dependencies:latest,docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/gatsby:latest
           repository: andrioid/andri.dk/gatsby
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
