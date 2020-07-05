@@ -6,15 +6,34 @@ on:
       - master
 
 jobs:
-  gatsby:
-    name: "Static Site Generation"
+  dependencies:
+    name: "Dependencies"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Docker Build and Push
         uses: docker/build-push-action@v1
         with:
-          cache_froms: andrioid/andri.dk/gatsby:latest
+          cache_froms: andrioid/andri.dk/dependencies:latest
+          repository: andrioid/andri.dk/dependencies
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+          registry: docker.pkg.github.com
+          target: dependencies
+          tag_with_sha: true
+          tag_with_ref: true
+
+  gatsby:
+    name: "Static Site Generation"
+    needs: [dependencies]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v1
+        with:
+          cache_froms: andrioid/andri.dk/dependencies:latest,andrioid/andri.dk/gatsby:latest
           repository: andrioid/andri.dk/gatsby
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
