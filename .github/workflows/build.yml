@@ -19,7 +19,7 @@ jobs:
       - name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
-          cache_froms: andrioid/andri.dk/dependencies:latest
+          cache_froms: docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest
           repository: andrioid/andri.dk/dependencies
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
       - name: Docker Build and Push
         uses: docker/build-push-action@v1.1.0
         with:
-          cache_froms: andrioid/andri.dk/dependencies:latest,andrioid/andri.dk/gatsby:latest
+          cache_froms: docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest,docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest
           repository: andrioid/andri.dk/gatsby
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
