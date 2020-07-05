@@ -1,0 +1,25 @@
+name: Gatsby Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  gatsby:
+    name: "Static Site Generation"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Build and Push
+      - uses: docker/build-push-action@v1
+      - with:
+        cache_froms: andrioid/andri.dk/gatsby:latest
+        repository: andrioid/andri.dk/gatsby
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+        registry: docker.pkg.github.com
+        target: gatsby
+        tag_with_sha: true
+        tag_with_ref: true
