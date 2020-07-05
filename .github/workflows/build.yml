@@ -31,6 +31,10 @@ jobs:
         with:
           path: .cache
           key: ${{ runner.os }}-cache-${{ hashFiles('.cache/**') }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: static-site
+          path: public/
   # dependencies:
   #   name: "Dependencies"
   #   runs-on: ubuntu-latest
