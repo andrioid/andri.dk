@@ -28,7 +28,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: .cache
-          key: ${{ runner.os }}-cache-${{ hashFiles('.cache/**') }}
+          key: ${{ runner.os }}-cache-${{ hashFiles('.cache/**/*.json') }}
       - run: npm run build
       - uses: actions/upload-artifact@v2
         with:
