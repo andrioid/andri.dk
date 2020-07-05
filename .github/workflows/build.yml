@@ -30,29 +30,24 @@ jobs:
   #         tag_with_ref: true
   #         build_args: BUILDKIT_INLINE_CACHE=1
 
-  gatsby:
-    name: "Static Site Generation"
+  deps:
+    name: "Dependencies"
     #needs: [dependencies]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: docker login -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-      - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest || true
       - run: docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest || true
       - run: docker build . --target dependencies -t dependencies --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest --build-arg BUILDKIT_INLINE_CACHE=1
-      - run: docker build . --target gatsby -t gatsby --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby:latest --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest --build-arg BUILDKIT_INLINE_CACHE=1
-      - run: docker tag gatsby docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby && docker tag dependencies docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies
-      - run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/gatsby
+      - run: docker tag dependencies docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies
       - run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/dependencies:latest
-      # - name: Docker Build and Push
-      #   uses: docker/build-push-action@v1.1.0
-      #   with:
-      #     cache_froms: andrioid/andri.dk/dependencies:latest,andrioid/andri.dk/gatsby:latest
-      #     repository: andrioid/andri.dk/gatsby
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
-      #     registry: docker.pkg.github.com
-      #     target: gatsby
-      #     tag_with_sha: true
-      #     tag_with_ref: true
-      #     build_args: BUILDKIT_INLINE_CACHE=1
+  site:
+    name: "Gatsby"
+    needs: [deps]
+    container:
+      image: docker.pkg.github.com/andrioid/andri.dk/dependencies:latest
+      volumes:
+        - .:/home/node/app
+    steps:
+      - run: ls -alh
+      - run: npm run build
