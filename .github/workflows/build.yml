@@ -44,6 +44,7 @@ jobs:
   site:
     name: "Gatsby"
     needs: [deps]
+    runs-on: ubuntu-latest
     container:
       image: docker.pkg.github.com/andrioid/andri.dk/dependencies:latest
       volumes:
