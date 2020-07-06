@@ -16,9 +16,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-cv": "cd src/cv && babel-node build.js",
     "watch-cv": "cd src/cv && nodemon --exec babel-node build.js",
-    "build-card": "cd plugins/social-card && babel-node build.js"
+    "build-card": "cd plugins/social-card && babel-node build.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.4",
     "@babel/node": "^7.10.4",
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@mdx-js/mdx": "^1.6.6",
@@ -26,6 +29,12 @@
     "@mdx-js/tag": "^0.20.3",
     "@reach/router": "^1.3.4",
     "@react-pdf/renderer": "^1.6.8",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react-app": "^9.1.2",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.29",
     "eslint": "^7.4.0",
@@ -75,5 +84,6 @@
   },
   "engines": {
     "node": ">= 10.0.0"
-  }
+  },
+  "dependencies": {}
 }
