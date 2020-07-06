@@ -7,7 +7,7 @@ Personal site and playground.
 - React
 - TailwindCSS
 - Gatsby
-- Netlify
+- Vercel
 - JavaScript
 - React-PDF
 - JSON Resume
