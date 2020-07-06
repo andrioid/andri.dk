@@ -13,6 +13,7 @@ module.exports = {
     },
   },
   plugins: [
+    "gatsby-plugin-postcss",
     {
       resolve: "gatsby-plugin-social-cards",
       options: {
@@ -86,7 +87,6 @@ module.exports = {
         publishDraft: process.env.NODE_ENV !== "production",
       },
     },
-    "gatsby-plugin-postcss",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
 
@@ -146,8 +146,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-goatcounter",
       options: {
-        code: "andrioid"
-      }
-    }
+        code: "andrioid",
+      },
+    },
   ],
 };
