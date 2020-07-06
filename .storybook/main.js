@@ -1,5 +1,6 @@
+
 module.exports = {
-  stories: ['../stories/**/*.stories.js', '../stories/**/*.stories.tsx'],
+  stories: ['../stories/**/*.stories.js', '../src/**/*.stories.tsx'],
   addons: ['@storybook/addon-actions', '@storybook/addon-links'],
   webpackFinal: async config => {
     // do mutation to the config
@@ -33,7 +34,20 @@ module.exports = {
           require.resolve("babel-plugin-remove-graphql-queries"),
         ],
       },
-    })
+    },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'postcss-loader', options: {
+              sourceMap: true,
+              config: {
+                path: './.storybook/'
+              }
+            }
+          }
+        ]
+      })
     config.resolve.extensions.push(".ts", ".tsx")
     return config;
   },
