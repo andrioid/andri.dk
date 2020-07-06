@@ -5,10 +5,8 @@ import classNames from "classnames";
 
 import { Twitter, LinkedIn, Github } from "../components/social-icons";
 import Img from "gatsby-image";
-import { ILike } from "../components/ilike";
 import andratar from "../../static/img/coffee-art.jpg";
 import { FaHeart } from "react-icons/fa";
-import { FaCalendarAlt as FaCalendar } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
 import ReactCountryFlag from "react-country-flag";
 import { Card, Card2 } from "../components/card";
@@ -153,7 +151,7 @@ const NewCard = ({ post }) => (
         //sizes={cover.childImageSharp.sizes}
         //className="max-w-xl flex items-center justify-center"
         fluid={post.frontmatter.cover.childImageSharp.fluid}
-        //className="max-h-one-third-screen"
+      //className="max-h-one-third-screen"
       />
     ) : null}
   </div>
@@ -180,15 +178,15 @@ const Section = ({
   bgColorBase = "gray",
   bgColorLevel = 200,
 }) => (
-  <div
-    className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}
-  >
-    <h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase">
-      {title}
-    </h2>
-    {children}
-  </div>
-);
+    <div
+      className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}
+    >
+      <h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase">
+        {title}
+      </h2>
+      {children}
+    </div>
+  );
 
 export const query = graphql`
   query ArticleList {
