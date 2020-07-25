@@ -31,11 +31,20 @@
   },
   "work": [
     {
+      "company": "Venue POS A/S",
+      "position": "Lead Software Developer",
+      "website": "https://www.venuepos.net",
+      "startDate": "2020-01-01",
+      "summary": "Leading a team, building the next generation of Point-Of-Sale systems.",
+      "skills": ["React", "React Native", "Docker", "Postgres", "TypeScript"]
+    },
+    {
       "company": "Redia A/S",
       "position": "Senior Software Developer",
       "website": "https://www.redia.dk",
       "startDate": "2019-05-01",
-      "summary": "Helped to create a teaching platform for a large publisher. Pitched and developed an image-scaling microservice. Currently working on cross-platform app development.",
+      "endDate": "2019-12-31",
+      "summary": "Helped to create a teaching platform for a large publisher. Pitched and developed an image-scaling microservice.",
       "skills": [
         "React",
         "TypeScript",
