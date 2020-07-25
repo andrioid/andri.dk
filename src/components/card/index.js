@@ -1,13 +1,6 @@
 import React from "react";
-import classNames from "classnames";
 import { FaCalendarAlt as FaCalendar } from "react-icons/fa";
 import Link from "gatsby-link";
-
-function createMarkup(markup) {
-  return {
-    __html: markup
-  };
-}
 
 export const Card = ({
   title,
@@ -15,7 +8,7 @@ export const Card = ({
   date,
   link,
   tags = [],
-  draft = false
+  draft = false,
 }) => (
   <Link
     className="flex pt-2 sm:pt-4 sm:pr-4 lg:pr-6 w-full sm:w-1/2 xl:w-1/3"
@@ -36,7 +29,7 @@ export const Card = ({
         </div>
         {tags.length > 0 ? (
           <div className="py-4">
-            {tags.slice(0, 3).map(t => (
+            {tags.slice(0, 3).map((t) => (
               <span key={t} className="andri-tag">
                 {t}
               </span>

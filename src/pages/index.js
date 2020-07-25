@@ -1,15 +1,13 @@
 import React from "react";
 import Link from "gatsby-link";
 import { graphql } from "gatsby";
-import classNames from "classnames";
 
 import { Twitter, LinkedIn, Github } from "../components/social-icons";
-import Img from "gatsby-image";
 import andratar from "../../static/img/coffee-art.jpg";
 import { FaHeart } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
 import ReactCountryFlag from "react-country-flag";
-import { Card, Card2 } from "../components/card";
+import { Card } from "../components/card";
 import { Layout } from "../layouts/layout";
 import { SEO } from "../components/seo";
 
@@ -33,6 +31,7 @@ const IndexPage = ({ data }) => (
       >
         <nav className="flex items-end justify-end justify-between items-center p-8">
           <img
+            alt="round profile"
             src={andratar}
             className="rounded-full shadow-2xl w-16 h-16 md:invisible"
           />
@@ -69,6 +68,7 @@ const IndexPage = ({ data }) => (
           </div>
           <div className="hidden md:block p-4 items-start justify-start flex mr-6">
             <img
+              alt="round profile"
               src={andratar}
               className="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
             />
@@ -142,21 +142,6 @@ const ArticleList = ({ posts }) => (
   </div>
 );
 
-// TODO: Finish image cards later
-const NewCard = ({ post }) => (
-  <div className="bg-white mr-2 flex justify-between flex-stretch flex-col">
-    <h3>{post.frontmatter.title}</h3>
-    {post.frontmatter.cover ? (
-      <Img
-        //sizes={cover.childImageSharp.sizes}
-        //className="max-w-xl flex items-center justify-center"
-        fluid={post.frontmatter.cover.childImageSharp.fluid}
-      //className="max-h-one-third-screen"
-      />
-    ) : null}
-  </div>
-);
-
 const NavLink = ({ href, children }) => (
   <li className="mr-6">
     <a className="text-white hover:text-gray-400" href={href}>
@@ -178,15 +163,15 @@ const Section = ({
   bgColorBase = "gray",
   bgColorLevel = 200,
 }) => (
-    <div
-      className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}
-    >
-      <h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase">
-        {title}
-      </h2>
-      {children}
-    </div>
-  );
+  <div
+    className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}
+  >
+    <h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase">
+      {title}
+    </h2>
+    {children}
+  </div>
+);
 
 export const query = graphql`
   query ArticleList {

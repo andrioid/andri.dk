@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useMemo } from "react";
 
 import { FaHeart } from "react-icons/fa";
 import { durationForSkill } from "../../lib/skills";
 
 export function SkillDataTransform({ workSkills, rootSkills, children }) {
   const categories = useMemo(() => {
-    const sortedCategories = rootSkills.map(c => {
+    const sortedCategories = rootSkills.map((c) => {
       const nk = c.keywords
-        .map(k => {
+        .map((k) => {
           return {
             name: k,
             // score is currently just duration
-            score: (workSkills && durationForSkill(workSkills, k)) || 0
+            score: (workSkills && durationForSkill(workSkills, k)) || 0,
           };
         })
         .sort((a, b) => {
@@ -19,7 +19,7 @@ export function SkillDataTransform({ workSkills, rootSkills, children }) {
         });
       return {
         ...c,
-        keywords: nk
+        keywords: nk,
       };
     });
 
@@ -35,7 +35,7 @@ export function Skills({ categories, focus = [] }) {
   }
   return (
     <div className="flex flex-row flex-wrap justify-between">
-      {categories.map(c => (
+      {categories.map((c) => (
         <div
           key={c.name}
           className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col p-6 md:p-0 mb-4 lg:mb-0"
@@ -48,12 +48,12 @@ export function Skills({ categories, focus = [] }) {
           </h2>
           <div className="">
             {c.keywords &&
-              c.keywords.map(s => (
+              c.keywords.map((s) => (
                 <span
                   key={s.name}
                   className="andri-tag"
                   style={{
-                    backgroundColor: c.color
+                    backgroundColor: c.color,
                   }}
                 >
                   {s.name}

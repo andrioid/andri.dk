@@ -10,11 +10,12 @@ export const NavItem = ({ children, href }) => (
   </a>
 );
 
-export const Nav = props => (
+export const Nav = (props) => (
   <nav className="flex items-center justify-between flex-wrap bg-blue-700 p-6">
     <a href="/" className="">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <img
+          alt="avatar"
           src={andratar}
           className="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
         />
