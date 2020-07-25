@@ -58,6 +58,9 @@ a.link {
 	 */
   & .gatsby-highlight {
     @apply rounded-none overflow-auto my-4;
+    & code {
+      @apply py-4;
+    }
   }
 
   & .gatsby-resp-image-wrapper {
