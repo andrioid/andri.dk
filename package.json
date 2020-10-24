@@ -81,5 +81,6 @@
     "wcag-contrast": "^3.0.0",
     "webpack": "^4.34.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "cacheDirectories": [".cache"]
 }
