@@ -83,7 +83,8 @@
     "webpack": "^4.34.0"
   },
   "engines": {
-    "node": ">= 10.0.0"
+    "node": "12.x",
+    "npm": "6.x"
   },
   "dependencies": {}
 }
