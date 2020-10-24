@@ -81,9 +81,5 @@
     "wcag-contrast": "^3.0.0",
     "webpack": "^4.34.0"
   },
-  "engines": {
-    "node": "12.x",
-    "npm": "6.x"
-  },
   "dependencies": {}
 }
