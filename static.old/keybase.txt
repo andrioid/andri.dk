@@ -1,0 +1,53 @@
+https://keybase.io/andrioid
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://andri.dk
+  * I am andrioid (https://keybase.io/andrioid) on keybase.
+  * I have a public key ASBGyzR9oDNGwQMN6sGbtbGgq-4XqyQG_JG6jsuckLzg9wo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012046cb347da03346c1030deac19bb5b1a0abee17ab2406fc91ba8ecb9c90bce0f70a",
+      "host": "keybase.io",
+      "kid": "012046cb347da03346c1030deac19bb5b1a0abee17ab2406fc91ba8ecb9c90bce0f70a",
+      "uid": "cea7decbe06470d2993efd0ed6017400",
+      "username": "andrioid"
+    },
+    "merkle_root": {
+      "ctime": 1529932405,
+      "hash": "12f67d67e3aa491de7f397d6ad0699d9e4aa2a005cfa84340b12b75ee994ab372473c6abf1eb915b19daf61e60f04c3cf52a93c669b7feb47695f65e0b716b4e",
+      "hash_meta": "806135de20176ca420d23f623287d6082e1994c3954fe95f71c0ed0d306a7a74",
+      "seqno": 3138393
+    },
+    "service": {
+      "entropy": "d7ex/RQYLPcglaXR4YduvxNs",
+      "hostname": "andri.dk",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "2.1.1"
+  },
+  "ctime": 1529932420,
+  "expire_in": 504576000,
+  "prev": "49d24930d91574aaef542243b880034d9f624de0b250852f47a036de29f7d282",
+  "seqno": 36,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgRss0faAzRsEDDerBm7WxoKvuF6skBvyRuo7LnJC84PcKp3BheWxvYWTESpcCJMQgSdJJMNkVdKrvVCJDuIADTZ9iTeCyUIUvR6A23in30oLEILpEFXh4ow7USB0CRQU3v6eUeM96Bbs1n3daP+3JXpp7AgHCo3NpZ8RAeMr8EbGGUmqEOvX/E+ncX0sviqfhpiia7eBzmzwiQsZDAEenwS2e34Nw81LL1Hk5zeaRbXx2QXn8vN+rqEO9AqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEICuazqIVriyjFCr+56XalJBTtt4ZwsKxKKCLeWieDsSVo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/andrioid
