@@ -77,7 +77,7 @@ const IndexPage = ({ data }) => (
       </div>
     </div>
     <Section title="Latest Posts">
-      <ArticleList posts={data.allMarkdownRemark.edges} />
+      <ArticleList posts={data && data.allMarkdownRemark.edges} />
       <div className="mt-4 px-4 md:px-0">
         <Link className="link" to="/blog">
           More posts...
@@ -172,57 +172,5 @@ const Section = ({
     {children}
   </div>
 );
-
-export const query = graphql`
-  query ArticleList {
-    allMarkdownRemark(
-      limit: 3
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { fields: { draft: { ne: true } } }
-    ) {
-      edges {
-        node {
-          excerpt(pruneLength: 250, format: PLAIN)
-          id
-          frontmatter {
-            title
-            date(formatString: "YYYY-MM-DD")
-            path
-            tags
-            draft
-            cover {
-              publicURL
-              childImageSharp {
-                fluid(
-                  maxWidth: 400
-                  quality: 90
-                  maxHeight: 200
-                  fit: COVER
-                  background: "#ffffff"
-                ) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    cvJson {
-      skills {
-        name
-        level
-        keywords
-        color
-      }
-      work {
-        company
-        startDate
-        endDate
-        skills
-      }
-    }
-  }
-`;
 
 export default IndexPage;

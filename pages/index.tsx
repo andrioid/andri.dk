@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => (
         <nav className="flex items-end justify-end justify-between items-center p-8">
           <img
             alt="round profile"
-            src={andratar}
+            src="/img/andratar.jpg"
             className="rounded-full shadow-2xl w-16 h-16 md:invisible"
           />
           <div>
@@ -65,7 +65,7 @@ const IndexPage = ({ data }) => (
           <div className="hidden md:block p-4 items-start justify-start flex mr-6">
             <img
               alt="round profile"
-              src={andratar}
+              src="/img/andratar"
               className="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
             />
           </div>
@@ -73,38 +73,40 @@ const IndexPage = ({ data }) => (
       </div>
     </div>
     <Section title="Latest Posts">
-      <ArticleList posts={data.allMarkdownRemark.edges} />
+      <ArticleList posts={data && data.allMarkdownRemark.edges} />
       <div className="mt-4 px-4 md:px-0">
-        <Link className="link" to="/blog">
+        <Link className="link" href="/blog">
           More posts...
         </Link>
       </div>
     </Section>
-    <Section title="Technology" bgColorLevel={100}>
-      <div className="pl-6 md:pl-0 text-sm mb-4 italic">
-        Sorted by experience. Preference indicated by{" "}
-        <FaHeart className="inline text-red-700" />
-      </div>
-      <SkillDataTransform
-        workSkills={data.cvJson.work}
-        rootSkills={data.cvJson.skills}
-      >
-        {(categories) => (
-          <Skills
-            categories={categories}
-            focus={[
-              "React",
-              "Go",
-              "Linux",
-              "TypeScript",
-              "Postgres",
-              "React Native",
-              "Kubernetes",
-            ]}
-          />
-        )}
-      </SkillDataTransform>
-    </Section>
+    {data && data.cvJson && (
+      <Section title="Technology" bgColorLevel={100}>
+        <div className="pl-6 md:pl-0 text-sm mb-4 italic">
+          Sorted by experience. Preference indicated by{" "}
+          <FaHeart className="inline text-red-700" />
+        </div>
+        <SkillDataTransform
+          workSkills={data.cvJson.work}
+          rootSkills={data.cvJson.skills}
+        >
+          {(categories) => (
+            <Skills
+              categories={categories}
+              focus={[
+                "React",
+                "Go",
+                "Linux",
+                "TypeScript",
+                "Postgres",
+                "React Native",
+                "Kubernetes",
+              ]}
+            />
+          )}
+        </SkillDataTransform>
+      </Section>
+    )}
     <div className="text-lg px-10 md:px-20 lg:px-40 py-10 flex justify-between">
       <span className="italic">Andri Óskarsson</span>
       <div>
@@ -118,23 +120,24 @@ const IndexPage = ({ data }) => (
 
 const ArticleList = ({ posts }) => (
   <div className="flex flex-wrap justify-start items-stretch">
-    {posts
-      .filter((post) => post.node.frontmatter.title.length > 0)
-      .map(({ node: post }) => {
-        return (
-          <Card
-            key={post.id}
-            title={post.frontmatter.title}
-            link={post.frontmatter.path}
-            description={post.excerpt}
-            tags={post.frontmatter.tags}
-            date={post.frontmatter.date}
-            draft={
-              process.env.NODE_ENV !== "production" && post.frontmatter.draft
-            }
-          />
-        );
-      })}
+    {posts &&
+      posts
+        .filter((post) => post.node.frontmatter.title.length > 0)
+        .map(({ node: post }) => {
+          return (
+            <Card
+              key={post.id}
+              title={post.frontmatter.title}
+              link={post.frontmatter.path}
+              description={post.excerpt}
+              tags={post.frontmatter.tags}
+              date={post.frontmatter.date}
+              draft={
+                process.env.NODE_ENV !== "production" && post.frontmatter.draft
+              }
+            />
+          );
+        })}
   </div>
 );
 
@@ -168,57 +171,5 @@ const Section = ({
     {children}
   </div>
 );
-
-export const query = graphql`
-  query ArticleList {
-    allMarkdownRemark(
-      limit: 3
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { fields: { draft: { ne: true } } }
-    ) {
-      edges {
-        node {
-          excerpt(pruneLength: 250, format: PLAIN)
-          id
-          frontmatter {
-            title
-            date(formatString: "YYYY-MM-DD")
-            path
-            tags
-            draft
-            cover {
-              publicURL
-              childImageSharp {
-                fluid(
-                  maxWidth: 400
-                  quality: 90
-                  maxHeight: 200
-                  fit: COVER
-                  background: "#ffffff"
-                ) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    cvJson {
-      skills {
-        name
-        level
-        keywords
-        color
-      }
-      work {
-        company
-        startDate
-        endDate
-        skills
-      }
-    }
-  }
-`;
 
 export default IndexPage;
