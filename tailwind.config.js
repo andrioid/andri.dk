@@ -13,13 +13,7 @@ const sizes = {
 // primary color: #2B6CB0
 
 module.exports = {
-  purge: [
-    "./src/**/*.jsx",
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.html",
-    "./src/**/*.js",
-  ],
+  purge: ["./**/*.jsx", "./**/*.ts", "./**/*.tsx", "./**/*.html", "./**/*.js"],
   theme: {
     extend: {
       height: {
@@ -41,7 +35,7 @@ module.exports = {
     boxShadow: ["responsive", "hover", "focus"],
   },
   plugins: [
-    function({ addBase, config }) {
+    function ({ addBase, config }) {
       addBase({
         // Add base styles when needed
       });
