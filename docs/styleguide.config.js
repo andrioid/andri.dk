@@ -8,16 +8,17 @@ const customWebpack = require("./webpack");
 module.exports = {
   sections: [
     {
-      name: "Next + styleguidist",
+      name: "Components",
       components: [`${root}/components/*.js`, `${root}/components/**/*.tsx`],
     },
   ],
+  require: [path.join(__dirname, "../global.css")],
   propsParser: require("react-docgen-typescript").withDefaultConfig().parse,
-  configureServer(app) {
-    app.get("/static/*", (req, res) => {
-      const file = req.originalUrl.split("?")[0];
-      res.status(200).sendFile(`${root}${file}`);
-    });
-  },
+  // configureServer(app) {
+  //   app.get("/static/*", (req, res) => {
+  //     const file = req.originalUrl.split("?")[0];
+  //     res.status(200).sendFile(`${root}${file}`);
+  //   });
+  // },
   ...customWebpack,
 };
