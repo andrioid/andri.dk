@@ -7,8 +7,9 @@ import { SkillDataTransform, Skills } from "../components/skills/skills";
 import ReactCountryFlag from "react-country-flag";
 import { Card } from "../components/card";
 import { Layout } from "../components/layouts/layout";
+import { getAllPosts } from "../lib/blog-posts";
 
-const IndexPage = ({ data }) => (
+const IndexPage = ({ data, allPosts }) => (
   <Layout>
     <div
       className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed"
@@ -73,11 +74,11 @@ const IndexPage = ({ data }) => (
       </div>
     </div>
     <Section title="Latest Posts">
-      <ArticleList posts={data && data.allMarkdownRemark.edges} />
+      <ArticleList posts={allPosts} />
       <div className="mt-4 px-4 md:px-0">
-        <Link className="link" href="/blog">
-          More posts...
-        </Link>
+        <span className="link">
+          <Link href="/blog">More posts...</Link>
+        </span>
       </div>
     </Section>
     {data && data.cvJson && (
@@ -121,25 +122,30 @@ const IndexPage = ({ data }) => (
 const ArticleList = ({ posts }) => (
   <div className="flex flex-wrap justify-start items-stretch">
     {posts &&
-      posts
-        .filter((post) => post.node.frontmatter.title.length > 0)
-        .map(({ node: post }) => {
-          return (
-            <Card
-              key={post.id}
-              title={post.frontmatter.title}
-              link={post.frontmatter.path}
-              description={post.excerpt}
-              tags={post.frontmatter.tags}
-              date={post.frontmatter.date}
-              draft={
-                process.env.NODE_ENV !== "production" && post.frontmatter.draft
-              }
-            />
-          );
-        })}
+      posts.map((post) => {
+        return (
+          <Card
+            key={post.id + post.title}
+            title={post.title}
+            link={post.path}
+            description={post.excerpt}
+            tags={post.tags}
+            date={post.date}
+            draft={process.env.NODE_ENV !== "production" && post.draft}
+          />
+        );
+      })}
   </div>
 );
+
+export async function getStaticProps() {
+  const posts = await getAllPosts(["title", "date", "path", "tags", "excerpt"]);
+  return {
+    props: {
+      allPosts: posts,
+    },
+  };
+}
 
 const NavLink = ({ href, children }) => (
   <li className="mr-6">

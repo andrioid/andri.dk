@@ -1,5 +1,5 @@
 import React from "react";
 
-export const Layout = ({ slug, children }) => {
+export const Layout = ({ children }) => {
   return <>{children}</>;
 };
