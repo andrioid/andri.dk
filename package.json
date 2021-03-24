@@ -55,6 +55,7 @@
     "gatsby-remark-responsive-image": "^1.0.0-alpha13-alpha.435e0178",
     "gatsby-remark-vscode": "^2.1.2",
     "gatsby-source-filesystem": "^2.3.18",
+    "gatsby-source-webdav": "^0.1.2",
     "gatsby-transformer-json": "^2.4.10",
     "gatsby-transformer-remark": "^2.8.23",
     "gatsby-transformer-sharp": "^2.5.10",
@@ -62,7 +63,7 @@
     "nodemon": "^2.0.4",
     "postcss-nesting": "^7.0.0",
     "prettier": "^2.0.5",
-    "prismjs": "^1.17.1",
+    "prismjs": "^1.23.0",
     "prop-types": "^15.6.1",
     "react": "^16.8.6",
     "react-country-flag": "2.1.0",
@@ -83,7 +84,7 @@
   },
   "engines": {
     "node": "12.x",
-    "npm": "6.x"
+    "npm": "7.x"
   },
   "cacheDirectories": [
     ".cache"
