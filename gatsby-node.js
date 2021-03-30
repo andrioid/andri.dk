@@ -2,19 +2,6 @@ const path = require("path");
 const cp = require("child_process");
 const { createFilePath } = require("gatsby-source-filesystem");
 
-// exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
-// 	const oldConfig = getConfig()
-// 	const config = {
-// 		...oldConfig,
-// 		output: {
-// 			...oldConfig.output,
-// 			globalObject: 'this'
-// 		}
-// 	}
-
-// 	actions.replaceWebpackConfig(config)
-// }
-
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
   const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`);
@@ -46,15 +33,21 @@ exports.createPages = async ({ actions, graphql }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
-      path: node.frontmatter.path,
-      component: blogPostTemplate,
-      context: {},
-    });
+    const path = node.frontmatter.path;
+    if (path) {
+      createPage({
+        path: node.frontmatter.path,
+        component: blogPostTemplate,
+        context: {},
+      });
+    } else {
+      console.warn("Node doesn't have path set", node.frontmatter.title, node);
+    }
   });
 };
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
+  console.debug("onCreateNode", node);
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
@@ -65,7 +58,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     });
   }
 };
-
 
 exports.onPostBuild = () => {
   cp.execSync("npm run build-cv");

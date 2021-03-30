@@ -114,13 +114,14 @@ module.exports = {
     {
       resolve: `gatsby-source-webdav`,
       options: {
-        baseURL: "https://cloud.andri.dk/remote.php/dav/files",
+        baseURL: "https://cloud.andri.dk/remote.php/dav/files/blog-publish",
         credentials: {
           username: "blog-publish",
           password: process.env["BLOGDATA_PASSWORD"],
         },
         recursive: true,
-        sharePath: "blog-publish",
+        glob: "**/*.md",
+        sharePath: "Blog",
       },
     },
     "gatsby-transformer-json", // Resume JSON
