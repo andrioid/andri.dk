@@ -112,7 +112,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-webdav`,
+      resolve: `@andrioid/gatsby-source-webdav`,
       options: {
         baseURL: "https://cloud.andri.dk/remote.php/dav/files/blog-publish",
         credentials: {

@@ -20,6 +20,7 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@andrioid/gatsby-source-webdav": "0.1.4",
     "@babel/core": "^7.10.4",
     "@babel/node": "^7.10.4",
     "@fullhuman/postcss-purgecss": "^2.3.0",
@@ -55,7 +56,6 @@
     "gatsby-remark-responsive-image": "^1.0.0-alpha13-alpha.435e0178",
     "gatsby-remark-vscode": "^2.1.2",
     "gatsby-source-filesystem": "^2.3.18",
-    "gatsby-source-webdav": "^0.1.2",
     "gatsby-transformer-json": "^2.4.10",
     "gatsby-transformer-remark": "^2.8.23",
     "gatsby-transformer-sharp": "^2.5.10",

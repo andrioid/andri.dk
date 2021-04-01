@@ -16,6 +16,10 @@ exports.createPages = async ({ actions, graphql }) => {
             excerpt(pruneLength: 250)
             html
             id
+            fields {
+              slug
+              title
+            }
             frontmatter {
               date
               path
@@ -33,10 +37,10 @@ exports.createPages = async ({ actions, graphql }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    const path = node.frontmatter.path;
+    console.log("page node", node);
     if (path) {
       createPage({
-        path: node.frontmatter.path,
+        path: node.fields && node.fields.slug,
         component: blogPostTemplate,
         context: {},
       });
@@ -47,10 +51,35 @@ exports.createPages = async ({ actions, graphql }) => {
 };
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  console.debug("onCreateNode", node);
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` });
+    if (!node.parent) {
+      return;
+    }
+    const fileNode = getNode(node.parent);
+    if (!fileNode.parent) {
+      return;
+    }
+
+    console.log("md node", node);
+
+    const davNode = getNode(fileNode.parent);
+
+    const namePath = path.parse(davNode.filename);
+
+    const title = node.frontmatter.title || namePath.name || "wtf gatsby";
+
+    const slug =
+      davNode && davNode.type === "webdav"
+        ? `${namePath.dir}/${namePath.name}`.toLowerCase()
+        : createFilePath({ node, getNode, basePath: `pages` });
+
+    createNodeField({
+      node,
+      name: `title`,
+      value: title,
+    });
+
     createNodeField({
       node,
       name: `slug`,
