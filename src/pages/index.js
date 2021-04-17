@@ -132,7 +132,7 @@ const ArticleList = ({ posts }) => (
             link={post.fields.slug || "/"}
             description={post.excerpt}
             tags={post.frontmatter.tags}
-            date={post.frontmatter.date}
+            date={post.fields.date}
             draft={
               process.env.NODE_ENV !== "production" && post.frontmatter.draft
             }
@@ -187,10 +187,11 @@ export const query = graphql`
           fields {
             title
             slug
+            date
+            tags
           }
           frontmatter {
             date(formatString: "YYYY-MM-DD")
-            tags
             draft
             cover {
               publicURL

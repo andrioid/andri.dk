@@ -18,7 +18,13 @@ export const Card = ({
       <div className="flex flex-col px-6 pb-4 justify-between h-full">
         <div className="mt-4 text-sm text-gray-600 flex justify-start items-center">
           <FaCalendar />
-          <span className="ml-2">{date}</span>
+          <span className="ml-2">
+            {new Date(date).toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
         </div>
 
         <div className="flex mt-1 font-bold text-lg lg:text-xl mb-2">

@@ -59,6 +59,8 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
     const { frontmatter } = node;
     let title = frontmatter.title;
     let slug = frontmatter && frontmatter.path;
+    let date = frontmatter && frontmatter.date && new Date(frontmatter.date);
+    let tags = (frontmatter && frontmatter.tags) || [];
 
     if (fileNode.parent) {
       const davNode = getNode(fileNode.parent);
@@ -69,6 +71,9 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
         }
         if (!slug) {
           slug = `${namePath.dir}/${namePath.name}`.toLowerCase();
+        }
+        if (!date) {
+          date = new Date(davNode.lastmod);
         }
       }
     }
@@ -90,6 +95,17 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
       value: slug,
     });
 
+    createNodeField({
+      node,
+      name: `date`,
+      value: date,
+    });
+
+    createNodeField({
+      node,
+      name: `tags`,
+      value: tags,
+    });
     //console.log("md node", node);
   }
 };

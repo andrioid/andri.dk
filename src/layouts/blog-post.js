@@ -32,14 +32,14 @@ export default function Template({
 
           <div>
             <h1 className="text-gray-900 font-semibold text-xl md:text-3xl">
-              {post.frontmatter.title}
+              {post.fields.title}
             </h1>
             <div className="text-sm text-gray-600 flex justify-start mb-4">
-              <p>{post.frontmatter.date}</p>
+              <p>{post.fields.date}</p>
             </div>
             <div className="mb-4 ">
-              {frontmatter.tags &&
-                frontmatter.tags.map((t) => (
+              {post.fields.tags &&
+                post.fields.tags.map((t) => (
                   <span key={t} className="andri-tag text-xs">
                     {t}
                   </span>
@@ -64,14 +64,14 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $path } }) {
       html
       fields {
+        title
+        date
+        tags
         slug
         socialcard
       }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
-        title
-        tags
         cover {
           publicURL
           childImageSharp {
