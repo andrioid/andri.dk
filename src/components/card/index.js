@@ -27,7 +27,7 @@ export const Card = ({
         <div className="flex flex-1 text-base h-20">
           <p className="">{description}</p>
         </div>
-        {tags.length > 0 ? (
+        {tags && tags.length > 0 ? (
           <div className="py-4">
             {tags.slice(0, 3).map((t) => (
               <span key={t} className="andri-tag">

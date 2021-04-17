@@ -8,13 +8,14 @@ import { SEO } from "../components/seo";
 // import '../css/blog-post.css'; // make it pretty!
 
 export default function Template({
-  data // this prop will be injected by the GraphQL query we'll write in a bit
+  data, // this prop will be injected by the GraphQL query we'll write in a bit
 }) {
   if (!data) {
     return null;
   }
   const { markdownRemark: post } = data; // data.markdownRemark holds our post data
-  const { cover } = post.frontmatter;
+  const { frontmatter } = post;
+  const { cover } = frontmatter;
   return (
     <Layout slug={data.markdownRemark.fields.slug}>
       <SEO frontmatter={post.frontmatter} postData={post} />
@@ -37,11 +38,12 @@ export default function Template({
               <p>{post.frontmatter.date}</p>
             </div>
             <div className="mb-4 ">
-              {post.frontmatter.tags.map(t => (
-                <span key={t} className="andri-tag text-xs">
-                  {t}
-                </span>
-              ))}
+              {frontmatter.tags &&
+                frontmatter.tags.map((t) => (
+                  <span key={t} className="andri-tag text-xs">
+                    {t}
+                  </span>
+                ))}
             </div>
           </div>
 
@@ -59,7 +61,7 @@ export default function Template({
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+    markdownRemark(fields: { slug: { eq: $path } }) {
       html
       fields {
         slug

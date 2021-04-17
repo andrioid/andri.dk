@@ -123,13 +123,13 @@ const IndexPage = ({ data }) => (
 const ArticleList = ({ posts }) => (
   <div className="flex flex-wrap justify-start items-stretch">
     {posts
-      .filter((post) => post.node.frontmatter.title.length > 0)
+      // .filter((post) => post.node.fields.title.length > 0)
       .map(({ node: post }) => {
         return (
           <Card
             key={post.id}
-            title={post.frontmatter.title}
-            link={post.frontmatter.path}
+            title={post.fields.title}
+            link={post.fields.slug || "/"}
             description={post.excerpt}
             tags={post.frontmatter.tags}
             date={post.frontmatter.date}
@@ -184,10 +184,12 @@ export const query = graphql`
         node {
           excerpt(pruneLength: 250, format: PLAIN)
           id
-          frontmatter {
+          fields {
             title
+            slug
+          }
+          frontmatter {
             date(formatString: "YYYY-MM-DD")
-            path
             tags
             draft
             cover {

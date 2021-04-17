@@ -20,7 +20,7 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@andrioid/gatsby-source-webdav": "0.1.4",
+    "@andrioid/gatsby-source-webdav": "0.1.6",
     "@babel/core": "^7.10.4",
     "@babel/node": "^7.10.4",
     "@fullhuman/postcss-purgecss": "^2.3.0",
