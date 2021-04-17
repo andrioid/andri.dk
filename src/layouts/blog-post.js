@@ -24,7 +24,6 @@ export default function Template({
         <div className="bg-white max-w-4xl py-10 shadow px-5 lg:px-10 min-w-half-screen">
           {cover ? (
             <Img
-              //sizes={cover.childImageSharp.sizes}
               fluid={cover.childImageSharp.fluid}
               //className="max-h-one-third-screen"
             />
@@ -83,9 +82,6 @@ export const pageQuery = graphql`
               background: "#ffffff"
             ) {
               ...GatsbyImageSharpFluid
-            }
-            sizes(maxWidth: 2000) {
-              ...GatsbyImageSharpSizes
             }
           }
         }

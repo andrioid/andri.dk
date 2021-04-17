@@ -6,7 +6,7 @@ import { Twitter, LinkedIn, Github } from "../components/social-icons";
 import andratar from "../../static/img/coffee-art.jpg";
 import { FaHeart } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
-import ReactCountryFlag from "react-country-flag";
+// import ReactCountryFlag from "react-country-flag";
 import { Card } from "../components/card";
 import { Layout } from "../layouts/layout";
 import { SEO } from "../components/seo";
@@ -50,15 +50,6 @@ const IndexPage = ({ data }) => (
               Hi, I'm Andri
             </h2>
             <div className="text-lg md:text-2xl">
-              <p>
-                Computer Engineer from &nbsp;
-                <span aria-hidden>
-                  <ReactCountryFlag countryCode="is" svg />
-                </span>
-                &nbsp;<span hidden>Iceland</span> living in &nbsp;
-                <ReactCountryFlag countryCode="dk" svg />
-                <span hidden>Denmark</span>
-              </p>
               <p>&nbsp;</p>
               <p>
                 I make websites, create apps, manage infrastructure, develop
@@ -122,23 +113,21 @@ const IndexPage = ({ data }) => (
 
 const ArticleList = ({ posts }) => (
   <div className="flex flex-wrap justify-start items-stretch">
-    {posts
-      // .filter((post) => post.node.fields.title.length > 0)
-      .map(({ node: post }) => {
-        return (
-          <Card
-            key={post.id}
-            title={post.fields.title}
-            link={post.fields.slug || "/"}
-            description={post.excerpt}
-            tags={post.frontmatter.tags}
-            date={post.fields.date}
-            draft={
-              process.env.NODE_ENV !== "production" && post.frontmatter.draft
-            }
-          />
-        );
-      })}
+    {posts.map(({ node: post }) => {
+      return (
+        <Card
+          key={post.id}
+          title={post.fields.title}
+          link={post.fields.slug || "/"}
+          description={post.excerpt}
+          tags={post.frontmatter.tags}
+          date={post.fields.date}
+          draft={
+            process.env.NODE_ENV !== "production" && post.frontmatter.draft
+          }
+        />
+      );
+    })}
   </div>
 );
 
@@ -148,13 +137,6 @@ const NavLink = ({ href, children }) => (
       {children}
     </a>
   </li>
-);
-
-// Wraps the text and handles margins
-export const BodyContainer = ({ children, className }) => (
-  <div className="mt-10 mx-5 md:mx-10 md:mx-20 lg:mx-40 text-xl md:max-w-4xl">
-    {children}
-  </div>
 );
 
 const Section = ({
@@ -182,7 +164,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 250, format: PLAIN)
+          excerpt(pruneLength: 150, format: PLAIN)
           id
           fields {
             title

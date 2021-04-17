@@ -3,6 +3,7 @@ const cp = require("child_process");
 const { createFilePath } = require("gatsby-source-filesystem");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
+  console.debug("createPages called");
   const { createPage } = actions;
   const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`);
   const result = await graphql(`
@@ -32,13 +33,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   `);
 
   if (result.errors) {
-    reporter.panic("Stuff broke", results.errors);
+    console.error(result.errors);
+    reporter.panic("Page query failed");
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     if (node.fields && node.fields.slug) {
       //console.log("page node", node);
-
+      console.log("creating page", node);
       createPage({
         path: node.fields && node.fields.slug,
         component: blogPostTemplate,
@@ -46,6 +48,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       });
     }
   });
+  console.debug("createPages done");
 };
 
 exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
@@ -61,6 +64,7 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
     let slug = frontmatter && frontmatter.path;
     let date = frontmatter && frontmatter.date && new Date(frontmatter.date);
     let tags = (frontmatter && frontmatter.tags) || [];
+    let draft = frontmatter.draft === true || false;
 
     if (fileNode.parent) {
       const davNode = getNode(fileNode.parent);
@@ -106,10 +110,11 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
       name: `tags`,
       value: tags,
     });
-    //console.log("md node", node);
-  }
-};
 
-exports.onPostBuild = () => {
-  cp.execSync("npm run build-cv");
+    createNodeField({
+      node,
+      name: `draft`,
+      value: draft,
+    });
+  }
 };

@@ -81,12 +81,6 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: "gatsby-plugin-draft",
-      options: {
-        publishDraft: process.env.NODE_ENV !== "production",
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
 
@@ -140,7 +134,6 @@ module.exports = {
         plugins: [
           {
             resolve: "gatsby-remark-prismjs",
-            options: {},
           },
           {
             resolve: "gatsby-remark-images",
@@ -154,12 +147,6 @@ module.exports = {
             resolve: "gatsby-remark-copy-linked-files",
           },
         ],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-goatcounter",
-      options: {
-        code: "andrioid",
       },
     },
   ],

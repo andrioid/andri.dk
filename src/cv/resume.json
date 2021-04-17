@@ -35,8 +35,16 @@
       "position": "Lead Software Developer",
       "website": "https://www.venuepos.net",
       "startDate": "2020-01-01",
-      "summary": "Leading a team, building the next generation of Point-Of-Sale systems.",
-      "skills": ["React", "React Native", "Docker", "Postgres", "TypeScript"]
+      "summary": "My team and I built a user-friendly, distributed POS on top of React Native and Android for retailers, events and restaurants using event-sourcing for book-keeping while syncronizing to our systems.",
+      "skills": [
+        "React",
+        "React Native",
+        "Docker",
+        "Postgres",
+        "TypeScript",
+        "Event Sourcing",
+        "Android"
+      ]
     },
     {
       "company": "Redia A/S",
@@ -267,7 +275,7 @@
       ]
     },
     {
-      "name": "Databases",
+      "name": "Data Management",
       "color": "#319795",
       "level": "Senior",
       "keywords": [
@@ -277,13 +285,20 @@
         "Firestore",
         "Memcache",
         "Redis",
-        "SQLite"
+        "SQLite",
+        "Event Sourcing"
       ]
     },
     {
       "name": "Processes and methodologies",
       "level": "Senior",
-      "keywords": ["Agile", "Kanban", "Scrum"]
+      "keywords": [
+        "Agile",
+        "Kanban",
+        "Scrum",
+        "Lean",
+        "Test Driven Development"
+      ]
     }
   ],
   "languages": [
