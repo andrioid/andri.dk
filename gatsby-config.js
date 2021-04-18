@@ -114,7 +114,7 @@ module.exports = {
           password: process.env["BLOGDATA_PASSWORD"],
         },
         recursive: true,
-        glob: "**/*.md",
+        glob: "**/*.{md,jpg,jpeg,png,gif}",
         sharePath: "Blog",
       },
     },
@@ -135,6 +135,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-prismjs",
           },
+          "gatsby-remark-webdav",
           {
             resolve: "gatsby-remark-images",
             //tracedSVG: true,
@@ -142,9 +143,6 @@ module.exports = {
               maxWidth: 896,
               wrapperStyle: "max-width: 896px;",
             },
-          },
-          {
-            resolve: "gatsby-remark-copy-linked-files",
           },
         ],
       },

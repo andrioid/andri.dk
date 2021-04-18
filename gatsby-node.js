@@ -1,54 +1,54 @@
 const path = require("path");
-const cp = require("child_process");
-const { createFilePath } = require("gatsby-source-filesystem");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  console.debug("createPages called");
-  const { createPage } = actions;
-  const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`);
-  const result = await graphql(`
-    {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
-        edges {
-          node {
-            excerpt(pruneLength: 250)
-            html
-            id
-            fields {
-              slug
-              title
-            }
-            frontmatter {
-              date
-              path
-              title
+  try {
+    console.debug("createPages called");
+    const { createPage } = actions;
+    const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`);
+    const result = await graphql(`
+      {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 250)
+              html
+              id
+              fields {
+                slug
+                title
+              }
+              frontmatter {
+                date
+                path
+                title
+              }
             }
           }
         }
       }
-    }
-  `);
+    `);
 
-  if (result.errors) {
-    console.error(result.errors);
-    reporter.panic("Page query failed");
+    if (result.errors) {
+      console.error(result.errors);
+      reporter.panic("Page query failed");
+    }
+
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      if (node.fields && node.fields.slug) {
+        createPage({
+          path: node.fields && node.fields.slug,
+          component: blogPostTemplate,
+          context: {},
+        });
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    reporter.panic("Failed to create page");
   }
-
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    if (node.fields && node.fields.slug) {
-      //console.log("page node", node);
-      console.log("creating page", node);
-      createPage({
-        path: node.fields && node.fields.slug,
-        component: blogPostTemplate,
-        context: {},
-      });
-    }
-  });
-  console.debug("createPages done");
 };
 
 exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
