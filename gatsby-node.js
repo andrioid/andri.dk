@@ -75,7 +75,9 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
           title = namePath.name;
         }
         if (!slug) {
-          slug = `${namePath.dir}/${namePath.name}`.toLowerCase();
+          slug = `${namePath.dir}/${namePath.name}`
+            .toLowerCase()
+            .replace(" ", "-");
         }
         if (!date) {
           date = new Date(davNode.lastmod);
