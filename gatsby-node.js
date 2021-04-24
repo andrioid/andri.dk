@@ -75,9 +75,7 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
           title = namePath.name;
         }
         if (!slug) {
-          slug = `${namePath.dir}/${namePath.name}`
-            .toLowerCase()
-            .replace(" ", "-");
+          slug = `${namePath.dir}/${namePath.name}`.toLowerCase();
         }
         if (!date) {
           date = new Date(davNode.lastmod);
@@ -88,6 +86,10 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
     if (!slug) {
       console.error("no slug", node);
       //reporter.panic("No slug found for markdown node");
+    }
+
+    if (slug) {
+      slug = slug.replace(/[ ]/g, "-");
     }
 
     createNodeField({
