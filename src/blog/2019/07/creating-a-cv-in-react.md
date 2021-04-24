@@ -3,7 +3,7 @@ path: "/blog/2019-07/creating-a-cv-in-react"
 date: "2019-07-22T00:00:00.000Z"
 title: "Creating a CV in React"
 tags: ["cv", "projects"]
-cover: "./cvscreenshot.png"
+cover: "cvscreenshot.png"
 ---
 
 ## TLDR;
@@ -73,7 +73,7 @@ export const TimelineItem = ({
   children,
   employer,
   tags = [],
-  location
+  location,
 }) => {
   tags = tags.sort();
   return (
@@ -83,7 +83,7 @@ export const TimelineItem = ({
           flexDirection: "row",
           justifyContent: "space-between",
           marginBottom: 2.5,
-          flexWrap: "wrap"
+          flexWrap: "wrap",
         }}
       >
         <Text style={{ fontWeight: "bold" }}>
@@ -96,7 +96,7 @@ export const TimelineItem = ({
       {tags && (
         <View style={{ flexDirection: "row" }}>
           {tags &&
-            tags.map(m => (
+            tags.map((m) => (
               <Tag key={m} color={tagColors[m.toLowerCase()]}>
                 {m}
               </Tag>

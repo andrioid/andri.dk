@@ -29,7 +29,7 @@ You will need a few things before we get started.
 
 When you have the JSON key file, you can add it to an environmental variable while you work with Terraform. If you forget to add this to ENV, then Terraform won't be able to talk to GCP.
 
-```sh
+```bash
 export GOOGLE_CREDENTIALS=$(cat ~/Downloads/path-to-my-secret-service-account.json)
 ```
 
@@ -222,7 +222,7 @@ resource "google_cloud_run_domain_mapping" "backend" {
 
 Navigate to your directory. I keep mine in `devops/google/main.tf`.
 
-```sh
+```bash
 terraform plan
 ```
 
@@ -230,7 +230,7 @@ terraform plan
 
 If you agree with the changes suggested by `terraform plan` you can run:
 
-```sh
+```bash
 terraform apply
 ```
 
@@ -238,7 +238,7 @@ terraform apply
 
 To clean up all the resources we have created, we can run:
 
-```sh
+```bash
 terraform destroy
 ```
 

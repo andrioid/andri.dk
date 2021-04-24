@@ -1,6 +1,6 @@
 import React from "react";
+import { BodyContainer } from "../components/body-container";
 import PagesLayout from "../layouts/pages";
-import { BodyContainer } from ".";
 
 const Section = ({ children, title }) => (
   <div className="mt-6 leading-relaxed text-sm md:text-lg">

@@ -3,7 +3,7 @@
 @tailwind components;
 
 .andri-tag {
-  @apply inline-block bg-gray-500 rounded-sm px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
+  @apply inline-block bg-gray-600 rounded-sm px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
 }
 
 a.link {

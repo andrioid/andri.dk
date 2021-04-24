@@ -1,72 +1,121 @@
 const path = require("path");
-const cp = require("child_process");
-const { createFilePath } = require("gatsby-source-filesystem");
 
-// exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
-// 	const oldConfig = getConfig()
-// 	const config = {
-// 		...oldConfig,
-// 		output: {
-// 			...oldConfig.output,
-// 			globalObject: 'this'
-// 		}
-// 	}
-
-// 	actions.replaceWebpackConfig(config)
-// }
-
-exports.createPages = async ({ actions, graphql }) => {
-  const { createPage } = actions;
-  const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`);
-  const result = await graphql(`
-    {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
-        edges {
-          node {
-            excerpt(pruneLength: 250)
-            html
-            id
-            frontmatter {
-              date
-              path
-              title
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  try {
+    console.debug("createPages called");
+    const { createPage } = actions;
+    const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`);
+    const result = await graphql(`
+      {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 250)
+              html
+              id
+              fields {
+                slug
+                title
+              }
+              frontmatter {
+                date
+                path
+                title
+              }
             }
           }
         }
       }
+    `);
+
+    if (result.errors) {
+      console.error(result.errors);
+      reporter.panic("Page query failed");
     }
-  `);
 
-  if (result.errors) {
-    console.log(result.errors);
-    throw new Error("Things broke, see console output above");
-  }
-
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
-      path: node.frontmatter.path,
-      component: blogPostTemplate,
-      context: {},
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      if (node.fields && node.fields.slug) {
+        createPage({
+          path: node.fields && node.fields.slug,
+          component: blogPostTemplate,
+          context: {},
+        });
+      }
     });
-  });
+  } catch (err) {
+    console.error(err);
+    reporter.panic("Failed to create page");
+  }
 };
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
+exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
+  const isDev = process.env.NODE_ENV !== "production";
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` });
+    if (!node.parent) {
+      return;
+    }
+    const fileNode = getNode(node.parent);
+
+    const { frontmatter } = node;
+    let title = frontmatter.title;
+    let slug = frontmatter && frontmatter.path;
+    let date = frontmatter && frontmatter.date && new Date(frontmatter.date);
+    let tags = (frontmatter && frontmatter.tags) || [];
+    let draft = (frontmatter.draft === true && !isDev) || false;
+
+    if (fileNode.parent) {
+      const davNode = getNode(fileNode.parent);
+      if (davNode && davNode.internal.type === "webdav") {
+        const namePath = path.parse(davNode.filename);
+        if (!title) {
+          title = namePath.name;
+        }
+        if (!slug) {
+          slug = `${namePath.dir}/${namePath.name}`.toLowerCase();
+        }
+        if (!date) {
+          date = new Date(davNode.lastmod);
+        }
+      }
+    }
+
+    if (!slug) {
+      console.error("no slug", node);
+      //reporter.panic("No slug found for markdown node");
+    }
+
+    createNodeField({
+      node,
+      name: `title`,
+      value: title,
+    });
+
     createNodeField({
       node,
       name: `slug`,
       value: slug,
     });
+
+    createNodeField({
+      node,
+      name: `date`,
+      value: date,
+    });
+
+    createNodeField({
+      node,
+      name: `tags`,
+      value: tags,
+    });
+
+    createNodeField({
+      node,
+      name: `draft`,
+      value: draft,
+    });
   }
-};
-
-
-exports.onPostBuild = () => {
-  cp.execSync("npm run build-cv");
 };

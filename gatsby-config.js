@@ -81,12 +81,7 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: "gatsby-plugin-draft",
-      options: {
-        publishDraft: process.env.NODE_ENV !== "production",
-      },
-    },
+    "gatsby-plugin-image",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
 
@@ -111,6 +106,19 @@ module.exports = {
         path: `${__dirname}/static/img/`,
       },
     },
+    {
+      resolve: `@andrioid/gatsby-source-webdav`,
+      options: {
+        baseURL: "https://cloud.andri.dk/remote.php/dav/files/blog-publish",
+        credentials: {
+          username: "blog-publish",
+          password: process.env["BLOGDATA_PASSWORD"],
+        },
+        recursive: true,
+        glob: "**/*.{md,jpg,jpeg,png,gif}",
+        sharePath: "Blog",
+      },
+    },
     "gatsby-transformer-json", // Resume JSON
     {
       resolve: "gatsby-source-filesystem",
@@ -125,10 +133,9 @@ module.exports = {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
-          {
-            resolve: "gatsby-remark-prismjs",
-            options: {},
-          },
+          "gatsby-remark-webdav",
+          // "gatsby-remark-mermaid",
+          "gatsby-remark-prismjs",
           {
             resolve: "gatsby-remark-images",
             //tracedSVG: true,
@@ -137,16 +144,7 @@ module.exports = {
               wrapperStyle: "max-width: 896px;",
             },
           },
-          {
-            resolve: "gatsby-remark-copy-linked-files",
-          },
         ],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-goatcounter",
-      options: {
-        code: "andrioid",
       },
     },
   ],

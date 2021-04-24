@@ -1,38 +1,32 @@
 import React from "react";
 import Link from "gatsby-link";
 import { graphql } from "gatsby";
-
+import { StaticImage } from "gatsby-plugin-image";
 import { Twitter, LinkedIn, Github } from "../components/social-icons";
-import andratar from "../../static/img/coffee-art.jpg";
 import { FaHeart } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
-import ReactCountryFlag from "react-country-flag";
 import { Card } from "../components/card";
 import { Layout } from "../layouts/layout";
 import { SEO } from "../components/seo";
+
+import waveBG from "../../static/img/wave.svg";
+import isFlag from "../../static/img/iceland-flag.svg";
+import dkFlag from "../../static/img/denmark-flag.svg";
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO />
     <div
-      className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed"
+      className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed bg-no-repeat bg-cover"
       style={{
-        background: `url(${require("../../static/img/header.svg")})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundBlendMode: "darken",
+        backgroundImage: `url(${waveBG})`,
       }}
     >
-      <div
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.33)",
-          flex: 1,
-        }}
-      >
-        <nav className="flex items-end justify-end justify-between items-center p-8">
-          <img
+      <div className="flex-1">
+        <nav className="flex justify-between items-center p-8">
+          <StaticImage
             alt="round profile"
-            src={andratar}
+            src={"../../static/img/coffee-art.jpg"}
             className="rounded-full shadow-2xl w-16 h-16 md:invisible"
           />
           <div>
@@ -40,7 +34,6 @@ const IndexPage = ({ data }) => (
               <NavLink href="blog/">Blog</NavLink>
 
               <NavLink href="now/">Now</NavLink>
-              <NavLink href="cv.pdf">CV</NavLink>
             </ul>
           </div>
         </nav>
@@ -52,13 +45,26 @@ const IndexPage = ({ data }) => (
             <div className="text-lg md:text-2xl">
               <p>
                 Computer Engineer from &nbsp;
-                <span aria-hidden>
-                  <ReactCountryFlag countryCode="is" svg />
+                <span aria-hidden hidden>
+                  Iceland
                 </span>
-                &nbsp;<span hidden>Iceland</span> living in &nbsp;
-                <ReactCountryFlag countryCode="dk" svg />
-                <span hidden>Denmark</span>
+                <img
+                  className="inline-block align-middle md:w-8 md:h-8 w-4 h-4"
+                  alt="Iceland"
+                  src={isFlag}
+                />
+                &nbsp; living in &nbsp;
+                <img
+                  className="inline-block align-middle md:w-8 md:h-8 w-4 h-4"
+                  alt="Denmark"
+                  src={dkFlag}
+                />
+                <span aria-hidden hidden>
+                  Denmark
+                </span>
               </p>
+              <p>&nbsp;</p>
+
               <p>&nbsp;</p>
               <p>
                 I make websites, create apps, manage infrastructure, develop
@@ -66,10 +72,10 @@ const IndexPage = ({ data }) => (
               </p>
             </div>
           </div>
-          <div className="hidden md:block p-4 items-start justify-start flex mr-6">
-            <img
+          <div className="hidden md:block p-4 items-start justify-start mr-6">
+            <StaticImage
               alt="round profile"
-              src={andratar}
+              src={"../../static/img/coffee-art.jpg"}
               className="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
             />
           </div>
@@ -122,23 +128,21 @@ const IndexPage = ({ data }) => (
 
 const ArticleList = ({ posts }) => (
   <div className="flex flex-wrap justify-start items-stretch">
-    {posts
-      .filter((post) => post.node.frontmatter.title.length > 0)
-      .map(({ node: post }) => {
-        return (
-          <Card
-            key={post.id}
-            title={post.frontmatter.title}
-            link={post.frontmatter.path}
-            description={post.excerpt}
-            tags={post.frontmatter.tags}
-            date={post.frontmatter.date}
-            draft={
-              process.env.NODE_ENV !== "production" && post.frontmatter.draft
-            }
-          />
-        );
-      })}
+    {posts.map(({ node: post }) => {
+      return (
+        <Card
+          key={post.id}
+          title={post.fields.title}
+          link={post.fields.slug || "/"}
+          description={post.excerpt}
+          tags={post.frontmatter.tags}
+          date={post.fields.date}
+          draft={
+            process.env.NODE_ENV !== "production" && post.frontmatter.draft
+          }
+        />
+      );
+    })}
   </div>
 );
 
@@ -148,13 +152,6 @@ const NavLink = ({ href, children }) => (
       {children}
     </a>
   </li>
-);
-
-// Wraps the text and handles margins
-export const BodyContainer = ({ children, className }) => (
-  <div className="mt-10 mx-5 md:mx-10 md:mx-20 lg:mx-40 text-xl md:max-w-4xl">
-    {children}
-  </div>
 );
 
 const Section = ({
@@ -182,28 +179,18 @@ export const query = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 250, format: PLAIN)
+          excerpt(pruneLength: 100, format: PLAIN)
           id
-          frontmatter {
+          fields {
             title
-            date(formatString: "YYYY-MM-DD")
-            path
+            slug
+            date
             tags
+          }
+          frontmatter {
+            date(formatString: "YYYY-MM-DD")
             draft
-            cover {
-              publicURL
-              childImageSharp {
-                fluid(
-                  maxWidth: 400
-                  quality: 90
-                  maxHeight: 200
-                  fit: COVER
-                  background: "#ffffff"
-                ) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+            tags
           }
         }
       }

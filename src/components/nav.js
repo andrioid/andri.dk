@@ -1,4 +1,5 @@
 import React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 import andratar from "../../static/img/coffee-art.jpg";
 
 export const NavItem = ({ children, href }) => (
@@ -14,9 +15,9 @@ export const Nav = (props) => (
   <nav className="flex items-center justify-between flex-wrap bg-blue-700 p-6">
     <a href="/" className="">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <img
+        <StaticImage
           alt="avatar"
-          src={andratar}
+          src={"../../static/img/coffee-art.jpg"}
           className="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
         />
         <span className="font-semibold text-xl tracking-tight inline-block">
