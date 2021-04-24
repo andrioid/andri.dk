@@ -134,7 +134,7 @@ module.exports = {
       options: {
         plugins: [
           "gatsby-remark-webdav",
-          "gatsby-remark-mermaid",
+          // "gatsby-remark-mermaid",
           "gatsby-remark-prismjs",
           {
             resolve: "gatsby-remark-images",
