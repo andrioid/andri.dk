@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "gatsby-link";
 import { graphql } from "gatsby";
-
+import { StaticImage } from "gatsby-plugin-image";
 import { Twitter, LinkedIn, Github } from "../components/social-icons";
 import andratar from "../../static/img/coffee-art.jpg";
 import { FaHeart } from "react-icons/fa";
@@ -11,16 +11,19 @@ import { Card } from "../components/card";
 import { Layout } from "../layouts/layout";
 import { SEO } from "../components/seo";
 
+import waveBG from "../../static/img/wave.svg";
+import icelandicFlag from "../../static/img/iceland-flag.svg";
+import danishFlag from "../../static/img/denmark-flag.svg";
+
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO />
     <div
-      className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed"
+      className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed bg-no-repeat bg-cover"
       style={{
-        background: `url(${require("../../static/img/header.svg")})`,
-        backgroundRepeat: "no-repeat",
+        backgroundImage: `url(${waveBG})`,
+        // backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        backgroundBlendMode: "darken",
       }}
     >
       <div
@@ -29,7 +32,7 @@ const IndexPage = ({ data }) => (
           flex: 1,
         }}
       >
-        <nav className="flex items-end justify-end justify-between items-center p-8">
+        <nav className="flex justify-between items-center p-8">
           <img
             alt="round profile"
             src={andratar}
@@ -40,7 +43,6 @@ const IndexPage = ({ data }) => (
               <NavLink href="blog/">Blog</NavLink>
 
               <NavLink href="now/">Now</NavLink>
-              <NavLink href="cv.pdf">CV</NavLink>
             </ul>
           </div>
         </nav>
@@ -50,6 +52,27 @@ const IndexPage = ({ data }) => (
               Hi, I'm Andri
             </h2>
             <div className="text-lg md:text-2xl">
+              <p>
+                Computer Engineer from &nbsp;
+                <span aria-hidden>
+                  <StaticImage
+                    width={30}
+                    height={30}
+                    alt="Iceland"
+                    src="../../static/img/iceland-flag.svg"
+                  />
+                </span>
+                &nbsp;<span hidden>Iceland</span> living in &nbsp;
+                <StaticImage
+                  width={30}
+                  height={30}
+                  alt="Denmark"
+                  src={"../../static/img/denmark-flag.svg"}
+                />
+                <span hidden>Denmark</span>
+              </p>
+              <p>&nbsp;</p>
+
               <p>&nbsp;</p>
               <p>
                 I make websites, create apps, manage infrastructure, develop
@@ -57,7 +80,7 @@ const IndexPage = ({ data }) => (
               </p>
             </div>
           </div>
-          <div className="hidden md:block p-4 items-start justify-start flex mr-6">
+          <div className="hidden md:block p-4 items-start justify-start mr-6">
             <img
               alt="round profile"
               src={andratar}
@@ -205,6 +228,13 @@ export const query = graphql`
         startDate
         endDate
         skills
+      }
+    }
+    headerImage: file(relativePath: { eq: "hvitserkur.JPG" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920) {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
   }

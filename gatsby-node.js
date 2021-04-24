@@ -52,6 +52,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 };
 
 exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
+  const isDev = process.env.NODE_ENV !== "production";
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
     if (!node.parent) {
@@ -64,7 +65,7 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
     let slug = frontmatter && frontmatter.path;
     let date = frontmatter && frontmatter.date && new Date(frontmatter.date);
     let tags = (frontmatter && frontmatter.tags) || [];
-    let draft = frontmatter.draft === true || false;
+    let draft = (frontmatter.draft === true && !isDev) || false;
 
     if (fileNode.parent) {
       const davNode = getNode(fileNode.parent);

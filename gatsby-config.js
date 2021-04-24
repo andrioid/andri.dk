@@ -81,6 +81,7 @@ module.exports = {
         ],
       },
     },
+    "gatsby-plugin-image",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
 
@@ -132,10 +133,9 @@ module.exports = {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
-          {
-            resolve: "gatsby-remark-prismjs",
-          },
           "gatsby-remark-webdav",
+          "gatsby-remark-mermaid",
+          "gatsby-remark-prismjs",
           {
             resolve: "gatsby-remark-images",
             //tracedSVG: true,
