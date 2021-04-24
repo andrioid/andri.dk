@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { Nav } from "../components/nav";
-import Img from "gatsby-image";
+import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Layout } from "./layout";
 import { SEO } from "../components/seo";
 
@@ -22,12 +22,7 @@ export default function Template({
       <Nav />
       <div className="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
         <div className="bg-white max-w-4xl py-10 shadow px-5 lg:px-10 min-w-half-screen">
-          {cover ? (
-            <Img
-              fluid={cover.childImageSharp.fluid}
-              //className="max-h-one-third-screen"
-            />
-          ) : null}
+          {cover && <GatsbyImage image={getImage(cover.childImageSharp)} />}
 
           <div>
             <h1 className="text-gray-900 font-semibold text-xl md:text-3xl">
@@ -74,15 +69,7 @@ export const pageQuery = graphql`
         cover {
           publicURL
           childImageSharp {
-            fluid(
-              maxWidth: 2000
-              quality: 100
-              maxHeight: 420
-              fit: COVER
-              background: "#ffffff"
-            ) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(transformOptions: { fit: COVER })
           }
         }
       }

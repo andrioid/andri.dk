@@ -44,7 +44,7 @@ The author image can be ommitted if it's not wanted, or customized in the config
 
 ## Install
 
-```sh
+```bash
 yarn add gatsby-plugin-social-cards
 # or npm install --save gatsby-plugin-social-cards
 ```

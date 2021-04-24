@@ -3,7 +3,6 @@ import Link from "gatsby-link";
 import { graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { Twitter, LinkedIn, Github } from "../components/social-icons";
-import andratar from "../../static/img/coffee-art.jpg";
 import { FaHeart } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
 import { Card } from "../components/card";
@@ -19,15 +18,13 @@ const IndexPage = ({ data }) => (
       className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed bg-no-repeat bg-cover"
       style={{
         backgroundImage: `url(${waveBG})`,
-        // backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
       }}
     >
       <div className="flex-1">
         <nav className="flex justify-between items-center p-8">
-          <img
+          <StaticImage
             alt="round profile"
-            src={andratar}
+            src={"../../static/img/coffee-art.jpg"}
             className="rounded-full shadow-2xl w-16 h-16 md:invisible"
           />
           <div>
@@ -46,22 +43,23 @@ const IndexPage = ({ data }) => (
             <div className="text-lg md:text-2xl">
               <p>
                 Computer Engineer from &nbsp;
-                <span aria-hidden>
-                  <StaticImage
-                    width={30}
-                    height={30}
-                    alt="Iceland"
-                    src="../../static/img/iceland-flag.svg"
-                  />
+                <span aria-hidden hidden>
+                  Iceland
                 </span>
-                &nbsp;<span hidden>Iceland</span> living in &nbsp;
                 <StaticImage
-                  width={30}
-                  height={30}
+                  className="inline-block align-middle md:w-8 md:h-8 w-4 h-4"
+                  alt="Iceland"
+                  src="../../static/img/iceland-flag.svg"
+                />
+                &nbsp; living in &nbsp;
+                <StaticImage
+                  className="inline-block align-middle md:w-8 md:h-8 w-4 h-4"
                   alt="Denmark"
                   src={"../../static/img/denmark-flag.svg"}
                 />
-                <span hidden>Denmark</span>
+                <span aria-hidden hidden>
+                  Denmark
+                </span>
               </p>
               <p>&nbsp;</p>
 
@@ -73,9 +71,9 @@ const IndexPage = ({ data }) => (
             </div>
           </div>
           <div className="hidden md:block p-4 items-start justify-start mr-6">
-            <img
+            <StaticImage
               alt="round profile"
-              src={andratar}
+              src={"../../static/img/coffee-art.jpg"}
               className="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
             />
           </div>
@@ -179,7 +177,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 150, format: PLAIN)
+          excerpt(pruneLength: 100, format: PLAIN)
           id
           fields {
             title
@@ -190,6 +188,7 @@ export const query = graphql`
           frontmatter {
             date(formatString: "YYYY-MM-DD")
             draft
+            tags
             cover {
               publicURL
               childImageSharp {

@@ -1,8 +1,8 @@
 ---
-path: '/blog/php-on-nginx-with-fastcgicaching'
-date: '2013-05-12T12:21:07.000Z'
-title: 'PHP on nginx with fastcgi-caching'
-tags: ['caching', 'fastcgi', 'php', 'nginx', 'blog']
+path: "/blog/php-on-nginx-with-fastcgicaching"
+date: "2013-05-12T12:21:07.000Z"
+title: "PHP on nginx with fastcgi-caching"
+tags: ["caching", "fastcgi", "php", "nginx", "blog"]
 ---
 
 I have a little VPS that hosts my blog and other various small projects. With a recent nginx update, my configuration files stopped working and I had to cut fastcgi-caching from my setup. I spent about 2 hours searching for this, so I am putting it up here - in case anyone has uses for it. This setup uses php5-fpm and nginx.
@@ -11,7 +11,7 @@ I have a little VPS that hosts my blog and other various small projects. With a 
 
 Include this from the nginx.conf (include /etc/nginx/cache.conf).
 
-```conf
+```nginx
 fastcgi_cache_path /var/lib/nginx/cache levels=1:2 keys_zone=DEFAULT:10m inactive=5m; fastcgi_cache_key "$scheme$request_method$host$request_uri";
 map $request_method $no_cache {
     default 0;

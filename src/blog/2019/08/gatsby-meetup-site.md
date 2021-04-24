@@ -1,8 +1,8 @@
 ---
-path: '/blog/2019/08/gatsby-meetup-site'
-date: '2019-08-25T00:00:00.000Z'
-title: 'Making a Gatsby site from Meetup event data'
-tags: ['react', 'gatsby', 'meetup']
+path: "/blog/2019/08/gatsby-meetup-site"
+date: "2019-08-25T00:00:00.000Z"
+title: "Making a Gatsby site from Meetup event data"
+tags: ["react", "gatsby", "meetup"]
 draft: false
 ---
 
@@ -22,7 +22,7 @@ For our group, the URL is: "https://www.meetup.com/Aalborg-Frontend/events/ical/
 
 ## Add the plugin
 
-```sh
+```bash
 yarn add gatsby-source-ical
 ```
 
@@ -31,18 +31,18 @@ yarn add gatsby-source-ical
 ```js
 // In your gatsby-config.js
 module.exports = {
-	plugins: [
-		// You can have multiple instances of this plugin
-		// to read source nodes from different remote files
-		{
-			resolve: `gatsby-source-ical`,
-			options: {
-				name: `events`,
-				url: `https://web-standards.ru/calendar.ics`
-			}
-		}
-	]
-}
+  plugins: [
+    // You can have multiple instances of this plugin
+    // to read source nodes from different remote files
+    {
+      resolve: `gatsby-source-ical`,
+      options: {
+        name: `events`,
+        url: `https://web-standards.ru/calendar.ics`,
+      },
+    },
+  ],
+};
 ```
 
 ### Query the data
