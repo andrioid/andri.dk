@@ -10,6 +10,8 @@ import { Layout } from "../layouts/layout";
 import { SEO } from "../components/seo";
 
 import waveBG from "../../static/img/wave.svg";
+import isFlag from "../../static/img/iceland-flag.svg";
+import dkFlag from "../../static/img/denmark-flag.svg";
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -46,16 +48,16 @@ const IndexPage = ({ data }) => (
                 <span aria-hidden hidden>
                   Iceland
                 </span>
-                <StaticImage
+                <img
                   className="inline-block align-middle md:w-8 md:h-8 w-4 h-4"
                   alt="Iceland"
-                  src="../../static/img/iceland-flag.svg"
+                  src={isFlag}
                 />
                 &nbsp; living in &nbsp;
-                <StaticImage
+                <img
                   className="inline-block align-middle md:w-8 md:h-8 w-4 h-4"
                   alt="Denmark"
-                  src={"../../static/img/denmark-flag.svg"}
+                  src={dkFlag}
                 />
                 <span aria-hidden hidden>
                   Denmark
@@ -189,20 +191,6 @@ export const query = graphql`
             date(formatString: "YYYY-MM-DD")
             draft
             tags
-            cover {
-              publicURL
-              childImageSharp {
-                fluid(
-                  maxWidth: 400
-                  quality: 90
-                  maxHeight: 200
-                  fit: COVER
-                  background: "#ffffff"
-                ) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
           }
         }
       }
@@ -219,13 +207,6 @@ export const query = graphql`
         startDate
         endDate
         skills
-      }
-    }
-    headerImage: file(relativePath: { eq: "hvitserkur.JPG" }) {
-      childImageSharp {
-        fluid(maxWidth: 1920) {
-          ...GatsbyImageSharpFluid
-        }
       }
     }
   }
