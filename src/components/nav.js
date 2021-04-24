@@ -30,7 +30,6 @@ export const Nav = (props) => (
       <NavItem href="/">Home</NavItem>
       <NavItem href="/blog/">Blog</NavItem>
       <NavItem href="/now/">Now</NavItem>
-      <NavItem href="/cv.pdf">CV</NavItem>
     </div>
   </nav>
 );

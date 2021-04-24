@@ -38,9 +38,9 @@ const NowPage = ({ data }) => (
       <Section title="My son keeps growing">
         <p>
           Our little half-Icelandic, half-Dane, all Viking son keeps us
-          entertained and challanged at home. He's soon to be 5 years old and
+          entertained and challanged at home. He's soon to be 7 years old and
           his little head is filled with questions that I hope Wikipedia can
-          help answer.
+          help answer. We've started doing physics experiments together.
         </p>
         <p>&nbsp;</p>
         <p>
@@ -51,26 +51,13 @@ const NowPage = ({ data }) => (
 
       <Section title="Engaged, but not in a hurry">
         <p>
-          Me and my girlfriend got engaged last October. I proposed during a
-          hide-and-seek game with our son. I was going for: "rememberable, but
-          silly". I think I nailed it. No date set yet.
+          Me and my girlfriend got engaged. I proposed during a hide-and-seek
+          game with our son. I was going for: "rememberable, but silly". I think
+          I nailed it. No date set yet.
         </p>
       </Section>
 
-      <Section title="Recently switched jobs">
-        <p>
-          I was forced to quit a job that I loved last April. The could smell
-          the burnout coming and had to bail out.
-        </p>
-        <p>&nbsp;</p>
-        <p>
-          I took a job in May at an Aarhus based company (1 hour drive).
-          Fortunately, they were kind enough to allow me to work from here 4
-          days a week. It's still quite new, so we'll see how it works out.
-        </p>
-      </Section>
-
-      <Section title="[Last updated: 2019-07-22]"></Section>
+      <Section title="[Last updated: 2021-04-24]"></Section>
 
       <div className="mt-10">
         <p className="text-sm">
