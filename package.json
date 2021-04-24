@@ -71,10 +71,11 @@
     "webpack": "^5.33.2"
   },
   "engines": {
-    "node": ">12.x",
+    "node": "14.x",
     "npm": "7.x"
   },
   "cacheDirectories": [
-    ".cache"
+    ".cache",
+    "public"
   ]
 }
