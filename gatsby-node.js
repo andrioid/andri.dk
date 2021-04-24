@@ -85,7 +85,6 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
 
     if (!slug) {
       console.error("no slug", node);
-      //reporter.panic("No slug found for markdown node");
     }
 
     if (slug) {
