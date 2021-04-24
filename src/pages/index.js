@@ -6,14 +6,11 @@ import { Twitter, LinkedIn, Github } from "../components/social-icons";
 import andratar from "../../static/img/coffee-art.jpg";
 import { FaHeart } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
-// import ReactCountryFlag from "react-country-flag";
 import { Card } from "../components/card";
 import { Layout } from "../layouts/layout";
 import { SEO } from "../components/seo";
 
 import waveBG from "../../static/img/wave.svg";
-import icelandicFlag from "../../static/img/iceland-flag.svg";
-import danishFlag from "../../static/img/denmark-flag.svg";
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -26,12 +23,7 @@ const IndexPage = ({ data }) => (
         backgroundSize: "cover",
       }}
     >
-      <div
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.33)",
-          flex: 1,
-        }}
-      >
+      <div className="flex-1">
         <nav className="flex justify-between items-center p-8">
           <img
             alt="round profile"
