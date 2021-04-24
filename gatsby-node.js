@@ -90,6 +90,7 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
 
     if (slug) {
       slug = slug.replace(/[ ]/g, "-");
+      slug = slug.replace(/[,.]/g, "");
     }
 
     createNodeField({
