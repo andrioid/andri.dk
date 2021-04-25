@@ -11,4 +11,4 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       # Force is used because we fetch from webdav
-      - run: doctl apps create deployment ${{ secrets.DIGITALOCEAN_APP_ID }} --wait --force-rebuild
+      - run: doctl apps create-deployment ${{ secrets.DIGITALOCEAN_APP_ID }} --wait --force-rebuild

@@ -28,13 +28,13 @@ export default function Template({
             <h1 className="text-gray-900 font-semibold text-xl md:text-3xl">
               {post.fields.title}
             </h1>
-            <div className="text-sm text-gray-600 flex justify-start mb-4">
+            <div className="text-base text-gray-600 flex justify-start mb-4">
               <p>{post.fields.date}</p>
             </div>
             <div className="mb-4 ">
               {post.fields.tags &&
                 post.fields.tags.map((t) => (
-                  <span key={t} className="andri-tag text-xs">
+                  <span key={t} className="andri-tag text-base">
                     {t}
                   </span>
                 ))}
@@ -44,7 +44,7 @@ export default function Template({
           <div className="mb-6"></div>
 
           <div
-            className="markdown text-sm md:text-base"
+            className="markdown md:text-base"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
         </div>

@@ -19,6 +19,7 @@ export const Nav = (props) => (
           alt="avatar"
           src={"../../static/img/coffee-art.jpg"}
           className="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
+          imgClassName="rounded-full"
         />
         <span className="font-semibold text-xl tracking-tight inline-block">
           Andri

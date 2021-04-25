@@ -17,17 +17,20 @@ const IndexPage = ({ data }) => (
   <Layout>
     <SEO />
     <div
-      className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700 bg-fixed bg-no-repeat bg-cover"
+      className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700"
       style={{
-        backgroundImage: `url(${waveBG})`,
+        background: `url(${waveBG}) no-repeat`,
+        backgroundSize: "cover",
+        //backgroundImage: `url(${waveBG})`,
       }}
     >
       <div className="flex-1">
         <nav className="flex justify-between items-center p-8">
           <StaticImage
-            alt="round profile"
+            alt="round profile (small)"
             src={"../../static/img/coffee-art.jpg"}
-            className="rounded-full shadow-2xl w-16 h-16 md:invisible"
+            className="rounded-full  w-16 h-16 md:invisible"
+            imgClassName="rounded-full shadow-2xl"
           />
           <div>
             <ul className="flex flex-row">
@@ -74,9 +77,10 @@ const IndexPage = ({ data }) => (
           </div>
           <div className="hidden md:block p-4 items-start justify-start mr-6">
             <StaticImage
-              alt="round profile"
+              alt="round profile (large)"
               src={"../../static/img/coffee-art.jpg"}
               className="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
+              imgClassName="rounded-full"
             />
           </div>
         </div>
@@ -163,7 +167,7 @@ const Section = ({
   <div
     className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}
   >
-    <h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase">
+    <h2 className="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase mb-2">
       {title}
     </h2>
     {children}
