@@ -16,7 +16,8 @@
     "build-cv": "cd src/cv && babel-node build.js",
     "watch-cv": "cd src/cv && nodemon --exec babel-node build.js",
     "build-card": "cd plugins/social-card && babel-node build.js",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "serve": "gatsby serve"
   },
   "dependencies": {
     "@andrioid/gatsby-source-webdav": "^0.1.7",

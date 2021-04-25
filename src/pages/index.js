@@ -29,8 +29,8 @@ const IndexPage = ({ data }) => (
           <StaticImage
             alt="round profile (small)"
             src={"../../static/img/coffee-art.jpg"}
-            className="rounded-full  w-16 h-16 md:invisible"
-            imgClassName="rounded-full shadow-2xl"
+            className="rounded-full shadow-2xl w-16 h-16 md:invisible"
+            imgClassName="rounded-full"
           />
           <div>
             <ul className="flex flex-row">

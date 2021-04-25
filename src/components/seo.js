@@ -53,6 +53,14 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
+
+        {/* RSS, yes, its back! */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href="/rss.xml"
+          title={title}
+        />
       </Helmet>
     </>
   );
