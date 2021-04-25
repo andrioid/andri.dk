@@ -29,7 +29,13 @@ export default function Template({
               {post.fields.title}
             </h1>
             <div className="text-base text-gray-600 flex justify-start mb-4">
-              <p>{post.fields.date}</p>
+              <p>
+                {new Date(post.fields.date).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
             </div>
             <div className="mb-4 ">
               {post.fields.tags &&
