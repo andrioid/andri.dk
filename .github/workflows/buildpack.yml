@@ -20,4 +20,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: andrioid/setup-pack@main
-      - run: pack build andridk --builder heroku/buildpacks:20 --publish
+      - run: pack build andridk --builder heroku/buildpacks:20
+      - run: docker tag andridk ghcr.io/andrioid/andri.dk:latest
+      - run: docker push ghcr.io/andrioid/andri.dk:latest
