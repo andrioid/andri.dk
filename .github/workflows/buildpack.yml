@@ -18,7 +18,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pack Remote Build
-        uses: dfreilich/pack-action@v1
-        with:
-          args: "build andridk --publish --builder heroku/buildpacks:20"
+
+      - name: Setup Pack
+        uses: buildpacks/github-actions/setup-pack@v4.1.0
+      - run: "pack build andridk --publish --builder heroku/buildpacks:20"
