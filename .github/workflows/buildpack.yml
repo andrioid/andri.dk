@@ -21,4 +21,4 @@ jobs:
       - name: Pack Remote Build
         uses: dfreilich/pack-action@v1
         with:
-          args: "build andridk --publish"
+          args: "build andridk --publish --builder heroku/buildpacks:20"
