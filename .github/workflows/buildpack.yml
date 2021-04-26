@@ -20,5 +20,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: andrioid/setup-pack@main
+      - run: docker pull ghcr.io/andrioid/andri.dk
       - run: pack build ghcr.io/andrioid/andri.dk --builder heroku/buildpacks:20
       - run: docker push ghcr.io/andrioid/andri.dk
