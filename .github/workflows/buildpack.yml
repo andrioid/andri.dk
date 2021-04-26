@@ -19,5 +19,5 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: andrioid/setup-pack@master
+      - uses: andrioid/setup-pack@main
       - run: pack build andridk --builder heroku/buildpacks:20
