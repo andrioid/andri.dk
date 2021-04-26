@@ -19,7 +19,5 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: mamezou-tech/buildpacks-action@master
-        with:
-          image: "andridk"
-          builder: "heroku/buildpacks:20"
+      - uses: andrioid/setup-pack@master
+      - run: pack build andridk --builder heroku/buildpacks:20
