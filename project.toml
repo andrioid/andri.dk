@@ -1,0 +1,9 @@
+[project]
+id = "dk.andri.webpage"
+name = "andri.dk"
+version = "1.0.0"
+
+[build]
+exclude = [
+    "docs"
+]
