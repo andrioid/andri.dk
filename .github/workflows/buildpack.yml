@@ -19,6 +19,8 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - run: bash -c "echo hello"
+
       - name: Setup Pack
         uses: buildpacks/github-actions/setup-pack@v4.1.1
       - run: "pack build andridk --publish --builder heroku/buildpacks:20"
