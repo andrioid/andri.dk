@@ -20,5 +20,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Pack
-        uses: buildpacks/github-actions/setup-pack@v4.1.0
+        uses: buildpacks/github-actions/setup-pack@v4.1.1
       - run: "pack build andridk --publish --builder heroku/buildpacks:20"
