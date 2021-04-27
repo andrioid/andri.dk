@@ -65,7 +65,7 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
     let slug = frontmatter && frontmatter.path;
     let date = frontmatter && frontmatter.date && new Date(frontmatter.date);
     let tags = (frontmatter && frontmatter.tags) || [];
-    let draft = frontmatter.draft === false || true;
+    let draft = frontmatter.draft === true || false;
 
     if (isDev) {
       draft = false;
