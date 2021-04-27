@@ -65,7 +65,11 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
     let slug = frontmatter && frontmatter.path;
     let date = frontmatter && frontmatter.date && new Date(frontmatter.date);
     let tags = (frontmatter && frontmatter.tags) || [];
-    let draft = (frontmatter.draft === true && !isDev) || false;
+    let draft = frontmatter.draft === false || true;
+
+    if (isDev) {
+      draft = false;
+    }
 
     if (fileNode.parent) {
       const davNode = getNode(fileNode.parent);
