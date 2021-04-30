@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { Nav } from "../components/nav";
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Layout } from "./layout";
-import { SEO } from "../components/seo";
+import { SEO, ShareOn } from "../components/seo";
 
 // import '../css/blog-post.css'; // make it pretty!
 
@@ -22,7 +22,12 @@ export default function Template({
       <Nav />
       <div className="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
         <div className="bg-white max-w-4xl py-10 shadow px-5 lg:px-10 min-w-half-screen">
-          {cover && <GatsbyImage image={getImage(cover.childImageSharp)} />}
+          {cover && (
+            <GatsbyImage
+              alt="post cover"
+              image={getImage(cover.childImageSharp)}
+            />
+          )}
 
           <div>
             <h1 className="text-gray-900 font-semibold text-xl md:text-3xl">
@@ -53,6 +58,9 @@ export default function Template({
             className="markdown md:text-base"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+          <ShareOn
+            url={`${data.site.siteMetadata.siteUrl}${post.fields.slug}`}
+          />
         </div>
       </div>
     </Layout>
@@ -61,6 +69,16 @@ export default function Template({
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+        title
+        description
+        social {
+          twitter
+        }
+      }
+    }
     markdownRemark(fields: { slug: { eq: $path } }) {
       html
       fields {

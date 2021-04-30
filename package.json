@@ -63,6 +63,7 @@
     "react-dom": "^16.14.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
+    "react-share": "^4.4.0",
     "tailwindcss": "^2.1.2",
     "typeface-indie-flower": "^1.1.13",
     "typeface-montserrat": "^1.1.13",

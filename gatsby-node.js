@@ -4,7 +4,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   try {
     console.debug("createPages called");
     const { createPage } = actions;
-    const blogPostTemplate = path.resolve(`src/layouts/blog-post.js`);
+    const blogPostTemplate = path.resolve(`src/layouts/blog-post.tsx`);
     const result = await graphql(`
       {
         allMarkdownRemark(
