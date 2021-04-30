@@ -58,6 +58,7 @@ export default function Template({
             className="markdown md:text-base"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+          <p>&nbsp;</p>
           <ShareOn
             url={`${data.site.siteMetadata.siteUrl}${post.fields.slug}`}
           />

@@ -140,7 +140,15 @@ module.exports = {
         plugins: [
           "gatsby-remark-webdav",
           // "gatsby-remark-mermaid",
-          "gatsby-remark-prismjs",
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              prompt: {
+                user: "groot",
+                global: true,
+              },
+            },
+          },
           {
             resolve: "gatsby-remark-images",
             //tracedSVG: true,

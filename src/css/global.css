@@ -57,10 +57,18 @@ a.link {
 	}
 	 */
   & .gatsby-highlight {
-    @apply rounded-none overflow-auto my-4;
+    @apply rounded-none overflow-auto my-5;
     & code {
-      @apply py-4;
+      @apply py-0;
     }
+  }
+
+  & .gatsby-highlight pre[class*="language-"].line-numbers {
+    @apply pl-1;
+  }
+
+  & .command-line-prompt > span[data-user]:before {
+    content: "$";
   }
 
   & .gatsby-resp-image-wrapper {
@@ -68,8 +76,8 @@ a.link {
   }
 
   & code,
-  pre {
-    @apply font-mono whitespace-pre;
+  & pre {
+    @apply font-mono whitespace-pre m-0 p-2;
   }
   & blockquote {
     @apply border-l-4 border-gray-700 my-4 px-4 py-2;
