@@ -33,11 +33,16 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
   } = data;
   const postMeta =
     frontmatter || postData.childMarkdownRemark.frontmatter || {};
-  const postFields = postData.fields || {};
+  const postFields = (postData && postData.fields) || {};
   let title = postFields.title || postMeta.title;
-  title += " | andri.dk";
+  if (title) {
+    title += ` | ${seo.title}`;
+  } else {
+    title = seo.title;
+  }
+
   const description =
-    postData.excerpt ||
+    postData?.excerpt ||
     postMeta.plainTextDescription ||
     postMeta.description ||
     seo.description;
