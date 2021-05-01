@@ -18,9 +18,9 @@ module.exports = {
       resolve: "gatsby-plugin-social-cards",
       options: {
         authorImage: "./static/img/coffee-art.jpg",
-        backgroundImage: "./static/img/hvitserkur.JPG",
+        backgroundImage: "./static/img/wave.svg",
         defaultAuthor: "Andri Óskarsson",
-        design: "default",
+        design: "card",
       },
     },
     {
@@ -157,6 +157,7 @@ module.exports = {
               wrapperStyle: "max-width: 896px;",
             },
           },
+          "gatsby-remark-autolink-headers",
         ],
       },
     },
