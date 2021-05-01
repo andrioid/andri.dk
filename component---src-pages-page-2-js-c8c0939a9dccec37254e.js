@@ -1,0 +1,2 @@
+(self.webpackChunkandri_dk=self.webpackChunkandri_dk||[]).push([[617],{9863:function(e,t,n){"use strict";n.r(t);var a=n(7294),l=n(8902);t.default=function(){return a.createElement("div",null,a.createElement("h1",null,"Hi from the second page"),a.createElement("p",null,"Welcome to page 2"),a.createElement(l.ZP,{to:"/"},"Go back to the homepage"))}}}]);
+//# sourceMappingURL=component---src-pages-page-2-js-c8c0939a9dccec37254e.js.map
