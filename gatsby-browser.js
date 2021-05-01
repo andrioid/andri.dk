@@ -1,5 +1,3 @@
-//import "gatsby-remark-vscode/styles.css";
-
 import "typeface-montserrat";
 import "typeface-source-code-pro";
 import "prismjs/themes/prism-tomorrow.css";
