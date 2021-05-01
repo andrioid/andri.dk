@@ -18,7 +18,7 @@ export default function Template({
   const { cover } = frontmatter;
   return (
     <Layout slug={data.markdownRemark.fields.slug}>
-      <SEO frontmatter={post.frontmatter} postData={post} />
+      <SEO frontmatter={post.frontmatter} postData={post} isBlogPost={true} />
       <Nav />
       <div className="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
         <div className="bg-white max-w-4xl py-10 shadow px-5 lg:px-10 min-w-half-screen">
@@ -82,6 +82,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $path } }) {
       html
+      excerpt(pruneLength: 250)
       fields {
         title
         date

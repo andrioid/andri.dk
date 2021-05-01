@@ -41,13 +41,16 @@ a.link {
     @apply font-bold;
   }
   & h1 {
-    @apply leading-tight text-2xl font-semibold text-gray-900 mb-2 mt-10;
+    @apply leading-normal text-3xl font-semibold text-gray-900 mb-2 mt-10;
   }
   & h2 {
-    @apply leading-tight text-xl font-semibold text-gray-900 mb-2 mt-10;
+    @apply leading-normal text-2xl font-semibold text-gray-900 mb-2 mt-10;
   }
   & h3 {
-    @apply leading-tight text-lg font-semibold text-gray-900 mt-8 mb-2;
+    @apply leading-normal text-xl font-semibold text-gray-900 mt-8 mb-2;
+  }
+  & h3 {
+    @apply leading-normal text-lg font-semibold text-gray-900 mt-8 mb-2;
   }
   /* & code {
 		@apply font-mono text-sm inline bg-gray-400 px-1;

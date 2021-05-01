@@ -33,9 +33,14 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
   } = data;
   const postMeta =
     frontmatter || postData.childMarkdownRemark.frontmatter || {};
-  const title = postMeta.title || seo.title;
+  const postFields = postData.fields || {};
+  let title = postFields.title || postMeta.title;
+  title += " | andri.dk";
   const description =
-    postMeta.plainTextDescription || postMeta.description || seo.description;
+    postData.excerpt ||
+    postMeta.plainTextDescription ||
+    postMeta.description ||
+    seo.description;
   const image = `${seo.siteUrl}/${
     (postData && postData.fields.socialcard) || defaultMetaImage
   }`;
