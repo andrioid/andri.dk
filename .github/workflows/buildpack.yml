@@ -1,7 +1,7 @@
 name: buildpack
 on: [push, pull_request]
 jobs:
-  dockerhub_remote_build:
+  remote-build:
     runs-on: ubuntu-latest
     container:
       image: docker:stable
@@ -19,7 +19,33 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # Downloads and caches the pack command (the code is open)
       - uses: andrioid/setup-pack@main
-      - run: docker pull ghcr.io/andrioid/andri.dk
-      - run: pack build ghcr.io/andrioid/andri.dk --builder heroku/buildpacks:20
-      - run: docker push ghcr.io/andrioid/andri.dk
+      # Attempt to fetch any previous image so that we may use it for caching
+      - run: docker pull ghcr.io/${GITHUB_REPOSITORY}/${IMG_NAME} || true
+      # Builds your site with buildpacks (heroku builder)
+      - run: pack build ghcr.io/${GITHUB_REPOSITORY}/${IMG_NAME} --builder=heroku/buildpacks:20
+      # Pushes your new image to Github's Container Registry
+      - run: docker push ghcr.io/${GITHUB_REPOSITORY}/${IMG_NAME}
+      # Copy the build assets from the container and cleanup
+      - run: CONTAINER_ID=$(docker create ghcr.io/${GITHUB_REPOSITORY}/${IMG_NAME}:latest /bin/sh) && docker cp ${CONTAINER_ID}:/workspace/public . && docker rm ${CONTAINER_ID}
+      - run: ls -alh public
+      - uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: public/
+
+  deploy-ghpages:
+    needs: remote-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2 # needed to setup git
+      - uses: actions/download-artifact@v2
+        with:
+          name: public
+          path: public
+      - uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: public
