@@ -65,7 +65,7 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
 
         {/* OpenGraph tags */}
         <meta property="og:url" content={url} />
-        {isBlogPost ? <meta property="og:type" content="article" /> : null}
+        {postData ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
         <meta property="og:site_name" content={seo.title} />
         <meta property="og:description" content={description} />
