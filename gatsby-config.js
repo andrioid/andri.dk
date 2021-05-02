@@ -11,6 +11,7 @@ module.exports = {
     social: {
       twitter: "andrioid",
     },
+    goatcounterCode: "andrioid",
   },
   plugins: [
     "gatsby-plugin-postcss",
