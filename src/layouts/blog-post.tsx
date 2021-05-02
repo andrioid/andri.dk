@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import { Nav } from "../components/nav";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { Layout } from "./layout";
 import { SEO, ShareOn } from "../components/seo";
 
 // import '../css/blog-post.css'; // make it pretty!
@@ -17,7 +16,7 @@ export default function Template({
   const { frontmatter } = post;
   const { cover } = frontmatter;
   return (
-    <Layout slug={data.markdownRemark.fields.slug}>
+    <>
       <SEO frontmatter={post.frontmatter} postData={post} isBlogPost={true} />
       <Nav />
       <div className="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
@@ -64,7 +63,7 @@ export default function Template({
           />
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 

@@ -6,7 +6,6 @@ import { Twitter, LinkedIn, Github } from "../components/social-icons";
 import { FaHeart } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
 import { Card } from "../components/card";
-import { Layout } from "../layouts/layout";
 import { SEO } from "../components/seo";
 
 import waveBG from "../../static/img/wave.svg";
@@ -14,7 +13,7 @@ import isFlag from "../../static/img/iceland-flag.svg";
 import dkFlag from "../../static/img/denmark-flag.svg";
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <>
     <SEO />
     <div
       className="flex flex-col font-sans md:min-h-one-third-screen text-white bg-blue-700"
@@ -127,7 +126,7 @@ const IndexPage = ({ data }) => (
         <LinkedIn user="andriosk" />
       </div>
     </div>
-  </Layout>
+  </>
 );
 
 const ArticleList = ({ posts }) => (

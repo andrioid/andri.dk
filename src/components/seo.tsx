@@ -14,6 +14,7 @@ import {
 // Borrowed from https://github.com/kentcdodds/kentcdodds.com/blob/master/src/components/seo/index.js
 // Thanks Kent
 export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
+  const isDev = process.env.NODE_ENV !== "production";
   const data = useStaticQuery(graphql`
     {
       site {
@@ -50,7 +51,6 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
   const image = `${seo.siteUrl}/${
     (postData && postData.fields.socialcard) || defaultMetaImage
   }`;
-  const date = postData?.fields.date;
   const url = postData?.fields.slug
     ? `${seo.siteUrl}${postData?.fields.slug}`
     : seo.siteUrl;
@@ -62,7 +62,6 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="author" content={seo.author} />
-
         {/* OpenGraph tags */}
         <meta property="og:url" content={url} />
         {postData ? <meta property="og:type" content="article" /> : null}
@@ -70,14 +69,12 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
         <meta property="og:site_name" content={seo.title} />
         <meta property="og:description" content={description} />
         <meta name="image" property="og:image" content={image} />
-
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content={seo.social.twitter} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
-
         {/* RSS, yes, its back! */}
         <link
           rel="alternate"
@@ -85,6 +82,13 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
           href="/rss.xml"
           title={title}
         />
+        {!isDev && (
+          <script
+            data-goatcounter="https://andrioid.goatcounter.com/count"
+            async
+            src="//gc.zgo.at/count.js"
+          ></script>
+        )}
       </Helmet>
     </>
   );
