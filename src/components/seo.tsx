@@ -18,6 +18,7 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
     {
       site {
         siteMetadata {
+          author
           siteUrl
           title
           description
@@ -49,21 +50,26 @@ export const SEO = ({ postData, frontmatter = {}, metaImage, isBlogPost }) => {
   const image = `${seo.siteUrl}/${
     (postData && postData.fields.socialcard) || defaultMetaImage
   }`;
-  const url = postMeta.path ? `${seo.siteUrl}${postMeta.path}` : seo.siteUrl;
+  const date = postData?.fields.date;
+  const url = postData?.fields.slug
+    ? `${seo.siteUrl}${postData?.fields.slug}`
+    : seo.siteUrl;
+
   return (
     <>
       <Helmet>
         {/* General tags */}
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="image" content={image} />
+        <meta name="author" content={seo.author} />
 
         {/* OpenGraph tags */}
         <meta property="og:url" content={url} />
         {isBlogPost ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
+        <meta property="og:site_name" content={seo.title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
+        <meta name="image" property="og:image" content={image} />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
