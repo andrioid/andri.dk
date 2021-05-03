@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Helmet from "react-helmet";
 import defaultMetaImage from "../../static/img/default-og-image.png";
