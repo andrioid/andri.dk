@@ -8,7 +8,7 @@ import {
 import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 const components = {
   //a: CustomLink,
@@ -19,7 +19,13 @@ const components = {
   Head,
 };
 
-export default function BlogPosts({ query, source, frontmatter }) {
+interface BlogPostProps {
+  source: MDXRemoteSerializeResult<Record<string, unknown>>;
+  title: string;
+  date: Date;
+}
+
+export default function BlogPosts({ source }: BlogPostProps) {
   const router = useRouter();
   //console.log("post props", post);
   console.log("router query", router.query);
@@ -51,7 +57,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
+  params,
+}) => {
   console.log("static props", params);
   const localPath = params.slug.join("/");
   const post = await getPostByName(localPath, [
@@ -61,17 +69,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     "content",
   ]);
 
-  const frontmatter = {
-    title: post.title,
-    date: post.date,
-  };
-
   const mdxSource = await serialize(post.content);
 
   return {
     props: {
       source: mdxSource,
-      frontmatter,
+      title: post.title,
+      date: new Date(post.date),
     },
   };
 };
