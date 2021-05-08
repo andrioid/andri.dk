@@ -9,6 +9,7 @@ import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { ParsedUrlQuery } from "querystring";
 
 const components = {
   //a: CustomLink,
@@ -22,7 +23,7 @@ const components = {
 interface BlogPostProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
   title: string;
-  date: Date;
+  date: string;
 }
 
 export default function BlogPosts({ source }: BlogPostProps) {
@@ -60,8 +61,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
   params,
 }) => {
+  const { slug } = params;
   console.log("static props", params);
-  const localPath = params.slug.join("/");
+  const localPath = slug && typeof slug !== "string" && slug.join("/");
   const post = await getPostByName(localPath, [
     "path",
     "date",
@@ -75,7 +77,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
     props: {
       source: mdxSource,
       title: post.title,
-      date: new Date(post.date),
+      date: post.date,
     },
   };
 };

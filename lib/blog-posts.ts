@@ -10,7 +10,7 @@ const POST_DIR = "blog";
 export type BlogPost = {
   path: string;
   title: string;
-  date: Date;
+  date: string;
   excerpt?: string;
   content?: string;
   localFile?: string;
@@ -68,7 +68,7 @@ export async function getPostByFilename(
   let item: BlogPost = {
     path: "",
     title: "",
-    date: new Date(),
+    date: new Date().toISOString(),
   };
   if (data["path"]) {
     data["path"] = data["path"].replace(/^\//, ""); // Trim the prefix

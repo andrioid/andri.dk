@@ -3,7 +3,7 @@
 @tailwind components;
 
 .andri-tag {
-  @apply inline-block bg-gray-500 rounded-sm px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
+  @apply inline-block bg-gray-600 rounded-sm px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
 }
 
 a.link {
@@ -41,13 +41,16 @@ a.link {
     @apply font-bold;
   }
   & h1 {
-    @apply leading-tight text-2xl font-semibold text-gray-900 mb-2 mt-10;
+    @apply leading-normal text-3xl font-semibold text-gray-900 mb-2 mt-10;
   }
   & h2 {
-    @apply leading-tight text-xl font-semibold text-gray-900 mb-2 mt-10;
+    @apply leading-normal text-2xl font-semibold text-gray-900 mb-2 mt-10;
   }
   & h3 {
-    @apply leading-tight text-lg font-semibold text-gray-900 mt-8 mb-2;
+    @apply leading-normal text-xl font-semibold text-gray-900 mt-8 mb-2;
+  }
+  & h3 {
+    @apply leading-normal text-lg font-semibold text-gray-900 mt-8 mb-2;
   }
   /* & code {
 		@apply font-mono text-sm inline bg-gray-400 px-1;
@@ -57,10 +60,18 @@ a.link {
 	}
 	 */
   & .gatsby-highlight {
-    @apply rounded-none overflow-auto my-4;
+    @apply rounded-none overflow-auto my-5;
     & code {
-      @apply py-4;
+      @apply py-0;
     }
+  }
+
+  & .gatsby-highlight pre[class*="language-"].line-numbers {
+    @apply pl-1;
+  }
+
+  & .command-line-prompt > span[data-user]:before {
+    content: "$";
   }
 
   & .gatsby-resp-image-wrapper {
@@ -68,8 +79,8 @@ a.link {
   }
 
   & code,
-  pre {
-    @apply font-mono whitespace-pre;
+  & pre {
+    @apply font-mono whitespace-pre m-0 p-2;
   }
   & blockquote {
     @apply border-l-4 border-gray-700 my-4 px-4 py-2;

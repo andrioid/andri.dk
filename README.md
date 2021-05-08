@@ -4,11 +4,15 @@ Personal site and playground.
 
 ## Tech Stack
 
+### Blog
+
 - React
-- TailwindCSS
+- Tailwind CSS
 - Gatsby
-- Vercel
 - JavaScript
+
+### CV
+
 - React-PDF
 - JSON Resume
 
@@ -23,7 +27,3 @@ Fetches MD files through Gatsby, then uses GraphQL to list them.
 Fetches all skills from my resume.json, then sorts it by years of experience from the work part of the resume.json file.
 
 The preference is configured by a prop manually.
-
-# TODO
-
-- Check out some of kentcdodds.com stuff, looks good: https://github.com/kentcdodds/kentcdodds.com/blob/master/src/components/seo/index.js
