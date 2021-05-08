@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Twitter, LinkedIn, Github } from "../components/social-icons";
 import { FaHeart } from "react-icons/fa";
 import { SkillDataTransform, Skills } from "../components/skills/skills";
-import ReactCountryFlag from "react-country-flag";
 import { Card } from "../components/card";
 import { Layout } from "../components/layouts/layout";
 import { getAllPosts } from "../lib/blog-posts";
