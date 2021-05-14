@@ -1,0 +1,331 @@
+{
+  "basics": {
+    "name": "Andri Óskarsson",
+    "label": "Computer Engineer",
+    "picture": "https://andri.dk/static/3a12aa0364d1851eaab41841f8a12b88/284df/coffee-art.jpg",
+    "email": "m@andri.dk",
+    "website": "https://andri.dk",
+    "summary": "Driven, independent Software Developer with a broad skill set.",
+    "location": {
+      "city": "Aalborg",
+      "countryCode": "DK",
+      "region": "Nordjylland"
+    },
+    "profiles": [
+      {
+        "network": "Twitter",
+        "username": "andrioid",
+        "url": "https://twitter.com/andrioid"
+      },
+      {
+        "network": "Github",
+        "username": "andrioid",
+        "url": "https://github.com/andrioid"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "andriosk",
+        "url": "https://www.linkedin.com/in/andriosk/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Venue POS A/S",
+      "position": "Lead Software Developer",
+      "website": "https://www.venuepos.net",
+      "startDate": "2020-01-01",
+      "summary": "Built a user-friendly, distributed POS on top of React Native and Android for retailers, events and restaurants using event-sourcing.",
+      "skills": [
+        "React",
+        "React Native",
+        "Docker",
+        "Postgres",
+        "TypeScript",
+        "Event Sourcing",
+        "Android"
+      ]
+    },
+    {
+      "company": "Redia A/S",
+      "position": "Senior Software Developer",
+      "website": "https://www.redia.dk",
+      "startDate": "2019-05-01",
+      "endDate": "2019-12-31",
+      "summary": "Helped to create a teaching platform for a large publisher. Pitched and developed an image-scaling microservice.",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Docker",
+        "Firebase",
+        "Go",
+        "Microservices",
+        "React Native",
+        "Serverless",
+        "Postgres"
+      ]
+    },
+    {
+      "company": "PARKPARK A/S",
+      "position": "Tech Lead",
+      "website": "https://parkpark.dk",
+      "startDate": "2017-01-01",
+      "endDate": "2019-05-01",
+      "summary": "Pitched, developed and delivered a new user-focused app. Moved our infrastructure from a single server to full redundancy in Google Cloud. Ran in-house development, trained new employees, managed our infrastructure, coordinated with freelancers and did full-stack software development.",
+      "highlights": [
+        "Pitched, developed and shipped our new app",
+        "Migrated our infrastructure to a managed Kubernetes environment"
+      ],
+      "skills": [
+        "React",
+        "React Native",
+        "PHP",
+        "Go",
+        "JavaScript",
+        "MySQL",
+        "Kubernetes",
+        "Docker",
+        "Linux"
+      ]
+    },
+    {
+      "company": "UVData A/S (now KMD)",
+      "position": "Senior Developer",
+      "startDate": "2015-11-01",
+      "endDate": "2017-01-01",
+      "summary": "I managed releases, did frontend development and was a Scrum-Master on \"Min Uddannelse\", a large learning platform. I helped introduce React to the organisation, did internal training and helped with recruiting.",
+      "highlights": [
+        "Managed releases and handled deployment pipelines",
+        "Scrum-master on MinUddannelse",
+        "Helped to introduce React to the organization"
+      ],
+      "skills": ["React", "DevOps", "JavaScript", "CSS", "HTML", "jQuery"]
+    },
+    {
+      "company": "M1 A/S (later TDC)",
+      "position": "System Developer",
+      "startDate": "2012-03-01",
+      "endDate": "2015-11-01",
+      "summary": "Worked on an internal billing and CRM system as a part of the backend team. I pitched a delivered an automatic plan-upgrade system for usage-warnings that was generating revenue.",
+      "highlights": [
+        "Pitched and delivered automatic product upgrades with usage-warning SMS to customers."
+      ],
+      "skills": ["PHP", "MySQL", "Linux", "jQuery", "Docker", "JavaScript"]
+    },
+    {
+      "company": "Lyngsø Systems A/S",
+      "position": "Software Developer",
+      "startDate": "2013-03-01",
+      "endDate": "2013-06-01",
+      "summary": "Worked on automatic sorting machines for a large, American clothing store.",
+      "skills": ["Java", "Linux", "Windows"]
+    },
+
+    {
+      "company": "Sprettur ehf (now Kolibri)",
+      "position": "Software Developer / Intern",
+      "startDate": "2011-03-01",
+      "endDate": "2011-07-01",
+      "summary": "Worked closely with one of our customers on creating a shipping calculator for their website, and a reverse-engineered thermal printer solution.",
+      "skills": ["C#", "ASP.NET", "Windows"]
+    },
+    {
+      "company": "Aalborg University",
+      "website": "https://aau.dk",
+      "position": "Student Developer",
+      "startDate": "2009-06-01",
+      "endDate": "2009-08-01",
+      "summary": "Developed an Android app and a backend that used geolocation to provide the users with location-aware ads.",
+      "skills": ["Java", "Python", "Django", "XML", "Android", "HTML", "CSS"]
+    },
+    {
+      "company": "Calidris (now Sabre)",
+      "position": "Systems Administrator",
+      "startDate": "2004-01-01",
+      "endDate": "2006-07-01",
+      "summary": "Managed our systems and network. Supported our developers. Built our VoIP PBX.",
+      "skills": ["Linux", "Asterisk", "Cisco"]
+    },
+    {
+      "company": "Hringiðan ehf",
+      "website": "https://www.vortex.is",
+      "position": "Systems Administrator",
+      "startDate": "2002-01-01",
+      "endDate": "2004-01-01",
+      "summary": "Managed servers, routers and switches. Customer support.",
+      "skills": ["Linux", "Windows Server", "Active Directory"]
+    },
+    {
+      "company": "Þrívíddarmiðlun ehf (now Hugsandi Menn)",
+      "position": "Web Developer",
+      "startDate": "2001-11-01",
+      "endDate": "2002-01-01",
+      "summary": "Created custom CMS systems for cinemas and real-estate brokers.",
+      "skills": ["PHP", "MySQL", "HTML", "CSS"]
+    },
+    {
+      "company": "Titan hf (now Vodafone)",
+      "position": "Network Technician",
+      "startDate": "2000-01-01",
+      "endDate": "2001-01-01",
+      "summary": "Installed and supported our B2B customers with DSL and fiber connections. Did some minor system administration as well.",
+      "skills": ["Cisco", "DSL", "Telco", "AIX"]
+    },
+    {
+      "company": "Firmanet ehf",
+      "position": "Web Developer",
+      "startDate": "1999-01-01",
+      "endDate": "2000-01-01",
+      "summary": "Custom PHP solutions for our customers.",
+      "skills": ["PHP", "MySQL", "HTML", "CSS"]
+    },
+    {
+      "company": "Frisk Software ehf",
+      "position": "Tester",
+      "startDate": "1998-01-01",
+      "endDate": "1999-01-01",
+      "summary": "Tested releases, collected binaries on the Internet for a false-positive database. Did some minor web development.",
+      "skills": ["PHP", "MySQL", "Testing"]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Aalborg React Meetup",
+      "position": "Co-host",
+      "website": "https://www.meetup.com/Aalborg-React-React-Native-Meetup/",
+      "startDate": "2016-12-13",
+      "summary": "Speaker and co-host."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Aalborg University",
+      "area": "Computer Engineering",
+      "studyType": "BSc",
+      "startDate": "2007-08-01",
+      "endDate": "2012-03-01"
+    },
+    {
+      "institution": "J.B. Rainsberger / Sprettur ehf",
+      "area": "Test Driven Development",
+      "studyType": "Course",
+      "startDate": "2012-05-01",
+      "endDate": "2012-05-01"
+    },
+    {
+      "institution": "J.B. Rainsberger / Sprettur ehf",
+      "area": "Agile Design",
+      "studyType": "Course",
+      "startDate": "2012-05-02",
+      "endDate": "2012-05-03"
+    },
+    {
+      "institution": "Aalborg University",
+      "area": "Engineering Entrance",
+      "studyType": "Course",
+      "startDate": "2006-08-01",
+      "endDate": "2007-08-01"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Software Development",
+      "level": "Senior",
+      "color": "#2B6CB0",
+      "keywords": [
+        "Go",
+        "PHP",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "React Native",
+        "C",
+        "C++",
+        "C#",
+        "TCL",
+        "Lua",
+        "Vue.js",
+        "TypeScript",
+        "Java",
+        "jQuery"
+      ]
+    },
+    {
+      "name": "System Operations",
+      "color": "#4C51BF",
+      "level": "Senior",
+      "keywords": [
+        "Github",
+        "DevOps",
+        "Linux",
+        "AWS",
+        "GCP",
+        "Terraform",
+        "Kubernetes",
+        "Docker",
+        "DNS",
+        "SMTP",
+        "Cisco",
+        "Asterisk",
+        "Jenkins",
+        "Gitlab",
+        "Windows",
+        "Mac"
+      ]
+    },
+    {
+      "name": "Data Management",
+      "color": "#319795",
+      "level": "Senior",
+      "keywords": [
+        "MySQL",
+        "Postgres",
+        "MongoDB",
+        "Firestore",
+        "Memcache",
+        "Redis",
+        "SQLite",
+        "Event Sourcing"
+      ]
+    },
+    {
+      "name": "Processes and methodologies",
+      "level": "Senior",
+      "keywords": [
+        "Agile",
+        "Kanban",
+        "Scrum",
+        "Lean",
+        "Test Driven Development"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Icelandic",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "Danish",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Technical",
+      "keywords": ["Programming", "Linux", "Gaming"]
+    },
+    {
+      "name": "Personal",
+      "keywords": ["Basketball", "Weight lifting", "Hiking", "Photography"]
+    }
+  ],
+  "meta": {
+    "theme": "elegant"
+  }
+}

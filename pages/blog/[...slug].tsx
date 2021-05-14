@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import {
+  BlogPost,
   getAllPosts,
   getPostByFilename,
   getPostByName,
@@ -10,6 +11,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { ParsedUrlQuery } from "querystring";
+import BlogPageLayout from "../../components/layouts/blog-post";
 
 const components = {
   //a: CustomLink,
@@ -22,19 +24,17 @@ const components = {
 
 interface BlogPostProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
-  title: string;
-  date: string;
+  post: BlogPost;
 }
 
-export default function BlogPosts({ source }: BlogPostProps) {
+export default function BlogPosts({ source, post }: BlogPostProps) {
   const router = useRouter();
   //console.log("post props", post);
   console.log("router query", router.query);
   return (
-    <div>
-      <p>Hello</p>
+    <BlogPageLayout post={post}>
       <MDXRemote {...source} />
-    </div>
+    </BlogPageLayout>
   );
 }
 
@@ -69,6 +69,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
     "date",
     "title",
     "content",
+    "tags",
   ]);
 
   const mdxSource = await serialize(post.content);
@@ -76,8 +77,9 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
   return {
     props: {
       source: mdxSource,
-      title: post.title,
-      date: post.date,
+      post: {
+        ...post,
+      },
     },
   };
 };

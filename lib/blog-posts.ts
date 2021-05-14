@@ -14,6 +14,7 @@ export type BlogPost = {
   excerpt?: string;
   content?: string;
   localFile?: string;
+  tags?: string[];
 };
 
 export async function getPostFilenames() {
@@ -30,8 +31,8 @@ export async function getAllPosts(fields: string[] = []): Promise<BlogPost[]> {
   for (const k in paths) {
     const post = await getPostByFilename(paths[k], fields);
     posts.push({
-      localFile: paths[k],
       ...post,
+      localFile: paths[k],
     });
   }
   posts = posts.sort((a, b) => (a.date < b.date ? -1 : 1));
@@ -66,13 +67,10 @@ export async function getPostByFilename(
   const m = fs.readFileSync(fullPath, "utf8");
   const { data, content, excerpt } = matter(m, { excerpt: true });
   let item: BlogPost = {
-    path: "",
-    title: "",
+    path: localFile.substr(0, localFile.lastIndexOf(".md")),
+    title: data.title,
     date: new Date().toISOString(),
   };
-  if (data["path"]) {
-    data["path"] = data["path"].replace(/^\//, ""); // Trim the prefix
-  }
   fields.forEach((field) => {
     if (field === "content") {
       item[field] = content;
@@ -80,9 +78,14 @@ export async function getPostByFilename(
     if (field === "excerpt") {
       item[field] = excerpt || content.split("\n").slice(0, 4).join(" ");
     }
+    if (field === "tags") {
+      item[field] = data[field];
+    }
+    /*
     if (data[field]) {
       item[field] = data[field];
     }
+    */
   });
   return item;
 }

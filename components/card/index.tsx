@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCalendarAlt as FaCalendar } from "react-icons/fa";
 import Link from "next/link";
+import { formatDate } from "../../lib/date";
 
 export const Card = ({
   title = "",
@@ -18,16 +19,18 @@ export const Card = ({
   draft?: boolean;
 }) => (
   <Link href={link}>
-    <span className="flex pt-2 sm:pt-4 sm:pr-4 lg:pr-6 w-full sm:w-1/2 xl:w-1/3">
+    <div className="flex pt-2 sm:pt-4 sm:pr-4 lg:pr-6 w-full sm:w-1/2 xl:w-1/3">
       <div className="shadow-lg bg-white hover:shadow-2xl text-gray-900">
         <div className="flex flex-col px-6 pb-4 justify-between h-full">
           <div className="mt-4 text-sm text-gray-600 flex justify-start items-center">
             <FaCalendar />
-            <span className="ml-2">{date}</span>
+            <span className="ml-2">{formatDate(date)}</span>
           </div>
 
           <div className="flex mt-1 font-bold text-lg lg:text-xl mb-2">
-            {title}
+            <Link href={link}>
+              <a className="hover:underline">{title}</a>
+            </Link>
           </div>
           <div className="flex flex-1 text-base h-20">
             <p className="">{description}</p>
@@ -48,6 +51,6 @@ export const Card = ({
 
         <div className="px-6 py-4"></div>
       </div>
-    </span>
+    </div>
   </Link>
 );

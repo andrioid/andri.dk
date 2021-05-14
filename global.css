@@ -7,10 +7,7 @@
 }
 
 a.link {
-  @apply text-indigo-900;
-  &:hover {
-    @apply underline;
-  }
+  @apply text-indigo-900 hover:underline;
 }
 
 .btn {
