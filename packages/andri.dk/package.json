@@ -1,5 +1,5 @@
 {
-  "name": "@example/basics",
+  "name": "andri.dk",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,7 +11,11 @@
   "devDependencies": {
     "@astrojs/react": "^0.1.1",
     "@astrojs/tailwind": "^0.2.1",
+    "@babel/core": ">=7.0.0-0 <8.0.0",
+    "@fontsource/montserrat": "^4.5.7",
     "astro": "^1.0.0-beta.20",
+    "postcss": "^8.4.13",
+    "prettier-plugin-astro": "^0.0.12",
     "react": "^17.0.2 || ^18.0.0",
     "react-dom": "^17.0.2 || ^18.0.0"
   }

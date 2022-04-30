@@ -1,174 +1,81 @@
 ---
-import Layout from '../components/Layout.astro';
+import { Section } from "../components/Section";
+import { NavLink } from "../components/NavLink";
+import { MainBody } from "../components/MainBody";
+
+import "@fontsource/montserrat";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions"><strong>Your first mission:</strong> tweak this message to try our hot module reloading. Check the <code>src/pages</code> directory!</p>
-		<ul role="list" class="link-card-grid">
-			<li class="link-card">
-				<a href="https://astro.build/integrations/">
-					<h2>Integrations <span>&rarr;</span></h2>
-					<p>Add component frameworks, Tailwind, Partytown, and more!</p>
-				</a>
-			</li>
-			<li class="link-card">
-				<a href="https://astro.build/themes/">
-					<h2>Themes <span>&rarr;</span></h2>
-					<p>Explore a galaxy of community-built starters.</p>
-				</a>
-			</li>
-			<li class="link-card">
-				<a href="https://docs.astro.build/">
-					<h2>Docs <span>&rarr;</span></h2>
-					<p>Learn our complete feature set and explore the API.</p>
-				</a>
-			</li>
-			<li class="link-card">
-				<a href="https://astro.build/chat/">
-					<h2>Chat <span>&rarr;</span></h2>
-					<p>
-						Ask, contribute, and have fun on our community Discord
-						<svg
-							class="heart"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 512 512"
-							width="16"
-							height="16"
-							fill="currentColor"
-						>
-							<title>heart</title>
-							<path d="M256 448l-30.164-27.211C118.718 322.442 48 258.61 48 179.095 48 114.221 97.918 64 162.4 64c36.399 0 70.717 16.742 93.6 43.947C278.882 80.742 313.199 64 349.6 64 414.082 64 464 114.221 464 179.095c0 79.516-70.719 143.348-177.836 241.694L256 448z" />
-						</svg>
-					</p>
-				</a>
-			</li>
-		</ul>
-	</main>
-</Layout>
+<head>
+  <!-- Other stuff -->
+  <link rel="stylesheet" href="../../css/global.css" />
+</head>
+<main>
+  <MainBody>
+    <div class="flex-1">
+      <nav class="flex justify-between items-center p-8">
+        <!-- <img
+          alt="round profile (small)"
+          src={"../../static/img/coffee-art.jpg"}
+          class="rounded-full shadow-2xl w-16 h-16 md:invisible"
+        /> -->
+        <div>
+          <ul class="flex flex-row">
+            <NavLink href="blog/">Blog</NavLink>
 
-<style>
-	:root {
-		--color-border: hsl(17, 24%, 90%);
-		--astro-gradient: linear-gradient(0deg,#4F39FA, #DA62C4);
-		--link-gradient: linear-gradient(45deg, #4F39FA, #DA62C4 30%, var(--color-border) 60%);
-		--night-sky-gradient: linear-gradient(0deg, #392362 -33%, #431f69 10%, #30216b 50%, #1f1638 100%);
-	}
+            <NavLink href="now/">Now</NavLink>
+          </ul>
+        </div>
+      </nav>
+      <div
+        class="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl"
+      >
+        <div class="flex-1">
+          <h2
+            class="font-headline md:text-6xl text-3xl font-semibold inline-block my-2"
+          >
+            Hi, I'm Andri
+          </h2>
+          <div class="text-lg md:text-2xl">
+            <p>
+              Computer Engineer from &nbsp;
+              <span aria-hidden hidden> Iceland </span>
+              &nbsp; living in &nbsp;
+              <span aria-hidden hidden> Denmark </span>
+            </p>
+            <p>&nbsp;</p>
 
-	h2 {
-		margin: 0;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	h2 span {
-		display: inline-block;
-		transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	code {
-		font-size: 0.875em;
-		border: 0.1em solid var(--color-border);
-		border-radius: 4px;
-		padding: 0.15em 0.25em;
-	}
-
-	main {
-		margin: auto;
-    padding: 1em;
-		max-width: 60ch;
-	}
-
-	.text-gradient {
-		font-weight: 900;
-		background-image: var(--astro-gradient);
-		-webkit-background-clip: text;
-  	-webkit-text-fill-color: transparent;
-		background-size: 100% 200%;
-		background-position-y: 100%;
-		border-radius: 0.4rem;
-		animation: pulse 4s ease-in-out infinite;
-	}
-
-	@keyframes pulse {
-		0%, 100% {
-			background-position-y: 0%;
-		}
-		50% {
-			background-position-y: 80%;
-		}
-	}
-
-	.instructions {
-		line-height: 1.8;
-		margin-bottom: 2rem;
-		background-image: var(--night-sky-gradient);
-		padding: 1.5rem;
-		border-radius: 0.4rem;
-		color: var(--color-bg);
-	}
-
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-
-	.link-card {
-		list-style: none;
-		display: flex;
-		padding: 0.15rem;
-		background-image: var(--link-gradient);
-		background-size: 400%;
-		border-radius: 0.5rem;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: 1em 1.3em;
-		border-radius: 0.35rem;
-		color: var(--text-color);
-		background-color: white;
-		opacity: 0.8;
-	}
-
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-	}
-
-	.link-card:is(:hover, :focus-within) h2 {
-		color: #4F39FA;
-	}
-
-	.link-card:is(:hover, :focus-within) h2 span {
-		transform: translateX(2px);
-	}
-
-	.heart {
-		display: inline-block;
-		color: #DA62C4;
-		animation: heartbeat 3s ease-in-out infinite;
-	}
-
-	@keyframes heartbeat {
-		0%,
-		50%,
-		100% {
-			transform: scale(1);
-		}
-		5% {
-			transform: scale(1.125);
-		}
-		10% {
-			transform: scale(1.05);
-		}
-		15% {
-			transform: scale(1.25);
-		}
-	}
-</style>
+            <p>&nbsp;</p>
+            <p>
+              I make websites, create apps, manage infrastructure, develop
+              products and more.
+            </p>
+          </div>
+        </div>
+        <div class="hidden md:block p-4 items-start justify-start mr-6">
+          <!-- <img
+            alt="round profile (large)"
+            src={"../../static/img/coffee-art.jpg"}
+            class="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
+          /> -->
+        </div>
+      </div>
+    </div>
+  </MainBody>
+  <Section title="Latest Posts">
+    <div class="mt-4 px-4 md:px-0">
+      <a class="link" href="/blog"> More posts... </a>
+    </div>
+  </Section>
+  <Section title="Technology" bgColorLevel={100}>
+    <div class="pl-6 md:pl-0 text-sm mb-4 italic">
+      Sorted by experience. Preference indicated by{" "}
+    </div>
+  </Section>
+  <div class="text-lg px-10 md:px-20 lg:px-40 py-10 flex justify-between">
+    <span class="italic">Andri Óskarsson</span>
+    <div>
+      <p>TODO: Social ink</p>
+    </div>
+  </div>
+</main>
