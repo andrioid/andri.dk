@@ -1,8 +1,15 @@
+import type { React, ReactElement } from "react";
+
 export const Section = ({
   children,
   title,
   bgColorBase = "gray",
   bgColorLevel = 200,
+}: {
+  children?: ReactElement | ReactElement[];
+  title: string;
+  bgColorBase?: string;
+  bgColorLevel?: number;
 }) => (
   <div
     className={`md:px-20 lg:px-40 text-xl bg-${bgColorBase}-${bgColorLevel} py-6`}

@@ -13,6 +13,8 @@
     "@astrojs/tailwind": "^0.2.1",
     "@babel/core": ">=7.0.0-0 <8.0.0",
     "@fontsource/montserrat": "^4.5.7",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
     "astro": "^1.0.0-beta.20",
     "postcss": "^8.4.13",
     "prettier-plugin-astro": "^0.0.12",
