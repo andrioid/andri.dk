@@ -1,0 +1,73 @@
+---
+// Find all blog posts to generate
+import path from "path";
+import PagesLayout from "../../components/PagesLayout.astro";
+
+export async function getStaticPaths() {
+  const blogPath = "../../blog";
+  const globPath = `${import.meta.env.BLOG_PATH}/**/*.md` || `${blogPath}/**/*.md`;
+  //const allPosts = await Astro.glob(`../../blog/**/*.md`);
+  const allPosts = await Astro.glob(globPath);
+  return allPosts.map((post) => {
+    const [, relFile] = post.file.split("src/blog/");
+    const rf = path.parse(relFile);
+    const postSlug = rf.dir ? `${rf.dir}/${rf.name}` : rf.name;
+    return {
+      //params: { post: rf.name },
+      params: { post: postSlug },
+      props: {
+        post: post,
+        rf: rf,
+        site: relFile,
+      },
+    };
+  });
+}
+const { post, rf, site } = Astro.props;
+const Content = post.Content;
+const fm = post.frontmatter;
+---
+
+<head>
+  <!-- Other stuff -->
+  <link rel="stylesheet" href="../../css/global.css" />
+</head>
+
+<PagesLayout>
+      <div class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
+        <div class="bg-white max-w-4xl py-10 shadow px-5 lg:px-10 min-w-half-screen">
+          <div>
+            <h1 class="text-gray-900 font-semibold text-xl md:text-3xl">
+              {fm.title}
+            </h1>
+            <div class="text-base text-gray-600 flex justify-start mb-4">
+              <p>
+                {new Date(fm.date).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
+            </div>
+            <div class="mb-4 ">
+              {fm.tags &&
+                fm.tags.map((t) => (
+                  <span class="andri-tag text-base">
+                    {t}
+                  </span>
+                ))}
+            </div>
+          </div>
+
+          <div class="mb-6"></div>
+
+            <Content />
+          <p>&nbsp;</p>
+        </div>
+      </div>
+  <!-- <pre>{JSON.stringify(post, null, 4)}</pre>
+
+  <pre>{JSON.stringify(rf, null, 4)}</pre>
+
+  <pre>{JSON.stringify(site, null, 4)}</pre> -->
+</PagesLayout>
