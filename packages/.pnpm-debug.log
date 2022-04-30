@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_SCRIPT",
+    "err": {
+      "name": "pnpm",
+      "message": "Missing script: astro",
+      "code": "ERR_PNPM_NO_SCRIPT",
+      "stack": "pnpm: Missing script: astro\n    at Object.handler (/home/andri/.nvm/versions/node/v16.14.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.11/node_modules/pnpm/dist/pnpm.cjs:178379:15)\n    at async /home/andri/.nvm/versions/node/v16.14.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.11/node_modules/pnpm/dist/pnpm.cjs:182630:21\n    at async run (/home/andri/.nvm/versions/node/v16.14.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.11/node_modules/pnpm/dist/pnpm.cjs:182604:34)\n    at async runPnpm (/home/andri/.nvm/versions/node/v16.14.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.11/node_modules/pnpm/dist/pnpm.cjs:182823:5)\n    at async /home/andri/.nvm/versions/node/v16.14.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.11/node_modules/pnpm/dist/pnpm.cjs:182815:7"
+    }
+  }
+}
