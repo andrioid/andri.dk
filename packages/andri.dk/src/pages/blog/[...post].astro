@@ -2,13 +2,31 @@
 // Find all blog posts to generate
 import path from "path";
 import PagesLayout from "../../components/PagesLayout.astro";
+import { globby } from "globby"
+
+type BlogPost = any
+
+
+
 
 export async function getStaticPaths() {
+async function getPosts (globPath: string) {
+  const files = await globby(globPath);
+  let modules: Record<string, BlogPost> = {}
+  for (let key in files) {
+    modules[key] = await import(files[key]) as BlogPost
+  }
+  return Object.values(modules)
+
+}
+
   const blogPath = "../../blog";
-  const globPath = `${import.meta.env.BLOG_PATH}/**/*.md` || `${blogPath}/**/*.md`;
+  const globPath = `./src/blog/**/*.md`;
   //const allPosts = await Astro.glob(`../../blog/**/*.md`);
-  const allPosts = await Astro.glob(globPath);
+  const allPosts = await getPosts("../../blog/**/*.md")
+
   return allPosts.map((post) => {
+    console.log('post', post)
     const [, relFile] = post.file.split("src/blog/");
     const rf = path.parse(relFile);
     const postSlug = rf.dir ? `${rf.dir}/${rf.name}` : rf.name;
@@ -23,7 +41,8 @@ export async function getStaticPaths() {
     };
   });
 }
-const { post, rf, site } = Astro.props;
+
+const { post } = Astro.props;
 const Content = post.Content;
 const fm = post.frontmatter;
 ---
