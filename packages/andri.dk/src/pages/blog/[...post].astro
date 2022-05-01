@@ -14,7 +14,7 @@ async function getPosts (globPath: string) {
   const files = await globby(globPath);
   let modules: Record<string, BlogPost> = {}
   for (let key in files) {
-    modules[key] = await import(files[key]) as BlogPost
+      modules[key] = await import(files[key]) as BlogPost
   }
   return Object.values(modules)
 
