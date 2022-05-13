@@ -18,20 +18,21 @@ I use it for work, for my daily notes, recipies and now recently, blogging. In c
 ## What I wanted from the workflow
 
 1. Write stuff in Obsidian on **any** of my computers.
-3. Add frontmatter tags to my blog-post.
-4. Go to bed and have my site automatically updated if there are any new posts.
-5. Wake up the next morning and read comments about my blog post.
+2. Add frontmatter tags to my blog-post.
+3. Go to bed and have my site automatically updated if there are any new posts.
+4. Wake up the next morning and read comments about my blog post.
 
-*If you're thinking...*
+_If you're thinking..._
 
 ![](overengineering.png)
 
 Then you're absolutely right. But if you can't overengineer your personal projects, then there is something wrong with the world. [Image credit](https://bonkersworld.net/building-software).
 
 ## Before we get started
+
 You can skip this if you don't plan on repeating my experiment.
 
-I must add that this isn't exactly *production ready*, since I had to modify some plugins to make this work. Proceed at your own risk.
+I must add that this isn't exactly _production ready_, since I had to modify some plugins to make this work. Proceed at your own risk.
 
 - [Install](https://nextcloud.com/install/#instructions-server) or [sign up](https://nextcloud.com/signup/) for Nextcloud
 - Install [Nextcloud client](https://nextcloud.com/clients/)
@@ -52,18 +53,17 @@ Obsidian also supports drag-and-drop on images, so I just drop them into my edit
 
 At this point you have Obsidian setup and Nextcloud syncing your files to a server. Create a new file in `blog/2021/testing.md` and add some frontmatter data to it.
 
-	```md
-	---
-	title: Overriding blog title
-	tags: ["gatsby", "nextcloud", "obsidian"]
-	---
-	
-	## I am a test blog post
-	
-	Fear my grammar skills!
-	
-	```
-    
+    ```md
+    ---
+    title: Overriding blog title
+    tags: ["gatsby", "nextcloud", "obsidian"]
+    ---
+
+    ## I am a test blog post
+
+    Fear my grammar skills!
+
+    ```
 
 ## Syncing to Nextcloud
 
@@ -76,6 +76,7 @@ I use a seperate user that only has read-access to my blog directory for securit
 ## Enter the Great Gatsby
 
 ### Installing the plugins
+
 You need to install the following plugins for this to work.
 
 - [@andrioid/gatsby-source-webdav](https://github.com/andrioid/gatsby-source-webdav): Allows us to fetch Gatsby nodes from webdav. This is basically [this](https://github.com/dmgarland/gatsby-source-webdav) with a newer version of webdav and support for remark nodes. I tried getting a PR merged, but received no response. I'd be happy to try again if the author wishes me to.
@@ -90,6 +91,7 @@ You can copy the other plugin into your `plugins/` directory if you want to use 
 ### Configuring the plugins
 
 **gatsby-config.js** (in your plugins section)
+
 ```js
 [
   {
@@ -117,7 +119,7 @@ You can copy the other plugin into your `plugins/` directory if you want to use 
 ]
 ```
 
-When you start your Gatsby dev-server, make sure to add the ENV variables you just configured, like so: 
+When you start your Gatsby dev-server, make sure to add the ENV variables you just configured, like so:
 
 ```
 BLOGDATA_BASEURL=https://mynextcloud.example.com \
@@ -145,6 +147,7 @@ Here is my `onCreateNode` handler, yours may differ. What is happening here, is 
 > **Note:** Please don't copy this blindly. There are some things (such as the slug generation) that should be rewritten when I wrote this blog post. Hopefully I already did that at the time you read this.
 
 **gatsby-node.js**
+
 ```js
 exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
   const isDev = process.env.NODE_ENV !== "production";
@@ -214,7 +217,6 @@ exports.onCreateNode = ({ node, getNode, actions, reporter }) => {
     });
   }
 };
-
 ```
 
 ## Automating the process
@@ -224,6 +226,7 @@ I did mention that I don't want to think about publishing. The only thing I need
 What I really wanted to do, was to get Nextcloud to notify DigitalOcean (where I host my blog) and initiate a deployment from there. But, I couldn't get Nextcloud's Flow to work. If you know how to do it, [please let me know](https://twitter.com/andrioid).
 
 ### Plan B
+
 I settled on a less complicated solution. I use Github Actions to deploy my site every night.
 
 > Update. Github didn't like that much and changed how cron works for Github Actions..
@@ -231,7 +234,8 @@ I settled on a less complicated solution. I use Github Actions to deploy my site
 You need to add `DIGITALOCEAN_ACCESS_TOKEN` and `DIGITALOCEAN_APP_ID` to your project's secrets. To create the acceess-token, follow [these instructions](https://docs.digitalocean.com/reference/api/create-personal-access-token/).
 
 **.github/workflows/daily-deploy.yml**
-```yml
+
+```yaml
 name: Daily Deploy
 on:
   schedule:
@@ -246,7 +250,6 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       # Force is used because we fetch from webdav
       - run: doctl apps create deployment ${{ secrets.DIGITALOCEAN_APP_ID }} --wait --force-rebuild
-
 ```
 
 While I use DigitalOcean's App platform, there is nothing preventing this from working on other great hosting providers like Netlify or Vercel. But because we're sourcing our blog-posts from webdav, these Git based integrations have no way of knowing that our site now has new data.
@@ -256,18 +259,21 @@ Remember to add your Nextcloud credentials to whatever build-platform you're usi
 ## Room for improvement
 
 ### Slug generation
+
 I really wanted to get this out there, so I haven't made the slug generation as pretty as I'd like.
 
 ### Mermaid
+
 Obsidian supports [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams, and I want my Gatsby site to render those as well. I tried using `gatsby-remark-mermaid`, but it didn't work with DigitalOcean's buildpacks due to a missing Chrome(ium) installation. That's one heck of a dependency, if you ask me.
 
 I'll look into it later.
 
 ### `gatsby-remark-webdav`
+
 As I noted earlier, I just threw something together that works for me and if I find the time and motivation; I'd like to release it. Until then, grab it from [here](https://github.com/andrioid/andri.dk/tree/master/plugins/gatsby-remark-webdav) if you need it.
 
-
 ## What's missing?
+
 It's hard to compress my entire website into one article. I hope I covered what you need to set up something similar with your Gatsby site.
 
 My [site's source-code](https://github.com/andrioid/andri.dk) is on Github, so feel free to poke around there if something isn't working.

@@ -15,7 +15,7 @@ export async function getStaticPaths() {
     console.log('post', post)
     const [, relFile] = post.file.split("blog/");
     const rf = path.parse(relFile);
-    const postSlug = rf.dir ? `${rf.dir}/${rf.name}` : rf.name;
+    const postSlug = rf.dir ? `${rf.dir}/${rf.name}` : rf.name; // Maybe add override via slug frontmatter?
     return {
       //params: { post: rf.name },
       params: { post: postSlug },
