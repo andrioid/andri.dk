@@ -14,8 +14,6 @@ Systems tend to have two types of complexity. Complexity from the business-domai
 
 There are, of course brilliant programmers out there, who manage complexity really well, regardless of what language they code in. But people have different skill-sets, and a great team has many different types of members.
 
-![features](features2.svg)
-
 # Readability
 
 When I took my first programming job, I was looking forward to "writing some awesome code". But, writing code wasn't my primary job. Reading it was.
@@ -25,8 +23,6 @@ There are some tools that help manage this. Coding-standards, linters, code-form
 But what if every feature of our programming language, comes with a cost? If you give 10 programmers the same task, how similar would the implementations be? I argue that if you get many different types of implementations, then your programming language is too complex.
 
 To be productive at writing code, we also need to be productive at reading it.
-
-![features](code-review.svg)
 
 # Dependencies
 
@@ -40,8 +36,6 @@ Another approach is Javascript's NPM where there is no standard library. Every l
 
 I think this a no-brainer. If we're building something that needs to be reliable for years to come, then we need a standard library that has security updates and advisories when shit happens. And remember, that we don't include dependencies, we adopt them.
 
-![dependencies](dependencies.svg)
-
 # Hiring people
 
 At some point, we all need help. And that help usually comes to us by means of hiring people. If it wasn't for this point, I might be programming in Erlang, Elixir and Elm right now. I think these languages are extremely interesting, and not just because they all start with the letter E.
@@ -49,8 +43,6 @@ At some point, we all need help. And that help usually comes to us by means of h
 But reality sets in, and we need a pool of people to hire from, that either know your tech-stack or will have an easy time learning it.
 
 The exception is when an organization has decided to invest in something, has a resources to teach newcomers and is willing to pay premium for talent.
-
-![good-team by undraw](good-team.svg)
 
 # Performance
 
@@ -76,7 +68,3 @@ To me, a good developer experience consists of the following things.
 We try to plan for the future, but nobody really knows it will bring. So, aim for the next 5 years and then time will tell.
 
 What language would you pick, and why?
-
-## Credits
-
-Big thanks to [@NinaLimpi](https://twitter.com/ninalimpi) at [Undraw](https://undraw.co) for the wonderful illustrations.
