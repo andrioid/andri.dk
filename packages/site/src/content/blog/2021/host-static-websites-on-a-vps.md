@@ -22,7 +22,7 @@ Log on to the DigitalOcean [cloud console](https://cloud.digitalocean.com) and c
 
 DigitalOcean offers automatic backups for $9.60/mo and you can select that if you want, but in our case... we'll be building the site elsewhere and uploading it.
 
-![](do-hosting1.png)
+![Digital Ocean 1](do-hosting1.png)
 
 After a few seconds, you should see your server ready.
 
@@ -55,7 +55,7 @@ apt dist-upgrade -y
 
 Now open a browser and access _http://your-droplet-ip-address_
 
-![](do-hosting2.png)
+![DigitalOcean 2](do-hosting2.png)
 
 That was easy, right?
 
@@ -154,7 +154,7 @@ I added a DNS record to give my server a name. How exactly you add this depends 
 
 Now, if I point a browser to http://hostingdemo.andri.dk...
 
-![](do-hosting5.png)
+![Digital Ocean 5](do-hosting5.png)
 
 ## Adding Encryption (TLS/SSL)
 
@@ -182,7 +182,7 @@ service caddy reload
 
 Then in your browser change the URL from "http" to "https" and reload.
 
-![](do-hosting6.png)
+![Digital Ocean 6](do-hosting6.png)
 
 ## Wrapping up
 

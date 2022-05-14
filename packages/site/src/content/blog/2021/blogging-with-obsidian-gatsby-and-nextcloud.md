@@ -24,7 +24,7 @@ I use it for work, for my daily notes, recipies and now recently, blogging. In c
 
 _If you're thinking..._
 
-![](overengineering.png)
+![Over-engineering](overengineering.png)
 
 Then you're absolutely right. But if you can't overengineer your personal projects, then there is something wrong with the world. [Image credit](https://bonkersworld.net/building-software).
 

@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --experimental-integrations",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --experimental-integrations",
     "preview": "astro preview"
   },
   "devDependencies": {
@@ -13,13 +13,18 @@
     "@astrojs/tailwind": "^0.2.1",
     "@babel/core": ">=7.0.0-0 <8.0.0",
     "@fontsource/montserrat": "^4.5.7",
+    "@tailwindcss/typography": "^0.5.2",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
     "astro": "^1.0.0-beta.28",
+    "astro-icon": "^0.7.1",
+    "astro-imagetools": "^0.6.4",
+    "autoprefixer": "^10.4.7",
     "globby": "^13.1.1",
     "postcss": "^8.4.13",
     "prettier-plugin-astro": "^0.0.12",
     "react": "^17.0.2 || ^18.0.0",
-    "react-dom": "^17.0.2 || ^18.0.0"
+    "react-dom": "^17.0.2 || ^18.0.0",
+    "tailwindcss": "^3.0.24"
   }
 }

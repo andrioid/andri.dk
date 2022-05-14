@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   overrides: [
     {
-      files: "*.astro",
+      files: "**/*.astro",
       options: {
         parser: "astro",
       },

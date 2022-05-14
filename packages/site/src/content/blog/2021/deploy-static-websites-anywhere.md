@@ -11,7 +11,7 @@ Today, everything is about **scale** and maybe prematurely so. If you want to ho
 
 I'm going to show you how to break free and deploy your static site wherever you want, using nothing but Github Actions.
 
-![](deploy-anywhere2.png)
+![Deploy Anywhere](deploy-anywhere2.png)
 
 ## Our toolbox for today
 

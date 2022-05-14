@@ -41,11 +41,5 @@ module.exports = {
   variants: {
     boxShadow: ["responsive", "hover", "focus"],
   },
-  plugins: [
-    function ({ addBase, config }) {
-      addBase({
-        // Add base styles when needed
-      });
-    },
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };

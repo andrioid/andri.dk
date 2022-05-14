@@ -4,21 +4,25 @@ import { NavLink } from "../components/NavLink";
 import { MainBody } from "../components/MainBody";
 
 import "@fontsource/montserrat";
+import "../../css/global.css"
+import { Frontmatter, postMapper } from "../lib/blog";
+import Card from "../components/card.astro";
+
+let allPosts = await Astro.glob<Frontmatter>(`../content/blog/**/*.md`);
+allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
+allPosts = allPosts.splice(0, 3)
+const parsedPosts = allPosts.map(postMapper);
 ---
 
-<head>
-  <!-- Other stuff -->
-  <link rel="stylesheet" href="../../css/global.css" />
-</head>
 <main>
   <MainBody>
     <div class="flex-1">
       <nav class="flex justify-between items-center p-8">
-        <!-- <img
+        <img
           alt="round profile (small)"
           src={"../../static/img/coffee-art.jpg"}
           class="rounded-full shadow-2xl w-16 h-16 md:invisible"
-        /> -->
+        />
         <div>
           <ul class="flex flex-row">
             <NavLink href="blog/">Blog</NavLink>
@@ -53,18 +57,33 @@ import "@fontsource/montserrat";
           </div>
         </div>
         <div class="hidden md:block p-4 items-start justify-start mr-6">
-          <!-- <img
+          <img
             alt="round profile (large)"
             src={"../../static/img/coffee-art.jpg"}
             class="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
-          /> -->
+          />
         </div>
       </div>
     </div>
   </MainBody>
   <Section title="Latest Posts">
     <div class="mt-4 px-4 md:px-0">
-      <a class="link" href="/blog"> More posts... </a>
+      <div class="flex flex-wrap justify-start items-stretch">
+          {parsedPosts.map((post) => (
+            <Card
+              title={post.frontmatter.title}
+              link={post.frontmatter.slug}
+              description={post.frontmatter.description || 'TODO: Fix description defaults'}
+              tags={post.frontmatter.tags}
+              date={post.frontmatter.date}
+              draft={
+                  process.env.NODE_ENV !== "production" && post.frontmatter.draft
+              }
+          />
+          ))}
+      </div>
+
+      <a class="link" href="/blog/"> More posts... </a>
     </div>
   </Section>
   <Section title="Technology" bgColorLevel={100}>
