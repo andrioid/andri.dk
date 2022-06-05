@@ -6,12 +6,12 @@ importers:
     specifiers:
       prettier: ^2.6.2
       prettier-plugin-astro: ^0.0.12
-      typescript: ^4.6.4
+      typescript: ^4.7.3
     dependencies:
       prettier: 2.6.2
     devDependencies:
       prettier-plugin-astro: 0.0.12
-      typescript: 4.6.4
+      typescript: 4.7.3
 
   packages/site:
     specifiers:
@@ -3757,6 +3757,12 @@ packages:
 
   /typescript/4.6.4:
     resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /typescript/4.7.3:
+    resolution: {integrity: sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
