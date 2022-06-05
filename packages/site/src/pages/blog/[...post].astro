@@ -1,23 +1,22 @@
 ---
 // Find all blog posts to generate
-import path from "path";
 import PagesLayout from "../../components/PagesLayout.astro";
 import { Frontmatter, postMapper } from "../../lib/blog";
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob<Frontmatter>(`../../content/blog/**/*.md`);
+	const allPosts = await Astro.glob<Frontmatter>(`../../content/blog/**/*.md`);
 
-  return allPosts.map((post) => {
-    const parsedPost = postMapper(post);
-    const staticPath = {
-      params: { post: post.frontmatter.slug },
-      props: {
-        post: parsedPost,
-      },
-    }
-    //console.log('staticPath', staticPath)
-    return staticPath;
-  });
+	return allPosts.map((post) => {
+		const parsedPost = postMapper(post);
+		const staticPath = {
+			params: { post: post.frontmatter.slug },
+			props: {
+				post: parsedPost,
+			},
+		}
+		//console.log('staticPath', staticPath)
+		return staticPath;
+	});
 }
 
 const { post } = Astro.props;
@@ -26,40 +25,40 @@ const fm = post.frontmatter;
 ---
 
 <PagesLayout>
-      <div class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
-        <div class="bg-white py-10 shadow px-5 lg:px-10 min-w-half-screen">
-          <div>
-            <h1 class="text-gray-900 font-semibold text-xl md:text-3xl">
-              {fm.title}
-            </h1>
-            <div class="text-base text-gray-600 flex justify-start mb-4">
-              <p>
-                {new Date(fm.date).toLocaleDateString(undefined, {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </p>
-            </div>
-            <div class="mb-4">
-              {fm.tags &&
-                fm.tags.map((t) => (
-                  <span class="andri-tag text-base">
-                    {t}
-                  </span>
-                ))}
-            </div>
-          </div>
+	<div class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center">
+		<div class="bg-white py-10 shadow px-5 lg:px-10 min-w-half-screen">
+			<div>
+				<h1 class="text-gray-900 font-semibold text-xl md:text-3xl">
+					{fm.title}
+				</h1>
+				<div class="text-base text-gray-600 flex justify-start mb-4">
+					<p>
+						{new Date(fm.date).toLocaleDateString(undefined, {
+						year: "numeric",
+						month: "short",
+						day: "numeric",
+						})}
+					</p>
+				</div>
+				<div class="mb-4">
+					{fm.tags &&
+					fm.tags.map((t) => (
+					<span class="andri-tag text-base">
+						{t}
+					</span>
+					))}
+				</div>
+			</div>
 
-          <article class="mb-6 prose lg:prose-xl">
-            <Content />
-          </article>
+			<article class="mb-6 prose lg:prose-xl">
+				<Content />
+			</article>
 
-            
-          <p>&nbsp;</p>
-        </div>
-      </div>
-  <!-- <pre>{JSON.stringify(post, null, 4)}</pre>
+
+			<p>&nbsp;</p>
+		</div>
+	</div>
+	<!-- <pre>{JSON.stringify(post, null, 4)}</pre>
 
   <pre>{JSON.stringify(rf, null, 4)}</pre>
 

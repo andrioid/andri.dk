@@ -1,5 +1,5 @@
 ---
-import { Section } from "../components/Section";
+import Section from "../components/Section.astro";
 import { NavLink } from "../components/NavLink";
 import { MainBody } from "../components/MainBody";
 
@@ -15,86 +15,70 @@ const parsedPosts = allPosts.map(postMapper);
 ---
 
 <main>
-  <MainBody>
-    <div class="flex-1">
-      <nav class="flex justify-between items-center p-8">
-        <img
-          alt="round profile (small)"
-          src={"../../static/img/coffee-art.jpg"}
-          class="rounded-full shadow-2xl w-16 h-16 md:invisible"
-        />
-        <div>
-          <ul class="flex flex-row">
-            <NavLink href="blog/">Blog</NavLink>
+	<MainBody>
+		<div class="flex-1">
+			<nav class="flex justify-between items-center p-8">
+				<img alt="round profile (small)" src={"../../static/img/coffee-art.jpg"}
+					class="rounded-full shadow-2xl w-16 h-16 md:invisible" />
+				<div>
+					<ul class="flex flex-row">
+						<NavLink href="blog/">Blog</NavLink>
 
-            <NavLink href="now/">Now</NavLink>
-          </ul>
-        </div>
-      </nav>
-      <div
-        class="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl"
-      >
-        <div class="flex-1">
-          <h2
-            class="font-headline md:text-6xl text-3xl font-semibold inline-block my-2"
-          >
-            Hi, I'm Andri
-          </h2>
-          <div class="text-lg md:text-2xl">
-            <p>
-              Computer Engineer from &nbsp;
-              <span aria-hidden hidden> Iceland </span>
-              &nbsp; living in &nbsp;
-              <span aria-hidden hidden> Denmark </span>
-            </p>
-            <p>&nbsp;</p>
+						<NavLink href="now/">Now</NavLink>
+					</ul>
+				</div>
+			</nav>
+			<div class="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline text-2xl">
+				<div class="flex-1">
+					<h2 class="font-headline md:text-6xl text-3xl font-semibold inline-block my-2">
+						Hi, I'm Andri
+					</h2>
+					<div class="text-lg md:text-2xl">
+						<p>
+							Computer Engineer from &nbsp;
+							<span aria-hidden hidden> Iceland </span>
+							&nbsp; living in &nbsp;
+							<span aria-hidden hidden> Denmark </span>
+						</p>
+						<p>&nbsp;</p>
 
-            <p>&nbsp;</p>
-            <p>
-              I make websites, create apps, manage infrastructure, develop
-              products and more.
-            </p>
-          </div>
-        </div>
-        <div class="hidden md:block p-4 items-start justify-start mr-6">
-          <img
-            alt="round profile (large)"
-            src={"../../static/img/coffee-art.jpg"}
-            class="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"
-          />
-        </div>
-      </div>
-    </div>
-  </MainBody>
-  <Section title="Latest Posts">
-    <div class="mt-4 px-4 md:px-0">
-      <div class="flex flex-wrap justify-start items-stretch">
-          {parsedPosts.map((post) => (
-            <Card
-              title={post.frontmatter.title}
-              link={post.frontmatter.slug}
-              description={post.frontmatter.description || 'TODO: Fix description defaults'}
-              tags={post.frontmatter.tags}
-              date={post.frontmatter.date}
-              draft={
-                  process.env.NODE_ENV !== "production" && post.frontmatter.draft
-              }
-          />
-          ))}
-      </div>
+						<p>&nbsp;</p>
+						<p>
+							I make websites, create apps, manage infrastructure, develop
+							products and more.
+						</p>
+					</div>
+				</div>
+				<div class="hidden md:block p-4 items-start justify-start mr-6">
+					<img alt="round profile (large)" src={"../../static/img/coffee-art.jpg"}
+						class="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48" />
+				</div>
+			</div>
+		</div>
+	</MainBody>
+	<Section title="Latest Posts">
+		<div class="mt-4 px-4 md:px-0">
+			<div class="flex flex-wrap justify-start items-stretch">
+				{parsedPosts.map((post) => (
+				<Card title={post.frontmatter.title} link={post.frontmatter.slug}
+					description={post.frontmatter.description || 'TODO: Fix description defaults' }
+					tags={post.frontmatter.tags} date={post.frontmatter.date} draft={ process.env.NODE_ENV
+					!=="production" && post.frontmatter.draft } />
+				))}
+			</div>
 
-      <a class="link" href="/blog/"> More posts... </a>
-    </div>
-  </Section>
-  <Section title="Technology" bgColorLevel={100}>
-    <div class="pl-6 md:pl-0 text-sm mb-4 italic">
-      Sorted by experience. Preference indicated by{" "}
-    </div>
-  </Section>
-  <div class="text-lg px-10 md:px-20 lg:px-40 py-10 flex justify-between">
-    <span class="italic">Andri Óskarsson</span>
-    <div>
-      <p>TODO: Social ink</p>
-    </div>
-  </div>
+			<a class="link" href="/blog/"> More posts... </a>
+		</div>
+	</Section>
+	<Section title="Technology" bgColorLevel={100}>
+		<div class="pl-6 md:pl-0 text-sm mb-4 italic">
+			Sorted by experience. Preference indicated by{" "}
+		</div>
+	</Section>
+	<div class="text-lg px-10 md:px-20 lg:px-40 py-10 flex justify-between">
+		<span class="italic">Andri Óskarsson</span>
+		<div>
+			<p>TODO: Social ink</p>
+		</div>
+	</div>
 </main>

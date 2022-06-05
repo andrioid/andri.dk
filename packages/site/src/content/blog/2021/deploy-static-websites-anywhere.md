@@ -133,7 +133,7 @@ Log on to AWS management console and find the S3 page. Create a bucket and note 
 
 One of the most painful AWS experiences, is how we deal with permissions. I've done this many times, but I have to look it up every time.
 
-Create a user with IAM and assign the following permissions with a new policy. Replace \<MYBUCKET\> with your ARN from earlier. Mine is _"arn:aws:s3:::jamstack-example.andri.dk/"_.
+Create a user with IAM and assign the following permissions with a new policy. Replace MYBUCKET with your ARN from earlier. Mine is _"arn:aws:s3:::jamstack-example.andri.dk/"_.
 
 #### **jamstack-policy**
 
@@ -152,8 +152,8 @@ Create a user with IAM and assign the following permissions with a new policy. R
                 "s3:PutObjectAcl"
             ],
             "Resource": [
-                "<MYBUCKET>",
-                "<MYBUCKET>/*"
+                "MYBUCKET",
+                "MYBUCKET/*"
             ]
         }
     ]

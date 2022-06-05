@@ -4,25 +4,20 @@ import PagesLayout from "../../components/PagesLayout.astro";
 import { BlogPost, postMapper } from "../../lib/blog";
 
 let allPosts = await Astro.glob(`../../content/blog/**/*.md`);
+
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
 const parsedPosts = allPosts.map(postMapper)
 
 
 ---
-<PagesLayout>
-    <div class="flex flex-wrap justify-start items-stretch">
-    {parsedPosts.map((post: BlogPost) => (
-        <Card
-            title={post.frontmatter.title}
-            link={post.frontmatter.slug}
-            description={post.frontmatter.description || 'TODO: Fix description defaults'}
-            tags={post.frontmatter.tags}
-            date={post.frontmatter.date}
-            draft={
-                process.env.NODE_ENV !== "production" && post.frontmatter.draft
-            }
-        />
 
-    ))}
-    </div>
+<PagesLayout>
+	<div class="flex flex-wrap justify-start items-stretch">
+		{parsedPosts.map((post: BlogPost) => (
+		<Card title={post.frontmatter.title} link={post.frontmatter.slug} description={post.frontmatter.description
+			|| 'TODO: Fix description defaults' } tags={post.frontmatter.tags} date={post.frontmatter.date} draft={
+			process.env.NODE_ENV !=="production" && post.frontmatter.draft } />
+
+		))}
+	</div>
 </PagesLayout>
