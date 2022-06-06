@@ -3,9 +3,6 @@ import Section from "../components/Section.astro";
 import { NavLink } from "../components/NavLink";
 import { MainBody } from "../components/MainBody";
 
-import "../../css/global.css"
-// import "@fontsource/montserrat"; // breaks build
-
 import { Frontmatter, postMapper } from "../lib/blog";
 import Card from "../components/card.astro";
 import coffeeAndri from '../../static/img/coffee-art.jpg'
@@ -53,7 +50,7 @@ const parsedPosts = allPosts.map(postMapper);
 					</div>
 				</div>
 				<div class="hidden md:block p-4 items-start justify-start mr-6">
-					<img alt="round profile (large)" src={"../../static/img/coffee-art.jpg"}
+					<img alt="round profile (large)" src={coffeeAndri}
 						class="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48" />
 				</div>
 			</div>
