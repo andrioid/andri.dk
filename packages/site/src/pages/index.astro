@@ -8,18 +8,20 @@ import "../../css/global.css"
 
 import { Frontmatter, postMapper } from "../lib/blog";
 import Card from "../components/card.astro";
+import coffeeAndri from '../../static/img/coffee-art.jpg'
 
 let allPosts = await Astro.glob<Frontmatter>(`../content/blog/**/*.md`);
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
 allPosts = allPosts.splice(0, 3)
 const parsedPosts = allPosts.map(postMapper);
+
 ---
 
 <main>
 	<MainBody>
 		<div class="flex-1">
 			<nav class="flex justify-between items-center p-8">
-				<img alt="round profile (small)" src={"../../static/img/coffee-art.jpg"}
+				<img alt="round profile (small)" src={coffeeAndri}
 					class="rounded-full shadow-2xl w-16 h-16 md:invisible" />
 				<div>
 					<ul class="flex flex-row">
