@@ -2,17 +2,20 @@
 import "../../css/global.css";
 export interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props as Props;
+const { title, description = "Personal blog and portfolio of Andri Óskarsson" } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	{description ?
+	<meta name="description" content={description} /> : null}
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 	<title>{title}</title>
 </head>
