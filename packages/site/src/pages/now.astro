@@ -5,60 +5,50 @@ import Section from "../components/Section.astro";
 ---
 
 <PagesLayout>
-	<BodyContainer>
-		<h1 class="text-3xl font-semibold">What I'm doing now</h1>
-		<Section title="Reading again!">
-			<p>
-				Currently churning through The Dresden Files series (book 8 atm). I love
-				these books. They mix together fantasy, old school investigative stories
-				and a the Bruce Willis of wizards. Always in the wrong place at the
-				wrong time.
-			</p>
-		</Section>
+	<Section title="What I'm doing now">
+		<p class="text-sm">
+			Inspired by{" "}
+			<a class="link" href="#top"> Derek Sivers' now page </a>
+			.
+		</p>
+	</Section>
+	<Section title="Reading again!" bgColorLevel={100}>
+		<p>
+			I'm reading the Expanse series and am currently on book 4. I love the universe the have created, but I
+			must admit, that watching the series has somewhat lessened by interest in the books. I will reach the
+			end of the TV series soon, so all is well.
+		</p>
+	</Section>
 
-		<Section title="Programming, for fun">
-			<p>
-				I have a few pet-projects that I'm working on. Mostly for learning
-				purposes, but it would sure be fun to spawn a business at some point.
-			</p>
-			<p>&nbsp;</p>
-			<p>
-				I'm reading and experimenting with event-sourcing, cqrs and
-				domain-driven-design on the backend and on the frontend I'm playing with
-				Tailwind CSS.
-			</p>
-		</Section>
+	<Section title="Programming, for fun">
+		<p>
+			I have a few pet-projects that I'm working on. Mostly for learning
+			purposes, but it would sure be fun to spawn a business at some point.
+		</p>
+		<p>&nbsp;</p>
+		<p>
+			Currently I'm learning about Remix, Angular and I learn something new about TypeScript every day.
+		</p>
+	</Section>
 
-		<Section title="My son keeps growing">
-			<p>
-				Our little half-Icelandic, half-Dane, all Viking son keeps us
-				entertained and challanged at home. He's soon to be 7 years old and his
-				little head is filled with questions that I hope Wikipedia can help
-				answer. We've started doing physics experiments together.
-			</p>
-			<p>&nbsp;</p>
-			<p>
-				He's already very interested in computers of all sizes, but I dare not
-				push it on him. He'll get there if and when he wants to.
-			</p>
-		</Section>
+	<Section title="My son keeps growing" bgColorLevel={100}>
+		<p>
+			Our little half-Icelandic, half-Dane, all Viking is growing up so fast.
+			He's soon to be 8 years old dreams about gaming and YouTube streams about gaming.
+		</p>
+	</Section>
 
-		<Section title="Engaged, but not in a hurry">
-			<p>
-				Me and my girlfriend got engaged. I proposed during a hide-and-seek game
-				with our son. I was going for: "rememberable, but silly". I think I
-				nailed it. No date set yet.
-			</p>
-		</Section>
+	<Section title="Engaged, but not in a hurry">
+		<p>
+			Me and my girlfriend got engaged. I proposed during a hide-and-seek game
+			with our son. I was going for: "rememberable, but silly". I think I
+			nailed it. No date set yet.
+		</p>
+	</Section>
+	<p>&nbsp;</p>
+	<p>Last updated: 2022-06-12</p>
 
-		<Section title="[Last updated: 2021-04-24]" />
+	<div class="mt-10">
 
-		<div class="mt-10">
-			<p class="text-sm">
-				Inspired by{" "}
-				<a class="link" href="#top"> Derek Sivers' now page </a>
-				.
-			</p>
-		</div>
-	</BodyContainer>
+	</div>
 </PagesLayout>

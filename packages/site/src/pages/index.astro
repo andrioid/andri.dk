@@ -5,13 +5,14 @@ import { MainBody } from "../components/MainBody";
 
 import { Frontmatter, postMapper } from "../lib/blog";
 import Card from "../components/card.astro";
-import { dataTransform, Skills } from '../components/skills';
+import Skills from '../components/skills.astro';
 import coffeeAndri from '../../static/img/coffee-art.jpg';
 import flagDK from '../../static/img/denmark-flag.svg';
 import flagIS from '../../static/img/iceland-flag.svg';
 import "../../css/global.css";
 import cvJSON from '../../../cv/resume.json';
 import Icon from "astro-icon";
+import { dataTransform } from "../lib/cv";
 
 let allPosts = await Astro.glob<Frontmatter>(`../content/blog/**/*.md`);
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
@@ -74,22 +75,33 @@ const parsedPosts = allPosts.map(postMapper);
 					!=="production" && post.frontmatter.draft } />
 				))}
 			</div>
-
-			<a class="link" href="/blog/"> More posts... </a>
+			<br />
+			<a class="link" href="/blog/">More blog posts...</a>
 		</div>
 	</Section>
 	<Section title="Technology" bgColorLevel={100}>
 		<div class="pl-6 md:pl-0 text-sm mb-4 italic">
 			Sorted by experience. Preference indicated by
 			&nbsp;
-			<Icon name="fa:heart" class="inline-icon text-red-600" />
+			<Icon name="fa:heart" class="inline-icon text-red-700" />
 		</div>
-		<Skills categories={dataTransform(cvJSON.skills, cvJSON.work)} />
+		<Skills categories={dataTransform(cvJSON.skills, cvJSON.work)} focus={['React', 'React Native' , 'Go'
+			, 'TypeScript' , 'Linux' , 'Postgres' , 'Kanban' ]} />
 	</Section>
-	<div class="text-lg px-10 md:px-20 lg:px-40 py-10 flex justify-between">
-		<span class="italic">Andri Óskarsson</span>
-		<div>
-			<p>TODO: Social ink</p>
+	<Section>
+		<div class="flex-1 flex flex-row text-lg justify-between px-4 md:px-0">
+			<div class="italic">Andri Óskarsson</div>
+			<div>
+				<a href="https://github.com/andrioid">
+					<Icon class="inline-icon" name="fa:github" />
+				</a>
+				<a href="https://twitter.com/andrioid">
+					<Icon class="inline-icon" name="fa:twitter" />
+				</a>
+				<a href="https://www.linkedin.com/in/andriosk/" target="_blank" rel="noopener">
+					<Icon class="inline-icon" name="fa:linkedin" />
+				</a>
+			</div>
 		</div>
-	</div>
+	</Section>
 </main>
