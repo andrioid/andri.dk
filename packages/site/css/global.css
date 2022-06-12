@@ -17,7 +17,7 @@ a.link {
   @apply inline;
   width: 1em;
   height: 1em;
-  //margin-top: 0.15em;
+  margin-bottom: 0.2em;
 }
 
 .btn {
