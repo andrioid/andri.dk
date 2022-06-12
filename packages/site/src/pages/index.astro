@@ -5,7 +5,13 @@ import { MainBody } from "../components/MainBody";
 
 import { Frontmatter, postMapper } from "../lib/blog";
 import Card from "../components/card.astro";
-import coffeeAndri from '../../static/img/coffee-art.jpg'
+import { dataTransform, Skills } from '../components/skills';
+import coffeeAndri from '../../static/img/coffee-art.jpg';
+import flagDK from '../../static/img/denmark-flag.svg';
+import flagIS from '../../static/img/iceland-flag.svg';
+import "../../css/global.css";
+import cvJSON from '../../../cv/resume.json';
+import Icon from "astro-icon";
 
 let allPosts = await Astro.glob<Frontmatter>(`../content/blog/**/*.md`);
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
@@ -37,8 +43,10 @@ const parsedPosts = allPosts.map(postMapper);
 						<p>
 							Computer Engineer from &nbsp;
 							<span aria-hidden hidden> Iceland </span>
+							<img alt="Iceland" class="inline-icon" src={flagIS} />
 							&nbsp; living in &nbsp;
 							<span aria-hidden hidden> Denmark </span>
+							<img alt="Denmark" class="inline-icon" src={flagDK} />
 						</p>
 						<p>&nbsp;</p>
 
@@ -57,8 +65,8 @@ const parsedPosts = allPosts.map(postMapper);
 		</div>
 	</MainBody>
 	<Section title="Latest Posts">
-		<div class="mt-4 px-4 md:px-0">
-			<div class="flex flex-wrap justify-start items-stretch">
+		<div class="mt-4 px-0">
+			<div class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{parsedPosts.map((post) => (
 				<Card title={post.frontmatter.title} link={post.frontmatter.slug}
 					description={post.frontmatter.description || 'TODO: Fix description defaults' }
@@ -72,8 +80,11 @@ const parsedPosts = allPosts.map(postMapper);
 	</Section>
 	<Section title="Technology" bgColorLevel={100}>
 		<div class="pl-6 md:pl-0 text-sm mb-4 italic">
-			Sorted by experience. Preference indicated by{" "}
+			Sorted by experience. Preference indicated by
+			&nbsp;
+			<Icon name="fa:heart" class="inline-icon text-red-600" />
 		</div>
+		<Skills categories={dataTransform(cvJSON.skills, cvJSON.work)} />
 	</Section>
 	<div class="text-lg px-10 md:px-20 lg:px-40 py-10 flex justify-between">
 		<span class="italic">Andri Óskarsson</span>
