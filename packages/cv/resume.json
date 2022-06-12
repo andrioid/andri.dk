@@ -1,11 +1,11 @@
 {
   "basics": {
     "name": "Andri Óskarsson",
-    "label": "Computer Engineer",
-    "picture": "https://andri.dk/static/3a12aa0364d1851eaab41841f8a12b88/284df/coffee-art.jpg",
-    "email": "m@andri.dk",
+    "label": "Software Developer & Systems Engineer",
+    "picture": "static/andri.jpg",
+    "email": "hello@andri.dk",
     "website": "https://andri.dk",
-    "summary": "Driven, independent Software Developer with a broad skill set.",
+    "summary": "I come from Reykjavík, Iceland and am the oldest of 5 brothers. In 2006 I moved to Denmark to study. I now live near Aalborg, Denmark with my fiancée and son. In my off-time I like to bake pizza, take photos and go for walks.\n\nI've been facinated by computers since age 8 and spend much of my free time, learning more about them.",
     "location": {
       "city": "Aalborg",
       "countryCode": "DK",
@@ -18,14 +18,14 @@
         "url": "https://twitter.com/andrioid"
       },
       {
-        "network": "Github",
+        "network": "GitHub",
         "username": "andrioid",
         "url": "https://github.com/andrioid"
       },
       {
         "network": "LinkedIn",
         "username": "andriosk",
-        "url": "https://www.linkedin.com/in/andriosk/"
+        "url": "https://linkedin.com/in/andriosk"
       }
     ]
   },
@@ -33,42 +33,41 @@
     {
       "company": "Venue POS A/S",
       "position": "Lead Software Developer",
-      "website": "https://www.venuepos.net",
+      "url": "https://www.venuepos.net",
       "startDate": "2020-01-01",
-      "summary": "My team and I built a user-friendly, distributed POS on top of React Native and Android for retailers, events and restaurants using event-sourcing for book-keeping while syncronizing to our systems.",
-      "skills": [
+      "summary": "Assembled a small team and delivered a resiliant, offline capable point-of-sale system. Set up our cloud infrastructure and automated building, monitoring and deployment.",
+      "keywords": [
         "React",
         "React Native",
         "Docker",
         "Postgres",
         "TypeScript",
         "Event Sourcing",
-        "Android"
+        "Kubernetes",
+        "GraphQL"
       ]
     },
     {
       "company": "Redia A/S",
       "position": "Senior Software Developer",
-      "website": "https://www.redia.dk",
+      "url": "https://www.redia.dk",
       "startDate": "2019-05-01",
       "endDate": "2019-12-31",
-      "summary": "Helped to create a teaching platform for a large publisher. Pitched and developed an image-scaling microservice.",
-      "skills": [
+      "summary": "Worked on a web-based teaching platform and a mobile app to help librarians work more effectively. Pitched and developed an image (and video) scaling micro service.",
+      "keywords": [
         "React",
         "TypeScript",
         "Docker",
         "Firebase",
         "Go",
-        "Microservices",
         "React Native",
-        "Serverless",
         "Postgres"
       ]
     },
     {
       "company": "PARKPARK A/S",
       "position": "Tech Lead",
-      "website": "https://parkpark.dk",
+      "url": "https://parkpark.dk",
       "startDate": "2017-01-01",
       "endDate": "2019-05-01",
       "summary": "Pitched, developed and delivered a new user-focused app. Moved our infrastructure from a single server to full redundancy in Google Cloud. Ran in-house development, trained new employees, managed our infrastructure, coordinated with freelancers and did full-stack software development.",
@@ -76,7 +75,7 @@
         "Pitched, developed and shipped our new app",
         "Migrated our infrastructure to a managed Kubernetes environment"
       ],
-      "skills": [
+      "keywords": [
         "React",
         "React Native",
         "PHP",
@@ -85,11 +84,13 @@
         "MySQL",
         "Kubernetes",
         "Docker",
-        "Linux"
+        "Linux",
+        "HTML/CSS",
+        "GraphQL"
       ]
     },
     {
-      "company": "UVData A/S (now KMD)",
+      "company": "UVData A/S",
       "position": "Senior Developer",
       "startDate": "2015-11-01",
       "endDate": "2017-01-01",
@@ -99,18 +100,27 @@
         "Scrum-master on MinUddannelse",
         "Helped to introduce React to the organization"
       ],
-      "skills": ["React", "DevOps", "JavaScript", "CSS", "HTML", "jQuery"]
+      "keywords": ["React", "DevOps", "JavaScript", "HTML/CSS", "jQuery"],
+      "url": "https://www.uvdata.dk"
     },
     {
-      "company": "M1 A/S (later TDC)",
+      "company": "M1 A/S",
       "position": "System Developer",
       "startDate": "2012-03-01",
       "endDate": "2015-11-01",
-      "summary": "Worked on an internal billing and CRM system as a part of the backend team. I pitched a delivered an automatic plan-upgrade system for usage-warnings that was generating revenue.",
+      "summary": "Worked on an internal billing and CRM system as a part of the backend team. I pitched and delivered an automatic plan-upgrade system for usage-warnings that was generating revenue.",
       "highlights": [
         "Pitched and delivered automatic product upgrades with usage-warning SMS to customers."
       ],
-      "skills": ["PHP", "MySQL", "Linux", "jQuery", "Docker", "JavaScript"]
+      "keywords": [
+        "PHP",
+        "MySQL",
+        "Linux",
+        "jQuery",
+        "Docker",
+        "JavaScript",
+        "HTML/CSS"
+      ]
     },
     {
       "company": "Lyngsø Systems A/S",
@@ -118,58 +128,57 @@
       "startDate": "2013-03-01",
       "endDate": "2013-06-01",
       "summary": "Worked on automatic sorting machines for a large, American clothing store.",
-      "skills": ["Java", "Linux", "Windows"]
+      "keywords": ["Java", "Linux", "Windows"]
     },
-
     {
-      "company": "Sprettur ehf (now Kolibri)",
+      "company": "Sprettur ehf",
       "position": "Software Developer / Intern",
       "startDate": "2011-03-01",
       "endDate": "2011-07-01",
       "summary": "Worked closely with one of our customers on creating a shipping calculator for their website, and a reverse-engineered thermal printer solution.",
-      "skills": ["C#", "ASP.NET", "Windows"]
+      "keywords": ["C#", "ASP.NET", "Windows", "JavaScript", "HTML/CSS"]
     },
     {
       "company": "Aalborg University",
-      "website": "https://aau.dk",
+      "url": "https://aau.dk",
       "position": "Student Developer",
       "startDate": "2009-06-01",
       "endDate": "2009-08-01",
       "summary": "Developed an Android app and a backend that used geolocation to provide the users with location-aware ads.",
-      "skills": ["Java", "Python", "Django", "XML", "Android", "HTML", "CSS"]
+      "keywords": ["Java", "Python", "Django", "XML", "Android", "HTML/CSS"]
     },
     {
-      "company": "Calidris (now Sabre)",
+      "company": "Calidris ehf",
       "position": "Systems Administrator",
       "startDate": "2004-01-01",
       "endDate": "2006-07-01",
       "summary": "Managed our systems and network. Supported our developers. Built our VoIP PBX.",
-      "skills": ["Linux", "Asterisk", "Cisco"]
+      "keywords": ["Linux", "Asterisk", "Cisco"]
     },
     {
       "company": "Hringiðan ehf",
-      "website": "https://www.vortex.is",
+      "url": "https://www.vortex.is",
       "position": "Systems Administrator",
       "startDate": "2002-01-01",
       "endDate": "2004-01-01",
       "summary": "Managed servers, routers and switches. Customer support.",
-      "skills": ["Linux", "Windows Server", "Active Directory"]
+      "keywords": ["Linux", "Windows Server", "Active Directory"]
     },
     {
-      "company": "Þrívíddarmiðlun ehf (now Hugsandi Menn)",
+      "company": "Þrívíddarmiðlun ehf",
       "position": "Web Developer",
       "startDate": "2001-11-01",
       "endDate": "2002-01-01",
       "summary": "Created custom CMS systems for cinemas and real-estate brokers.",
-      "skills": ["PHP", "MySQL", "HTML", "CSS"]
+      "keywords": ["PHP", "MySQL", "HTML/CSS"]
     },
     {
-      "company": "Titan hf (now Vodafone)",
+      "company": "Titan Telecom hf",
       "position": "Network Technician",
       "startDate": "2000-01-01",
       "endDate": "2001-01-01",
       "summary": "Installed and supported our B2B customers with DSL and fiber connections. Did some minor system administration as well.",
-      "skills": ["Cisco", "DSL", "Telco", "AIX"]
+      "keywords": ["Cisco", "DSL", "Telco", "AIX"]
     },
     {
       "company": "Firmanet ehf",
@@ -177,24 +186,25 @@
       "startDate": "1999-01-01",
       "endDate": "2000-01-01",
       "summary": "Custom PHP solutions for our customers.",
-      "skills": ["PHP", "MySQL", "HTML", "CSS"]
+      "keywords": ["PHP", "MySQL", "HTML/CSS"]
     },
     {
       "company": "Frisk Software ehf",
-      "position": "Tester",
+      "position": "Software Tester",
       "startDate": "1998-01-01",
       "endDate": "1999-01-01",
       "summary": "Tested releases, collected binaries on the Internet for a false-positive database. Did some minor web development.",
-      "skills": ["PHP", "MySQL", "Testing"]
+      "keywords": ["PHP", "MySQL", "Testing", "HTML/CSS"]
     }
   ],
   "volunteer": [
     {
       "organization": "Aalborg React Meetup",
-      "position": "Co-host",
-      "website": "https://www.meetup.com/Aalborg-React-React-Native-Meetup/",
+      "position": "Speaker & Co-host",
+      "website": "https://www.meetup.com/Aalborg-Frontend/",
       "startDate": "2016-12-13",
-      "summary": "Speaker and co-host."
+      "endDate": "2020-01-01",
+      "summary": "Speaker and co-organizer"
     }
   ],
   "education": [
@@ -229,14 +239,13 @@
   ],
   "skills": [
     {
+      "id": "programming",
       "name": "Software Development",
       "level": "Senior",
-      "color": "#2B6CB0",
       "keywords": [
         "Go",
         "PHP",
-        "HTML",
-        "CSS",
+        "HTML/CSS",
         "JavaScript",
         "React",
         "React Native",
@@ -249,11 +258,12 @@
         "TypeScript",
         "Java",
         "jQuery"
-      ]
+      ],
+      "preferred": ["Go", "React", "React Native", "TypeScript"]
     },
     {
+      "id": "operations",
       "name": "System Operations",
-      "color": "#4C51BF",
       "level": "Senior",
       "keywords": [
         "Github",
@@ -272,11 +282,12 @@
         "Gitlab",
         "Windows",
         "Mac"
-      ]
+      ],
+      "preferred": ["Linux", "Kubernetes", "Docker"]
     },
     {
+      "id": "data",
       "name": "Data Management",
-      "color": "#319795",
       "level": "Senior",
       "keywords": [
         "MySQL",
@@ -286,10 +297,14 @@
         "Memcache",
         "Redis",
         "SQLite",
-        "Event Sourcing"
-      ]
+        "Event Sourcing",
+        "GraphQL",
+        "OpenAPI"
+      ],
+      "preferred": ["Postgres"]
     },
     {
+      "id": "processes",
       "name": "Processes and methodologies",
       "level": "Senior",
       "keywords": [
@@ -298,7 +313,8 @@
         "Scrum",
         "Lean",
         "Test Driven Development"
-      ]
+      ],
+      "preferred": ["Kanban", "Lean"]
     }
   ],
   "languages": [
@@ -327,5 +343,19 @@
   ],
   "meta": {
     "theme": "elegant"
-  }
+  },
+  "projects": [
+    {
+      "name": "s3preview",
+      "description": "A tiny microservice that generates and stores image previews on AWS S3.",
+      "highlights": [],
+      "keywords": ["Go", "AWS"],
+      "startDate": "2015-06-13",
+      "endDate": "2016-06-25",
+      "url": "https://github.com/andrioid/s3preview",
+      "roles": ["Creator"],
+      "entity": "Smoogle",
+      "type": "application"
+    }
+  ]
 }

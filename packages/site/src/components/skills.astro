@@ -7,24 +7,25 @@ interface Props {
 
 const { categories, focus = [] } = Astro.props as Props;
 focus.map(f => f.toLowerCase());
----
 
-<style>
-	.skill-preview {
-		h2: color
-	}
-</style>
+const colors = {
+	operations: "#065f46",
+	programming: "#2460A7",
+	data: "#491D70",
+	processes: "#000000",
+}
+---
 
 <div class="flex flex-row flex-wrap justify-between">
 	{categories.map((c) => (
 	<div {c.name} class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col p-6 md:p-0 mb-4 lg:mb-0">
-		<h2 class="font-light uppercase text-base mb-4" style={`color: ${c.color}`}>
+		<h2 class="font-semibold uppercase text-sm mb-4" style={`color: ${colors[c.id]}`}>
 			{c.name}
 		</h2>
 		<div>
 			{c.keywords &&
 			c.keywords.map((s) => (
-			<span class="andri-tag" style={`background-color: ${c.color}`}>
+			<span class="andri-tag" style={`background-color: ${colors[c.id]}`}>
 				{s.name}
 				{focus.includes(s.name) ? (
 				<Icon name="fa:heart" class="ml-2 inline-icon text-red-700" />
