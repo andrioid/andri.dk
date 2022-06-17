@@ -15,10 +15,10 @@ importers:
 
   packages/react-cv:
     specifiers:
-      '@react-pdf/renderer': ^2.0.15
+      '@react-pdf/renderer': ^2.2.0
       '@types/fs-extra': ^9.0.12
       '@types/node': ^16.0.0
-      '@types/react': ^16.14.0
+      '@types/react': ^16.9.9
       '@types/react-dom': ^16.9.9
       '@types/react-native': ^0.63.50
       '@types/wcag-contrast': ^3.0.0
@@ -50,7 +50,7 @@ importers:
     devDependencies:
       '@types/fs-extra': 9.0.13
       '@types/node': 16.11.39
-      '@types/react': 16.14.26
+      '@types/react': 16.14.28
       '@types/react-dom': 16.9.16
       '@types/react-native': 0.63.61
       '@types/wcag-contrast': 3.0.0
@@ -822,7 +822,7 @@ packages:
   /@types/react-dom/16.9.16:
     resolution: {integrity: sha512-Oqc0RY4fggGA3ltEgyPLc3IV9T73IGoWjkONbsyJ3ZBn+UPPCYpU2ec0i3cEbJuEdZtkqcCF2l1zf2pBdgUGSg==}
     dependencies:
-      '@types/react': 16.14.26
+      '@types/react': 16.14.28
     dev: true
 
   /@types/react-dom/18.0.5:
@@ -834,11 +834,11 @@ packages:
   /@types/react-native/0.63.61:
     resolution: {integrity: sha512-9WgPhoDCmz0TZl3LKaGG2YDlN+N7AW/bio4kEhzitNLANPuaagfUr4KbcSx1wuUPmb9AFks1V/PG+2L3Y2rdkg==}
     dependencies:
-      '@types/react': 18.0.12
+      '@types/react': 18.0.14
     dev: true
 
-  /@types/react/16.14.26:
-    resolution: {integrity: sha512-c/5CYyciOO4XdFcNhZW1O2woVx86k4T+DO2RorHZL7EhitkNQgSD/SgpdZJAUJa/qjVgOmTM44gHkAdZSXeQuQ==}
+  /@types/react/16.14.28:
+    resolution: {integrity: sha512-83zBE6+XUVXsdL3iFzOyUewdauaU+KviKCHEGOgSW52coAuqW7tEKQM0E9+ZC0Zk6TELQ2/JgogPvp7FavzFwg==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -847,6 +847,14 @@ packages:
 
   /@types/react/18.0.12:
     resolution: {integrity: sha512-duF1OTASSBQtcigUvhuiTB1Ya3OvSy+xORCiEf20H0P0lzx+/KeVsA99U5UjLXSbyo1DRJDlLKqTeM1ngosqtg==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.0
+    dev: true
+
+  /@types/react/18.0.14:
+    resolution: {integrity: sha512-x4gGuASSiWmo0xjDLpm5mPb52syZHJx02VKbqUKdLmKtAwIh63XClGsiTI1K6DO5q7ox4xAsQrU+Gl3+gGXF9Q==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
