@@ -12,11 +12,22 @@ import { Icon } from "../components/icon";
 import { Footer } from "../components/footer";
 import { colors } from "../theme";
 import { Profiles } from "../components/profiles";
+import { Basic, Education, Skill, Work } from "src/components/resume-types";
 
 const { Link, Page, StyleSheet, Text, Font, Document, View } = ReactPDF;
 
-export const CVDocument = () => {
-	const { basics, education, work, skills } = useResume();
+export const CVDocument = ({
+	basics,
+	education,
+	work,
+	skills,
+}: {
+	basics: Basic;
+	education: Education[];
+	work: Work[];
+	skills: Skill[];
+	// TODO: fix types, create a wrapper component
+}) => {
 	const idxFirstSpace = basics.name.indexOf(" ");
 	const firstName = basics.name.substr(0, idxFirstSpace + 1);
 	const lastName = basics.name.substr(idxFirstSpace + 1, basics.name.length);

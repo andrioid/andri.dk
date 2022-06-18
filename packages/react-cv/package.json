@@ -1,11 +1,13 @@
 {
-  "name": "example",
+  "name": "react-cv",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "type": "module",
   "scripts": {
-    "oldbuild": "esbuild src/build.tsx --bundle --platform=node --sourcemap --target=node14 --outdir=dist",
-    "build": "node src/esbuild.js",
+    "build": "tsup --sourcemap inline --format esm",
     "pdf": "node dist/build.js pdf",
     "prepdf": "npm run build",
     "web": "node dist/build.js web",
@@ -15,7 +17,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@react-pdf/renderer": "^2.2.0",
     "fs-extra": "^10.0.0",
     "globby": "^11.0.0",
     "gray-matter": "^4.0.3",
@@ -23,10 +24,11 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-native-web": "^0.14.13",
-    "source-map-support": "^0.5.19",
-    "wcag-contrast": "^3.0.0"
+    "source-map-support": "^0.5.19"
   },
   "devDependencies": {
+    "wcag-contrast": "^3.0.0",
+    "@react-pdf/renderer": "^2.2.0",
     "@types/fs-extra": "^9.0.12",
     "@types/node": "^16.0.0",
     "@types/react": "^16.9.9",
@@ -36,10 +38,17 @@
     "@types/yargs": "^17.0.2",
     "esbuild": "^0.12.14",
     "prettier": "^2.3.2",
+    "tsup": "^6.1.2",
     "typescript": "^4.3.5",
     "yargs": "^17.0.1"
   },
+  "peerDependencies": {
+    "@react-pdf/primitives": "3.0.1"
+  },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "tsup": {
+    "entry": ["src/index.ts"]
   }
 }
