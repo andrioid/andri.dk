@@ -1,7 +1,11 @@
+import * as React from "react";
 import { Resume, Skill } from "src/components/resume-types";
 import { durationForKeyword } from "src/components/utils";
+import { registerFonts } from "src/pdf-utils";
 import { getColor } from "src/theme";
 import { CVDocument } from "./cv";
+
+registerFonts();
 
 export function CVWrapper({ resume }: { resume: Resume }) {
 	const { work, education, basics, skills } = resume;

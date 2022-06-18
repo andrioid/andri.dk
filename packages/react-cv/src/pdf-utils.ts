@@ -1,5 +1,6 @@
 import { Font } from "@react-pdf/renderer";
-import path from "path";
+
+import montserratRegular from '../static/fonts/Montserrat-Regular.ttf'
 
 export function registerFonts() {
   Font.registerHyphenationCallback((word) => [word]);
@@ -7,18 +8,18 @@ export function registerFonts() {
     family: "DefaultFont",
     fonts: [
       {
-        src: path.join(__dirname, "../static/fonts/Montserrat-Regular.ttf"),
+        src: "static/fonts/Montserrat-Regular.ttf",
       },
       {
-        src: path.join(__dirname, "../static/fonts/Montserrat-SemiBold.ttf"),
+        src: "static/fonts/Montserrat-SemiBold.ttf",
         fontWeight: 700,
       },
       {
-        src: path.join(__dirname, "../static/fonts/Montserrat-Light.ttf"),
+        src: "static/fonts/Montserrat-Light.ttf",
         fontWeight: 300,
       },
       {
-        src: path.join(__dirname, "../static/fonts/Montserrat-Italic.ttf"),
+        src: "static/fonts/Montserrat-Italic.ttf",
         fontStyle: "italic",
       },
     ],
@@ -28,7 +29,7 @@ export function registerFonts() {
     family: "Brands",
     fonts: [
       {
-        src: path.join(__dirname, "../static/fonts/brands.ttf"),
+        src: "static/fonts/brands.ttf",
       },
     ],
   });
@@ -36,7 +37,7 @@ export function registerFonts() {
     family: "Awesome",
     fonts: [
       {
-        src: path.join(__dirname, "../static/fonts/awesome-solid.ttf"),
+        src: "static/fonts/awesome-solid.ttf",
       },
     ],
   });
