@@ -9,8 +9,9 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build:site": "pnpm run -C packages/site build",
-    "build": "npm run build:site"
+    "build:site": "pnpm install -C packages/site && pnpm run -C packages/site build",
+    "build:react-cv": "pnpm install -C packages/react-cv && pnpm run -C packages/react-cv build",
+    "build": "pnpm run build:react-cv && pnpm run build:site"
   },
   "devDependencies": {
     "prettier-plugin-astro": "^0.0.12",
