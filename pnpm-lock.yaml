@@ -65,7 +65,7 @@ importers:
       '@tailwindcss/typography': ^0.5.2
       '@types/react': ^18.0.12
       '@types/react-dom': ^18.0.5
-      astro: ^1.0.0-beta.44
+      astro: ^1.0.0-beta.47
       astro-icon: ^0.7.1
       autoprefixer: ^10.4.7
       globby: ^13.1.1
@@ -84,7 +84,7 @@ importers:
       '@tailwindcss/typography': 0.5.2_tailwindcss@3.1.2
       '@types/react': 18.0.12
       '@types/react-dom': 18.0.5
-      astro: 1.0.0-beta.44
+      astro: 1.0.0-beta.47
       astro-icon: 0.7.1
       autoprefixer: 10.4.7_postcss@8.4.14
       globby: 13.1.1
@@ -1030,8 +1030,8 @@ packages:
       svgo: 2.8.0
     dev: true
 
-  /astro/1.0.0-beta.44:
-    resolution: {integrity: sha512-+3YtG8j/pPKFbzceKK4IwA7VDkRSYMY1ntN2PTp9s6HtHkSLGQEx0z9TLh7cBfJk6cM1obGoerzbenTZ2qSNtA==}
+  /astro/1.0.0-beta.47:
+    resolution: {integrity: sha512-S1kSN9mMGwV0630NMCLYq6tRX4g4Rmv34PgDFUzto3CQa+1dImfo2VWUplALjKaZ41ra0rDJ7TW+iSj+0X9koQ==}
     engines: {node: ^14.15.0 || >=16.0.0, npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -1079,7 +1079,6 @@ packages:
       resolve: 1.22.0
       rollup: 2.75.6
       semver: 7.3.7
-      serialize-javascript: 6.0.0
       shiki: 0.10.1
       sirv: 2.0.2
       slash: 4.0.0
@@ -3779,12 +3778,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /randombytes/2.1.0:
-    resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
-    dependencies:
-      safe-buffer: 5.2.1
-    dev: true
-
   /react-dom/16.14.0_react@16.14.0:
     resolution: {integrity: sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==}
     peerDependencies:
@@ -4114,12 +4107,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: true
-
-  /serialize-javascript/6.0.0:
-    resolution: {integrity: sha512-Qr3TosvguFt8ePWqsvRfrKyQXIiW+nGbYpy8XK24NQHE83caxWt+mIymTT19DGFbNWNLfEwsrkSmN64lVWB9ag==}
-    dependencies:
-      randombytes: 2.1.0
     dev: true
 
   /shebang-command/2.0.0:
