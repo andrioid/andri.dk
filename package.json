@@ -9,8 +9,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install",
-    "build": "pnpm run -C packages/site build"
+    "build:site": "pnpm run -C packages/site build",
+    "build": "npm run build:site"
   },
   "devDependencies": {
     "prettier-plugin-astro": "^0.0.12",
