@@ -13,6 +13,7 @@ import { Footer } from "../components/footer";
 import { colors } from "../theme";
 import { Profiles } from "../components/profiles";
 import { Basic, Education, Skill, Work } from "src/components/resume-types";
+import { DEFAULT_FONT } from "src";
 
 const { Link, Page, StyleSheet, Text, Font, Document, View } = ReactPDF;
 
@@ -47,7 +48,7 @@ export const CVDocument = ({
 							&nbsp;&nbsp;Aalborg, Denmark
 						</Text>
 					</View>
-					<Head src="./static/andri.jpg"></Head>
+					<Head src="andri.jpg"></Head>
 				</View>
 
 				<View
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
 		//marginHorizontal: 30,
 		fontSize: 8,
 		color: "black",
-		fontFamily: "DefaultFont",
+		fontFamily: DEFAULT_FONT,
 	},
 	leftHeader: {
 		//alignItems: "center",

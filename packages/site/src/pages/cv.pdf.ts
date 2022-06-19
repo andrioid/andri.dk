@@ -1,9 +1,9 @@
-import cvData from '../../../cv/resume.json'
-import { resumeToString } from 'react-cv';
+import cvData from "../../../cv/resume.json";
+import { resumeToString } from "react-cv";
 
 export async function get() {
-	const pdfBlob = await resumeToString(cvData)
+	const pdfBlob = await resumeToString(cvData);
 	return {
-		body: pdfBlob
-	}
+		body: pdfBlob,
+	};
 }

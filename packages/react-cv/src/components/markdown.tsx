@@ -7,6 +7,7 @@ import { Headline } from "../headline";
 import { SectionHeader } from "./section/section-header";
 import { Footer } from "./footer";
 import { useResume } from "../use-resume";
+import { DEFAULT_FONT } from "src";
 
 const TextOverride = {
 	component: Text,
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
 		//marginHorizontal: 30,
 		fontSize: 12,
 		color: "black",
-		fontFamily: "DefaultFont",
+		fontFamily: DEFAULT_FONT,
 	},
 	cover: {
 		alignItems: "flex-end",
