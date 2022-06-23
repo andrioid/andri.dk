@@ -1,0 +1,45 @@
+
+	<svg
+		width="1200"
+		height="600"
+		viewBox="0 0 400 200"
+		font-family="Inter"
+		font-size="12"
+		version="1.1"
+		xmlns="http://www.w3.org/2000/svg"
+		xmlnsXlink="http://www.w3.org/1999/xlink"
+	>
+		<defs>
+			<clipPath id="clip">
+			<use xlinkHref="#rect" />
+			</clipPath>
+			<filter id="shadow" asx="0" asy="0">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+			<feOffset dx="0.5" dy="-0.5" />
+			<feMerge>
+				<feMergeNode />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+			</filter>
+		</defs>
+
+		<g filter="url(#shadow)">
+			<rect
+			width="360"
+			height="120"
+			x="20"
+			y="140"
+			rx="10"
+			style="fill: #fff; strokeWidth: 0;"
+			/>
+		</g>
+		<g class="texts" style="fill: #000; font-size: 12;">
+			<text x="40" y="170">
+				test
+			</text>
+			<text x="40" y="185" style="font-size: 10; fill: #a3a3a3;">
+				subtest
+			</text>
+		</g>
+	</svg>		
+	

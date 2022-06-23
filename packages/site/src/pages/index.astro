@@ -9,6 +9,7 @@ import Skills from '../components/skills.astro';
 import coffeeAndri from '../../static/img/coffee-art.jpg';
 import flagDK from '../../static/img/denmark-flag.svg';
 import flagIS from '../../static/img/iceland-flag.svg';
+import { SocialCard } from 'social-cards';
 
 import cvJSON from '../../../cv/resume.json';
 import Icon from "astro-icon";
@@ -23,6 +24,7 @@ const parsedPosts = allPosts.map(postMapper);
 ---
 
 <Layout title="andri.dk | Andri Óskarsson">
+	<SocialCard title="test" subtitle="subtest" />
 	<main>
 		<MainBody>
 			<div class="flex-1">

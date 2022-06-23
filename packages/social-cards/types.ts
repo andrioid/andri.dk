@@ -10,3 +10,6 @@ export interface Result {
 	path: string;
 	hash: string;
 }
+
+// Templates need to supply svg and maybe some fonts
+export type TemplateResponse = [svg: string, resvg?: ResvgRenderOptions];

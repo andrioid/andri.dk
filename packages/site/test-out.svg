@@ -1,0 +1,15 @@
+<svg width="1200" height="600" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter id="shadow" x="-0.1" y="-0.1" width="1.2" height="1.2">
+            <feGaussianBlur color-interpolation-filters="linearRGB" in="SourceAlpha" stdDeviation="3 3" result="result1"/>
+            <feOffset color-interpolation-filters="linearRGB" in="result1" dx="0.5" dy="-0.5" result="result2"/>
+            <feMerge color-interpolation-filters="linearRGB" result="result3">
+                <feMergeNode in="result2"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g filter="url(#shadow)">
+        <path fill="#ffffff" stroke="none" d="M 30 140 L 370 140 C 375.52284749831 140 380 144.47715250169 380 150 L 380 250 C 380 255.52284749831 375.52284749831 260 370 260 L 30 260 C 24.47715250169 260 20 255.52284749831 20 250 L 20 150 C 20 144.47715250169 24.47715250169 140 30 140 Z"/>
+    </g>
+</svg>
