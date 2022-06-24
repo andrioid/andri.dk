@@ -3,6 +3,9 @@ import { ResvgRenderOptions } from "@resvg/resvg-js";
 export interface Options {
 	svg: string;
 	resvg?: ResvgRenderOptions;
+	outputDir: string;
+	urlPath: string;
+	publicDir: string;
 }
 
 export interface Result {

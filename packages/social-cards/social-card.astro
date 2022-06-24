@@ -1,6 +1,6 @@
 ---
 import { generateImage } from "./build";
-import { Card } from "./templates/card";
+import { PopupCard } from "./templates/popup-card/popup-card";
 
 interface Props {
 	title: string;
@@ -8,9 +8,8 @@ interface Props {
 }
 const { title, subtitle } = Astro.props as Props;
 
-const imageResult = await generateImage({
-	svg: Card({ title, subtitle })
-})
+const options = PopupCard({ title, subtitle })
+const imageResult = await generateImage(options)
 ---
 
 <>
