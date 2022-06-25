@@ -5,10 +5,12 @@ import { PopupCard } from "./templates/popup-card/popup-card";
 interface Props {
 	title: string;
 	subtitle?: string;
+	authorImage?: string;
+	backgroundImage?: string;
 }
-const { title, subtitle } = Astro.props as Props;
+const { title, subtitle, authorImage, backgroundImage } = Astro.props as Props;
 
-const options = PopupCard({ title, subtitle })
+const options = PopupCard({ title, subtitle, authorImage, backgroundImage })
 const imageResult = await generateImage(options)
 ---
 

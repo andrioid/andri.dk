@@ -3,43 +3,80 @@
 		width="1200"
 		height="600"
 		viewBox="0 0 400 200"
-		font-family="exotica"
 		font-size="12"
 		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
-		xmlnsXlink="http://www.w3.org/1999/xlink"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
 	>
 		<defs>
 			<clipPath id="clip">
-			<use xlinkHref="#rect" />
+				<use xlink:href="#authorImageRect" />
 			</clipPath>
+			<rect
+				id="authorImageRect"
+				width="32"
+				height="32"
+				x="328"
+				y="156"
+				fill="none"
+				rx="50"
+			/>
+	  
 			<filter id="shadow" asx="0" asy="0">
-			<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-			<feOffset dx="0.5" dy="-0.5" />
-			<feMerge>
-				<feMergeNode />
-				<feMergeNode in="SourceGraphic" />
-			</feMerge>
+				<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+				<feOffset dx="0.5" dy="-0.5" />
+				<feMerge>
+					<feMergeNode />
+					<feMergeNode in="SourceGraphic" />
+				</feMerge>
 			</filter>
 		</defs>
 
+		
+			<image
+				width="400"
+				height="200"
+				x="0"
+				y="0"
+				xlink:href="/home/andri/git/andri.dk/packages/site/static/img/hvitserkur.JPG"
+				preserveAspectRatio="xMidYMid slice"
+				transform="scale(1,1)"
+			/>
+		
+		
+
 		<g filter="url(#shadow)">
 			<rect
-			width="360"
-			height="120"
-			x="20"
-			y="140"
-			rx="10"
-			style="fill: #fff; strokeWidth: 0;"
+				width="360"
+				height="120"
+				x="20"
+				y="140"
+				rx="10"
+				style="fill: #fff; stroke-width: 0;"
 			/>
 		</g>
-		<g class="texts" style="fill: #000; font-size: 12;">
-			<text x="40" y="170">
-				test
+
+		
+	<g stroke="2" clip-path="url(#clip)">
+		<image
+			width="32"
+			height="32"
+			x="328"
+			y="156"
+			xlink:href="/home/andri/git/andri.dk/packages/site/static/img/coffee-art.jpg"
+		/>
+	</g>
+
+		<g class="texts" fill="#000" font-size="10" >
+			<text x="40" y="162" font-weight="bold">
+				Announcing Astro Social Cards
 			</text>
-			<text x="40" y="185" style="font-size: 10; fill: #a3a3a3;">
-				subtest
+			<text x="42" y="172" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
+				by Andri Óskarsson
 			</text>
+			<g font-size="7" font-weight="bold">
+				<text x="40" y="186">#React</text>
+			</g>
 		</g>
 	</svg>		
 	

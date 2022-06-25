@@ -7,6 +7,7 @@ import { Frontmatter, postMapper } from "../lib/blog";
 import Card from "../components/card.astro";
 import Skills from '../components/skills.astro';
 import coffeeAndri from '../../static/img/coffee-art.jpg';
+import cardBackground from "../../static/img/hvitserkur.jpg"
 import flagDK from '../../static/img/denmark-flag.svg';
 import flagIS from '../../static/img/iceland-flag.svg';
 import { SocialCard } from 'social-cards';
@@ -24,7 +25,8 @@ const parsedPosts = allPosts.map(postMapper);
 ---
 
 <Layout title="andri.dk | Andri Óskarsson">
-	<SocialCard title="test" subtitle="subtest" />
+	<SocialCard title="Announcing Astro Social Cards" subtitle="by Andri Óskarsson" authorImage={coffeeAndri}
+		backgroundImage={cardBackground} />
 	<main>
 		<MainBody>
 			<div class="flex-1">
