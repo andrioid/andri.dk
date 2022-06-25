@@ -75,3 +75,14 @@ function getHash(options: Options) {
 	hash.update(JSON.stringify(options));
 	return hash.digest("base64url").substring(0, 10);
 }
+
+export function escapeHTML(str: string) {
+	const table: Record<string, string> = {
+		"&": "&amp;",
+		"<": "&lt;",
+		">": "&gt;",
+		"'": "&#39;",
+		'"': "&quot;",
+	};
+	return str.replace(/[&<>'"]/g, (tag) => table[tag]);
+}

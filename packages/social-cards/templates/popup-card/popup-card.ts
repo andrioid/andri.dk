@@ -1,6 +1,11 @@
 import { Options } from "../../types";
 import { resolve } from "node:path";
-import { defaultOptions, defaultRsvgOptions, validateImage } from "../../build";
+import {
+	defaultOptions,
+	defaultRsvgOptions,
+	escapeHTML,
+	validateImage,
+} from "../../build";
 import { existsSync } from "node:fs";
 
 export function PopupCard({
@@ -117,12 +122,12 @@ export function PopupCard({
 
 		<g class="texts" fill="#000" font-size="10" >
 			<text x="${xMargin}" y="${texty}" font-weight="bold">
-				${encodeURIComponent(title)}
+				${escapeHTML(title)}
 			</text>
 			<text x="${xMargin + 2}" y="${
 		texty + 10
 	}" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
-				${encodeURIComponent(subtitle)}
+				${escapeHTML(subtitle)}
 			</text>
 			${tags}
 		</g>
