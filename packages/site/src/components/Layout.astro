@@ -17,6 +17,7 @@ const { title, description = "Personal blog and portfolio of Andri Óskarsson" }
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
+	<meta name="og:title" content={title} />
 	{description ?
 	<meta name="description" content={description} /> : null}
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
