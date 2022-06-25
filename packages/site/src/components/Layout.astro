@@ -1,7 +1,5 @@
 ---
 import { SocialCard } from "social-cards";
-import coffeeAndri from '../../static/img/coffee-art.jpg';
-import cardBackground from "../../static/img/hvitserkur.jpg"
 import "../../css/global.css";
 export interface Props {
 	title: string;
@@ -22,7 +20,8 @@ const { title, description = "Personal blog and portfolio of Andri Óskarsson" }
 	<meta name="description" content={description} /> : null}
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 	<title>{title}</title>
-	<SocialCard title={title} subtitle={description} authorImage={coffeeAndri} backgroundImage={cardBackground} />
+	<SocialCard title={title} subtitle={description} authorImage={"./public/img/coffee-art.jpg"}
+		backgroundImage={"./public/img/hvitserkur.jpg"} />
 
 </head>
 

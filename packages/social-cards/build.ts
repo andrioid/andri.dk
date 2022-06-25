@@ -25,26 +25,32 @@ export const defaultOptions: Partial<Options> = {
 export async function generateImage(options: Options): Promise<Result> {
 	options = { ...defaultOptions, ...options };
 	await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
-	const resvg = new Resvg(options.svg, options.resvg);
-	const pngData = resvg.render();
-	const pngBuffer = pngData.asPng();
+	try {
+		const resvg = new Resvg(options.svg, options.resvg);
+		const pngData = resvg.render();
+		const pngBuffer = pngData.asPng();
 
-	if (!existsSync(options.outputDir)) {
-		mkdirSync(options.outputDir, { recursive: true });
-	}
-	// Ready to write
-	const hash = getHash(options);
-	const out = {
-		url: join(options.urlPath, `${hash}.png`),
-		path: join(options.outputDir, `${hash}.png`),
-		hash: hash,
-	};
-	if (existsSync(out.path)) {
-		return out; // No need to generate anything
-	}
-	await promises.writeFile(resolve(out.path), pngBuffer);
+		if (!existsSync(options.outputDir)) {
+			mkdirSync(options.outputDir, { recursive: true });
+		}
+		// Ready to write
+		const hash = getHash(options);
+		const out = {
+			url: join(options.urlPath, `${hash}.png`),
+			path: join(options.outputDir, `${hash}.png`),
+			hash: hash,
+		};
+		if (existsSync(out.path)) {
+			return out; // No need to generate anything
+		}
+		await promises.writeFile(resolve(out.path), pngBuffer);
 
-	return out;
+		return out;
+	} catch (err) {
+		console.error(err);
+		console.debug(JSON.stringify(options, null, 5));
+		throw new Error("[social-card] Failed to generate social-card");
+	}
 }
 
 export function validateImage(image: string): string {

@@ -117,12 +117,12 @@ export function PopupCard({
 
 		<g class="texts" fill="#000" font-size="10" >
 			<text x="${xMargin}" y="${texty}" font-weight="bold">
-				${title}
+				${encodeURIComponent(title)}
 			</text>
 			<text x="${xMargin + 2}" y="${
 		texty + 10
 	}" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
-				${subtitle}
+				${encodeURIComponent(subtitle)}
 			</text>
 			${tags}
 		</g>
