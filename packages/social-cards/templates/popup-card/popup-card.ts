@@ -56,6 +56,15 @@ export function PopupCard({
 		`;
 	}
 
+	let tags = "";
+	if (false) {
+		tags = `
+		<g font-size="7" font-weight="bold">
+			<text x="${xMargin}" y="${texty + 24}">#React</text>
+		</g>
+		`;
+	}
+
 	let svg = "";
 	svg += `
 	<svg
@@ -115,9 +124,7 @@ export function PopupCard({
 	}" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
 				${subtitle}
 			</text>
-			<g font-size="7" font-weight="bold">
-				<text x="${xMargin}" y="${texty + 24}">#React</text>
-			</g>
+			${tags}
 		</g>
 	</svg>		
 	`;

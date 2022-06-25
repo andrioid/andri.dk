@@ -1,7 +1,8 @@
 import { Resvg, ResvgRenderOptions } from "@resvg/resvg-js";
 import { Options, Result } from "./types";
-import { promises, existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { promises, existsSync, mkdirSync } from "node:fs";
+import { resolve, join } from "node:path";
+import { createHash } from "node:crypto";
 
 export const fontPath = resolve("static", "fonts");
 
@@ -17,7 +18,7 @@ export const defaultRsvgOptions: Partial<ResvgRenderOptions> = {
 export const defaultOptions: Partial<Options> = {
 	resvg: defaultRsvgOptions,
 	outputDir: "public/social-cards",
-	urlPath: "/",
+	urlPath: "/social-cards",
 	publicDir: "public",
 };
 
@@ -27,14 +28,23 @@ export async function generateImage(options: Options): Promise<Result> {
 	const resvg = new Resvg(options.svg, options.resvg);
 	const pngData = resvg.render();
 	const pngBuffer = pngData.asPng();
-	await promises.writeFile(resolve("./test-out.svg"), resvg.toString());
-	await promises.writeFile(resolve("./test-out.png"), pngBuffer);
 
-	return {
-		url: "moo",
-		path: "moo",
-		hash: "omo",
+	if (!existsSync(options.outputDir)) {
+		mkdirSync(options.outputDir, { recursive: true });
+	}
+	// Ready to write
+	const hash = getHash(options);
+	const out = {
+		url: join(options.urlPath, `${hash}.png`),
+		path: join(options.outputDir, `${hash}.png`),
+		hash: hash,
 	};
+	if (existsSync(out.path)) {
+		return out; // No need to generate anything
+	}
+	await promises.writeFile(resolve(out.path), pngBuffer);
+
+	return out;
 }
 
 export function validateImage(image: string): string {
@@ -51,4 +61,11 @@ export function validateImage(image: string): string {
 		);
 	}
 	return imagePath;
+}
+
+// Credit: https://github.com/Princesseuh/astro-social-images
+function getHash(options: Options) {
+	const hash = createHash("sha256");
+	hash.update(JSON.stringify(options));
+	return hash.digest("base64url").substring(0, 10);
 }
