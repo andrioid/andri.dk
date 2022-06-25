@@ -4,16 +4,13 @@ import {
 	defaultOptions,
 	defaultRsvgOptions,
 	escapeHTML,
+	getHash,
+	hashProps,
 	validateImage,
 } from "../../build";
 import { existsSync } from "node:fs";
 
-export function PopupCard({
-	title = "default title",
-	subtitle = "default subtitle",
-	authorImage,
-	backgroundImage,
-}: {
+export function PopupCard(props: {
 	title: string;
 	subtitle?: string;
 	authorImage?: string;
@@ -25,12 +22,12 @@ export function PopupCard({
 	const authorWidth = 32;
 
 	let texty = 162;
-	if (!subtitle) {
+	if (!props.subtitle) {
 		texty = texty + 5;
 	}
 	let authorImageSvg = "";
-	if (authorImage) {
-		authorImage = validateImage(authorImage);
+	if (props.authorImage) {
+		props.authorImage = validateImage(props.authorImage);
 		authorImageSvg = `
 	<g stroke="2" clip-path="url(#clip)">
 		<image
@@ -38,21 +35,21 @@ export function PopupCard({
 			height="${authorWidth}"
 			x="${iwidth - authorWidth - xMargin}"
 			y="156"
-			xlink:href="${authorImage}"
+			xlink:href="${props.authorImage}"
 		/>
 	</g>`;
 	}
 
 	let backgroundImageSvg = "";
-	if (backgroundImage) {
-		backgroundImage = validateImage(backgroundImage);
+	if (props.backgroundImage) {
+		props.backgroundImage = validateImage(props.backgroundImage);
 		backgroundImageSvg = `
 			<image
 				width="${iwidth}"
 				height="${iheight}"
 				x="0"
 				y="0"
-				xlink:href="${backgroundImage}"
+				xlink:href="${props.backgroundImage}"
 				preserveAspectRatio="xMidYMid slice"
 				transform="scale(1,1)"
 			/>
@@ -121,12 +118,12 @@ export function PopupCard({
 
 		<g class="texts" fill="#000" font-size="10" >
 			<text x="${xMargin}" y="${texty}" font-weight="bold">
-				${escapeHTML(title)}
+				${escapeHTML(props.title)}
 			</text>
 			<text x="${xMargin + 2}" y="${
 		texty + 10
 	}" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
-				${escapeHTML(subtitle)}
+				${(props.subtitle && escapeHTML(props.subtitle)) || ""}
 			</text>
 			${tags}
 		</g>
@@ -135,5 +132,6 @@ export function PopupCard({
 
 	return {
 		svg,
+		hash: hashProps(props),
 	} as Options;
 }

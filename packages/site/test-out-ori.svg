@@ -68,11 +68,11 @@
 	</g>
 
 		<g class="texts" fill="#000" font-size="10" >
-			<text x="40" y="162" font-weight="bold">
+			<text x="40" y="167" font-weight="bold">
 				Announcing gatsby-plugin-social-cards
 			</text>
-			<text x="42" y="172" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
-				Personal blog and portfolio of Andri Óskarsson
+			<text x="42" y="177" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
+				
 			</text>
 			
 		</g>

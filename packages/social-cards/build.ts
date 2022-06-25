@@ -34,16 +34,19 @@ export async function generateImage(options: Options): Promise<Result> {
 			mkdirSync(options.outputDir, { recursive: true });
 		}
 		// Ready to write
-		const hash = getHash(options);
+		if (!options.hash) {
+			throw new Error("[social-cards] No hash received from template");
+		}
 		const out = {
-			url: join(options.urlPath, `${hash}.png`),
-			path: join(options.outputDir, `${hash}.png`),
-			hash: hash,
+			url: join(options.urlPath, `${options.hash}.png`),
+			path: join(options.outputDir, `${options.hash}.png`),
+			hash: options.hash,
 		};
 		if (existsSync(out.path)) {
-			console.warn(`[social-cards] Skipping ${out.path}`);
+			console.debug(`[social-cards] Skipping ${out.path}`);
 			return out; // No need to generate anything
 		}
+		console.debug(`[social-cards] Generating ${out.path}`);
 		await promises.writeFile(resolve(out.path), pngBuffer);
 
 		return out;
@@ -71,9 +74,17 @@ export function validateImage(image: string): string {
 }
 
 // Credit: https://github.com/Princesseuh/astro-social-images
-function getHash(options: Options) {
+export function getHash(options: Options) {
 	const hash = createHash("sha256");
 	hash.update(JSON.stringify(options));
+	return hash.digest("base64url");
+}
+
+export function hashProps(...props: any[]) {
+	const hash = createHash("sha256");
+	for (let prop of props) {
+		hash.update(JSON.stringify(prop));
+	}
 	return hash.digest("base64url");
 }
 

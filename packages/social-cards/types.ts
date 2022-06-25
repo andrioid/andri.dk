@@ -6,6 +6,7 @@ export interface Options {
 	outputDir: string;
 	urlPath: string;
 	publicDir: string;
+	hash: string;
 }
 
 export interface Result {
