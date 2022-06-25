@@ -31,7 +31,6 @@ export function PopupCard({
 	let authorImageSvg = "";
 	if (authorImage) {
 		authorImage = validateImage(authorImage);
-		console.log("authorimage", authorImage);
 		authorImageSvg = `
 	<g stroke="2" clip-path="url(#clip)">
 		<image

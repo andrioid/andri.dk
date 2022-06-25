@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 export const fontPath = resolve("static", "fonts");
 
 export const defaultRsvgOptions: Partial<ResvgRenderOptions> = {
-	logLevel: "debug",
+	//logLevel: "debug",
 	font: {
 		loadSystemFonts: true,
 		fontDirs: ["static/fonts"],
@@ -41,6 +41,7 @@ export async function generateImage(options: Options): Promise<Result> {
 			hash: hash,
 		};
 		if (existsSync(out.path)) {
+			console.warn(`[social-cards] Skipping ${out.path}`);
 			return out; // No need to generate anything
 		}
 		await promises.writeFile(resolve(out.path), pngBuffer);
@@ -73,7 +74,7 @@ export function validateImage(image: string): string {
 function getHash(options: Options) {
 	const hash = createHash("sha256");
 	hash.update(JSON.stringify(options));
-	return hash.digest("base64url").substring(0, 10);
+	return hash.digest("base64url");
 }
 
 export function escapeHTML(str: string) {
