@@ -1,5 +1,5 @@
 import { Resvg, ResvgRenderOptions } from "@resvg/resvg-js";
-import { Options, Result } from "./types";
+import { GenerateOptions, Result } from "./types";
 import { promises, existsSync, mkdirSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { createHash } from "node:crypto";
@@ -15,15 +15,15 @@ export const defaultRsvgOptions: Partial<ResvgRenderOptions> = {
 	},
 };
 
-export const defaultOptions: Partial<Options> = {
+export const defaultOptions: Partial<GenerateOptions> = {
 	resvg: defaultRsvgOptions,
 	outputDir: "public/social-cards",
 	urlPath: "/social-cards",
 	publicDir: "public",
 };
 
-export async function generateImage(options: Options): Promise<Result> {
-	options = { ...defaultOptions, ...options };
+export async function generateImage(opts: GenerateOptions): Promise<Result> {
+	const options = { ...defaultOptions, ...opts };
 	await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
 	try {
 		const resvg = new Resvg(options.svg, options.resvg);
@@ -46,7 +46,7 @@ export async function generateImage(options: Options): Promise<Result> {
 			console.debug(`[social-cards] Skipping ${out.path}`);
 			return out; // No need to generate anything
 		}
-		console.debug(`[social-cards] Generating ${out.path}`);
+		console.log(`[social-cards] Generating ${out.path}`);
 		await promises.writeFile(resolve(out.path), pngBuffer);
 
 		return out;
@@ -71,13 +71,6 @@ export function validateImage(image: string): string {
 		);
 	}
 	return imagePath;
-}
-
-// Credit: https://github.com/Princesseuh/astro-social-images
-export function getHash(options: Options) {
-	const hash = createHash("sha256");
-	hash.update(JSON.stringify(options));
-	return hash.digest("base64url");
 }
 
 export function hashProps(...props: any[]) {

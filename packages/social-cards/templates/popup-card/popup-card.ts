@@ -1,21 +1,12 @@
-import { Options } from "../../types";
-import { resolve } from "node:path";
-import {
-	defaultOptions,
-	defaultRsvgOptions,
-	escapeHTML,
-	getHash,
-	hashProps,
-	validateImage,
-} from "../../build";
-import { existsSync } from "node:fs";
+import { GenerateOptions } from "../../types";
+import { escapeHTML, hashProps, validateImage } from "../../build";
 
 export function PopupCard(props: {
 	title: string;
 	subtitle?: string;
 	authorImage?: string;
 	backgroundImage?: string;
-}): Options {
+}): GenerateOptions {
 	const iwidth = 400;
 	const iheight = 200;
 	const xMargin = 40;
@@ -120,8 +111,8 @@ export function PopupCard(props: {
 			<text x="${xMargin}" y="${texty}" font-weight="bold">
 				${escapeHTML(props.title)}
 			</text>
-			<text x="${xMargin + 2}" y="${
-		texty + 10
+			<text x="${xMargin}" y="${
+		texty + 11
 	}" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
 				${(props.subtitle && escapeHTML(props.subtitle)) || ""}
 			</text>
@@ -133,5 +124,5 @@ export function PopupCard(props: {
 	return {
 		svg,
 		hash: hashProps(props),
-	} as Options;
+	} as GenerateOptions;
 }

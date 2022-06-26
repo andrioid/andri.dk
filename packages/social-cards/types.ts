@@ -1,8 +1,8 @@
 import { ResvgRenderOptions } from "@resvg/resvg-js";
 
-export interface Options {
-	svg: string;
-	resvg?: ResvgRenderOptions;
+export interface GenerateOptions {
+	svg: string; // string of svg
+	resvg?: ResvgRenderOptions; // optional resvg override
 	outputDir: string;
 	urlPath: string;
 	publicDir: string;

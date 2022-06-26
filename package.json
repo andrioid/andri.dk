@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build:site": "pnpm install -C packages/site && pnpm run -C packages/site build",
+    "build:site": "pnpm install -C packages/site && cd packages/site && pnpm run build",
     "build:react-cv": "pnpm install -C packages/react-cv && pnpm run -C packages/react-cv build",
     "build": "pnpm run build:react-cv && pnpm run build:site"
   },
