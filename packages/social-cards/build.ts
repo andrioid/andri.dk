@@ -24,7 +24,8 @@ export const defaultOptions: Partial<GenerateOptions> = {
 
 export async function generateImage(opts: GenerateOptions): Promise<Result> {
 	const options = { ...defaultOptions, ...opts };
-	await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
+	// Helpful to debug rsvg
+	// await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
 	try {
 		const resvg = new Resvg(options.svg, options.resvg);
 		const pngData = resvg.render();
@@ -37,12 +38,14 @@ export async function generateImage(opts: GenerateOptions): Promise<Result> {
 		if (!options.hash) {
 			throw new Error("[social-cards] No hash received from template");
 		}
-		const out = {
+		const out: Result = {
 			url: join(options.urlPath, `${options.hash}.png`),
 			path: join(options.outputDir, `${options.hash}.png`),
 			hash: options.hash,
+			generated: true,
 		};
 		if (existsSync(out.path)) {
+			out.generated = false;
 			console.debug(`[social-cards] Skipping ${out.path}`);
 			return out; // No need to generate anything
 		}
@@ -74,6 +77,8 @@ export function validateImage(image: string): string {
 }
 
 export function hashProps(...props: any[]) {
+	// TODO: Hash is using absolute file names, that will not match the build system
+	console.debug(`[social-cards] Hash: ${JSON.stringify(props, null, 5)}`);
 	const hash = createHash("sha256");
 	for (let prop of props) {
 		hash.update(JSON.stringify(prop));

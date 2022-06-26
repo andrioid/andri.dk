@@ -13,6 +13,7 @@ export interface Result {
 	url: string;
 	path: string;
 	hash: string;
+	generated: boolean;
 }
 
 // Templates need to supply svg and maybe some fonts

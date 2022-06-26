@@ -1,12 +1,15 @@
 import { GenerateOptions } from "../../types";
 import { escapeHTML, hashProps, validateImage } from "../../build";
 
-export function PopupCard(props: {
-	title: string;
-	subtitle?: string;
-	authorImage?: string;
-	backgroundImage?: string;
-}): GenerateOptions {
+export function PopupCard(
+	props: Readonly<{
+		title: string;
+		subtitle?: string;
+		authorImage?: string;
+		backgroundImage?: string;
+	}>
+): GenerateOptions {
+	const hash = hashProps(props);
 	const iwidth = 400;
 	const iheight = 200;
 	const xMargin = 40;
@@ -18,7 +21,7 @@ export function PopupCard(props: {
 	}
 	let authorImageSvg = "";
 	if (props.authorImage) {
-		props.authorImage = validateImage(props.authorImage);
+		const authorImage = validateImage(props.authorImage);
 		authorImageSvg = `
 	<g stroke="2" clip-path="url(#clip)">
 		<image
@@ -26,21 +29,21 @@ export function PopupCard(props: {
 			height="${authorWidth}"
 			x="${iwidth - authorWidth - xMargin}"
 			y="156"
-			xlink:href="${props.authorImage}"
+			xlink:href="${authorImage}"
 		/>
 	</g>`;
 	}
 
 	let backgroundImageSvg = "";
 	if (props.backgroundImage) {
-		props.backgroundImage = validateImage(props.backgroundImage);
+		const backgroundImage = validateImage(props.backgroundImage);
 		backgroundImageSvg = `
 			<image
 				width="${iwidth}"
 				height="${iheight}"
 				x="0"
 				y="0"
-				xlink:href="${props.backgroundImage}"
+				xlink:href="${backgroundImage}"
 				preserveAspectRatio="xMidYMid slice"
 				transform="scale(1,1)"
 			/>
@@ -123,6 +126,6 @@ export function PopupCard(props: {
 
 	return {
 		svg,
-		hash: hashProps(props),
+		hash,
 	} as GenerateOptions;
 }
