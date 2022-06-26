@@ -9,7 +9,7 @@ export function PopupCard(
 		backgroundImage?: string;
 	}>
 ): GenerateOptions {
-	const hash = hashProps(props);
+	const hash = hashProps("popup-card", props);
 	const iwidth = 400;
 	const iheight = 200;
 	const xMargin = 40;
