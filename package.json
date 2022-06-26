@@ -22,8 +22,7 @@
     "pnpm": ">=7"
   },
   "cacheDirectories": [
-    ".cache",
-    "public"
+    ".cache"
   ],
   "dependencies": {
     "prettier": "^2.6.2"
