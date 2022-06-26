@@ -76,9 +76,8 @@ export function validateImage(image: string): string {
 	return imagePath;
 }
 
-export function hashProps(...props: any[]) {
-	// TODO: Hash is using absolute file names, that will not match the build system
-	console.debug(`[social-cards] Hash: ${JSON.stringify(props, null, 5)}`);
+export function hashProps(...props: unknown[]) {
+	//console.debug(`[social-cards] Hash: ${JSON.stringify(props, null, 5)}`);
 	const hash = createHash("sha256");
 	for (let prop of props) {
 		hash.update(JSON.stringify(prop));
