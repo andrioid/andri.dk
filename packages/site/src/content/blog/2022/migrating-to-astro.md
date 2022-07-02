@@ -55,4 +55,8 @@ I already had a working Next.js branch, but a little Saturday project to see how
 
 My old React components worked out of the box, but most of the newer components are built as Astro components. The syntax is pretty clean and reminds me of Svelte. What finally sold me, was being able to render the resumé PDF directly from Astro.
 
+My Gatsby site was always pretty fast, but I've never seen a Lighthouse score this nice before.
+
+![lighthouse score](lighthouse-astro.png)
+
 Was this overengineering? Absolutely! But it was very fun.
