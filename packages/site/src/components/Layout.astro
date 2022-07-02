@@ -1,0 +1,33 @@
+---
+import { SocialCard } from "social-cards";
+import "../../css/global.css";
+export interface Props {
+	title: string;
+	subtitle?: string;
+	description?: string;
+}
+
+const { title, description = "Personal blog and portfolio of Andri Óskarsson", subtitle } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="og:title" content={title} />
+	{description ?
+	<meta name="description" content={description} /> : null}
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<title>{title}</title>
+	<SocialCard title={title} subtitle={description} authorImage={"./public/img/coffee-art.jpg"}
+		backgroundImage={"./public/img/hvitserkur.jpg"} />
+
+</head>
+
+<body>
+	<slot />
+</body>
+
+</html>

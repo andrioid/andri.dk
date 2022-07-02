@@ -1,0 +1,111 @@
+---
+import Section from "../components/Section.astro";
+import { NavLink } from "../components/NavLink";
+import { MainBody } from "../components/MainBody";
+
+import { Frontmatter, postMapper } from "../lib/blog";
+import Card from "../components/card.astro";
+import Skills from '../components/skills.astro';
+import flagDK from '../../static/img/denmark-flag.svg';
+import flagIS from '../../static/img/iceland-flag.svg';
+import { SocialCard } from 'social-cards';
+import coffeeAndri from '../../static/img/coffee-art.jpg'
+import cvJSON from '../../../cv/resume.json';
+import Icon from "astro-icon";
+import { dataTransform } from "../lib/cv";
+import Layout from "../components/Layout.astro";
+
+let allPosts = await Astro.glob<Frontmatter>(`../content/blog/**/*.md`);
+allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
+allPosts = allPosts.splice(0, 3)
+const parsedPosts = allPosts.map(postMapper);
+
+---
+
+<Layout title="Andri Óskarsson"
+	description="I make websites, create apps, manage infrastructure, develop products and more.">
+	<main>
+		<MainBody>
+			<div class="flex-1">
+				<nav class="flex justify-between items-center p-8">
+					<img alt="round profile (small)" src={coffeeAndri}
+						class="rounded-full shadow-2xl w-16 h-16 md:invisible" />
+					<div>
+						<ul class="flex flex-row">
+							<NavLink href="blog/">Blog</NavLink>
+
+							<NavLink href="now/">Now</NavLink>
+						</ul>
+					</div>
+				</nav>
+				<div class="mx-10 md:mx-20 pb-8 lg:mx-40 flex flex-row flex-wrap font-headline">
+					<div class="flex-1">
+						<h2 class="font-headline text-3xl md:text-5xl  font-semibold inline-block my-2">
+							Hi, I'm Andri
+						</h2>
+						<div class="text-lg md:text-xl">
+							<p>
+								Computer Engineer from &nbsp;
+								<span aria-hidden hidden> Iceland </span>
+								<img alt="Iceland" class="inline-icon" src={flagIS} />
+								&nbsp; living in &nbsp;
+								<span aria-hidden hidden> Denmark </span>
+								<img alt="Denmark" class="inline-icon" src={flagDK} />
+							</p>
+							<p>&nbsp;</p>
+
+							<p>&nbsp;</p>
+							<p>
+								I make websites, create apps, manage infrastructure, develop
+								products and more.
+							</p>
+						</div>
+					</div>
+					<div class="hidden md:block p-4 items-start justify-start mr-6">
+						<img alt="round profile (large)" src={coffeeAndri}
+							class="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48" />
+					</div>
+				</div>
+			</div>
+		</MainBody>
+		<Section title="Latest Posts">
+			<div class="mt-4 px-0">
+				<div class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 gap-4">
+					{parsedPosts.map((post) => (
+					<Card title={post.frontmatter.title} link={post.frontmatter.slug}
+						description={post.frontmatter.description || 'TODO: Fix description defaults' }
+						tags={post.frontmatter.tags} date={post.frontmatter.date} draft={ process.env.NODE_ENV
+						!=="production" && post.frontmatter.draft } />
+					))}
+				</div>
+				<br />
+				<a class="link" href="/blog/">More blog posts...</a>
+			</div>
+		</Section>
+		<Section title="Technology" bgColorLevel={100}>
+			<div class="pl-6 md:pl-0 text-sm mb-4 italic">
+				Sorted by experience. Preference indicated by
+				&nbsp;
+				<Icon name="fa:heart" class="inline-icon text-red-700" />
+			</div>
+			<Skills categories={dataTransform(cvJSON.skills, cvJSON.work)} focus={['React', 'React Native' , 'Go'
+				, 'TypeScript' , 'Linux' , 'Postgres' , 'Kanban' ]} />
+		</Section>
+		<Section>
+			<div class="flex-1 flex flex-row text-lg justify-between px-4 md:px-0">
+				<div class="italic align-baseline">Andri Óskarsson</div>
+				<div class="text-3xl flex-row flex clickable">
+					<a href="https://github.com/andrioid">
+						<Icon name="fa:github" class="mx-2" />
+					</a>
+					<a href="https://twitter.com/andrioid">
+						<Icon name="fa:twitter" class="mx-2" />
+					</a>
+					<a href="https://www.linkedin.com/in/andriosk/" target="_blank" rel="noopener">
+						<Icon name="fa:linkedin" class="mx-2" />
+					</a>
+				</div>
+			</div>
+		</Section>
+	</main>
+</Layout>

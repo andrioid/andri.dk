@@ -1,93 +1,30 @@
 {
-  "name": "andri.dk",
-  "version": "1.0.0",
+  "name": "@andrioid/andri-dk-root",
+  "version": "1.1.0",
   "author": "Andri Oskarsson <andri@andri.dk>",
+  "private": true,
   "keywords": [
-    "gatsby"
+    "andri",
+    "portfolio"
   ],
   "license": "MIT",
   "scripts": {
-    "start": "npm run dev",
-    "build": "gatsby build",
-    "build:oldschool": "gatsby build",
-    "dev": "gatsby develop -H 0.0.0.0",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-cv": "cd src/cv && babel-node build.js",
-    "watch-cv": "cd src/cv && nodemon --exec babel-node build.js",
-    "build-card": "cd plugins/social-card && babel-node build.js",
-    "clean": "gatsby clean",
-    "serve": "gatsby serve"
+    "build:site": "pnpm install -C packages/site && cd packages/site && pnpm run build",
+    "build:react-cv": "pnpm install -C packages/react-cv && pnpm run -C packages/react-cv build",
+    "build": "pnpm run build:react-cv && pnpm run build:site"
   },
-  "dependencies": {
-    "@andrioid/gatsby-source-webdav": "^0.1.7",
-    "@babel/core": "^7.13.16",
-    "@babel/node": "^7.10.4",
-    "@fullhuman/postcss-purgecss": "^4.0.3",
-    "@react-pdf/renderer": "^2.0.6",
-    "babel-loader": "^8.1.0",
-    "classnames": "^2.2.6",
-    "dayjs": "^1.8.29",
-    "gatsby": "^3.3.1",
-    "gatsby-image": "^3.3.0",
-    "gatsby-link": "^3.3.0",
-    "gatsby-plugin-catch-links": "^3.3.0",
-    "gatsby-plugin-feed": "^3.3.0",
-    "gatsby-plugin-image": "^1.3.1",
-    "gatsby-plugin-postcss": "^4.3.0",
-    "gatsby-plugin-react-helmet": "^4.3.0",
-    "gatsby-plugin-sharp": "^3.3.1",
-    "gatsby-plugin-social-cards": "^0.5.18-rc5",
-    "gatsby-remark-autolink-headers": "^4.1.0",
-    "gatsby-remark-copy-images": "^0.2.1",
-    "gatsby-remark-copy-linked-files": "^4.0.0",
-    "gatsby-remark-double-brackets-link": "^0.1.8",
-    "gatsby-remark-images": "^5.0.0",
-    "gatsby-remark-mermaid": "^2.1.0",
-    "gatsby-remark-prismjs": "^5.0.0",
-    "gatsby-remark-relative-images": "^2.0.2",
-    "gatsby-remark-responsive-image": "^1.0.0-alpha13-alpha.435e0178",
-    "gatsby-remark-vscode": "^3.2.1",
-    "gatsby-source-filesystem": "^3.3.0",
-    "gatsby-transformer-json": "^3.3.0",
-    "gatsby-transformer-remark": "^4.0.0",
-    "gatsby-transformer-sharp": "^3.3.0",
-    "get-contrast": "^2.0.0",
-    "nodemon": "^2.0.4",
-    "postcss-nesting": "^7.0.0",
-    "prettier": "^2.0.5",
-    "prismjs": "^1.23.0",
-    "prop-types": "^15.6.1",
-    "puppeteer": "^9.0.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^4.2.0",
-    "react-share": "^4.4.0",
-    "tailwindcss": "^2.1.2",
-    "typeface-indie-flower": "^1.1.13",
-    "typeface-montserrat": "^1.1.13",
-    "typeface-source-code-pro": "^1.1.3",
-    "wcag-contrast": "^3.0.0",
-    "webpack": "^5.35.1"
-  },
-  "optionalDependencies": {
-    "fsevents": "~2.3.1"
+  "devDependencies": {
+    "prettier-plugin-astro": "^0.0.12",
+    "typescript": "^4.7.3"
   },
   "engines": {
-    "node": "14.x",
-    "npm": "7.x"
+    "node": "16.x",
+    "pnpm": ">=7"
   },
   "cacheDirectories": [
-    ".cache",
-    "public"
+    ".cache"
   ],
-  "devDependencies": {
-    "@types/react-helmet": "^6.1.1",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
-    "eslint": "^7.25.0",
-    "eslint-config-react-app": "^6.0.0",
-    "typescript": "^4.2.4"
+  "dependencies": {
+    "prettier": "^2.6.2"
   }
 }
