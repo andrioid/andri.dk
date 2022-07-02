@@ -9,6 +9,7 @@ export function PopupCard(
 		backgroundImage?: string;
 	}>
 ): GenerateOptions {
+	// Remember not to pass anything that will change between builds to hashProps
 	const hash = hashProps("popup-card", props);
 	const iwidth = 400;
 	const iheight = 200;

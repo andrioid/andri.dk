@@ -80,6 +80,11 @@ export function hashProps(...props: unknown[]) {
 	//console.debug(`[social-cards] Hash: ${JSON.stringify(props, null, 5)}`);
 	const hash = createHash("sha256");
 	for (let prop of props) {
+		if (prop instanceof String && prop.includes("/home/")) {
+			throw new Error(
+				"[social-cards] Please do not try to hash absolute filenames."
+			);
+		}
 		hash.update(JSON.stringify(prop));
 	}
 	return hash.digest("base64url");
