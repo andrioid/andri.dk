@@ -5,9 +5,10 @@ export interface Props {
 	title: string;
 	subtitle?: string;
 	description?: string;
+	coverImage?: string;
 }
 
-const { title, description = "Personal blog and portfolio of Andri Óskarsson", subtitle } = Astro.props as Props;
+const { title, description, coverImage } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ const { title, description = "Personal blog and portfolio of Andri Óskarsson", 
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 	<title>{title}</title>
 	<SocialCard title={title} subtitle={description} authorImage={"./public/img/coffee-art.jpg"}
-		backgroundImage={"./public/img/hvitserkur.jpg"} />
+		backgroundImage={coverImage || "./public/img/hvitserkur.jpg" } />
 
 </head>
 

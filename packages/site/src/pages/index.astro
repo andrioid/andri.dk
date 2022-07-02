@@ -3,27 +3,23 @@ import Section from "../components/Section.astro";
 import { NavLink } from "../components/NavLink";
 import { MainBody } from "../components/MainBody";
 
-import { Frontmatter, postMapper } from "../lib/blog";
-import Card from "../components/card.astro";
 import Skills from '../components/skills.astro';
 import flagDK from '../../static/img/denmark-flag.svg';
 import flagIS from '../../static/img/iceland-flag.svg';
-import { SocialCard } from 'social-cards';
 import coffeeAndri from '../../static/img/coffee-art.jpg'
 import cvJSON from '../../../cv/resume.json';
 import Icon from "astro-icon";
 import { dataTransform } from "../lib/cv";
 import Layout from "../components/Layout.astro";
+import BlogCards from "../components/blog-cards.astro";
 
-let allPosts = await Astro.glob<Frontmatter>(`../content/blog/**/*.md`);
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
-allPosts = allPosts.splice(0, 3)
-const parsedPosts = allPosts.map(postMapper);
+
 
 ---
 
 <Layout title="Andri Óskarsson"
-	description="I make websites, create apps, manage infrastructure, develop products and more.">
+	description="I make websites, create apps, manage infrastructure, develop products and more."
+	coverImage="./static/img/wave.svg">
 	<main>
 		<MainBody>
 			<div class="flex-1">
@@ -69,18 +65,7 @@ const parsedPosts = allPosts.map(postMapper);
 			</div>
 		</MainBody>
 		<Section title="Latest Posts">
-			<div class="mt-4 px-0">
-				<div class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 gap-4">
-					{parsedPosts.map((post) => (
-					<Card title={post.frontmatter.title} link={post.frontmatter.slug}
-						description={post.frontmatter.description || 'TODO: Fix description defaults' }
-						tags={post.frontmatter.tags} date={post.frontmatter.date} draft={ process.env.NODE_ENV
-						!=="production" && post.frontmatter.draft } />
-					))}
-				</div>
-				<br />
-				<a class="link" href="/blog/">More blog posts...</a>
-			</div>
+			<BlogCards />
 		</Section>
 		<Section title="Technology" bgColorLevel={100}>
 			<div class="pl-6 md:pl-0 text-sm mb-4 italic">
@@ -93,7 +78,11 @@ const parsedPosts = allPosts.map(postMapper);
 		</Section>
 		<Section>
 			<div class="flex-1 flex flex-row text-lg justify-between px-4 md:px-0">
-				<div class="italic align-baseline">Andri Óskarsson</div>
+				<div class="text-lg">
+					<p>If you're a likeminded person, then I would love to hear from you.</p>
+					<p class="mt-2">Please, no recruiters.</p>
+
+				</div>
 				<div class="text-3xl flex-row flex clickable">
 					<a href="https://github.com/andrioid">
 						<Icon name="fa:github" class="mx-2" />
