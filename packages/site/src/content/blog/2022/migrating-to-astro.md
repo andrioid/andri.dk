@@ -6,7 +6,7 @@ description: "How I built my new site with Astro"
 tags: ["blog", "frontend"]
 ---
 
-This site was originally built with [Gatsby](https://www.gatsbyjs.com) site in 2019 and I used to teach myself Gatsby, React, GraphQL and Tailwind. Gatsby was a natural fit, because I was excited about both GraphQL and React at the time.
+This site was originally built with [Gatsby](https://www.gatsbyjs.com) site in 2019 and I used it to teach myself Gatsby, React, GraphQL and Tailwind. Gatsby was a natural fit, because I was excited about both GraphQL and React at the time.
 
 I've been considering migrating the site to either Next.js or Remix, but after playing around for a while I settled on [Astro](www.astro.build).
 

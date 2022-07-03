@@ -12,8 +12,9 @@ export function PopupCard(
 	// Remember not to pass anything that will change between builds to hashProps
 	const hash = hashProps("popup-card", props);
 	const iwidth = 400;
-	const iheight = 200;
-	const xMargin = 40;
+	const iheight = iwidth / 1.91; // To match Twitter's weird 1.91:1 ratio
+
+	const xMargin = 30;
 	const authorWidth = 32;
 
 	let texty = 162;
@@ -46,7 +47,7 @@ export function PopupCard(
 				y="0"
 				xlink:href="${backgroundImage}"
 				preserveAspectRatio="xMidYMid slice"
-				transform="scale(1,1)"
+				transform="scale(1.1,1.1)"
 			/>
 		
 		`;
@@ -65,9 +66,10 @@ export function PopupCard(
 	svg += `
 	<svg
 		width="1200"
-		height="600"
+		height="630"
 		viewBox="0 0 ${iwidth} ${iheight}"
 		font-size="12"
+		font-family="Montserrat"
 		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -92,7 +94,7 @@ export function PopupCard(
 				<feMerge>
 					<feMergeNode />
 					<feMergeNode in="SourceGraphic" />
-				</feMerge>
+				\andrioid\gatsby-plugin-social-cards</feMerge>
 			</filter>
 		</defs>
 
@@ -111,13 +113,11 @@ export function PopupCard(
 
 		${authorImageSvg}
 
-		<g class="texts" fill="#000" font-size="10" >
+		<g class="texts" font-size="1.2em">
 			<text x="${xMargin}" y="${texty}" font-weight="bold">
 				${escapeHTML(props.title)}
 			</text>
-			<text x="${xMargin}" y="${
-		texty + 11
-	}" style="font-size: 6; fill: #a3a3a3;" font-family="Pacifico">
+			<text x="${xMargin}" y="${texty + 11}" style="font-size: 0.5em;">
 				${(props.subtitle && escapeHTML(props.subtitle)) || ""}
 			</text>
 			${tags}

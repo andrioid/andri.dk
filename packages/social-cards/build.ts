@@ -11,7 +11,7 @@ export const defaultRsvgOptions: Partial<ResvgRenderOptions> = {
 	font: {
 		loadSystemFonts: true,
 		fontDirs: ["static/fonts"],
-		defaultFontFamily: "Montserrat",
+		//defaultFontFamily: "Montserrat",
 	},
 };
 
@@ -22,7 +22,14 @@ export const defaultOptions: Partial<GenerateOptions> = {
 	publicDir: "public",
 };
 
-export async function generateImage(opts: GenerateOptions): Promise<Result> {
+interface AdvancedOptions {
+	alwaysRecreate: boolean;
+}
+
+export async function generateImage(
+	opts: GenerateOptions,
+	{ alwaysRecreate = false }: AdvancedOptions
+): Promise<Result> {
 	const options = { ...defaultOptions, ...opts };
 	// Helpful to debug rsvg
 	// await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
@@ -44,7 +51,7 @@ export async function generateImage(opts: GenerateOptions): Promise<Result> {
 			hash: options.hash,
 			generated: true,
 		};
-		if (existsSync(out.path)) {
+		if (!alwaysRecreate && existsSync(out.path)) {
 			out.generated = false;
 			console.debug(`[social-cards] Skipping ${out.path}`);
 			return out; // No need to generate anything

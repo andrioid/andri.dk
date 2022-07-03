@@ -22,8 +22,8 @@ const { title, description, coverImage } = Astro.props as Props;
 	<meta name="description" content={description} /> : null}
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 	<title>{title}</title>
-	<SocialCard title={title} subtitle={description} authorImage={"./public/img/coffee-art.jpg"}
-		backgroundImage={coverImage || "./public/img/hvitserkur.jpg" } />
+	<SocialCard card="popup-card" props={{title, subtitle:description, authorImage:"./public/img/coffee-art.jpg",
+		backgroundImage: coverImage || "./public/img/hvitserkur.jpg" }} />
 
 </head>
 
