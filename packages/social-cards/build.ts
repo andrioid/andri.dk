@@ -33,7 +33,7 @@ export async function generateImage(
 ): Promise<Result> {
 	const options = { ...defaultOptions, ...opts };
 	// Helpful to debug rsvg
-	// await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
+	await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
 	try {
 		const resvg = new Resvg(options.svg, options.resvg);
 		const pngData = resvg.render();
@@ -107,4 +107,13 @@ export function escapeHTML(str: string) {
 		'"': "&quot;",
 	};
 	return str.replace(/[&<>'"]/g, (tag) => table[tag]);
+}
+
+export function splitString(str: string, length: number): string[] {
+	const chunks = [];
+	while (str.length > 0) {
+		chunks.push(str.substring(0, length));
+		str = str.substring(length, str.length);
+	}
+	return chunks;
 }
