@@ -4,6 +4,7 @@ import { PopupCard } from "./templates/popup-card/popup-card";
 import { SplitView } from "./templates/split-view/split-view";
 
 const cards = { "popup-card": PopupCard, "split-view": SplitView };
+const isDev = import.meta.env.MODE === "development"
 
 // interface Props {
 // 	title: string;
@@ -14,13 +15,15 @@ const cards = { "popup-card": PopupCard, "split-view": SplitView };
 interface Props {
 	card: keyof typeof cards;
 	props: Parameters<typeof cards[keyof typeof cards]>[0];
+	baseURL: string; // Needed for absolute URL for images
 }
-const { card, props } = Astro.props as Props;
+const { card, props, baseURL } = Astro.props as Props;
 
 
 const options = cards[card](props)
 const imageResult = await generateImage(options, {
-	alwaysRecreate: import.meta.env.MODE === "development"
+	alwaysRecreate: isDev,
+	baseURL
 })
 ---
 

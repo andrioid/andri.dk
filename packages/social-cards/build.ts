@@ -18,17 +18,18 @@ export const defaultRsvgOptions: Partial<ResvgRenderOptions> = {
 export const defaultOptions: Partial<GenerateOptions> = {
 	resvg: defaultRsvgOptions,
 	outputDir: "public/social-cards",
-	urlPath: "/social-cards",
+	urlPath: "/social-cards", // the relative url might be an issue
 	publicDir: "public",
 };
 
 interface AdvancedOptions {
 	alwaysRecreate: boolean;
+	baseURL: string;
 }
 
 export async function generateImage(
 	opts: GenerateOptions,
-	{ alwaysRecreate = false }: AdvancedOptions
+	{ alwaysRecreate = false, baseURL }: AdvancedOptions
 ): Promise<Result> {
 	const options = { ...defaultOptions, ...opts };
 	// Helpful to debug rsvg
@@ -46,7 +47,7 @@ export async function generateImage(
 			throw new Error("[social-cards] No hash received from template");
 		}
 		const out: Result = {
-			url: join(options.urlPath, `${options.hash}.png`),
+			url: join(baseURL, options.urlPath, `${options.hash}.png`),
 			path: join(options.outputDir, `${options.hash}.png`),
 			hash: options.hash,
 			generated: true,

@@ -94,7 +94,7 @@ export function PopupCard(
 				<feMerge>
 					<feMergeNode />
 					<feMergeNode in="SourceGraphic" />
-				\andrioid\gatsby-plugin-social-cards</feMerge>
+				</feMerge>
 			</filter>
 		</defs>
 
