@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build --verbose",
+    "build": "astro build --verbose && cp -r public/social-cards/* dist/social-cards/",
     "preview": "astro preview",
     "check": "astro check"
   },
