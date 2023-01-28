@@ -3,8 +3,9 @@ import { site } from "../constants";
 import { Frontmatter } from "../lib/blog";
 import { MarkdownInstance } from "astro";
 
+// TODO: Upgrade to Astro 2 when content collections are in place
 let allPosts = import.meta.globEager<MarkdownInstance<Frontmatter>>(
-	`../content/blog/**/*.md`
+	`../legacy-content/blog/**/*.md`
 );
 const posts = Object.values(allPosts)
 	.filter(

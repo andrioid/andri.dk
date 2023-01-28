@@ -3,26 +3,43 @@ import { Frontmatter, postMapper } from "../lib/blog";
 import Card from "./card.astro";
 
 // Purpose: Fetch the blogposts
-interface Props {
-}
+interface Props {}
 
-const { } = Astro.props as Props;
+const {} = Astro.props as Props;
 
-let allPosts = await Astro.glob<Frontmatter>(`../content/blog/**/*.md`);
-allPosts = allPosts.filter(p => !p.frontmatter.draft || import.meta.env.MODE === "development")
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
-allPosts = allPosts.splice(0, 3)
+let allPosts = await Astro.glob<Frontmatter>(`../legacy-content/blog/**/*.md`);
+allPosts = allPosts.filter(
+	(p) => !p.frontmatter.draft || import.meta.env.MODE === "development"
+);
+allPosts = allPosts.sort(
+	(a, b) =>
+		new Date(b.frontmatter.date).valueOf() -
+		new Date(a.frontmatter.date).valueOf()
+);
+allPosts = allPosts.splice(0, 3);
 const parsedPosts = allPosts.map(postMapper);
-
 ---
 
 <div class="mt-4 px-0">
 	<div class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 gap-4">
-		{parsedPosts.map((post) => (
-		<Card title={post.frontmatter.title} link={`blog/${post.frontmatter.slug}`}
-			description={post.frontmatter.description || 'TODO: Fix description defaults' } tags={post.frontmatter.tags}
-			date={post.frontmatter.date} draft={ process.env.NODE_ENV !=="production" && post.frontmatter.draft } />
-		))}
+		{
+			parsedPosts.map((post) => (
+				<Card
+					title={post.frontmatter.title}
+					link={`blog/${post.frontmatter.slug}`}
+					description={
+						post.frontmatter.description ||
+						"TODO: Fix description defaults"
+					}
+					tags={post.frontmatter.tags}
+					date={post.frontmatter.date}
+					draft={
+						process.env.NODE_ENV !== "production" &&
+						post.frontmatter.draft
+					}
+				/>
+			))
+		}
 	</div>
 	<br />
 	<a class="link" href="/blog/">More blog posts...</a>

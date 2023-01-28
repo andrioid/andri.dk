@@ -5,25 +5,38 @@ import PagesLayout from "../../components/PagesLayout.astro";
 import Section from "../../components/Section.astro";
 import { BlogPost, postMapper } from "../../lib/blog";
 
-let allPosts = await Astro.glob(`../../content/blog/**/*.md`);
+let allPosts = await Astro.glob(`../../legacy-content/blog/**/*.md`);
 
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
-const parsedPosts = allPosts.map(postMapper)
-
-
+allPosts = allPosts.sort(
+	(a, b) =>
+		new Date(b.frontmatter.date).valueOf() -
+		new Date(a.frontmatter.date).valueOf()
+);
+const parsedPosts = allPosts.map(postMapper);
 ---
 
 <Layout title="Blog posts | andri.dk">
 	<PagesLayout>
 		<Section title="Blog posts">
 			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-				{parsedPosts.map((post: BlogPost) => (
-				<Card title={post.frontmatter.title} link={post.frontmatter.slug}
-					description={post.frontmatter.description || 'TODO: Fix description defaults' }
-					tags={post.frontmatter.tags} date={post.frontmatter.date} draft={ process.env.NODE_ENV
-					!=="production" && post.frontmatter.draft } />
-
-				))}
+				{
+					parsedPosts.map((post: BlogPost) => (
+						<Card
+							title={post.frontmatter.title}
+							link={post.frontmatter.slug}
+							description={
+								post.frontmatter.description ||
+								"TODO: Fix description defaults"
+							}
+							tags={post.frontmatter.tags}
+							date={post.frontmatter.date}
+							draft={
+								process.env.NODE_ENV !== "production" &&
+								post.frontmatter.draft
+							}
+						/>
+					))
+				}
 			</div>
 		</Section>
 	</PagesLayout>
