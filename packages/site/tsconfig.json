@@ -12,6 +12,8 @@
     // Add type definitions for our Vite runtime.
     "types": ["vite/client"],
     // JSON imports
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictNullChecks": true
   }
 }
