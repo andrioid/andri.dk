@@ -31,8 +31,6 @@ import BlogCards from "../components/blog-cards.astro";
 					<div>
 						<ul class="flex flex-row">
 							<NavLink href="blog/">Blog</NavLink>
-
-							<NavLink href="now/">Now</NavLink>
 						</ul>
 					</div>
 				</nav>
@@ -91,18 +89,7 @@ import BlogCards from "../components/blog-cards.astro";
 				Sorted by experience. Preference indicated by &nbsp;
 				<Icon name="fa:heart" class="inline-icon text-red-700" />
 			</div>
-			<Skills
-				categories={dataTransform(cvJSON.skills, cvJSON.work)}
-				focus={[
-					"React",
-					"React Native",
-					"Go",
-					"TypeScript",
-					"Linux",
-					"Postgres",
-					"Kanban",
-				]}
-			/>
+			<Skills categories={dataTransform(cvJSON.skills, cvJSON.work)} />
 		</Section>
 		<Section class="bg-gray-200">
 			<div

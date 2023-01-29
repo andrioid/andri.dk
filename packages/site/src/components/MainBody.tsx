@@ -1,8 +1,11 @@
-import * as React from "react";
-import waveBG from "../../static/img/wave.svg";
+import { ReactElement } from "react";
 import "./weird.css";
 
-export const MainBody = ({ children }) => (
+export const MainBody = ({
+	children,
+}: {
+	children: ReactElement | ReactElement[];
+}) => (
 	<body>
 		<div>
 			<div
