@@ -8,7 +8,7 @@ import { Stream } from "stream";
 import { Resume } from "./components/resume-types";
 import { CVWrapper } from "./documents/cv-wrapper";
 import { registerFonts } from "./pdf-utils";
-
+export * from "./components/resume-types";
 export const ASSET_PATH = "../react-cv/static";
 export const DEFAULT_FONT = "Montserrat";
 

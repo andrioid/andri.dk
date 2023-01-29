@@ -10,7 +10,7 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "tsup --format esm,cjs,iife",
+    "build": "tsup --format esm,cjs,iife --dts",
     "watch": "tsup --sourcemap inline --watch --format esm,cjs,iife",
     "pdf": "node dist/build.js pdf",
     "prepdf": "npm run build",
