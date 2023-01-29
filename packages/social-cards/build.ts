@@ -99,6 +99,9 @@ export function hashProps(...props: unknown[]) {
 }
 
 export function escapeHTML(str: string) {
+	if (!str) {
+		return str;
+	}
 	const table: Record<string, string> = {
 		"&": "&amp;",
 		"<": "&lt;",
