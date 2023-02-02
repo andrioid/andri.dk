@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
+import remarkEmbedImages from "remark-embed-images";
 
 export default defineConfig({
   site: "https://andri.dk/",
@@ -21,6 +22,6 @@ export default defineConfig({
 
   markdown: {
     drafts: true,
-    remarkPlugins: ["remark-embed-images"],
+    remarkPlugins: [remarkEmbedImages],
   },
 });
