@@ -1,41 +1,31 @@
 ---
+import { CollectionEntry } from "astro:content";
 import { Frontmatter, postMapper } from "../lib/blog";
 import Card from "./card.astro";
 
 // Purpose: Fetch the blogposts
-interface Props {}
+interface Props {
+	posts: Array<CollectionEntry<"blog">>;
+}
 
-const {} = Astro.props as Props;
-
-let allPosts = await Astro.glob<Frontmatter>(`../legacy-content/blog/**/*.md`);
-allPosts = allPosts.filter(
-	(p) => !p.frontmatter.draft || import.meta.env.MODE === "development"
-);
-allPosts = allPosts.sort(
-	(a, b) =>
-		new Date(b.frontmatter.date).valueOf() -
-		new Date(a.frontmatter.date).valueOf()
-);
-allPosts = allPosts.splice(0, 3);
-const parsedPosts = allPosts.map(postMapper);
+const { posts } = Astro.props as Props;
 ---
 
 <div class="mt-4 px-0">
 	<div class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 gap-4">
 		{
-			parsedPosts.map((post) => (
+			posts.map((post) => (
 				<Card
-					title={post.frontmatter.title}
-					link={`blog/${post.frontmatter.slug}`}
+					title={post.data.title}
+					link={`blog/${post.slug}`}
 					description={
-						post.frontmatter.description ||
+						post.data.description ||
 						"TODO: Fix description defaults"
 					}
-					tags={post.frontmatter.tags}
-					date={post.frontmatter.date}
+					tags={post.data.tags}
+					date={post.data.date}
 					draft={
-						process.env.NODE_ENV !== "production" &&
-						post.frontmatter.draft
+						process.env.NODE_ENV !== "production" && post.data.draft
 					}
 				/>
 			))

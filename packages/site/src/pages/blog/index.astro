@@ -1,18 +1,13 @@
 ---
+import { getCollection } from "astro:content";
 import Card from "../../components/card.astro";
 import Layout from "../../components/Layout.astro";
 import PagesLayout from "../../components/PagesLayout.astro";
 import Section from "../../components/Section.astro";
-import { BlogPost, postMapper } from "../../lib/blog";
 
-let allPosts = await Astro.glob(`../../legacy-content/blog/**/*.md`);
-
-allPosts = allPosts.sort(
-	(a, b) =>
-		new Date(b.frontmatter.date).valueOf() -
-		new Date(a.frontmatter.date).valueOf()
+const allPosts = (await getCollection("blog")).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-const parsedPosts = allPosts.map(postMapper);
 ---
 
 <Layout title="Blog posts | andri.dk">
@@ -20,19 +15,19 @@ const parsedPosts = allPosts.map(postMapper);
 		<Section title="Blog posts">
 			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 				{
-					parsedPosts.map((post: BlogPost) => (
+					allPosts.map((post) => (
 						<Card
-							title={post.frontmatter.title}
-							link={post.frontmatter.slug}
+							title={post.data.title}
+							link={post.slug}
 							description={
-								post.frontmatter.description ||
+								post.data.description ||
 								"TODO: Fix description defaults"
 							}
-							tags={post.frontmatter.tags}
-							date={post.frontmatter.date}
+							tags={post.data.tags}
+							date={post.data.date}
 							draft={
 								process.env.NODE_ENV !== "production" &&
-								post.frontmatter.draft
+								post.data.draft
 							}
 						/>
 					))

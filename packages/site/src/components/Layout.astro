@@ -8,32 +8,36 @@ export interface Props {
 	description?: string;
 	coverImage?: string;
 }
-const { title, description = site.description, coverImage } = Astro.props as Props;
-
+const {
+	title,
+	description = site.description,
+	coverImage,
+} = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="og:title" content={title} />
+		<meta name="twitter:title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="og:description" content={description} />
+		<meta name="author" content={site.author} />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<title>{title}</title>
+		<!-- <SocialCard card="popup-card" props={{title, subtitle:description, authorImage:"./public/img/coffee-art.jpg",
+		backgroundImage: coverImage || "./public/img/hvitserkur.jpg" }} baseURL={site.baseURL} /> -->
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width" />
-	<meta name="og:title" content={title} />
-	<meta name="twitter:title" content={title} />
-	<meta name="description" content={description} />
-	<meta name="og:description" content={description} />
-	<meta name="author" content={site.author} />
-	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-	<title>{title}</title>
-	<SocialCard card="popup-card" props={{title, subtitle:description, authorImage:"./public/img/coffee-art.jpg",
-		backgroundImage: coverImage || "./public/img/hvitserkur.jpg" }} baseURL={site.baseURL} />
+	<body>
+		<slot />
+	</body>
 
-</head>
-
-<body>
-	<slot />
-</body>
-
-<script data-goatcounter="https://andrioid.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
+	<script
+		data-goatcounter="https://andrioid.goatcounter.com/count"
+		async
+		src="//gc.zgo.at/count.js"
+	></script>
 </html>

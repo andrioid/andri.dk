@@ -1,5 +1,4 @@
 ---
-import Icon from "astro-icon";
 import { dataTransform } from "../lib/cv";
 
 interface Props {
@@ -41,10 +40,7 @@ function getColor(id?: string) {
 							>
 								{s.name}
 								{c.preferred?.includes(s.name) ? (
-									<Icon
-										name="fa:heart"
-										class="ml-2 inline-icon text-red-700"
-									/>
+									<span>heart</span>
 								) : null}
 							</span>
 						))}

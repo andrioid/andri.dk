@@ -1,0 +1,76 @@
+---
+// Find all blog posts to generate
+import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
+import Layout from "../../components/Layout.astro";
+import PagesLayout from "../../components/PagesLayout.astro";
+
+interface Props {
+	entry: CollectionEntry<"blog">;
+}
+const { slug } = Astro.params;
+if (!slug) {
+	return new Response(null, {
+		status: 404,
+		statusText: "Not found",
+	});
+}
+
+const entry = await getEntryBySlug("blog", slug);
+if (!entry) {
+	return new Response(null, {
+		status: 404,
+		statusText: "Not found",
+	});
+}
+
+const { Content } = await entry.render();
+const { title, description, date, tags } = entry?.data || {};
+---
+
+<Layout title={title} description={description} subtitle={description}>
+	<PagesLayout>
+		<div
+			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center"
+		>
+			<div class="bg-white py-10 shadow px-5 lg:px-10 flex-1 max-w-prose">
+				<div>
+					<h1 class="text-gray-900 font-semibold text-xl md:text-3xl">
+						{title}
+					</h1>
+					<div
+						class="text-base text-gray-600 flex justify-start mb-4"
+					>
+						<p>
+							{
+								date.toLocaleDateString(undefined, {
+									year: "numeric",
+									month: "short",
+									day: "numeric",
+								})
+							}
+						</p>
+					</div>
+					<div class="mb-4">
+						{
+							tags &&
+								tags.map((t) => (
+									<span class="andri-tag text-base">{t}</span>
+								))
+						}
+					</div>
+				</div>
+
+				<article class="mb-6 prose lg:prose-lg">
+					<Content />
+				</article>
+
+				<p>&nbsp;</p>
+			</div>
+		</div>
+		<!-- <pre>{JSON.stringify(post, null, 4)}</pre>
+
+  <pre>{JSON.stringify(rf, null, 4)}</pre>
+
+  <pre>{JSON.stringify(site, null, 4)}</pre> -->
+	</PagesLayout>
+</Layout>
