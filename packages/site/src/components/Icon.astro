@@ -1,0 +1,20 @@
+---
+import calendarIcon from "heroicons/20/solid/calendar.svg?raw";
+import heartIcon from "heroicons/20/solid/heart.svg?raw";
+
+interface Props {
+	name: keyof typeof icons;
+	class?: string;
+}
+
+const icons = {
+	calendar: calendarIcon,
+	heart: heartIcon,
+};
+
+const baseClass = "inline-icon";
+const { name, class: className = "" } = Astro.props;
+const iconData = icons[name];
+---
+
+<svg class={`${baseClass} ${className}`} set:html={iconData} />

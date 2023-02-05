@@ -8,11 +8,11 @@ import flagDK from "../../static/img/denmark-flag.svg";
 import flagIS from "../../static/img/iceland-flag.svg";
 import coffeeAndri from "../../static/img/coffee-art.jpg";
 import cvJSON from "../../../cv/resume.json";
-//import Icon from "astro-icon";
 import { dataTransform } from "../lib/cv";
 import Layout from "../components/Layout.astro";
 import BlogCards from "../components/blog-cards.astro";
 import { getCollection } from "astro:content";
+import Icon from "../components/Icon.astro";
 
 const blogPosts = (
 	await getCollection(
@@ -99,7 +99,7 @@ export const prerender = true;
 		<Section title="Technology" class="bg-gray-50">
 			<div class="pl-6 md:pl-0 text-sm mb-4 italic">
 				Sorted by experience. Preference indicated by &nbsp;
-				<!-- <Icon name="fa:heart" class="inline-icon text-red-700" /> -->
+				<Icon name="heart" />
 			</div>
 			<Skills categories={dataTransform(cvJSON.skills, cvJSON.work)} />
 		</Section>

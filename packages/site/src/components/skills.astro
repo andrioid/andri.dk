@@ -1,5 +1,6 @@
 ---
 import { dataTransform } from "../lib/cv";
+import Icon from "./Icon.astro";
 
 interface Props {
 	categories: ReturnType<typeof dataTransform>;
@@ -40,7 +41,7 @@ function getColor(id?: string) {
 							>
 								{s.name}
 								{c.preferred?.includes(s.name) ? (
-									<span>heart</span>
+									<Icon name="heart" class="text-red-600" />
 								) : null}
 							</span>
 						))}

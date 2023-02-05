@@ -1,5 +1,6 @@
 ---
-//import calendarIcon from "heroicons/24/outline/calendar.svg";
+import calendarIcon from "heroicons/24/solid/calendar.svg";
+import Icon from "./Icon.astro";
 
 export interface Props {
 	title: string;
@@ -24,6 +25,7 @@ if (link[link.length - 1] !== "/") {
 	>
 		<div class="flex-1 flex flex-col justify-start">
 			<span class="text-sm text-gray-600">
+				<Icon name="calendar" />
 				{
 					date && (
 						<>
