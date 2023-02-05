@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "prebuild": "cd packages/react-cv && pnpm run build",
     "preview": "astro preview",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "node": "node ./dist/server/entry.mjs",
