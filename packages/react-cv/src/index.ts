@@ -9,12 +9,12 @@ import { Resume } from "./components/resume-types";
 import { CVWrapper } from "./documents/cv-wrapper";
 import { registerFonts } from "./pdf-utils";
 export * from "./components/resume-types";
-export const ASSET_PATH = "../react-cv/static";
+export const ASSET_PATH = "./packages/react-cv/static";
 export const DEFAULT_FONT = "Montserrat";
 
 export async function resumeToString(
 	resume: Resume,
-	assetPath: string = "../react-cv/static"
+	assetPath: string = ASSET_PATH
 ) {
 	registerFonts(assetPath);
 	const cvDoc = React.createElement(CVWrapper, { resume: resume });

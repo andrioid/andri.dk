@@ -13,12 +13,13 @@ const sizes = {
 // primary color: #2B6CB0
 
 module.exports = {
-  purge: [
+  content: [
     "./src/**/*.jsx",
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "./src/**/*.html",
     "./src/**/*.js",
+    "./src/**/*.astro",
   ],
   theme: {
     extend: {
@@ -40,11 +41,5 @@ module.exports = {
   variants: {
     boxShadow: ["responsive", "hover", "focus"],
   },
-  plugins: [
-    function({ addBase, config }) {
-      addBase({
-        // Add base styles when needed
-      });
-    },
-  ],
+  plugins: [require("@tailwindcss/typography")], // markdown auto typography
 };

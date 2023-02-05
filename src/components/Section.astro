@@ -1,0 +1,12 @@
+---
+const { title, class: className } = Astro.props;
+---
+
+<div class={`md:px-20 lg:px-40 text-xl py-6 ${className}`}>
+	<h2
+		class="font-headline ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase mb-2"
+	>
+		{title}
+	</h2>
+	<slot />
+</div>

@@ -3,7 +3,6 @@ import * as ReactPDF from "@react-pdf/renderer";
 import { Section } from "../components/section/section";
 import { Paragraph } from "../components/paragraph";
 import { Head } from "../head";
-import { useResume } from "../use-resume";
 
 import { EducationItem } from "../components/education/education-item";
 import { SkillKeywords } from "../components/skills/skills-keywords";

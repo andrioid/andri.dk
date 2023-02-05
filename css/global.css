@@ -1,0 +1,38 @@
+@import "@fontsource/montserrat";
+@tailwind base;
+@tailwind components;
+
+.andri-tag {
+  @apply inline-block bg-gray-600 rounded-sm px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 shadow-md lowercase;
+}
+
+a.link {
+  @apply text-indigo-900;
+  &:hover {
+    @apply underline;
+  }
+}
+
+.inline-icon {
+  @apply inline;
+  width: 1em;
+  height: 1em;
+  margin-bottom: 0.2em;
+}
+
+.clickable {
+  svg {
+    min-width: 45px;
+    min-height: 45px;
+  }
+}
+
+.btn {
+  @apply bg-blue-500 text-white font-semibold py-2 px-4 rounded;
+}
+
+.btn:hover {
+  @apply bg-blue-700;
+}
+
+@tailwind utilities;
