@@ -37,7 +37,7 @@ const { title, date, description, tags } = Astro.props;
 					{
 						tags && (
 							<div class="mb-4">
-								{tags?.map((t) => (
+								{tags?.map((t: string) => (
 									<span class="andri-tag text-base">{t}</span>
 								))}
 							</div>

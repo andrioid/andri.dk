@@ -1,3 +1,4 @@
+import { APIRoute } from "astro";
 import { getCollection, getEntryBySlug } from "astro:content";
 import { generateImageBuffer, PopupCard } from "social-cards";
 import { GenerateOptions } from "social-cards/types";
@@ -9,12 +10,16 @@ export async function getStaticPaths() {
 	return allPosts.map((p) => ({ params: { slug: p.slug }, props: {} }));
 }
 
-export async function get({ params, request }) {
+export async function get({
+	params,
+}: {
+	params: { slug: string };
+	request: Request;
+}) {
 	const post = await getEntryBySlug("blog", params["slug"]);
 	if (!post) {
 		return;
 	}
-	const card = PopupCard;
 	const options: GenerateOptions = {
 		...PopupCard({
 			title: post.data.title,
@@ -26,10 +31,6 @@ export async function get({ params, request }) {
 	};
 
 	const buf = await generateImageBuffer(options);
-	// const response = await fetch(
-	// 	"https://astro.build/assets/press/full-logo-light.png"
-	// );
-	// const buffer = Buffer.from(await response.arrayBuffer());
 	return {
 		body: buf,
 		encoding: "binary",

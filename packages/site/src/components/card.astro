@@ -1,5 +1,4 @@
 ---
-import calendarIcon from "heroicons/24/solid/calendar.svg";
 import Icon from "./Icon.astro";
 
 export interface Props {
@@ -11,7 +10,7 @@ export interface Props {
 	draft?: boolean;
 }
 
-const { title, description, date, tags, draft = false } = Astro.props as Props;
+const { title, date, tags, draft = false } = Astro.props as Props;
 let link = Astro.props.link;
 
 if (link[link.length - 1] !== "/") {
