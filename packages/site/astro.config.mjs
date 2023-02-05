@@ -3,7 +3,6 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import remarkEmbedImages from "remark-embed-images";
-import deno from "@astrojs/deno";
 
 // https://astro.build/config
 import node from "@astrojs/node";
@@ -27,10 +26,12 @@ export default defineConfig({
     ssr: {
       external: ["svgo"],
     },
+    optimizeDeps: {
+      exclude: ["social-cards"], // https://github.com/evanw/esbuild/issues/1051#issuecomment-1006992549
+    },
   },
   output: "server",
-  adapter: deno(),
-  // adapter: node({
-  //   mode: "standalone",
-  // }),
+  adapter: node({
+    mode: "standalone",
+  }),
 });

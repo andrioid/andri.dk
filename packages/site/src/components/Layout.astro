@@ -1,4 +1,5 @@
 ---
+import { CollectionEntry } from "astro:content";
 import { SocialCard } from "social-cards";
 import "../../css/global.css";
 import { site } from "../constants";
@@ -7,12 +8,13 @@ export interface Props {
 	subtitle?: string;
 	description?: string;
 	coverImage?: string;
+	blogPost?: CollectionEntry<"blog">;
 }
-const {
-	title,
-	description = site.description,
-	coverImage,
-} = Astro.props as Props;
+
+const { blogPost, ...props } = Astro.props as Props;
+const title = blogPost?.data.title || props.title;
+const description = blogPost?.data.description || props.description;
+const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
 ---
 
 <!DOCTYPE html>
@@ -26,18 +28,19 @@ const {
 		<meta name="og:description" content={description} />
 		<meta name="author" content={site.author} />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content={ogImage} />
+
 		<title>{title}</title>
-		<!-- <SocialCard card="popup-card" props={{title, subtitle:description, authorImage:"./public/img/coffee-art.jpg",
-		backgroundImage: coverImage || "./public/img/hvitserkur.jpg" }} baseURL={site.baseURL} /> -->
 	</head>
 
 	<body>
 		<slot />
+		<script
+			data-goatcounter="https://andrioid.goatcounter.com/count"
+			async
+			src="//gc.zgo.at/count.js"
+		></script>
 	</body>
-
-	<script
-		data-goatcounter="https://andrioid.goatcounter.com/count"
-		async
-		src="//gc.zgo.at/count.js"
-	></script>
 </html>

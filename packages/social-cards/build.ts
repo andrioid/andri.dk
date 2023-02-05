@@ -27,6 +27,14 @@ interface AdvancedOptions {
 	baseURL: string;
 }
 
+export async function generateImageBuffer(opts: GenerateOptions) {
+	const options = { ...defaultOptions, ...opts };
+	const resvg = new Resvg(options.svg, options.resvg);
+	const pngData = resvg.render();
+	const pngBuffer = pngData.asPng();
+	return pngBuffer;
+}
+
 export async function generateImage(
 	opts: GenerateOptions,
 	{ alwaysRecreate = false, baseURL }: AdvancedOptions
@@ -35,9 +43,7 @@ export async function generateImage(
 	// Helpful to debug rsvg
 	// await promises.writeFile(resolve("./test-out-ori.svg"), options.svg);
 	try {
-		const resvg = new Resvg(options.svg, options.resvg);
-		const pngData = resvg.render();
-		const pngBuffer = pngData.asPng();
+		const pngBuffer = await generateImageBuffer(opts);
 
 		if (!existsSync(options.outputDir)) {
 			mkdirSync(options.outputDir, { recursive: true });

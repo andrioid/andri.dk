@@ -27,7 +27,12 @@ const { Content } = await entry.render();
 const { title, description, date, tags } = entry?.data || {};
 ---
 
-<Layout title={title} description={description} subtitle={description}>
+<Layout
+	title={title}
+	description={description}
+	subtitle={description}
+	blogPost={entry}
+>
 	<PagesLayout>
 		<div
 			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center"
