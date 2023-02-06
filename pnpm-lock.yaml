@@ -26,6 +26,7 @@ importers:
       react-cv: workspace:1.0.0
       react-dom: ^18.2.0
       remark-embed-images: ^3.1.0
+      simple-icons: ^8.4.0
       social-cards: workspace:^1.0.0
       tailwindcss: ^3.2.4
     dependencies:
@@ -53,6 +54,7 @@ importers:
       react-cv: link:packages/react-cv
       react-dom: 18.2.0_react@18.2.0
       remark-embed-images: 3.1.0
+      simple-icons: 8.4.0
       tailwindcss: 3.2.4_postcss@8.4.21
 
   packages/react-cv:
@@ -4564,6 +4566,11 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+
+  /simple-icons/8.4.0:
+    resolution: {integrity: sha512-vDaxR7CFRwkqBkYVhTli4rKS0/TdAUVvaCuQ3AKQbV8N+TYYy8LKaeJdXwOo5RlJZdUzsnHChaktcYhIk8vRow==}
+    engines: {node: '>=0.12.18'}
+    dev: true
 
   /simple-swizzle/0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
