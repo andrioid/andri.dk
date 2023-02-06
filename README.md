@@ -1,3 +1,6 @@
-# [andri.dk](https://www.andri.dk)
+# [andri.dk](https://andri.dk)
 
-Personal site and playground.
+### License
+
+- `src/content`: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+- Anything else: [MIT](https://opensource.org/licenses/MIT)

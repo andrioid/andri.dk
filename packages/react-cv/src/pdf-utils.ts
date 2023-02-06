@@ -1,6 +1,6 @@
 import { Font } from "@react-pdf/renderer";
 
-import path from "path";
+import path from "node:path";
 import { DEFAULT_FONT } from "src";
 
 export function registerFonts(assetPath: string) {

@@ -1,0 +1,35 @@
+---
+import { CollectionEntry } from "astro:content";
+import Card from "./card.astro";
+
+// Purpose: Fetch the blogposts
+interface Props {
+	posts: Array<CollectionEntry<"blog">>;
+}
+
+const { posts } = Astro.props as Props;
+---
+
+<div class="mt-4 px-0">
+	<div class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 gap-4">
+		{
+			posts.map((post) => (
+				<Card
+					title={post.data.title}
+					link={`blog/${post.slug}`}
+					description={
+						post.data.description ||
+						"TODO: Fix description defaults"
+					}
+					tags={post.data.tags}
+					date={post.data.date}
+					draft={
+						process.env.NODE_ENV !== "production" && post.data.draft
+					}
+				/>
+			))
+		}
+	</div>
+	<br />
+	<a class="link" href="/blog/">More blog posts...</a>
+</div>

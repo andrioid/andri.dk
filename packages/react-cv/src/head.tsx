@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@react-pdf/renderer";
-import path from "path";
+import path from "node:path";
 import { ASSET_PATH } from "src";
 
 export const Head = ({ src }: { src: any }) => {

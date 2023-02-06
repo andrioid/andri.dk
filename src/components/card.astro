@@ -1,0 +1,65 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+	title: string;
+	description?: string;
+	date?: Date;
+	link: string;
+	tags?: string[];
+	draft?: boolean;
+}
+
+const { title, date, tags, draft = false } = Astro.props as Props;
+let link = Astro.props.link;
+
+if (link[link.length - 1] !== "/") {
+	link += "/"; // Enforce trailing slash
+}
+---
+
+<a class="flex-1" href={link}>
+	<div
+		class="flex flex-col p-6 h-full shadow-lg bg-white hover:shadow-2xl text-gray-900"
+	>
+		<div class="flex-1 flex flex-col justify-start">
+			<span class="text-sm text-gray-600">
+				<Icon name="calendar" />
+				{
+					date && (
+						<>
+							<span class="ml-1">
+								{date.toLocaleDateString(undefined, {
+									year: "numeric",
+									month: "short",
+									day: "numeric",
+								})}
+							</span>
+						</>
+					)
+				}
+			</span>
+
+			<div class="mt-1 font-bold text-lg mb-2">
+				{title}
+			</div>
+			<!-- <div>
+	            <p>Lorem Ipsum stuff Lorem Ipsum stuffLorem Ipsum stuff Lorem Ipsum stuff Lorem Ipsum stuff</p>
+	          </div> -->
+		</div>
+		{
+			tags && tags.length > 0 ? (
+				<div class="mt-4">
+					{tags.slice(0, 3).map((t) => (
+						<span class="andri-tag">{t}</span>
+					))}
+					{draft ? (
+						<span class="andri-tag text-white bg-red-700">
+							Draft
+						</span>
+					) : null}
+				</div>
+			) : null
+		}
+	</div>
+</a>
