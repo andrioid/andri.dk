@@ -31,16 +31,16 @@
   },
   "work": [
     {
-      "company": "Apacta A/S ",
+      "company": "Apacta A/S",
       "position": "Lead Frontend Developer",
       "url": "https://apacta.dk",
       "startDate": "2022-06-01",
       "summary": "Building and improving frontend for a SaaS business, focused on craftsmen.",
-      "keywords": ["React", "TypeScript", "AWS"]
+      "keywords": ["React", "TypeScript", "AWS", "Kubernetes", "GraphQL"]
     },
 
     {
-      "company": "Trifork A/S ",
+      "company": "Trifork A/S",
       "position": "Software Pilot",
       "url": "https://trifork.dk",
       "startDate": "2021-11-01",

@@ -15,14 +15,14 @@
   "devDependencies": {
     "@astrojs/react": "~2.3.2",
     "@astrojs/rss": "~2.4.4",
-    "@astrojs/tailwind": "^3.0.1",
-    "@babel/core": "^7.20.12",
+    "@astrojs/tailwind": "~4.0.0",
+    "@babel/core": "~7.22.11",
     "@fontsource/montserrat": "~5.0.8",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
+    "@types/react": "~18.2.7",
+    "@types/react-dom": "^18.2.7",
     "astro": "~2.10.14",
-    "autoprefixer": "^10.4.13",
+    "autoprefixer": "~10.4.15",
     "globby": "~13.2.2",
     "heroicons": "^2.0.18",
     "postcss": "~8.4.28",
@@ -36,10 +36,11 @@
   },
   "dependencies": {
     "@astrojs/deno": "~4.3.0",
-    "@astrojs/mdx": "^0.15.2",
+    "@astrojs/mdx": "~0.19.7",
     "@astrojs/node": "~5.3.6",
     "@astrojs/vercel": "~3.8.2",
     "express": "^4.18.2",
-    "social-cards": "workspace:^1.0.0"
+    "social-cards": "workspace:^1.0.0",
+    "tailwind-merge": "^1.14.0"
   }
 }

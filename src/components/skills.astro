@@ -1,6 +1,7 @@
 ---
 import { dataTransform } from "../lib/cv";
 import Icon from "./Icon.astro";
+import { twMerge } from "tailwind-merge"
 
 interface Props {
 	categories: ReturnType<typeof dataTransform>;
@@ -20,6 +21,19 @@ function getColor(id?: string) {
 			return "#000000";
 	}
 }
+
+function getCategoryClass(id?: string) {
+	switch (id) {
+		case "operations":
+			return "border-emerald-800 text-emerald-800";
+		case "programming":
+			return "border-blue-800 text-blue-800";
+		case "data":
+			return "border-purple-800 text-purple-800";
+		default:
+			return "";
+	}
+}
 ---
 
 <div class="flex flex-row flex-wrap justify-between">
@@ -32,12 +46,11 @@ function getColor(id?: string) {
 				>
 					{c.name}
 				</h2>
-				<div>
+				<div class="flex flex-wrap gap-x-2 gap-y-2">
 					{c.keywords &&
 						c.keywords.map((s) => (
 							<span
-								class="andri-tag"
-								style={`background-color: ${getColor(c.id)}`}
+								class={twMerge("andri-tag", getCategoryClass(c.id))}
 							>
 								{s.name}
 								{c.preferred?.includes(s.name) ? (

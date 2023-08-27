@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme")
+
 const sizes = {
   height: {
     "half-screen": "50vh",
@@ -32,8 +34,8 @@ module.exports = {
       minHeight: sizes.height,
       maxHeight: sizes.height,
       fontFamily: {
-        sans: ["montserrat", "helvetica", "arial"],
-        headline: ["montserrat", "helvetica", "arial"],
+        sans: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
+        headline: ["Montserrat Variable", defaultTheme.fontFamily.headline],
         mono: ["source code pro"],
       },
     },
