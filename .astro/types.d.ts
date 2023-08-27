@@ -305,6 +305,13 @@ declare module 'astro:content' {
   collection: "blog",
   data: InferEntrySchema<"blog">
 },
+"2023/minimum-viable-infrastructure.mdx": {
+  id: "2023/minimum-viable-infrastructure.mdx",
+  slug: "2023/minimum-viable-infrastructure",
+  body: string,
+  collection: "blog",
+  data: InferEntrySchema<"blog">
+},
 },
 
 	};

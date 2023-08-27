@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY .npmrc package.json yarn.lock* package-lock.json* pnpm-lock.yaml* pnpm-workspace.yaml ./
+COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN \
     if [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm fetch; \
     else echo "Lockfile not found." && exit 1; \
