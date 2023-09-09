@@ -1,4 +1,3 @@
-import React from "react";
 import * as ReactPDF from "@react-pdf/renderer";
 import { Section } from "../components/section/section";
 import { Paragraph } from "../components/paragraph";
@@ -14,7 +13,7 @@ import { Profiles } from "../components/profiles";
 import { Basic, Education, Skill, Work } from "src/components/resume-types";
 import { DEFAULT_FONT } from "src";
 
-const { Link, Page, StyleSheet, Text, Font, Document, View } = ReactPDF;
+const { Link, Page, StyleSheet, Text, Document, View } = ReactPDF;
 
 export const CVDocument = ({
 	basics,

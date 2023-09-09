@@ -54,13 +54,6 @@ export function PopupCard(
 	}
 
 	let tags = "";
-	if (false) {
-		tags = `
-		<g font-size="7" font-weight="bold">
-			<text x="${xMargin}" y="${texty + 24}">#React</text>
-		</g>
-		`;
-	}
 
 	let svg = "";
 	svg += `

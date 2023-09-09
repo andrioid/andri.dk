@@ -1,6 +1,5 @@
 import { Text, View } from "@react-pdf/renderer";
-import React, { ReactNode } from "react";
-import { hex } from "wcag-contrast";
+import { ReactNode } from "react";
 
 export const Tag = ({
   color = "#f3f3f3",

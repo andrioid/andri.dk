@@ -1,9 +1,8 @@
 ---
 import { generateImage } from "./build";
 import { PopupCard } from "./templates/popup-card/popup-card";
-import { SplitView } from "./templates/split-view/split-view";
 
-const cards = { "popup-card": PopupCard, "split-view": SplitView };
+const cards = { "popup-card": PopupCard };
 const isDev = import.meta.env.MODE === "development"
 
 // interface Props {

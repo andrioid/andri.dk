@@ -1,15 +1,13 @@
-import * as React from "react";
-import { Resume, Skill } from "src/components/resume-types";
+import { Resume } from "src/components/resume-types";
 import { durationForKeyword } from "src/components/utils";
-import { getColor } from "src/theme";
 import { CVDocument } from "./cv";
 
 export function CVWrapper({ resume }: { resume: Resume }) {
-	const { work, education, basics, skills } = resume;
+	const { work, education, basics } = resume;
 
 	const skillsWithSortedKeywords = resume.skills?.map((c) => {
 		const durations: Record<string, number> = {};
-		c.keywords?.forEach((kw, idx) => {
+		c.keywords?.forEach((kw) => {
 			if (!resume.work) {
 				return;
 			}
@@ -59,30 +57,3 @@ export function CVWrapper({ resume }: { resume: Resume }) {
 	);
 }
 
-function skillToColor(skillProp: string, skills: Skill[]): string | undefined {
-	if (!skillProp) {
-		return;
-	}
-
-	let m = skillProp;
-	if (Array.isArray(skillProp)) {
-		m = skillProp[0];
-	}
-
-	if (skills && typeof m === "string") {
-		const idx = skills.findIndex((skill: Skill) => {
-			const match = skill?.keywords?.findIndex(
-				(k) => k.toLowerCase() === m.toLowerCase()
-			);
-			if (match && match > -1) {
-				return true;
-			}
-			return false;
-		});
-
-		if (skills[idx]?.id && getColor(skills[idx].id!)) {
-			return getColor(skills[idx].id!);
-		}
-	}
-	return;
-}

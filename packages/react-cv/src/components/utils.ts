@@ -1,4 +1,4 @@
-import { Skill, Work, WorkWithKeywords } from "./resume-types";
+import type { Work, WorkWithKeywords } from "./resume-types";
 
 export const periodToString = (
   start: string | undefined,

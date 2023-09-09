@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import andratar from "../../static/img/coffee-art.jpg";
 import NavItem from "./NavItem.astro";
 ---
@@ -6,7 +7,7 @@ import NavItem from "./NavItem.astro";
 <nav class="flex items-center justify-between flex-wrap bg-blue-700 p-6">
 	<a href="/" class="">
 		<div class="flex items-center flex-shrink-0 text-white mr-6">
-			<img
+			<Image
 				alt="avatar"
 				src={andratar}
 				class="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
@@ -20,5 +21,6 @@ import NavItem from "./NavItem.astro";
 	<div class="block flex-grow text-right">
 		<NavItem href="/">Home</NavItem>
 		<NavItem href="/blog/">Blog</NavItem>
+		<NavItem href="/rss.xml">RSS</NavItem>
 	</div>
 </nav>

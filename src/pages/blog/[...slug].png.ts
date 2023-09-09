@@ -1,4 +1,3 @@
-import { APIRoute } from "astro";
 import { getCollection, getEntryBySlug } from "astro:content";
 import { generateImageBuffer, PopupCard } from "social-cards";
 import { GenerateOptions } from "social-cards/types";
@@ -10,7 +9,7 @@ export async function getStaticPaths() {
 	return allPosts.map((p) => ({ params: { slug: p.slug }, props: {} }));
 }
 
-export async function get({
+export async function Get({
 	params,
 }: {
 	params: { slug: string };

@@ -13,6 +13,7 @@ import Layout from "../components/Layout.astro";
 import BlogCards from "../components/blog-cards.astro";
 import { getCollection } from "astro:content";
 import Icon from "../components/Icon.astro";
+import { Image } from "astro:assets";
 
 const blogPosts = (
 	await getCollection(
@@ -35,7 +36,7 @@ export const prerender = true;
 		<MainBody>
 			<div class="flex-1">
 				<nav class="flex justify-between items-center p-8">
-					<img
+					<Image
 						alt="round profile (small)"
 						src={coffeeAndri}
 						class="rounded-full shadow-2xl w-16 h-16 md:invisible"
@@ -43,6 +44,7 @@ export const prerender = true;
 					<div>
 						<ul class="flex flex-row">
 							<NavLink href="blog/">Blog</NavLink>
+							<NavLink href="/rss.xml">RSS</NavLink>
 						</ul>
 					</div>
 				</nav>
@@ -59,14 +61,14 @@ export const prerender = true;
 							<p>
 								Computer Engineer from &nbsp;
 								<span aria-hidden hidden> Iceland</span>
-								<img
+								<Image
 									alt="Iceland"
 									class="inline-icon"
 									src={flagIS}
 								/>
 								&nbsp; living in &nbsp;
 								<span aria-hidden hidden> Denmark</span>
-								<img
+								<Image
 									alt="Denmark"
 									class="inline-icon"
 									src={flagDK}
@@ -84,7 +86,7 @@ export const prerender = true;
 					<div
 						class="hidden md:block p-4 items-start justify-start mr-6"
 					>
-						<img
+						<Image
 							alt="round profile (large)"
 							src={coffeeAndri}
 							class="rounded-full shadow-2xl block mx-auto md:w-48 md:h-48"

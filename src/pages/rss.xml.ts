@@ -1,24 +1,18 @@
 import rss from "@astrojs/rss";
 import { site } from "../constants";
-import { Frontmatter } from "../lib/blog";
-import { MarkdownInstance } from "astro";
+import { getCollection } from "astro:content";
+import sanitizeHtml from "sanitize-html"
+import MarkdownIt from "markdown-it"
+const parser = new MarkdownIt()
 
-// TODO: Upgrade to Astro 2 when content collections are in place
-let allPosts = import.meta.globEager<MarkdownInstance<Frontmatter>>(
-	`../legacy-content/blog/**/*.md`
-);
-const posts = Object.values(allPosts)
-	.filter(
-		(p) => !p.frontmatter.draft || import.meta.env.MODE === "development"
-	)
-	.sort(
+export async function GET() {
+	const posts = (await getCollection("blog")).sort(
 		(a, b) =>
-			new Date(b.frontmatter.date).valueOf() -
-			new Date(a.frontmatter.date).valueOf()
+			b.data.date.valueOf() -
+			a.data.date.valueOf()
 	);
 
-export const get = () =>
-	rss({
+	return 	rss({
 		// `<title>` field in output xml
 		title: site.title,
 		// `<description>` field in output xml
@@ -30,10 +24,13 @@ export const get = () =>
 		// simple example: generate items for every md file in /src/pages
 		// see "Generating items" section for required frontmatter and advanced use cases
 		items: posts.map((post) => ({
-			link: `blog/${post.frontmatter.slug}` || "/unknown",
-			title: post.frontmatter.title,
-			pubDate: new Date(post.frontmatter.date),
+			link: `blog/${post.slug}` || "/unknown",
+			title: post.data.title,
+			pubDate: post.data.date,
+			content: sanitizeHtml(parser.render(post.body))
+
 		})),
 		// (optional) inject custom xml
 		customData: `<language>en-us</language>`,
 	});
+}

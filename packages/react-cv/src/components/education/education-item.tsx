@@ -1,8 +1,6 @@
-import React from "react";
 import { Text, View } from "@react-pdf/renderer";
 import { Education } from "../resume-types";
 import { periodToString } from "../utils";
-import { SafeText } from "../safe-text";
 
 export const EducationItem = ({ item }: { item: Education }) => (
   <View wrap={false}>

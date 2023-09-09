@@ -1,6 +1,4 @@
-import React from "react";
 import { Text } from "@react-pdf/renderer";
-import { SafeText } from "./safe-text";
 
 export const Paragraph = ({
   children = "",

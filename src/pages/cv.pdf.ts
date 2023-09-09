@@ -3,9 +3,7 @@ import cvData from "../../packages/cv/resume.json";
 import { resumeToString } from "react-cv";
 export const prerender = true;
 
-export async function get() {
+export async function GET() {
 	const pdfBlob = await resumeToString(cvData);
-	return {
-		body: pdfBlob,
-	};
+	return new Response(pdfBlob)
 }

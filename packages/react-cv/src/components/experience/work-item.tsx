@@ -1,14 +1,11 @@
-import React from "react";
 import { Link, Text, View } from "@react-pdf/renderer";
 import { Work, Skill } from "../resume-types";
 import { Tag } from "../tag";
 import { periodToString } from "../utils";
 import { colors } from "../../theme";
-import { Paragraph } from "../paragraph";
 
 export const WorkItem = ({
   item,
-  idx = 0,
   short = false,
   skills,
 }: {

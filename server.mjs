@@ -1,5 +1,4 @@
 import express from "express";
-import { URL } from "node:url";
 import { handler as ssrHandler } from "./dist/server/entry.mjs";
 
 function noWWW(req, res, next) {

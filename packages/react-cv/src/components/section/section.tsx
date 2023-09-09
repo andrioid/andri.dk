@@ -1,5 +1,4 @@
-import React from "react";
-import { Text, View } from "@react-pdf/renderer";
+import { View } from "@react-pdf/renderer";
 import { ReactNode } from "react";
 import { SectionHeader } from "./section-header";
 import { Icon } from "../icon";

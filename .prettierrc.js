@@ -10,5 +10,5 @@ module.exports = {
     },
   ],
   // This helps the vscode plugin find the correct plugin
-  plugins: [path.resolve(__dirname, "node_modules", "prettier-plugin-astro")],
+  plugins: ["prettier-plugin-astro"],
 };

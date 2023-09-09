@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Text } from "@react-pdf/renderer";
 import { Style } from "@react-pdf/types";
 

@@ -1,7 +1,6 @@
 import { Link, View, Text } from "@react-pdf/renderer";
-import React from "react";
 import { URL } from "url";
-import { BrandIcon, Icon } from "./icon";
+import { Icon } from "./icon";
 import { Profile } from "./resume-types";
 import { Section } from "./section/section";
 

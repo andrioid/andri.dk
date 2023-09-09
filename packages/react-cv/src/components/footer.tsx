@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import { colors } from "../theme";
 import { DEFAULT_FONT } from "src";

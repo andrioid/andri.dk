@@ -1,8 +1,8 @@
-import React from "react";
+import type { ReactNode } from "react";
 
 // Wraps the text and handles margins
-export const BodyContainer = ({ children }) => (
-  <div className="mt-10 mx-5 md:mx-10 md:mx-20 lg:mx-40 text-xl md:max-w-4xl">
+export const BodyContainer = ({ children }: { children: ReactNode }) => (
+  <div className="mt-10 mx-5 md:mx-20 lg:mx-40 text-xl md:max-w-4xl">
     {children}
   </div>
 );

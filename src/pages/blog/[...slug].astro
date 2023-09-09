@@ -1,6 +1,6 @@
 ---
 // Find all blog posts to generate
-import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
+import { getEntryBySlug, type CollectionEntry } from "astro:content";
 import Layout from "../../components/Layout.astro";
 import PagesLayout from "../../components/PagesLayout.astro";
 
@@ -55,7 +55,7 @@ const { title, description, date, tags } = entry?.data || {};
 							}
 						</p>
 					</div>
-					<div class="mb-4">
+					<div class="mb-4 flex gap-2">
 						{
 							tags &&
 								tags.map((t) => (
