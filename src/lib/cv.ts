@@ -1,4 +1,4 @@
-import { Skill, Work } from "react-cv";
+import type { Skill, Work } from "react-cv";
 
 function durationForWork(start: Date, end: Date) {
 	const diff = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24 / 365;

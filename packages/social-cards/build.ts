@@ -1,5 +1,5 @@
-import { Resvg, ResvgRenderOptions } from "@resvg/resvg-js";
-import { GenerateOptions, Result } from "./types";
+import { Resvg, type ResvgRenderOptions } from "@resvg/resvg-js";
+import type { GenerateOptions, Result } from "./types";
 import { promises, existsSync, mkdirSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { createHash } from "node:crypto";

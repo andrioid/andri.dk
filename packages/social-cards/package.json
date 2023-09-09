@@ -4,8 +4,7 @@
   "description": "",
   "type": "module",
   "files": [
-    "index.ts",
-    "fonts/"
+    "."
   ],
   "exports": {
     ".": "./index.ts"

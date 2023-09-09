@@ -1,4 +1,4 @@
-import { GenerateOptions } from "../../types";
+import type { GenerateOptions } from "../../types";
 import { escapeHTML, hashProps, validateImage } from "../../build";
 
 export function PopupCard(

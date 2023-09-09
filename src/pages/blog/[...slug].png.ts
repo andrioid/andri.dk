@@ -1,6 +1,6 @@
 import { getCollection, getEntryBySlug } from "astro:content";
 import { generateImageBuffer, PopupCard } from "social-cards";
-import { GenerateOptions } from "social-cards/types";
+import { type GenerateOptions } from "social-cards";
 
 export const prerender = true;
 export async function getStaticPaths() {
