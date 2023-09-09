@@ -30,8 +30,5 @@ export async function GET({
 	};
 
 	const buf = await generateImageBuffer(options);
-	return {
-		body: buf,
-		encoding: "binary",
-	};
+	return new Response(buf);
 }
