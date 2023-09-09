@@ -27,7 +27,7 @@ I settled on the [Mikrotik](https://mikrotik.com/product/RB750Gr3). They publish
 
 ### The plan
 
-Now that I had my router (props to [Proshop](www.proshop.dk) for shipping it within 12 hours) I had an opportunity to plan the network a little better.
+Now that I had my router (props to [Proshop](https://www.proshop.dk) for shipping it within 12 hours) I had an opportunity to plan the network a little better.
 
 ![network-diagram](network-architecture.png)
 

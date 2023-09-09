@@ -26,6 +26,7 @@ export async function GET() {
 		items: posts.map((post) => ({
 			link: `blog/${post.slug}` || "/unknown",
 			title: post.data.title,
+			description: post.data.description,
 			pubDate: post.data.date,
 			content: sanitizeHtml(parser.render(post.body))
 
