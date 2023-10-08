@@ -27,7 +27,7 @@
     "autoprefixer": "~10.4.15",
     "globby": "~13.2.2",
     "heroicons": "^2.0.18",
-    "postcss": "~8.4.29",
+    "postcss": "~8.4.31",
     "prettier-plugin-astro": "~0.12.0",
     "react": "^18.2.0",
     "react-cv": "workspace:1.0.0",
