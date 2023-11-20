@@ -91,7 +91,7 @@ function translateFromContentSchema(post: CollectionEntry<"blog">): CommonBlog {
 		date: post.data.date,
 		description: post.data.description,
 		status: post.data.draft === true ? "draft" : "published",
-		slug: post.id,
+		slug: post.slug,
 		title: post.data.title,
 		coverImage: post.data.coverImage,
 		tags: post.data.tags,
