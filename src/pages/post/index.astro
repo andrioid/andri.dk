@@ -1,0 +1,15 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { readItems } from "@directus/sdk";
+import { getDirectusClient } from "../../lib/cms/cms"
+type BlogEntry = CollectionEntry<"blog">;
+const client = getDirectusClient();
+const posts = await client.request(readItems("blog"))
+---
+
+<section>
+    <h3>Testing Directus</h3>
+    {posts.map(post => (
+        <h4>{post.title}</h4>
+    ))}
+</section>

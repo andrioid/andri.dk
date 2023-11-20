@@ -20,6 +20,9 @@ importers:
       '@astrojs/node':
         specifier: ~6.0.4
         version: 6.0.4(astro@3.5.5)
+      '@directus/sdk':
+        specifier: ^13.0.2
+        version: 13.0.2
       astro:
         specifier: ^3.5.5
         version: 3.5.5(typescript@5.2.2)
@@ -618,6 +621,11 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
+
+  /@directus/sdk@13.0.2:
+    resolution: {integrity: sha512-KECQM0w8xlgr5EklX+Jb9+dIzXyvJFjRfhiIAI7l/b0WEtVaCfvRMIrJXR3XsLeVW9u2nu+b/TffOyTMSLjm2w==}
+    engines: {node: '>=18.0.0'}
+    dev: false
 
   /@emmetio/abbreviation@2.3.3:
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
@@ -3827,7 +3835,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: false
 
   /kind-of@6.0.3:

@@ -42,6 +42,7 @@
     "@astrojs/deno": "~5.0.1",
     "@astrojs/mdx": "^1.1.5",
     "@astrojs/node": "~6.0.4",
+    "@directus/sdk": "^13.0.2",
     "astro": "^3.5.5",
     "express": "^4.18.2",
     "markdown-it": "^13.0.2",
