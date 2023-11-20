@@ -7,8 +7,8 @@ type Schema = {
 };
 
 export function getDirectusClient() {
-	const URL = import.meta.env.DIRECTUS_URL ?? process.env.DIRECTUS_URL;
-	const TOKEN = import.meta.env.DIRECTUS_TOKEN ?? process.env.DIRECTUS_TOKEN;
+	const URL = import.meta.env.DIRECTUS_URL || process.env.DIRECTUS_URL;
+	const TOKEN = import.meta.env.DIRECTUS_TOKEN || process.env.DIRECTUS_TOKEN;
 
 	if (!URL || !TOKEN) {
 		console.log("URL/TOKEN", URL, TOKEN);

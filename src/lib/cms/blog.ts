@@ -26,7 +26,6 @@ export async function getPosts({
 	const cmsPosts = (await client.request(readItems("blog"))).map(
 		translateFromCMS,
 	);
-	console.log("cmsPosts", cmsPosts);
 
 	const allPosts = [...ccPosts, ...cmsPosts]
 		.sort((a, b) => b.date.getTime() - a.date.getTime())
