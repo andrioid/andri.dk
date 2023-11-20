@@ -4,10 +4,9 @@ import Card from "../../components/card.astro";
 import Layout from "../../components/Layout.astro";
 import PagesLayout from "../../components/PagesLayout.astro";
 import Section from "../../components/Section.astro";
+import { getPosts } from "../../lib/cms";
 
-const allPosts = (await getCollection("blog")).sort(
-	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
+const allPosts = await getPosts({})
 ---
 
 <Layout title="Blog posts | andri.dk">
@@ -17,17 +16,16 @@ const allPosts = (await getCollection("blog")).sort(
 				{
 					allPosts.map((post) => (
 						<Card
-							title={post.data.title}
+							title={post.title}
 							link={post.slug}
 							description={
-								post.data.description ||
+								post.description ||
 								"TODO: Fix description defaults"
 							}
-							tags={post.data.tags}
-							date={post.data.date}
+							tags={post.tags}
+							date={post.date}
 							draft={
-								process.env.NODE_ENV !== "production" &&
-								post.data.draft
+								post.status === "draft"
 							}
 						/>
 					))

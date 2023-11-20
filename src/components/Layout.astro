@@ -2,17 +2,18 @@
 import { type CollectionEntry } from "astro:content";
 import "../../css/global.css";
 import { site } from "../constants";
+import type { CommonBlogRendered } from "../lib/cms";
 export interface Props {
 	title: string;
 	subtitle?: string;
 	description?: string;
 	coverImage?: string;
-	blogPost?: CollectionEntry<"blog">;
+	blogPost?: CommonBlogRendered;
 }
 
 const { blogPost, ...props } = Astro.props as Props;
-const title = blogPost?.data.title || props.title;
-const description = blogPost?.data.description || props.description;
+const title = blogPost?.title || props.title;
+const description = blogPost?.description || props.description;
 const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
 ---
 

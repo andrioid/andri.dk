@@ -1,10 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Card from "./card.astro";
+import type { CommonBlog } from "../lib/cms";
 
 // Purpose: Fetch the blogposts
 interface Props {
-	posts: Array<CollectionEntry<"blog">>;
+	posts: Array<CommonBlog>;
 }
 
 const { posts } = Astro.props as Props;
@@ -15,16 +16,16 @@ const { posts } = Astro.props as Props;
 		{
 			posts.map((post) => (
 				<Card
-					title={post.data.title}
+					title={post.title}
 					link={`blog/${post.slug}`}
 					description={
-						post.data.description ||
+						post.description ||
 						"TODO: Fix description defaults"
 					}
-					tags={post.data.tags}
-					date={post.data.date}
+					tags={post.tags}
+					date={post.date}
 					draft={
-						process.env.NODE_ENV !== "production" && post.data.draft
+						post.status === "draft"
 					}
 				/>
 			))

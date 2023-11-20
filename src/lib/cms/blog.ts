@@ -1,29 +1,62 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import {
+	getCollection,
+	type CollectionEntry,
+	getEntryBySlug,
+} from "astro:content";
 import { getDirectusClient } from "./cms";
-import { readItems } from "@directus/sdk";
+import { readItem, readItems } from "@directus/sdk";
+import MarkdownIt from "markdown-it";
+const parser = new MarkdownIt();
 
 // Get all of the blog posts. Both from content-collection, but also Directus
-export async function getPosts({ limit = 10 }: { limit?: number }) {
+
+// TODO:
+// - Only fetch the fields we need
+export async function getPosts({
+	limit = 10000,
+	showDraft = import.meta.env.MODE === "development",
+}: {
+	limit?: number;
+	showDraft?: boolean;
+}) {
 	const ccPosts = (await getCollection("blog")).map(
 		translateFromContentSchema,
 	);
 	const client = getDirectusClient();
-	const cmsPosts = await (
-		await client.request(
-			readItems("blog", {
-				limit: limit,
-			}),
-		)
-	).map(translateFromCMS);
+	const cmsPosts = (await client.request(readItems("blog"))).map(
+		translateFromCMS,
+	);
 	console.log("cmsPosts", cmsPosts);
 
-	const allPosts = [...ccPosts, ...cmsPosts].sort(
-		(a, b) => b.date.getTime() - a.date.getTime(),
-	);
-	return allPosts;
+	const allPosts = [...ccPosts, ...cmsPosts]
+		.sort((a, b) => b.date.getTime() - a.date.getTime())
+		.filter((p) => p.status === "published" || showDraft === true);
+	return allPosts.slice(0, limit);
 }
 
-export async function getPost() {}
+export async function getPost(slug: string): Promise<CommonBlogRendered> {
+	const client = getDirectusClient();
+	const ccItem = await getEntryBySlug("blog", slug);
+	if (ccItem) {
+		return {
+			...translateFromContentSchema(ccItem),
+			render: ccItem.render,
+		};
+	}
+	try {
+		const cmsItem = await client.request(readItem("blog", slug));
+		if (!ccItem && !cmsItem) throw new Error("Page not found");
+		if (ccItem) {
+		}
+		// CMS item
+		return {
+			...translateFromCMS(cmsItem),
+			rendered: parser.render(cmsItem.body),
+		};
+	} catch (err) {
+		throw new Error("Page not found");
+	}
+}
 
 export type DirectusBlog = {
 	title: string;
@@ -31,9 +64,9 @@ export type DirectusBlog = {
 	body: string;
 	coverImage?: string;
 	date: string;
-	draft: boolean;
 	description?: string;
 	tags?: Array<string>;
+	status: "draft" | "published" | "idea";
 };
 
 export type CommonBlog = {
@@ -41,10 +74,15 @@ export type CommonBlog = {
 	slug: string;
 	body: string;
 	coverImage?: string;
-	draft: boolean;
+	status: "draft" | "published" | "idea";
 	description?: string;
 	tags?: Array<string>;
 	date: Date;
+};
+
+export type CommonBlogRendered = CommonBlog & {
+	rendered?: string;
+	render?: CollectionEntry<"blog">["render"];
 };
 
 function translateFromContentSchema(post: CollectionEntry<"blog">): CommonBlog {
@@ -52,8 +90,8 @@ function translateFromContentSchema(post: CollectionEntry<"blog">): CommonBlog {
 		body: post.body,
 		date: post.data.date,
 		description: post.data.description,
-		draft: post.data.draft ?? false,
-		slug: post.slug,
+		status: post.data.draft === true ? "draft" : "published",
+		slug: post.id,
 		title: post.data.title,
 		coverImage: post.data.coverImage,
 		tags: post.data.tags,

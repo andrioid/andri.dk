@@ -14,15 +14,9 @@ import BlogCards from "../components/blog-cards.astro";
 import { getCollection } from "astro:content";
 import Icon from "../components/Icon.astro";
 import { Image } from "astro:assets";
+import { getPosts } from "../lib/cms";
 
-const blogPosts = (
-	await getCollection(
-		"blog",
-		(p) => !p.data.draft || import.meta.env.MODE === "development",
-	)
-)
-	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-	.slice(0, 6);
+const blogPosts = await getPosts({limit: 6})
 
 export const prerender = true;
 ---

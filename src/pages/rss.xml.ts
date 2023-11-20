@@ -3,18 +3,17 @@ import { site } from "../constants";
 import { getCollection } from "astro:content";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
+import { getPosts } from "../lib/cms";
 const parser = new MarkdownIt();
 
 export async function GET() {
-	const posts = (await getCollection("blog")).sort(
-		(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-	);
+	const posts = (await getPosts({ limit: 500 })) ?? [];
 
 	return rss({
 		// `<title>` field in output xml
 		title: site.title,
 		// `<description>` field in output xml
-		description: site.description,
+		description: site.description ?? "",
 		// base URL for RSS <item> links
 		// SITE will use "site" from your project's astro.config.
 		site: import.meta.env.SITE,
@@ -23,9 +22,9 @@ export async function GET() {
 		// see "Generating items" section for required frontmatter and advanced use cases
 		items: posts.map((post) => ({
 			link: `blog/${post.slug}` || "/unknown",
-			title: post.data.title,
-			description: post.data.description,
-			pubDate: post.data.date,
+			title: post.title,
+			description: post.description ?? "",
+			pubDate: post.date,
 			content: sanitizeHtml(parser.render(post.body)),
 		})),
 		// (optional) inject custom xml
