@@ -3,13 +3,16 @@ import type { CollectionEntry } from "astro:content"
 
 type Schema = {
     blog: Array<{
-        title?: string
+        title: string;
+        slug: string;
+        body?: string;
+
     }>
 }
 
 export function getDirectusClient() {
-    const URL = process.env.DIRECTUS_URL
-    const TOKEN = process.env.DIRECTUS_TOKEN
+    const URL = import.meta.env.DIRECTUS_URL ?? process.env.DIRECTUS_URL
+    const TOKEN = import.meta.env.DIRECTUS_TOKEN ?? process.env.DIRECTUS_TOKEN
     if (!URL || !TOKEN) {
         console.log('URL/TOKEN', URL, TOKEN)
         throw new Error("Missing CMS URL and/or TOKEN")

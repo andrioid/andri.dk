@@ -1,1 +1,11 @@
-<p>slug yo</p>
+---
+import { readItem } from "@directus/sdk";
+import { getDirectusClient } from "../../lib/cms/cms";
+const client = getDirectusClient();
+
+const { slug } = Astro.params
+if (!slug) return
+const post = await client.request(readItem("blog", slug))
+---
+
+<p>{post.title}</p>
