@@ -16,7 +16,7 @@ const description = blogPost?.data.description || props.description;
 const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -27,7 +27,12 @@ const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
 		<meta name="og:description" content={description} />
 		<meta name="author" content={site.author} />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<link rel="alternate" type="application/rss+xml" title="RSS for andri.dk" href="/rss.xml" />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="RSS for andri.dk"
+			href="/rss.xml"
+		/>
 		<meta property="og:image" content={ogImage} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:image" content={ogImage} />
@@ -40,7 +45,6 @@ const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
 		<script
 			data-goatcounter="https://andrioid.goatcounter.com/count"
 			async
-			src="//gc.zgo.at/count.js"
-		></script>
+			src="//gc.zgo.at/count.js"></script>
 	</body>
 </html>

@@ -1,14 +1,14 @@
 {
-    "redirects": [
-      { 
-        "source": "/.well-known/webfinger",
-        "destination": "https://social.andri.dk/.well-known/webfinger", 
-        "permanent": true
-      },
-      { 
-        "source": "/.well-known/nodeinfo",
-        "destination": "https://social.andri.dk/.well-known/nodeinfo", 
-        "permanent": true
-      }      
-    ]
-  }
+  "redirects": [
+    {
+      "source": "/.well-known/webfinger",
+      "destination": "https://social.andri.dk/.well-known/webfinger",
+      "permanent": true
+    },
+    {
+      "source": "/.well-known/nodeinfo",
+      "destination": "https://social.andri.dk/.well-known/nodeinfo",
+      "permanent": true
+    }
+  ]
+}

@@ -14,12 +14,10 @@ date: "2021-12-30T00:00:00.000Z"
 - Astro
 - Hugo
 
-
 ### Live server updates
 
 - React Server Components
 - Phoenix [Live View](https://github.com/phoenixframework/phoenix_live_view)
-
 
 ### Backend
 
@@ -29,6 +27,7 @@ date: "2021-12-30T00:00:00.000Z"
 - Postgres (and Postgres goodies)
 
 ### API
+
 Schemas are nice.
 
 OpenAPI v3
@@ -41,5 +40,3 @@ GraphQL
 - swc
 - Vite
 - Snowpack
-
-

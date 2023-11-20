@@ -3,7 +3,7 @@ import { generateImage } from "./build";
 import { PopupCard } from "./templates/popup-card/popup-card";
 
 const cards = { "popup-card": PopupCard };
-const isDev = import.meta.env.MODE === "development"
+const isDev = import.meta.env.MODE === "development";
 
 // interface Props {
 // 	title: string;
@@ -13,21 +13,20 @@ const isDev = import.meta.env.MODE === "development"
 // }
 interface Props {
 	card: keyof typeof cards;
-	props: Parameters<typeof cards[keyof typeof cards]>[0];
+	props: Parameters<(typeof cards)[keyof typeof cards]>[0];
 	baseURL: string; // Needed for absolute URL for images
 }
 const { card, props, baseURL } = Astro.props as Props;
 
-
-const options = cards[card](props)
+const options = cards[card](props);
 const imageResult = await generateImage(options, {
 	alwaysRecreate: isDev,
-	baseURL
-})
+	baseURL,
+});
 ---
 
 <>
-	<meta property="og:image" content={imageResult.url}>
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content={imageResult.url}>
+	<meta property="og:image" content={imageResult.url} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content={imageResult.url} />
 </>

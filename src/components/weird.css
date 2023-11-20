@@ -22,7 +22,9 @@
   background: rgba(255, 255, 255, 0.04);
   left: -20vmin;
   top: -20vmin;
-  animation: morph 15s linear infinite alternate, spin 20s linear infinite;
+  animation:
+    morph 15s linear infinite alternate,
+    spin 20s linear infinite;
   z-index: 1;
   will-change: border-radius, transform;
   transform-origin: 55% 55%;
@@ -36,7 +38,8 @@
   right: -10vmin;
   top: auto;
   bottom: 0;
-  animation: morph 10s linear infinite alternate,
+  animation:
+    morph 10s linear infinite alternate,
     spin 26s linear infinite reverse;
   transform-origin: 20% 20%;
 }

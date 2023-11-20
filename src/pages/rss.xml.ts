@@ -1,18 +1,16 @@
 import rss from "@astrojs/rss";
 import { site } from "../constants";
 import { getCollection } from "astro:content";
-import sanitizeHtml from "sanitize-html"
-import MarkdownIt from "markdown-it"
-const parser = new MarkdownIt()
+import sanitizeHtml from "sanitize-html";
+import MarkdownIt from "markdown-it";
+const parser = new MarkdownIt();
 
 export async function GET() {
 	const posts = (await getCollection("blog")).sort(
-		(a, b) =>
-			b.data.date.valueOf() -
-			a.data.date.valueOf()
+		(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 	);
 
-	return 	rss({
+	return rss({
 		// `<title>` field in output xml
 		title: site.title,
 		// `<description>` field in output xml
@@ -28,8 +26,7 @@ export async function GET() {
 			title: post.data.title,
 			description: post.data.description,
 			pubDate: post.data.date,
-			content: sanitizeHtml(parser.render(post.body))
-
+			content: sanitizeHtml(parser.render(post.body)),
 		})),
 		// (optional) inject custom xml
 		customData: `<language>en-us</language>`,

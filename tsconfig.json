@@ -16,7 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "strictFunctionTypes": true,
-    "strictNullChecks": true,
+    "strictNullChecks": true
   },
   "extends": "astro/tsconfigs/strict",
   "exclude": ["packages/react-cv/dist", "dist"]

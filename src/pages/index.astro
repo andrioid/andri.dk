@@ -18,7 +18,7 @@ import { Image } from "astro:assets";
 const blogPosts = (
 	await getCollection(
 		"blog",
-		(p) => !p.data.draft || import.meta.env.MODE === "development"
+		(p) => !p.data.draft || import.meta.env.MODE === "development",
 	)
 )
 	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -66,7 +66,7 @@ export const prerender = true;
 									class="inline-icon"
 									src={flagIS}
 								/>
-								&nbsp; living in &nbsp;
+								 &nbsp; living in &nbsp;
 								<span aria-hidden hidden> Denmark</span>
 								<Image
 									alt="Denmark"

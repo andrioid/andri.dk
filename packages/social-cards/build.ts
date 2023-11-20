@@ -37,7 +37,7 @@ export async function generateImageBuffer(opts: GenerateOptions) {
 
 export async function generateImage(
 	opts: GenerateOptions,
-	{ alwaysRecreate = false, baseURL }: AdvancedOptions
+	{ alwaysRecreate = false, baseURL }: AdvancedOptions,
 ): Promise<Result> {
 	const options = { ...defaultOptions, ...opts };
 	// Helpful to debug rsvg
@@ -84,7 +84,7 @@ export function validateImage(image: string): string {
 
 	if (!existsSync(imagePath)) {
 		throw new Error(
-			"[social-cards] image defined, but does not exist: " + imagePath
+			"[social-cards] image defined, but does not exist: " + imagePath,
 		);
 	}
 	return imagePath;
@@ -96,7 +96,7 @@ export function hashProps(...props: unknown[]) {
 	for (let prop of props) {
 		if (prop instanceof String && prop.includes("/home/")) {
 			throw new Error(
-				"[social-cards] Please do not try to hash absolute filenames."
+				"[social-cards] Please do not try to hash absolute filenames.",
 			);
 		}
 		hash.update(JSON.stringify(prop));

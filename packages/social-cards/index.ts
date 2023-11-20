@@ -2,4 +2,4 @@
 export { default as SocialCard } from "./social-card.astro";
 export * from "./build";
 export * from "./templates";
-export type * from "./types"
+export type * from "./types";

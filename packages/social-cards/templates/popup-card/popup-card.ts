@@ -7,7 +7,7 @@ export function PopupCard(
 		subtitle?: string;
 		authorImage?: string;
 		backgroundImage?: string;
-	}>
+	}>,
 ): GenerateOptions {
 	// Remember not to pass anything that will change between builds to hashProps
 	const hash = hashProps("popup-card", props);

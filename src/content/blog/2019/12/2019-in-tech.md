@@ -60,7 +60,7 @@ const [animals, setAnimals] = useState(["Cock", "Raven", "Dog", "Pig"]);
 setAnimals(
   produce((draftAnimals) => {
     draftAnimals[0] = "Rooster";
-  })
+  }),
 );
 ```
 

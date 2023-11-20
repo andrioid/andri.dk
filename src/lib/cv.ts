@@ -21,7 +21,7 @@ function durationForSkill(work: Array<Work>, skill: string) {
 
 export function dataTransform(
 	rootSkills: Array<Skill>,
-	workSkills: Array<Work>
+	workSkills: Array<Work>,
 ) {
 	return rootSkills.map((c) => {
 		if (!c.keywords || !workSkills) {

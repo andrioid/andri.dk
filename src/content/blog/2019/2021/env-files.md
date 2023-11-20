@@ -4,6 +4,7 @@ draft: false
 tags: ["env", "devops", "node.js"]
 date: "2021-12-18T00:00:00.000Z"
 ---
+
 An environmental-variable is a way for the environment (your operating-system, or shell) to share information with future processes. Some ENV vars are global (and set by the OS), others are only useful in a certain context.
 
 You could be using a configuration file, but the world of hosting has very much adopted the [12 Factor App](https://12factor.net) way of configuring applications. For environments like CI/CD, Heroku and Kubernetes, this makes a lot of sense.
@@ -11,6 +12,7 @@ You could be using a configuration file, but the world of hosting has very much 
 In development though, this can be quite awkard to use.
 
 ### Example: Backend API
+
 You've written a beautiful monolith, but it needs a couple of things to run properly. It uses a **private key** to sign auth tokens, and it uses **AWS credentials** for uploads to S3.
 
 You decide to use ENV variables and decide on `AUTH_KEY` and `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. Then you set up your hosting, and configure your app to abort if any of those are missing.
@@ -20,6 +22,7 @@ In development though, instead of running `npm run dev`, you now need to run `AU
 This is rather annoying, and might prompt you to write a blog post about ENV variables...
 
 ### Creating the .env file
+
 Instead of defining the ENV variables every time, we can create a `.env` file in our project workspace. It usually looks something like this.
 
 ```
@@ -45,18 +48,22 @@ It may not be 100% secure, to store stuff like this on your developer laptop, bu
 **Never create `.env` files for anything other than your development setup. It is very easy to accidentally expose secrets that way.**
 
 ### Reading the .env file
+
 If we now run our backend, it will complain that our ENV variables are not set. We have to tell Node (or whatever) about those variables.
 
 On Linux/Mac this is quite easy.
 
 #### Pass the env-vars to MYCOMMAND
+
 In this case `npm run dev` will have access to any ENV variables in the file.
+
 ```
 eval $(egrep -v '^#' .env | xargs) npm run dev
 
 ```
 
 #### Export the vars in .env into your shell
+
 It's also possible to "export" the variables to your current session. That way, any command you run afterwards from the same shell will inherit it.
 
 ```
@@ -66,9 +73,11 @@ npm run dev
 ```
 
 ### Node.js
+
 It is also possible to read ENV files without doing shell-script dark arts.
 
 #### dotenv
+
 You can inject the ENV variables into your Node.js process like this.
 
 ```
@@ -76,8 +85,9 @@ npm install --save-dev dotenv
 ```
 
 In your app.js
+
 ```js
-require('dotenv').config()
+require("dotenv").config();
 ```
 
 In my experience, this is a horrible way of reading the ENV file. Remember, that this is a convenience for development. Why are we adding it to production code?
@@ -85,6 +95,7 @@ In my experience, this is a horrible way of reading the ENV file. Remember, that
 #### dotenv, without polluting your code
 
 Add a file called `local-dev.js` to your project workspace.
+
 ```js
 const { execSync } = require("child_process");
 
@@ -98,7 +109,6 @@ const [argnode, argcmd, ...argrest] = process.argv;
 execSync(argrest.join(" "), {
   stdio: "inherit",
 });
-
 ```
 
 Then in your package.json. In my example, I'm loading `.env` and then running the Remix dev-server.

@@ -6,7 +6,7 @@ import PagesLayout from "../../components/PagesLayout.astro";
 import Section from "../../components/Section.astro";
 
 const allPosts = (await getCollection("blog")).sort(
-	(a, b) => b.data.date.getTime() - a.data.date.getTime()
+	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 ---
 

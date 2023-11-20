@@ -9,7 +9,6 @@ const TextOverride = {
 	component: Text,
 };
 
-
 const typography: Record<string, Style> = {
 	h1: {
 		fontSize: 16,

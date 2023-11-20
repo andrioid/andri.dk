@@ -56,4 +56,3 @@ export function CVWrapper({ resume }: { resume: Resume }) {
 		/>
 	);
 }
-

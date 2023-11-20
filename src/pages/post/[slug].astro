@@ -1,11 +1,13 @@
 ---
 import { readItem } from "@directus/sdk";
-import { getDirectusClient } from "../../lib/cms/cms";
+import { getDirectusClient, getAssetURL } from "../../lib/cms/cms";
 const client = getDirectusClient();
 
-const { slug } = Astro.params
-if (!slug) return
-const post = await client.request(readItem("blog", slug))
+const { slug } = Astro.params;
+if (!slug) return;
+const post = await client.request(readItem("blog", slug));
+const coverImage = post.coverImage ? getAssetURL(post.coverImage) : undefined;
 ---
 
 <p>{post.title}</p>
+{coverImage && <img src={coverImage} />}

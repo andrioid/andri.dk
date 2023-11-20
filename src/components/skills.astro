@@ -1,7 +1,7 @@
 ---
 import { dataTransform } from "../lib/cv";
 import Icon from "./Icon.astro";
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 interface Props {
 	categories: ReturnType<typeof dataTransform>;
@@ -50,7 +50,10 @@ function getCategoryClass(id?: string) {
 					{c.keywords &&
 						c.keywords.map((s) => (
 							<span
-								class={twMerge("andri-tag", getCategoryClass(c.id))}
+								class={twMerge(
+									"andri-tag",
+									getCategoryClass(c.id),
+								)}
 							>
 								{s.name}
 								{c.preferred?.includes(s.name) ? (

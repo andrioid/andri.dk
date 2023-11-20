@@ -5,5 +5,5 @@ export const prerender = true;
 
 export async function GET() {
 	const pdfBlob = await resumeToString(cvData);
-	return new Response(pdfBlob)
+	return new Response(pdfBlob);
 }

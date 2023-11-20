@@ -1,6 +1,4 @@
-import {
-	renderToStream,
-} from "@react-pdf/renderer";
+import { renderToStream } from "@react-pdf/renderer";
 import React from "react";
 import { Stream } from "stream";
 import { Resume } from "./components/resume-types";
@@ -12,7 +10,7 @@ export const DEFAULT_FONT = "Montserrat";
 
 export async function resumeToString(
 	resume: Resume,
-	assetPath: string = ASSET_PATH
+	assetPath: string = ASSET_PATH,
 ) {
 	registerFonts(assetPath);
 	const cvDoc = React.createElement(CVWrapper, { resume: resume });
