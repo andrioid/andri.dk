@@ -1,10 +1,11 @@
 ---
-import { type CollectionEntry } from "astro:content";
 import { readItems } from "@directus/sdk";
 import { getDirectusClient } from "../../lib/cms/cms";
-import { getPosts } from "../../lib/cms";
-const posts = await getPosts({ limit: 20 });
+
+const client = getDirectusClient();
+const posts = (await client.request(readItems("blog")));
 console.log("posts", posts);
+
 ---
 
 <section>

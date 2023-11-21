@@ -25,7 +25,7 @@ export async function GET() {
 			title: post.title,
 			description: post.description ?? "",
 			pubDate: post.date,
-			content: sanitizeHtml(parser.render(post.body)),
+			content: parser.render(post.body),
 		})),
 		// (optional) inject custom xml
 		customData: `<language>en-us</language>`,

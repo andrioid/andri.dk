@@ -1,13 +1,19 @@
 ---
 import { readItem } from "@directus/sdk";
 import { getDirectusClient, getAssetURL } from "../../lib/cms/cms";
+import MarkdownIt from "markdown-it";
+import shiki from "markdown-it-shiki"
+const parser = new MarkdownIt({
+    html: true
+})
+parser.use(shiki) // syntax highlighting
 const client = getDirectusClient();
 
 const { slug } = Astro.params;
 if (!slug) return;
 const post = await client.request(readItem("blog", slug));
-const coverImage = post.coverImage ? getAssetURL(post.coverImage) : undefined;
+const body = parser.render(post.body)
 ---
 
 <p>{post.title}</p>
-{coverImage && <img src={coverImage} />}
+<div set:html={body}></div>
