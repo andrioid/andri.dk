@@ -4,6 +4,7 @@ import { getEntryBySlug, type CollectionEntry } from "astro:content";
 import Layout from "../../components/Layout.astro";
 import PagesLayout from "../../components/PagesLayout.astro";
 import { getPost } from "../../lib/cms";
+import { IS_DEV } from "../../lib/utils/dev";
 
 interface Props {
 	entry: CollectionEntry<"blog">;
@@ -15,20 +16,16 @@ if (!slug) {
 		statusText: "Not found",
 	});
 }
-console.log('slug', slug)
-// const entry = await getEntryBySlug("blog", slug);
-// if (!entry) {
-// 	return new Response(null, {
-// 		status: 404,
-// 		statusText: "Not found",
-// 	});
-// }
 
-// const { Content } = await entry.render();
-// const { title, description, date, tags } = entry?.data || {};
 if (!slug) throw new Error("Can't call page without slug")
 const post = await getPost(slug)
-console.log('found post', post)
+if (post.status !== "published" && !IS_DEV)  {
+	return new Response(null, {
+		status: 404,
+		statusText: "Not found"
+	})
+}
+
 const {tags, date } = post
 const { Content } = await post.render?.() ?? {};
 ---
@@ -47,9 +44,7 @@ const { Content } = await post.render?.() ?? {};
 				class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl"
 			>
 				<div>
-					<h1
-						class="text-gray-900 font-bold text-xl md:text-4xl mb-2"
-					>
+					<h1>
 						{post.title}
 					</h1>
 					<div
@@ -82,10 +77,6 @@ const { Content } = await post.render?.() ?? {};
 				<p>&nbsp;</p>
 			</div>
 		</div>
-		<!-- <pre>{JSON.stringify(post, null, 4)}</pre>
-
-  <pre>{JSON.stringify(rf, null, 4)}</pre>
-
-  <pre>{JSON.stringify(site, null, 4)}</pre> -->
+		
 	</PagesLayout>
 </Layout>

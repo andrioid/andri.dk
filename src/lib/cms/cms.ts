@@ -12,7 +12,8 @@ export function getDirectusClient() {
 
 	if (!URL || !TOKEN) {
 		console.log("URL/TOKEN", URL, TOKEN);
-		throw new Error("Missing CMS URL and/or TOKEN");
+		// Will fail at build time: https://fly.io/docs/reference/build-secrets/
+		throw new Error("Missing CMS URL and/or TOKEN.");
 	}
 	const directus = createDirectus<Schema>(URL)
 		.with(rest())

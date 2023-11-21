@@ -19,6 +19,8 @@ export default defineConfig({
   markdown: {
     drafts: true,
     remarkPlugins: [remarkEmbedImages],
+    syntaxHighlight: "shiki",
+    shikiConfig: { theme: "github-dark"}
   },
   vite: {
     ssr: {

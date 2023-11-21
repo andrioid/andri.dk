@@ -6,15 +6,24 @@ import {
 import { getDirectusClient } from "./cms";
 import { readItem, readItems } from "@directus/sdk";
 import MarkdownIt from "markdown-it";
-const parser = new MarkdownIt();
+import { IS_DEV } from "../utils/dev";
+import sanitize from "sanitize-html";
+import { sanitizePost } from "../utils/sanitize";
+import Shiki from "markdown-it-shiki";
+
+const parser = new MarkdownIt({
+	html: true,
+});
+parser.use(Shiki, {
+	theme: "github-dark",
+});
 
 // Get all of the blog posts. Both from content-collection, but also Directus
 
-// TODO:
-// - Only fetch the fields we need
+// TODO: Only fetch the fields we need
 export async function getPosts({
 	limit = 10000,
-	showDraft = import.meta.env.MODE === "development",
+	showDraft = IS_DEV,
 }: {
 	limit?: number;
 	showDraft?: boolean;
@@ -47,10 +56,11 @@ export async function getPost(slug: string): Promise<CommonBlogRendered> {
 		if (!ccItem && !cmsItem) throw new Error("Page not found");
 		if (ccItem) {
 		}
-		// CMS item
+
 		return {
 			...translateFromCMS(cmsItem),
-			rendered: parser.render(cmsItem.body),
+			// TODO Allow HTML, and sanitize for video/preview tags
+			rendered: sanitizePost(parser.render(cmsItem.body)),
 		};
 	} catch (err) {
 		throw new Error("Page not found");

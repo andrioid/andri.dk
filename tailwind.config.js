@@ -36,7 +36,7 @@ module.exports = {
       fontFamily: {
         sans: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
         headline: ["Montserrat Variable", defaultTheme.fontFamily.headline],
-        mono: ["source code pro"],
+        mono: ["Source Code Pro variable", defaultTheme.fontFamily.mono],
       },
     },
   },
