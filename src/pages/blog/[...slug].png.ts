@@ -1,10 +1,11 @@
 import { getCollection, getEntryBySlug } from "astro:content";
 import { generateImageBuffer, PopupCard } from "social-cards";
 import { type GenerateOptions } from "social-cards";
+import { getPost, getPosts } from "../../lib/cms";
 
 export const prerender = true;
 export async function getStaticPaths() {
-	const allPosts = await getCollection("blog");
+	const allPosts = await getPosts({ limit: 1000 });
 
 	return allPosts.map((p) => ({ params: { slug: p.slug }, props: {} }));
 }
@@ -15,17 +16,16 @@ export async function GET({
 	params: { slug: string };
 	request: Request;
 }) {
-	const post = await getEntryBySlug("blog", params["slug"]);
+	const post = await getPost(params["slug"]);
 	if (!post) {
 		return;
 	}
 	const options: GenerateOptions = {
 		...PopupCard({
-			title: post.data.title,
-			subtitle: post.data.description,
+			title: post.title,
+			subtitle: post.description,
 			authorImage: "./public/img/coffee-art.jpg",
-			backgroundImage:
-				post.data.coverImage || "./public/img/hvitserkur.jpg",
+			backgroundImage: "./public/img/hvitserkur.jpg",
 		}),
 	};
 

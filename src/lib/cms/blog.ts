@@ -3,7 +3,7 @@ import {
 	type CollectionEntry,
 	getEntryBySlug,
 } from "astro:content";
-import { getDirectusClient } from "./cms";
+import { getAssetURL, getDirectusClient } from "./cms";
 import { readItem, readItems } from "@directus/sdk";
 import MarkdownIt from "markdown-it";
 import { IS_DEV } from "../utils/dev";
@@ -54,9 +54,7 @@ export async function getPost(slug: string): Promise<CommonBlogRendered> {
 	try {
 		const cmsItem = await client.request(readItem("blog", slug));
 		if (!ccItem && !cmsItem) throw new Error("Page not found");
-		if (ccItem) {
-		}
-
+		console.log("cmsItem", cmsItem);
 		return {
 			...translateFromCMS(cmsItem),
 			// TODO Allow HTML, and sanitize for video/preview tags
@@ -111,5 +109,6 @@ function translateFromCMS(post: DirectusBlog): CommonBlog {
 	return {
 		...post,
 		date: new Date(post.date),
+		coverImage: post.coverImage ? getAssetURL(post.coverImage) : undefined,
 	};
 }

@@ -53,6 +53,8 @@
     "express": "^4.18.2",
     "markdown-it": "^13.0.2",
     "markdown-it-shiki": "^0.9.0",
+    "satori": "^0.10.11",
+    "satori-html": "^0.3.2",
     "social-cards": "workspace:^",
     "tailwind-merge": "^2.0.0",
     "typescript": "^5.2.2"
