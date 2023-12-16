@@ -18,7 +18,7 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           push: true
-          tags: registry.fly.io/andridk:${{ env.BRANCH }}-${{ github.sha }}
+          tags: registry.fly.io/andridk:${{ github.sha }}
           build-args: |
             DIRECTUS_API_TOKEN=${{ secrets.DIRECTUS_API_TOKEN }}
             DIRECTUS_URL=${{ secrets.DIRECTUS_URL }}
