@@ -10,7 +10,6 @@ const TOKEN = import.meta.env.DIRECTUS_TOKEN || process.env.DIRECTUS_TOKEN;
 
 export function getDirectusClient() {
 	if (!URL || !TOKEN) {
-		console.log("URL/TOKEN", URL, TOKEN);
 		// Will fail at build time: https://fly.io/docs/reference/build-secrets/
 		throw new Error("Missing CMS URL and/or TOKEN.");
 	}

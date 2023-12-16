@@ -54,7 +54,6 @@ export async function getPost(slug: string): Promise<CommonBlogRendered> {
 	try {
 		const cmsItem = await client.request(readItem("blog", slug));
 		if (!ccItem && !cmsItem) throw new Error("Page not found");
-		console.log("cmsItem", cmsItem);
 		return {
 			...translateFromCMS(cmsItem),
 			// TODO Allow HTML, and sanitize for video/preview tags

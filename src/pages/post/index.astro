@@ -4,7 +4,6 @@ import { getDirectusClient } from "../../lib/cms/cms";
 
 const client = getDirectusClient();
 const posts = (await client.request(readItems("blog")));
-console.log("posts", posts);
 
 ---
 
