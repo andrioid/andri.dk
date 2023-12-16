@@ -15,6 +15,9 @@ RUN \
 WORKDIR /app
 COPY . .
 
+ARG DIRECTUS_API_TOKEN
+ARG DIRECTUS_URL
+
 RUN pnpm install -r --offline && npm run build
 
 # [Static] Production image, copy build assets and run the standalone node server

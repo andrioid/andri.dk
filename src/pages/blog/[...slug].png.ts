@@ -3,7 +3,7 @@ import { generateImageBuffer, PopupCard } from "social-cards";
 import { type GenerateOptions } from "social-cards";
 import { getPost, getPosts } from "../../lib/cms";
 
-//export const prerender = true;
+export const prerender = true;
 export async function getStaticPaths() {
 	const allPosts = await getPosts({ limit: 1000 });
 
