@@ -14,7 +14,7 @@ jobs:
         with:
           registry: registry.fly.io
           username: x
-          password: ${{ secrets.FLY_API_TOEN }}
+          password: ${{ secrets.FLY_API_TOKEN }}
       - uses: docker/build-push-action@v5
         with:
           push: true
