@@ -4,48 +4,49 @@ import "../../css/global.css";
 import { site } from "../constants";
 import type { CommonBlogRendered } from "../lib/cms";
 export interface Props {
-	title: string;
-	subtitle?: string;
-	description?: string;
-	coverImage?: string;
-	blogPost?: CommonBlogRendered;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  coverImage?: string;
+  blogPost?: CommonBlogRendered;
+  lang?: string;
 }
 
-const { blogPost, ...props } = Astro.props as Props;
+const { blogPost, lang = "en", ...props } = Astro.props as Props;
 const title = blogPost?.title || props.title;
 const description = blogPost?.description || props.description;
 const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="og:title" content={title} />
-		<meta name="twitter:title" content={title} />
-		<meta name="description" content={description} />
-		<meta name="og:description" content={description} />
-		<meta name="author" content={site.author} />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<link
-			rel="alternate"
-			type="application/rss+xml"
-			title="RSS for andri.dk"
-			href="/rss.xml"
-		/>
-		<meta property="og:image" content={ogImage} />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content={ogImage} />
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="og:title" content={title} />
+    <meta name="twitter:title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="og:description" content={description} />
+    <meta name="author" content={site.author} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="RSS for andri.dk"
+      href="/rss.xml"
+    />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
-		<title>{title}</title>
-	</head>
+    <title>{title}</title>
+  </head>
 
-	<body>
-		<slot />
-		<script
-			data-goatcounter="https://andrioid.goatcounter.com/count"
-			async
-			src="//gc.zgo.at/count.js"></script>
-	</body>
+  <body>
+    <slot />
+    <script
+      data-goatcounter="https://andrioid.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"></script>
+  </body>
 </html>

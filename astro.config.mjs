@@ -30,6 +30,17 @@ export default defineConfig({
       exclude: ["social-cards"], // https://github.com/evanw/esbuild/issues/1051#issuecomment-1006992549
     },
   },
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "da", "is"],
+    routing: {
+      prefixDefaultLocale: false
+    },
+    fallback: {
+      is: "en",
+      da: "en"
+    }
+  },
   output: "server",
   adapter: node({
     mode: "middleware",
