@@ -35,6 +35,10 @@ const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
       title="RSS for andri.dk"
       href="/rss.xml"
     />
+
+    <link rel="pingback" href="https://webmention.io/andri.dk/xmlrpc" />
+    <link rel="webmention" href="https://webmention.io/andri.dk/webmention" />
+
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
