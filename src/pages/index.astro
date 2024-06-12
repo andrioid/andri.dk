@@ -21,7 +21,7 @@ import path from "node:path";
 const blogPosts = await getPosts({ limit: 6 });
 
 // Primitive way of redirecting to the correct landing page
-if (Astro.preferredLocale !== Astro.currentLocale) {
+if (Astro.preferredLocale && Astro.preferredLocale !== Astro.currentLocale) {
   const nurl = getRelativeLocaleUrl(Astro.preferredLocale as string, "");
   return Astro.redirect(nurl);
 }
