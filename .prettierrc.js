@@ -6,9 +6,10 @@ module.exports = {
       files: "**/*.astro",
       options: {
         parser: "astro",
+        remo,
       },
     },
   ],
   // This helps the vscode plugin find the correct plugin
-  plugins: ["prettier-plugin-astro", "prettier-plugin-organize-imports"],
+  plugins: ["prettier-plugin-astro"],
 };

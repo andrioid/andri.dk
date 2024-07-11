@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import Card from "../../components/card.astro";
 import Layout from "../../components/Layout.astro";
 import PagesLayout from "../../components/PagesLayout.astro";
@@ -10,25 +9,22 @@ const allPosts = await getPosts({});
 ---
 
 <Layout title="Blog posts | andri.dk">
-	<PagesLayout>
-		<Section title="Blog posts">
-			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-				{
-					allPosts.map((post) => (
-						<Card
-							title={post.title}
-							link={post.slug}
-							description={
-								post.description ||
-								"TODO: Fix description defaults"
-							}
-							tags={post.tags}
-							date={post.date}
-							draft={post.status === "draft"}
-						/>
-					))
-				}
-			</div>
-		</Section>
-	</PagesLayout>
+  <PagesLayout>
+    <Section title="Blog posts">
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {
+          allPosts.map((post) => (
+            <Card
+              title={post.title}
+              link={post.slug}
+              description={post.description || "TODO: Fix description defaults"}
+              tags={post.tags}
+              date={post.date}
+              draft={post.status === "draft"}
+            />
+          ))
+        }
+      </div>
+    </Section>
+  </PagesLayout>
 </Layout>
