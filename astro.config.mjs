@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import remarkEmbedImages from "remark-embed-images";
@@ -8,19 +7,13 @@ import node from "@astrojs/node";
 
 export default defineConfig({
   site: "https://andri.dk/",
-  integrations: [
-    react(),
-    tailwind(),
-    mdx({
-      drafts: true,
-    }),
-  ],
+  integrations: [react(), tailwind()],
   trailingSlash: "ignore",
   markdown: {
     drafts: true,
     remarkPlugins: [remarkEmbedImages],
     syntaxHighlight: "shiki",
-    shikiConfig: { theme: "github-dark"}
+    shikiConfig: { theme: "github-dark" },
   },
   vite: {
     ssr: {
@@ -34,12 +27,12 @@ export default defineConfig({
     defaultLocale: "en",
     locales: ["en", "da", "is"],
     routing: {
-      prefixDefaultLocale: false
+      prefixDefaultLocale: false,
     },
     fallback: {
       is: "en",
-      da: "en"
-    }
+      da: "en",
+    },
   },
   output: "server",
   adapter: node({
