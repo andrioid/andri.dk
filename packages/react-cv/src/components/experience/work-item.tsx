@@ -1,8 +1,8 @@
 import { Link, Text, View } from "@react-pdf/renderer";
-import { Work, Skill } from "../resume-types";
+import { colors } from "../../theme";
+import { Skill, Work } from "../resume-types";
 import { Tag } from "../tag";
 import { periodToString } from "../utils";
-import { colors } from "../../theme";
 
 export const WorkItem = ({
 	item,

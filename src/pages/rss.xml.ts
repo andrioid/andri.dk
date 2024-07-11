@@ -1,8 +1,6 @@
 import rss from "@astrojs/rss";
-import { site } from "../constants";
-import { getCollection } from "astro:content";
-import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
+import { site } from "../constants";
 import { getPosts } from "../lib/cms";
 const parser = new MarkdownIt();
 

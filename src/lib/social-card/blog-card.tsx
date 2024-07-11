@@ -1,8 +1,8 @@
-import satori from "satori";
-import type { CommonBlog } from "../cms";
-import type { ReactNode } from "react";
-import { html } from "satori-html";
 import fs from "node:fs";
+import type { ReactNode } from "react";
+import satori from "satori";
+import { html } from "satori-html";
+import type { CommonBlog } from "../cms";
 
 export async function postCard(post: CommonBlog) {
 	let bgImage = post.coverImage ?? "";

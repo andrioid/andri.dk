@@ -1,5 +1,4 @@
-import { createDirectus, readItems, rest, staticToken } from "@directus/sdk";
-import type { CollectionEntry } from "astro:content";
+import { createDirectus, rest, staticToken } from "@directus/sdk";
 import type { DirectusBlog } from "./blog";
 
 type Schema = {

@@ -38,7 +38,6 @@ module.exports = {
         headline: ["Montserrat Variable", defaultTheme.fontFamily.headline],
         mono: ["Source Code Pro variable", defaultTheme.fontFamily.mono],
       },
-      
     },
   },
   variants: {

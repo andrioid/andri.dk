@@ -1,6 +1,6 @@
 ---
 // Find all blog posts to generate
-import { getEntryBySlug, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import Layout from "../../components/Layout.astro";
 import PagesLayout from "../../components/PagesLayout.astro";
 import { getPost } from "../../lib/cms";
@@ -17,17 +17,17 @@ if (!slug) {
 	});
 }
 
-if (!slug) throw new Error("Can't call page without slug")
-const post = await getPost(slug)
-if (post.status !== "published" && !IS_DEV)  {
+if (!slug) throw new Error("Can't call page without slug");
+const post = await getPost(slug);
+if (post.status !== "published" && !IS_DEV) {
 	return new Response(null, {
 		status: 404,
-		statusText: "Not found"
-	})
+		statusText: "Not found",
+	});
 }
 
-const {tags, date } = post
-const { Content } = await post.render?.() ?? {};
+const { tags, date } = post;
+const { Content } = (await post.render?.()) ?? {};
 ---
 
 <Layout
@@ -70,13 +70,15 @@ const { Content } = await post.render?.() ?? {};
 					</div>
 				</div>
 
-				<article class="mb-6 prose lg:prose-lg" set:html={post.rendered}>
+				<article
+					class="mb-6 prose lg:prose-lg"
+					set:html={post.rendered}
+				>
 					{Content && <Content />}
 				</article>
 
 				<p>&nbsp;</p>
 			</div>
 		</div>
-		
 	</PagesLayout>
 </Layout>

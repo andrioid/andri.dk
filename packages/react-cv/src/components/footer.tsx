@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import { colors } from "../theme";
 import { DEFAULT_FONT } from "src";
+import { colors } from "../theme";
 
 export function Footer({ name, email }: { name: string; email: string }) {
 	return (

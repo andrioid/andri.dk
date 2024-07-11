@@ -1,17 +1,17 @@
 import * as ReactPDF from "@react-pdf/renderer";
-import { Section } from "../components/section/section";
 import { Paragraph } from "../components/paragraph";
+import { Section } from "../components/section/section";
 import { Head } from "../head";
 
-import { EducationItem } from "../components/education/education-item";
-import { SkillKeywords } from "../components/skills/skills-keywords";
-import { Experience } from "../components/experience/experience";
-import { Icon } from "../components/icon";
-import { Footer } from "../components/footer";
-import { colors } from "../theme";
-import { Profiles } from "../components/profiles";
-import { Basic, Education, Skill, Work } from "src/components/resume-types";
 import { DEFAULT_FONT } from "src";
+import { Basic, Education, Skill, Work } from "src/components/resume-types";
+import { EducationItem } from "../components/education/education-item";
+import { Experience } from "../components/experience/experience";
+import { Footer } from "../components/footer";
+import { Icon } from "../components/icon";
+import { Profiles } from "../components/profiles";
+import { SkillKeywords } from "../components/skills/skills-keywords";
+import { colors } from "../theme";
 
 const { Link, Page, StyleSheet, Text, Document, View } = ReactPDF;
 
@@ -93,7 +93,7 @@ export const CVDocument = ({
 												s.id !== undefined
 													? colors[
 															s.id as keyof typeof colors
-													  ]
+														]
 													: "black",
 										}}
 										key={s.name}

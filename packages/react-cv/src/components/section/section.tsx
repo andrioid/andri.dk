@@ -1,7 +1,7 @@
 import { View } from "@react-pdf/renderer";
 import { ReactNode } from "react";
-import { SectionHeader } from "./section-header";
 import { Icon } from "../icon";
+import { SectionHeader } from "./section-header";
 
 // Not meant for anything wrapping pages
 export const Section = ({

@@ -1,15 +1,14 @@
+import { readItem, readItems } from "@directus/sdk";
 import {
 	getCollection,
-	type CollectionEntry,
 	getEntryBySlug,
+	type CollectionEntry,
 } from "astro:content";
-import { getAssetURL, getDirectusClient } from "./cms";
-import { readItem, readItems } from "@directus/sdk";
 import MarkdownIt from "markdown-it";
-import { IS_DEV } from "../utils/dev";
-import sanitize from "sanitize-html";
-import { sanitizePost } from "../utils/sanitize";
 import Shiki from "markdown-it-shiki";
+import { IS_DEV } from "../utils/dev";
+import { sanitizePost } from "../utils/sanitize";
+import { getAssetURL, getDirectusClient } from "./cms";
 
 const parser = new MarkdownIt({
 	html: true,

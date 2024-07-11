@@ -1,6 +1,6 @@
-import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
 
 import node from "@astrojs/node";

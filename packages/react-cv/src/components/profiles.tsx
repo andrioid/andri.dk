@@ -1,4 +1,4 @@
-import { Link, View, Text } from "@react-pdf/renderer";
+import { Link, Text, View } from "@react-pdf/renderer";
 import { URL } from "url";
 import { Icon } from "./icon";
 import { Profile } from "./resume-types";

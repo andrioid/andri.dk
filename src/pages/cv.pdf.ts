@@ -1,6 +1,6 @@
 // Note: Does not work with Deno SSR yet
-import cvData from "../../packages/cv/resume.json";
 import { resumeToString } from "react-cv";
+import cvData from "../../packages/cv/resume.json";
 export const prerender = true;
 
 export async function GET() {

@@ -1,6 +1,8 @@
-import { getCollection, getEntryBySlug } from "astro:content";
-import { generateImageBuffer, PopupCard } from "social-cards";
-import { type GenerateOptions } from "social-cards";
+import {
+	generateImageBuffer,
+	PopupCard,
+	type GenerateOptions,
+} from "social-cards";
 import { getPost, getPosts } from "../../lib/cms";
 
 export const prerender = true;

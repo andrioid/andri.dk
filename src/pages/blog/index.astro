@@ -6,7 +6,7 @@ import PagesLayout from "../../components/PagesLayout.astro";
 import Section from "../../components/Section.astro";
 import { getPosts } from "../../lib/cms";
 
-const allPosts = await getPosts({})
+const allPosts = await getPosts({});
 ---
 
 <Layout title="Blog posts | andri.dk">
@@ -24,9 +24,7 @@ const allPosts = await getPosts({})
 							}
 							tags={post.tags}
 							date={post.date}
-							draft={
-								post.status === "draft"
-							}
+							draft={post.status === "draft"}
 						/>
 					))
 				}

@@ -1,9 +1,8 @@
+import fs from "node:fs";
+import type { ReactNode } from "react";
 import satori from "satori";
 import { html } from "satori-html";
 import type { SocialCardProps } from "./social-card";
-import type { ReactNode } from "react";
-import Montserrat from "../../../public/fonts/Montserrat-Regular.ttf";
-import fs from "node:fs";
 
 export async function designExample(card: SocialCardProps) {
 	let bgImage = card.image ?? "";

@@ -1,8 +1,8 @@
 import { Resvg, type ResvgRenderOptions } from "@resvg/resvg-js";
-import type { GenerateOptions, Result } from "./types";
-import { promises, existsSync, mkdirSync } from "node:fs";
-import { resolve, join } from "node:path";
 import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, promises } from "node:fs";
+import { join, resolve } from "node:path";
+import type { GenerateOptions, Result } from "./types";
 
 export const fontPath = resolve("static", "fonts");
 

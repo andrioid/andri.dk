@@ -1,6 +1,5 @@
 import { getAssetURL, getPost } from "../../lib/cms";
 import { postCard } from "../../lib/social-card/blog-card";
-import { designExample } from "../../lib/social-card/satori";
 
 export async function GET({
 	params,
@@ -20,7 +19,7 @@ export async function GET({
 				"width=600",
 				"height=600",
 				"fit=contain",
-		  ])
+			])
 		: undefined;
 	console.log("post", post.coverImage, coverImage);
 	// return new Response(null, {

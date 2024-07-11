@@ -19,14 +19,11 @@ const { posts } = Astro.props as Props;
 					title={post.title}
 					link={`blog/${post.slug}`}
 					description={
-						post.description ||
-						"TODO: Fix description defaults"
+						post.description || "TODO: Fix description defaults"
 					}
 					tags={post.tags}
 					date={post.date}
-					draft={
-						post.status === "draft"
-					}
+					draft={post.status === "draft"}
 				/>
 			))
 		}

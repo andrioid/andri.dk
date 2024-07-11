@@ -1,9 +1,9 @@
 import { Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { Style } from "@react-pdf/types";
-import React from "react";
 import ReactMarkdown from "markdown-to-jsx";
-import { Footer } from "./footer";
+import React from "react";
 import { DEFAULT_FONT } from "src";
+import { Footer } from "./footer";
 
 const TextOverride = {
 	component: Text,

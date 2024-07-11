@@ -1,5 +1,5 @@
-import type { GenerateOptions } from "../../types";
 import { escapeHTML, hashProps, validateImage } from "../../build";
+import type { GenerateOptions } from "../../types";
 
 export function PopupCard(
 	props: Readonly<{
