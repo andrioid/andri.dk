@@ -22,6 +22,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@directus/sdk": "^13.0.2",
     "@iconify-json/lucide": "^1.1.209",
+    "@iconify-json/tabler": "^1.1.121",
     "astro": "^4.15.1",
     "astro-icon": "^1.1.1",
     "express": "^4.19.2",

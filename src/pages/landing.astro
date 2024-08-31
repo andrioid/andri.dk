@@ -3,13 +3,13 @@ import { Icon } from "astro-icon/components";
 import Layout from "../components/Layout.astro";
 
 const resumeData = {
-	name: "John Doe",
-	title: "Full Stack Developer",
-	location: "San Francisco, CA",
-	email: "john@example.com",
-	github: "johndoe",
-	linkedin: "johndoe",
-	skills: ["JavaScript", "React", "Node.js", "Python", "SQL"],
+	name: "Andri Óskarsson",
+	title: "Software Developer & Systems Administrator",
+	location: "Aalborg, Denmark",
+	email: "andri@andri.dk",
+	github: "andrioid",
+	linkedin: "andrioid",
+	skills: ["JavaScript", "React", "Node.js", "SQL"],
 };
 ---
 
@@ -19,30 +19,41 @@ const resumeData = {
 	coverImage="./static/img/wave.svg"
 >
 	<div
-		class="flex flex-col h-screen font-mono overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-red-900 text-cyan-300"
+		class="flex flex-col h-screen font-sans overflow-hidden bg-gradient-to-b from-andri to-black text-sky-300"
 	>
 		<div class="absolute inset-0 overflow-hidden pointer-events-none">
 			{
-
-				[...Array(20)].map((_, i) => {
-				    const icons = ["lucide:laptop", "lucide:server", "lucide:cloud", "lucide:network", "lucide:pizza", "lucide:database", "lucide:sparkles", "lucide:shield-check" ]
-					const iconName = icons[Math.floor(Math.random() * icons.length)]
+				[...Array(40)].map((_, i) => {
+					const icons = [
+						"tabler:device-laptop",
+						"tabler:server",
+						"tabler:cloud",
+						"tabler:cloud-network",
+						"tabler:pizza",
+						"tabler:database",
+						"tabler:sparkles",
+						"tabler:shield-lock",
+						"tabler:device-audio-tape",
+						"tabler:device-gamepad",
+						"tabler:device-mobile",
+					];
+					const colors = ["#38bdf8", "#c084fc", "#ffffff"];
+					const iconName =
+						icons[Math.floor(Math.random() * icons.length)];
+					const colorName =
+						colors[Math.floor(Math.random() * colors.length)];
 					return (
 						<Icon
-						    name={iconName}
-							class="absolute opacity-10 animate-float hover:opacity-30"
+							name={iconName}
+							class="absolute opacity-5 animate-float hover:opacity-30"
 							style={{
-								width: `${Math.random() * 100 + 50}px`,
-								height: `${Math.random() * 100 + 50}px`,
+								width: `${Math.random() * 100 + 40}px`,
+								height: `${Math.random() * 100 + 40}px`,
 								left: `${Math.random() * 100}%`,
 								top: `${Math.random() * 100}%`,
 								animationDuration: `${Math.random() * 10 + 5}s`,
 								animationDelay: `${Math.random() * 5}s`,
-								// backgroundColor: [
-								// 	"#ff6b6b",
-								// 	"#4ecdc4",
-								// 	"#45b7d1",
-								// ][Math.floor(Math.random() * 3)],
+								color: colorName,
 							}}
 						/>
 					);
@@ -66,20 +77,24 @@ const resumeData = {
 			class="relative z-20 flex-grow flex flex-col justify-center items-center p-4"
 		>
 			<div class="text-center space-y-4">
-				<h1 class="text-4xl font-bold text-yellow-300">
+				<h1
+					class="text-6xl font-bold text-white border-black drop-shadow-md"
+				>
 					{resumeData.name}
 				</h1>
-				<p class="text-xl text-pink-300">{resumeData.title}</p>
-				<p class="text-green-300">{resumeData.location}</p>
+				<p class="text-xl text-sky-300 drop-shadow-sm">
+					{resumeData.title}
+				</p>
+				<p class="text-white drop-shadow-sm">
+					{resumeData.location}
+				</p>
 			</div>
 			<div id="skills" class="mt-8 text-center">
-				<h2 class="text-2xl font-semibold mb-2 text-yellow-300">
-					Skills
-				</h2>
+				<h2 class="text-2xl font-semibold mb-2 text-sky-300">Skills</h2>
 				<ul class="flex flex-wrap justify-center gap-2">
 					{
 						resumeData.skills.map((skill, index) => (
-							<li class="bg-cyan-700 px-3 py-1 rounded-full text-sm hover:bg-cyan-600 transition-colors">
+							<li class="bg-sky-700 px-3 py-1 rounded-full text-sm hover:bg-sky-600 transition-colors">
 								{skill}
 							</li>
 						))
@@ -96,7 +111,7 @@ const resumeData = {
 				href={`mailto:${resumeData.email}`}
 				class="hover:text-yellow-300 transition-colors"
 			>
-				<Icon name="lucide:mail" />
+				<Icon name="tabler:mail" />
 				<span class="sr-only">Email</span>
 			</a>
 			<a
@@ -105,7 +120,7 @@ const resumeData = {
 				rel="noopener noreferrer"
 				class="hover:text-yellow-300 transition-colors"
 			>
-				<Icon name="lucide:github" />
+				<Icon name="tabler:brand-github" />
 				<span class="sr-only">GitHub</span>
 			</a>
 			<a
@@ -114,7 +129,16 @@ const resumeData = {
 				rel="noopener noreferrer"
 				class="hover:text-yellow-300 transition-colors"
 			>
-				<Icon name="lucide:linkedin" />
+				<Icon name="tabler:brand-linkedin" />
+				<span class="sr-only">LinkedIn</span>
+			</a>
+			<a
+				href={`https://linkedin.com/in/${resumeData.linkedin}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="hover:text-yellow-300 transition-colors"
+			>
+				<Icon name="tabler:brand-mastodon" />
 				<span class="sr-only">LinkedIn</span>
 			</a>
 		</footer>

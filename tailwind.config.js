@@ -25,10 +25,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        andri: "#59B4FF"
+      },  
       height: {
         300: "300px",
         350: "350px",
       },
+
       minWidth: sizes.width,
       maxWidth: sizes.width,
       minHeight: sizes.height,
