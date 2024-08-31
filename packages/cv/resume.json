@@ -26,6 +26,16 @@
         "network": "LinkedIn",
         "username": "andriosk",
         "url": "https://linkedin.com/in/andriosk"
+      },
+      {
+        "network": "Mastodon",
+        "username": "@hachyderm.io/andrioid",
+        "url": "https://hachyderm.io/@andrioid"
+      },
+      {
+        "network": "Bluesky",
+        "username": "andri.dk",
+        "url": "https://bsky.app/profile/andri.dk"
       }
     ]
   },
