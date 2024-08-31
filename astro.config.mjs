@@ -1,5 +1,6 @@
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
+import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
 
@@ -7,7 +8,7 @@ import node from "@astrojs/node";
 
 export default defineConfig({
   site: "https://andri.dk/",
-  integrations: [react(), tailwind()],
+  integrations: [react(), tailwind(), icon()],
   trailingSlash: "ignore",
   markdown: {
     drafts: true,
