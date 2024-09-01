@@ -9,6 +9,8 @@ const BRAND_ICONS = {
 	twitter: "\uf099",
 	github: "\uf09b",
 	linkedin: "\uf0e1",
+	mastodon: "\uf4f6",
+	bluesky: "\ue671",
 };
 
 const ICONS = {
@@ -43,5 +45,6 @@ export function Icon({
 			</Text>
 		);
 	}
-	throw new Error("Unsupported Icon name");
+	console.error(new Error("Unsupported Icon name:" + name));
+	return null;
 }
