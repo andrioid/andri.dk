@@ -4,7 +4,7 @@ import Layout from "../components/Layout.astro";
 import cv from "../../packages/cv/resume.json";
 import { dataTransform } from "../lib/cv";
 import ProfileIcon from "../components/profile-icon.astro";
-import { SkillOverview } from "./_cmp/skill-overview";
+import SkillOverview from "./_cmp/skill-overview.astro";
 
 const dt = dataTransform(cv.skills, cv.work);
 ---
@@ -91,7 +91,8 @@ const dt = dataTransform(cv.skills, cv.work);
 					{cv.basics.location.countryCode}
 				</p>
 			</div>
-			<SkillOverview skills={dt} client:only />
+			<SkillOverview dt={dt} />
+			<div id="software" class="hidden target:block">hello</div>
 		</main>
 
 		<footer

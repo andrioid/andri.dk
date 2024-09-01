@@ -39,7 +39,11 @@ export function dataTransform(
 					score,
 				};
 			})
-			.filter((k) => k.score > 1) // minimum a year
+			.filter((k) => {
+				if (k.score > 1) return true;
+				if (c.id === "processes") return true;
+				return false;
+			}) // minimum a year
 			.sort((a, b) => {
 				return b.score - a.score;
 			});

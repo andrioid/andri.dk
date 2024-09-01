@@ -1,0 +1,46 @@
+---
+import { twMerge } from "tailwind-merge";
+import type { dataTransform } from "../../lib/cv";
+
+type Props = {
+	dt: ReturnType<typeof dataTransform>;
+};
+
+const { dt } = Astro.props;
+---
+
+<div id="skills" class="mt-8 flex flex-col items-center max-w-[50em]">
+	<ul class="flex flex-wrap justify-center gap-2">
+		{
+			dt.map((skill, index) => (
+				<li
+					role="button"
+					class="bg-sky-800 px-3 py-1 rounded-full text-sm hover:bg-sky-600 transition-colors text-sky-100 aria-selected:bg-sky-600"
+				>
+					<a href={`#${skill.id}`}>{skill.name}</a>
+				</li>
+			))
+		}
+	</ul>
+	{
+		dt.map((skill, index) => (
+			<ul
+				id={skill.id}
+				class={twMerge(
+					"hidden flex-wrap justify-center gap-2 mt-6",
+					`target:flex`
+				)}
+			>
+				{skill.keywords.map((k) => (
+					<li
+						class={twMerge(
+							"text-sm px-3 py-1 rounded-full bg-sky-100 text-sky-800"
+						)}
+					>
+						{k.name}
+					</li>
+				))}
+			</ul>
+		))
+	}
+</div>

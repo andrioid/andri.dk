@@ -47,5 +47,5 @@ module.exports = {
   variants: {
     boxShadow: ["responsive", "hover", "focus"],
   },
-  plugins: [require("@tailwindcss/typography")], // markdown auto typography
+  plugins: [require("@tailwindcss/typography"), ({ addVariant }) => addVariant("target", "&:target")], // markdown auto typography
 };
