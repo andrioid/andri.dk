@@ -30,7 +30,7 @@ export function registerFonts(assetPath: string) {
 		family: "Brands",
 		fonts: [
 			{
-				src: path.resolve(assetPath, "fonts/brands.ttf"),
+				src: path.resolve(assetPath, "fonts/brands.otf"),
 			},
 		],
 	});

@@ -28,18 +28,22 @@ const { dt } = Astro.props;
 			<ul
 				id={skill.id}
 				class={twMerge(
-					"hidden flex-wrap justify-center gap-x-2 gap-y-4 mt-8",
+					"hidden flex-wrap justify-center gap-x-4 gap-y-4 mt-8",
 					`target:flex`
 				)}
 			>
 				{skill.keywords.map((k) => (
 					<li
-						title={`${k.score}`}
 						class={twMerge(
-							"flex flex-row items-center md:text-xl px-3 py-1 rounded-full bg-sky-100 text-sky-800"
+							"relative flex flex-row items-center md:text-lg px-3 py-1 rounded-full bg-sky-100 text-sky-800"
 						)}
 					>
 						<SkillIcon className="mr-2" skill={k} /> {k.name}
+						{k.score > 1 && (
+							<div class="z-10 drop-shadow-md bg-pink-600 text-white font-bold rounded-full text-xs -bottom-2 -right-2 absolute px-2">
+								{`${k.score} years`}
+							</div>
+						)}
 					</li>
 				))}
 			</ul>

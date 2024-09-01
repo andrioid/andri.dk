@@ -1,13 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { dataTransform } from "../../lib/cv";
+import { twMerge } from "tailwind-merge";
 
 export interface Props {
 	skill: ReturnType<typeof dataTransform>[number]["keywords"][number];
+	containerClass?: string;
 	className?: string;
 }
 
-const { skill, className } = Astro.props as Props;
+const { skill, containerClass, className } = Astro.props as Props;
 
 const icon = (() => {
 	if (skill.name === "Go") return "tabler:brand-golang";
@@ -26,7 +28,15 @@ const icon = (() => {
 })();
 ---
 
-<div class={icon && className}>
-	{icon && <Icon class="hover:text-white" title={skill.name} name={icon} />}
+<div class={icon && containerClass}>
+	{
+		icon && (
+			<Icon
+				class={twMerge("hover:text-white", className)}
+				title={skill.name}
+				name={icon}
+			/>
+		)
+	}
 	<span class="sr-only">{skill.name}</span>
 </div>
