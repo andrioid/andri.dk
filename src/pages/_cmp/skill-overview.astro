@@ -1,6 +1,7 @@
 ---
 import { twMerge } from "tailwind-merge";
 import type { dataTransform } from "../../lib/cv";
+import SkillIcon from "./skill-icon.astro";
 
 type Props = {
 	dt: ReturnType<typeof dataTransform>;
@@ -27,17 +28,18 @@ const { dt } = Astro.props;
 			<ul
 				id={skill.id}
 				class={twMerge(
-					"hidden flex-wrap justify-center gap-2 mt-6",
+					"hidden flex-wrap justify-center gap-x-2 gap-y-4 mt-8",
 					`target:flex`
 				)}
 			>
 				{skill.keywords.map((k) => (
 					<li
+						title={`${k.score}`}
 						class={twMerge(
-							"text-sm px-3 py-1 rounded-full bg-sky-100 text-sky-800"
+							"flex flex-row items-center md:text-xl px-3 py-1 rounded-full bg-sky-100 text-sky-800"
 						)}
 					>
-						{k.name}
+						<SkillIcon className="mr-2" skill={k} /> {k.name}
 					</li>
 				))}
 			</ul>

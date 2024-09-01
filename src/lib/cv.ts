@@ -40,7 +40,7 @@ export function dataTransform(
 				};
 			})
 			.filter((k) => {
-				if (k.score > 1) return true;
+				if (k.score >= 0.5) return true;
 				if (c.id === "processes") return true;
 				return false;
 			}) // minimum a year
