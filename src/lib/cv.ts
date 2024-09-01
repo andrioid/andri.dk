@@ -23,7 +23,7 @@ export function dataTransform(
 	rootSkills: Array<Skill>,
 	workSkills: Array<Work>,
 ) {
-	return rootSkills.map((c) => {
+	const skills = rootSkills.map((c) => {
 		if (!c.keywords || !workSkills) {
 			return {
 				...c,
@@ -39,6 +39,7 @@ export function dataTransform(
 					score,
 				};
 			})
+			.filter((k) => k.score > 1) // minimum a year
 			.sort((a, b) => {
 				return b.score - a.score;
 			});
@@ -47,4 +48,5 @@ export function dataTransform(
 			keywords: nk,
 		};
 	});
+	return skills;
 }

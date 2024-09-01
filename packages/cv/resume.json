@@ -13,19 +13,9 @@
     },
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "andrioid",
-        "url": "https://twitter.com/andrioid"
-      },
-      {
         "network": "GitHub",
         "username": "andrioid",
         "url": "https://github.com/andrioid"
-      },
-      {
-        "network": "LinkedIn",
-        "username": "andriosk",
-        "url": "https://linkedin.com/in/andriosk"
       },
       {
         "network": "Mastodon",
@@ -36,6 +26,16 @@
         "network": "Bluesky",
         "username": "andri.dk",
         "url": "https://bsky.app/profile/andri.dk"
+      },
+      {
+        "network": "Twitter",
+        "username": "andrioid",
+        "url": "https://x.com/andrioid"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "andriosk",
+        "url": "https://linkedin.com/in/andriosk"
       }
     ]
   },

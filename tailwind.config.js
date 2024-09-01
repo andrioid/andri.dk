@@ -26,8 +26,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        andri: "#59B4FF"
-      },  
+        andri: "#59B4FF",
+      },
       height: {
         300: "300px",
         350: "350px",

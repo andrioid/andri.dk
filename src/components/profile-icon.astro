@@ -10,7 +10,7 @@ const { profile } = Astro.props as Props;
 
 const icon = (() => {
 	if (profile.network === "Twitter") {
-		return "tabler:brand-twitter";
+		return "tabler:brand-x";
 	}
 	if (profile.network === "LinkedIn") {
 		return "tabler:brand-linkedin";
@@ -24,6 +24,6 @@ const icon = (() => {
 ---
 
 <a href={profile.url}>
-	<Icon title={profile.network} name={icon} />
+	<Icon class="hover:text-white" title={profile.network} name={icon} />
 	<span class="sr-only">{profile.network}</span>
 </a>

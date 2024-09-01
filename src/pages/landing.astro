@@ -4,6 +4,7 @@ import Layout from "../components/Layout.astro";
 import cv from "../../packages/cv/resume.json";
 import { dataTransform } from "../lib/cv";
 import ProfileIcon from "../components/profile-icon.astro";
+import { SkillOverview } from "./_cmp/skill-overview";
 
 const dt = dataTransform(cv.skills, cv.work);
 ---
@@ -14,7 +15,7 @@ const dt = dataTransform(cv.skills, cv.work);
 	coverImage="./static/img/wave.svg"
 >
 	<div
-		class="flex flex-col h-screen font-sans overflow-hidden bg-gradient-to-b from-andri to-black text-sky-300"
+		class="flex flex-col h-screen font-sans overflow-hidden bg-gradient-to-b from-andri to-black text-white"
 	>
 		<div class="absolute inset-0 overflow-hidden pointer-events-none">
 			{
@@ -28,7 +29,6 @@ const dt = dataTransform(cv.skills, cv.work);
 						"tabler:database",
 						"tabler:sparkles",
 						"tabler:shield-lock",
-						"tabler:device-audio-tape",
 						"tabler:device-gamepad",
 						"tabler:device-mobile",
 					];
@@ -64,9 +64,6 @@ const dt = dataTransform(cv.skills, cv.work);
 					<li>
 						<a href="#blog">Blog</a>
 					</li>
-					<li>
-						<a href="#blog">Blog</a>
-					</li>
 
 					<li>
 						<a href="#using">Using</a>
@@ -84,7 +81,7 @@ const dt = dataTransform(cv.skills, cv.work);
 				<h1
 					class="text-4xl md:text-6xl font-bold text-white border-black drop-shadow-lg"
 				>
-					{cv.basics.name} kisa
+					{cv.basics.name}
 				</h1>
 				<p class="text-xl text-sky-300 drop-shadow-sm">
 					{cv.basics.label}
@@ -94,17 +91,7 @@ const dt = dataTransform(cv.skills, cv.work);
 					{cv.basics.location.countryCode}
 				</p>
 			</div>
-			<div id="skills" class="mt-8 text-center">
-				<ul class="flex flex-wrap justify-center gap-2">
-					{
-						dt.map((skill, index) => (
-							<li class="bg-sky-700 px-3 py-1 rounded-full text-sm hover:bg-sky-600 transition-colors">
-								{skill.name}
-							</li>
-						))
-					}
-				</ul>
-			</div>
+			<SkillOverview skills={dt} client:only />
 		</main>
 
 		<footer
@@ -113,7 +100,8 @@ const dt = dataTransform(cv.skills, cv.work);
 		>
 			<a
 				href={`mailto:${cv.basics.email}`}
-				class="hover:text-yellow-300 transition-colors"
+				title="Email me"
+				class="hover:text-white transition-colors mr-2"
 			>
 				<Icon name="tabler:mail" />
 				<span class="sr-only">Email</span>
