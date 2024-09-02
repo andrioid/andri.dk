@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors")
 
 const sizes = {
   height: {
@@ -27,6 +28,7 @@ module.exports = {
     extend: {
       colors: {
         andri: "#59B4FF",
+        hover: colors.pink["500"]
       },
       height: {
         300: "300px",

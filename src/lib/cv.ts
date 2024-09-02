@@ -8,10 +8,13 @@ function durationForWork(start: Date, end: Date) {
 function durationForSkill(work: Array<Work>, skill: string) {
 	let sum = 0;
 	for (const w of work) {
-		if (!w.startDate || !w.endDate) {
-			continue; // skip current workplace
+		if (!w.startDate) {
+			continue; // skip if no start date
 		}
-		const dur = durationForWork(new Date(w.startDate), new Date(w.endDate));
+		const dur = durationForWork(
+			new Date(w.startDate),
+			w.endDate ? new Date(w.endDate) : new Date(),
+		);
 		if (w.keywords && w.keywords.indexOf(skill) !== -1) {
 			sum += dur;
 		}

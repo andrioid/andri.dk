@@ -59,18 +59,16 @@ const dt = dataTransform(cv.skills, cv.work);
 			<nav>
 				<ul class="flex space-x-y topmenu gap-2">
 					<li>
-						<a href="#about">About</a>
+						<a href="/blog">Blog</a>
+					</li>
+					<!--
+					<li>
+						<a href="/using">Using</a>
 					</li>
 					<li>
-						<a href="#blog">Blog</a>
+						<a href="/now">Now</a>
 					</li>
-
-					<li>
-						<a href="#using">Using</a>
-					</li>
-					<li>
-						<a href="#now">Now</a>
-					</li>
+					 -->
 				</ul>
 			</nav>
 		</header>
@@ -99,16 +97,40 @@ const dt = dataTransform(cv.skills, cv.work);
 			id="contact"
 			class="relative z-20 p-4 flex justify-center space-x-4 text-4xl"
 		>
-			<a
-				href={`mailto:${cv.basics.email}`}
-				title="Email me"
-				class="hover:text-white transition-colors mr-2"
+			<button
+				id="contact-button"
+				title="Contact me"
+				class="hover:text-hover transition-colors mr-2"
 			>
 				<Icon name="tabler:mail" />
 				<span class="sr-only">Email</span>
-			</a>
+			</button>
 
 			{cv.basics.profiles.map((p) => <ProfileIcon profile={p} />)}
 		</footer>
 	</div>
+	<dialog
+		id="contact-dialog"
+		class="p-6 bg-white rounded-md min-w-[30em] shadow-md"
+	>
+		<div class="flex flex-row justify-end">
+			<button id="contact-close"><Icon name="tabler:x" /></button>
+		</div>
+
+		<h3 class="text-xl">moso</h3>
+	</dialog>
 </Layout>
+
+<script>
+	const dialog = document.querySelector(
+		"#contact-dialog"
+	) as HTMLDialogElement;
+	const dialogButton = document.querySelector("#contact-button");
+	const closeButton = document.querySelector("#contact-close");
+	dialogButton?.addEventListener("click", () => {
+		dialog.showModal();
+	});
+	closeButton?.addEventListener("click", () => {
+		dialog.close();
+	});
+</script>
