@@ -5,6 +5,7 @@ import cv from "../../packages/cv/resume.json";
 import { dataTransform } from "../lib/cv";
 import ProfileIcon from "../components/profile-icon.astro";
 import SkillOverview from "./_cmp/skill-overview.astro";
+import ContactDialog from "./_cmp/contact-dialog.astro";
 
 const dt = dataTransform(cv.skills, cv.work);
 ---
@@ -77,11 +78,11 @@ const dt = dataTransform(cv.skills, cv.work);
 		>
 			<div class="text-center space-y-4">
 				<h1
-					class="text-4xl md:text-6xl font-bold text-white border-black drop-shadow-lg"
+					class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg"
 				>
 					{cv.basics.name}
 				</h1>
-				<p class="text-large md:text-xl text-sky-300 drop-shadow-sm">
+				<p class="text-large md:text-xl text-sky-300 drop-shadow-lg">
 					{cv.basics.label}
 				</p>
 				<p class="text-white drop-shadow-sm">
@@ -95,33 +96,26 @@ const dt = dataTransform(cv.skills, cv.work);
 
 		<footer
 			id="contact"
-			class="relative z-20 p-4 flex justify-center space-x-4 text-4xl"
+			class="relative z-20 p-4 flex justify-center text-4xl"
 		>
-			<button
-				id="contact-button"
-				title="Contact me"
-				class="hover:text-hover transition-colors mr-2"
-			>
-				<Icon name="tabler:mail" />
-				<span class="sr-only">Email</span>
-			</button>
+			<ContactDialog>
+				<button
+					title="Contact me"
+					class="hover:text-hover transition-colors mr-2"
+				>
+					<Icon name="tabler:mail" />
+					<span class="sr-only">Email</span>
+				</button>
+			</ContactDialog>
 
 			{cv.basics.profiles.map((p) => <ProfileIcon profile={p} />)}
 		</footer>
 	</div>
-	<dialog
-		id="contact-dialog"
-		class="p-6 bg-white rounded-md min-w-[30em] shadow-md"
-	>
-		<div class="flex flex-row justify-end">
-			<button id="contact-close"><Icon name="tabler:x" /></button>
-		</div>
-
-		<h3 class="text-xl">moso</h3>
-	</dialog>
 </Layout>
 
 <script>
+	// TODO: setInterval with cancellation for selecting the skill type
+	/*
 	const dialog = document.querySelector(
 		"#contact-dialog"
 	) as HTMLDialogElement;
@@ -133,4 +127,5 @@ const dt = dataTransform(cv.skills, cv.work);
 	closeButton?.addEventListener("click", () => {
 		dialog.close();
 	});
+	*/
 </script>

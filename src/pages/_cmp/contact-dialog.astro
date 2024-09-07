@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+
+type Props = {
+	children: HTMLElement;
+};
+
+const props = Astro.props;
+---
+
+<!-- somehow get the slot to trigger the dialog -->
+<div id="contact-button"><slot /></div>
+<div
+	id="contact-dialog"
+	class="space-x-0 w-full h-dvh md:w-auto md:h-auto p-6 bg-white text-black rounded-md shadow-md -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 fixed z-10 drop-shadow-lg border border-gray-300"
+>
+	<div class="flex flex-row justify-end text-base mb-4" role="button">
+		<button id="contact-close"><Icon name="tabler:x" /></button>
+	</div>
+
+	<h3 class="text-xl">dialog component</h3>
+</div>
+
+<script>
+	(() => {
+		const dialog = document.querySelector(
+			"#contact-dialog"
+		) as HTMLDivElement;
+		const dialogButton = document.querySelector("#contact-button");
+		const closeButton = document.querySelector("#contact-close");
+		if (!dialogButton || !dialog) {
+			console.warn("Couldn't find dialog elements");
+			return;
+		}
+
+		console.log("dialog", dialog);
+		console.log("button", dialogButton);
+
+		dialogButton?.addEventListener("click", () => {
+			dialog.classList.remove("hidden");
+		});
+		closeButton?.addEventListener("click", () => {
+			dialog.classList.add("hidden");
+		});
+	})();
+</script>
