@@ -29,7 +29,7 @@ a.link {
   }
 }
 .topmenu li {
-  @apply bg-sky-700 rounded-md p-2 text-white bg-opacity-80 hover:bg-white hover:text-sky-900;
+  @apply bg-sky-700 rounded-md p-2 text-white bg-opacity-80 hover:bg-white hover:text-sky-900 font-semibold;
 }
 
 .btn {
