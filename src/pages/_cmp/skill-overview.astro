@@ -16,7 +16,7 @@ const { dt } = Astro.props;
 			dt.map((skill, index) => (
 				<li
 					role="button"
-					class="bg-sky-800 px-3 py-1 rounded-full text-sm hover:bg-sky-600 transition-colors text-sky-100 aria-selected:bg-sky-600"
+					class="skill bg-sky-800 px-3 py-1 rounded-full text-sm hover:bg-sky-600 transition-colors text-sky-100 aria-selected:bg-sky-600"
 				>
 					<a href={`#${skill.id}`}>{skill.name}</a>
 				</li>
@@ -53,3 +53,27 @@ const { dt } = Astro.props;
 		}
 	</div>
 </div>
+
+<script>
+	/* TODO: Finish this
+	const skillItems = document.querySelectorAll<HTMLLIElement>("li.skill");
+	const skillLinks =
+		document.querySelectorAll<HTMLAnchorElement>("li.skill a");
+	let i = 0;
+
+	const rotating = setInterval(() => {
+		skillLinks[i].click();
+
+		if (i < skillLinks.length - 1) {
+			i++;
+		} else {
+			i = 0;
+		}
+	}, 2000);
+
+	const skillDiv = document.querySelector<HTMLDivElement>("#skills");
+	skillDiv?.addEventListener("mouseenter", () => {
+		clearInterval(rotating);
+	});
+	*/
+</script>
