@@ -1,0 +1,13 @@
+---
+import NavItem from "./NavItem.astro";
+
+type Props = {
+	isHome: boolean;
+};
+
+const { isHome } = Astro.props;
+---
+
+{!isHome && <NavItem href="/">Home</NavItem>}
+<NavItem href="/blog/">Blog</NavItem>
+<NavItem href="/rss.xml">RSS</NavItem>

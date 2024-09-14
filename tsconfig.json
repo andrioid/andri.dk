@@ -16,7 +16,12 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "strictFunctionTypes": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"]
+    }
   },
   "extends": "astro/tsconfigs/strict",
   "exclude": ["packages/react-cv/dist", "dist"]

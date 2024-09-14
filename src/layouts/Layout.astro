@@ -45,10 +45,10 @@ const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:image" content={ogImage} />
 
-		<title>{title}</title>
+		<title>{`andri.dk | ${title}`}</title>
 	</head>
 
-	<body>
+	<body class="bg-gray-200">
 		<slot />
 		<script
 			data-goatcounter="https://andrioid.goatcounter.com/count"

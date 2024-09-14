@@ -1,10 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
-import Layout from "../layout/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import cv from "../../packages/cv/resume.json";
 import { dataTransform } from "../lib/cv";
 import ProfileIcon from "../components/profile-icon.astro";
 import SkillOverview from "./_cmp/skill-overview.astro";
+import NavItems from "@components/nav-items.astro";
 
 const dt = dataTransform(cv.skills, cv.work);
 ---
@@ -55,20 +56,10 @@ const dt = dataTransform(cv.skills, cv.work);
 				})
 			}
 		</div>
-		<header class="relative z-20 p-4 flex justify-between items-center">
+		<header class="relative z-20 p-4 flex justify-end items-center">
 			<nav>
 				<ul class="flex space-x-y topmenu gap-2">
-					<li>
-						<a href="/blog/">Blog</a>
-					</li>
-					<!--
-					<li>
-						<a href="/using">Using</a>
-					</li>
-					<li>
-						<a href="/now">Now</a>
-					</li>
-					 -->
+					<NavItems isHome={true} />
 				</ul>
 			</nav>
 		</header>

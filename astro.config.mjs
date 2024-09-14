@@ -5,6 +5,7 @@ import { defineConfig } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
 
 import node from "@astrojs/node";
+import { setLayout } from "./src/lib/remark-default-layout";
 
 export default defineConfig({
   site: "https://andri.dk/",
@@ -12,7 +13,7 @@ export default defineConfig({
   trailingSlash: "ignore",
   markdown: {
     drafts: true,
-    remarkPlugins: [remarkEmbedImages],
+    remarkPlugins: [remarkEmbedImages, setLayout],
     syntaxHighlight: "shiki",
     shikiConfig: { theme: "github-dark" },
   },
