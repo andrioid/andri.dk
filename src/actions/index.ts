@@ -5,7 +5,7 @@ export const server = {
 	contactMe: defineAction({
 		accept: "form",
 		input: z.object({
-			email: z.string(),
+			email: z.string().email(),
 		}),
 		handler: async (input) => {
 			console.log("EMAIL YEAH" + input.email);
