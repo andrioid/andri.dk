@@ -13,7 +13,7 @@ const { dt } = Astro.props;
 <div id="skills" class="mt-8 flex flex-col items-center max-w-[50em]">
 	<ul class="flex flex-wrap justify-center gap-2">
 		{
-			dt.map((skill, index) => (
+			dt.map((skill) => (
 				<li
 					role="button"
 					class="skill bg-sky-800 px-3 py-1 rounded-full text-sm hover:bg-sky-600 transition-colors text-sky-100 aria-selected:bg-sky-600"
@@ -25,7 +25,7 @@ const { dt } = Astro.props;
 	</ul>
 	<div class="h-[10em]">
 		{
-			dt.map((skill, index) => (
+			dt.map((skill) => (
 				<ul
 					id={skill.id}
 					class={twMerge(

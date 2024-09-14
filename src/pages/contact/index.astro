@@ -1,0 +1,18 @@
+---
+import { actions } from "astro:actions";
+import Layout from "../../components/Layout.astro";
+import PagesLayout from "../../components/PagesLayout.astro";
+
+const result = Astro.getActionResult(actions.contactMe);
+console.log("result", result);
+---
+
+<PagesLayout title="Contact me">
+	<form method="post" action={actions.contactMe}>
+		<input class="block rounded-md border py-1 px-2" name="email" type="email" />
+        {result?.error && (
+            <p>{result.error.message}</p>
+        )}
+		<button type="submit">Wat</button>
+	</form>
+</PagesLayout>
