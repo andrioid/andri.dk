@@ -6,10 +6,11 @@ import remarkEmbedImages from "remark-embed-images";
 
 import node from "@astrojs/node";
 import { setLayout } from "./src/lib/remark-default-layout";
+import mdx from "@astrojs/mdx"
 
 export default defineConfig({
   site: "https://andri.dk/",
-  integrations: [react(), tailwind(), icon()],
+  integrations: [react(), mdx(), tailwind(), icon()],
   trailingSlash: "ignore",
   markdown: {
     drafts: true,

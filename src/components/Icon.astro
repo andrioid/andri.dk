@@ -1,11 +1,6 @@
 ---
-import calendarIcon from "heroicons/20/solid/calendar.svg?raw";
-import heartIcon from "heroicons/20/solid/heart.svg?raw";
-import github from "simple-icons/icons/github.svg?raw";
-import linkedIn from "simple-icons/icons/linkedin.svg?raw";
-import twitter from "simple-icons/icons/x.svg?raw";
-import mastodon from "simple-icons/icons/mastodon.svg?raw";
-import bluesky from "simple-icons/icons/bluesky.svg?raw";
+import { Icon as BaseIcon } from "astro-icon/components";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
 	name: keyof typeof icons;
@@ -13,13 +8,16 @@ interface Props {
 }
 
 const icons = {
-	calendar: calendarIcon,
-	heart: heartIcon,
-	github,
-	twitter,
-	linkedIn,
-	mastodon,
-	bluesky,
+	calendar: "tabler:calendar",
+	heart: "tabler:heart",
+	github: "tabler:brand-github",
+	twitter: "tabler:brand-twitter",
+	linkedIn: "tabler:brand-linkedin",
+	mastodon: "tabler:brand-mastodon",
+	bluesky: "tabler:brand-bluesky",
+	windows: "tabler:brand-windows",
+	mac: "tabler:brand-apple",
+	linux: "simple-icons:linux",
 };
 
 const baseClass = "inline-icon";
@@ -27,4 +25,4 @@ const { name, class: className = "" } = Astro.props;
 const iconData = icons[name];
 ---
 
-<svg class={`${baseClass} ${className}`} set:html={iconData} />
+<BaseIcon name={iconData} class={twMerge(baseClass, className)} />
