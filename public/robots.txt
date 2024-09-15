@@ -1,3 +1,5 @@
 # My CV isn't secret, but I don't want it indexed
 User-agent: *
 Disallow: /cv.pdf
+
+Sitemap: https://andri.dk/sitemap-index.xml

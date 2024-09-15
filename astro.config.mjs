@@ -7,10 +7,11 @@ import remarkEmbedImages from "remark-embed-images";
 import node from "@astrojs/node";
 import { setLayout } from "./src/lib/remark-default-layout";
 import mdx from "@astrojs/mdx"
+import sitemap from "@astrojs/sitemap"
 
 export default defineConfig({
   site: "https://andri.dk/",
-  integrations: [react(), mdx(), tailwind(), icon()],
+  integrations: [react(), mdx(), tailwind(), icon(), sitemap()],
   trailingSlash: "ignore",
   markdown: {
     drafts: true,
