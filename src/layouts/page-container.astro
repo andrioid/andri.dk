@@ -19,25 +19,36 @@ const { isHome = false } = Astro.props;
 >
 	<BackgroundIcons />
 	<header class="p-4">
-		<nav class="flex justify-between items-center flex-wrap gap-4">
-			<a href="/" class="">
-				<div class="flex items-center flex-shrink-0 text-white mr-6">
-					<Image
-						alt="avatar"
-						src={andratar}
-						class="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
-					/>
-					<span
-						class="font-semibold text-xl tracking-tight inline-block"
+		<nav class="flex justify-between items-center gap-4">
+			<div class="flex-1">
+				<a href="/" class="">
+					<div
+						class="flex items-center flex-shrink-0 text-white mr-6"
 					>
-						{!isHome && <span class="drop-shadow-md">Andri</span>}
-					</span>
-				</div>
-			</a>
-
-			<ul class="flex space-x-y topmenu gap-2">
-				<NavItems isHome={isHome} />
-			</ul>
+						<Image
+							alt="avatar"
+							src={andratar}
+							class="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
+						/>
+						<span
+							class="font-semibold text-xl tracking-tight inline-block"
+						>
+							{
+								!isHome && (
+									<span class="drop-shadow-md">Andri</span>
+								)
+							}
+						</span>
+					</div>
+				</a>
+			</div>
+			<div class="flex-5">
+				<ul
+					class="flex space-x-y topmenu flex-wrap gap-x-1 gap-y-4 justify-end text-sm"
+				>
+					<NavItems isHome={isHome} />
+				</ul>
+			</div>
 		</nav>
 	</header>
 	<main class="flex-grow flex flex-col md:overflow-scroll">
