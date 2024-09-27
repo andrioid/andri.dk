@@ -4,12 +4,13 @@ import Layout from "@layouts/Layout.astro";
 import PagesLayout from "@layouts/PagesLayout.astro";
 import Section from "../../components/Section.astro";
 import { getPosts } from "../../lib/cms";
+import PageContainer from "@layouts/page-container.astro";
 
 const allPosts = await getPosts({});
 ---
 
 <Layout title="Blog posts | andri.dk">
-	<PagesLayout>
+	<PageContainer>
 		<Section title="Blog posts">
 			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 				{
@@ -29,5 +30,5 @@ const allPosts = await getPosts({});
 				}
 			</div>
 		</Section>
-	</PagesLayout>
+	</PageContainer>
 </Layout>

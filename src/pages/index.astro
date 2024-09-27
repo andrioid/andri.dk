@@ -6,6 +6,8 @@ import { dataTransform } from "../lib/cv";
 import ProfileIcon from "../components/profile-icon.astro";
 import SkillOverview from "./_cmp/skill-overview.astro";
 import NavItems from "@components/nav-items.astro";
+import BackgroundIcons from "./_cmp/background-icons.astro";
+import PageContainer from "@layouts/page-container.astro";
 
 const dt = dataTransform(cv.skills, cv.work);
 ---
@@ -15,56 +17,9 @@ const dt = dataTransform(cv.skills, cv.work);
 	description={cv.basics.label}
 	coverImage="./static/img/wave.svg"
 >
-	<div
-		class="flex flex-col h-dvh font-sans overflow-hidden bg-gradient-to-b from-andri to-black text-white"
-	>
-		<div class="absolute inset-0 overflow-hidden pointer-events-none">
-			{
-				[...Array(40)].map((_, i) => {
-					const icons = [
-						"tabler:device-laptop",
-						"tabler:server",
-						"tabler:cloud",
-						"tabler:cloud-network",
-						"tabler:pizza",
-						"tabler:database",
-						"tabler:sparkles",
-						"tabler:shield-lock",
-						"tabler:device-gamepad",
-						"tabler:device-mobile",
-					];
-					const colors = ["#38bdf8", "#c084fc", "#ffffff"];
-					const iconName =
-						icons[Math.floor(Math.random() * icons.length)];
-					const colorName =
-						colors[Math.floor(Math.random() * colors.length)];
-					return (
-						<Icon
-							name={iconName}
-							class="absolute opacity-5 animate-float hover:opacity-30"
-							style={{
-								width: `${Math.random() * 100 + 40}px`,
-								height: `${Math.random() * 100 + 40}px`,
-								left: `${Math.random() * 100}%`,
-								top: `${Math.random() * 100}%`,
-								animationDuration: `${Math.random() * 10 + 5}s`,
-								animationDelay: `${Math.random() * 5}s`,
-								color: colorName,
-							}}
-						/>
-					);
-				})
-			}
-		</div>
-		<header class="relative z-20 p-4 flex justify-end items-center">
-			<nav>
-				<ul class="flex space-x-y topmenu gap-2">
-					<NavItems isHome={true} />
-				</ul>
-			</nav>
-		</header>
-		<main
-			class="relative z-20 flex-grow flex flex-col justify-center items-center p-4"
+	<PageContainer isHome={true}>
+		<div
+			class="w-full flex-grow flex-col flex justify-center items-center p-4"
 		>
 			<div class="text-center space-y-4">
 				<h1
@@ -81,21 +36,8 @@ const dt = dataTransform(cv.skills, cv.work);
 				</p>
 			</div>
 			<SkillOverview dt={dt} />
-			<div id="software" class="hidden target:block">hello</div>
-		</main>
-
-		<footer
-			id="contact"
-			class="relative z-20 p-4 flex justify-center text-4xl"
-		>
-			<a class="hover:text-hover transition-colors mr-4" href="/rss.xml">
-				<Icon name="tabler:rss" />
-				<span class="sr-only">Email</span>
-			</a>
-
-			{cv.basics.profiles.map((p) => <ProfileIcon profile={p} />)}
-		</footer>
-	</div>
+		</div>
+	</PageContainer>
 </Layout>
 
 <script>

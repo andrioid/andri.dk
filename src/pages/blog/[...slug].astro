@@ -5,6 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import PagesLayout from "@layouts/PagesLayout.astro";
 import { getPost } from "../../lib/cms";
 import { IS_DEV } from "../../lib/utils/dev";
+import PageContainer from "@layouts/page-container.astro";
 
 interface Props {
 	entry: CollectionEntry<"blog">;
@@ -36,9 +37,9 @@ const { Content } = (await post.render?.()) ?? {};
 	subtitle={post.description}
 	blogPost={post}
 >
-	<PagesLayout>
+	<PageContainer isHome={false}>
 		<div
-			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 min-h-screen md:flex justify-center"
+			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"
 		>
 			<div
 				class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl"
@@ -64,7 +65,9 @@ const { Content } = (await post.render?.()) ?? {};
 						{
 							tags &&
 								tags.map((t) => (
-									<span class="andri-tag text-base">{t}</span>
+									<span class="text-sm rounded-md text-black border-black border py-1 px-2 text-base">
+										{t}
+									</span>
 								))
 						}
 					</div>
@@ -80,5 +83,5 @@ const { Content } = (await post.render?.()) ?? {};
 				<p>&nbsp;</p>
 			</div>
 		</div>
-	</PagesLayout>
+	</PageContainer>
 </Layout>

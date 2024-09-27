@@ -16,8 +16,7 @@ interface AstroFile extends VFile {
 export const setLayout = () => {
 	const transformer = (_, file: AstroFile) => {
 		file.data.astro.frontmatter.layout =
-			file.data.astro.frontmatter.layout ??
-			"@layouts/MarkdownLayout.astro";
+			file.data.astro.frontmatter.layout ?? "@layouts/MdPageLayout.astro";
 	};
 	return transformer;
 };

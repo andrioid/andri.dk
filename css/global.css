@@ -28,8 +28,8 @@ a.link {
     min-height: 45px;
   }
 }
-.topmenu li {
-  @apply bg-sky-700 rounded-md p-2 text-white bg-opacity-80 hover:bg-white hover:text-sky-900 font-semibold;
+.topmenu li a {
+  @apply bg-sky-700 rounded-md py-2 px-3 text-white bg-opacity-80 hover:bg-white hover:text-sky-900 font-semibold;
 }
 
 .btn {

@@ -3,6 +3,7 @@
 import type { CommonBlog } from "src/lib/cms";
 import Layout from "./Layout.astro";
 import PagesLayout from "./PagesLayout.astro";
+import PageContainer from "./page-container.astro";
 
 type Props = {
 	frontmatter: CommonBlog;
@@ -19,9 +20,9 @@ if (post.title === undefined)
 	subtitle={post.description}
 	blogPost={post}
 >
-	<PagesLayout>
+	<PageContainer>
 		<div
-			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex justify-center"
+			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex justify-center md:flex-grow"
 		>
 			<div
 				class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl"
@@ -35,5 +36,5 @@ if (post.title === undefined)
 				<p>&nbsp;</p>
 			</div>
 		</div>
-	</PagesLayout>
+	</PageContainer>
 </Layout>

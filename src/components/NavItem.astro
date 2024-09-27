@@ -1,9 +1,13 @@
 ---
-const { href } = Astro.props;
+type Props = {
+	href: string;
+	target?: string;
+};
+const { href, target } = Astro.props;
 ---
 
 <li>
-	<a {href}>
+	<a {href} target={target}>
 		<slot />
 	</a>
 </li>

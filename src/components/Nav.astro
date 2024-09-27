@@ -5,10 +5,10 @@ import NavItem from "./NavItem.astro";
 import NavItems from "./nav-items.astro";
 
 type Props = {
-	isHome: boolean;
+	isHome?: boolean;
 };
 
-const { isHome } = Astro.props;
+const { isHome = false } = Astro.props;
 ---
 
 <nav
