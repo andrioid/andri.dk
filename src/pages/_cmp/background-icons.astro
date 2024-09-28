@@ -3,38 +3,44 @@ import { Icon } from "astro-icon/components";
 ---
 
 <div class="absolute inset-0 overflow-hidden pointer-events-none">
-	{
-		[...Array(40)].map((_, i) => {
-			const icons = [
-				"tabler:device-laptop",
-				"tabler:server",
-				"tabler:cloud",
-				"tabler:cloud-network",
-				"tabler:pizza",
-				"tabler:database",
-				"tabler:sparkles",
-				"tabler:shield-lock",
-				"tabler:device-gamepad",
-				"tabler:device-mobile",
-			];
-			const colors = ["#38bdf8", "#c084fc", "#ffffff"];
-			const iconName = icons[Math.floor(Math.random() * icons.length)];
-			const colorName = colors[Math.floor(Math.random() * colors.length)];
-			return (
-				<Icon
-					name={iconName}
-					class="absolute opacity-5 animate-float hover:opacity-30"
-					style={{
-						width: `${Math.random() * 100 + 40}px`,
-						height: `${Math.random() * 100 + 40}px`,
-						left: `${Math.random() * 100}%`,
-						top: `${Math.random() * 100}%`,
-						animationDuration: `${Math.random() * 10 + 5}s`,
-						animationDelay: `${Math.random() * 5}s`,
-						color: colorName,
-					}}
-				/>
-			);
-		})
-	}
+  {
+    [...Array(40)].map((_, i) => {
+      const icons = [
+        "tabler:device-laptop",
+        "tabler:server",
+        "tabler:cloud",
+        "tabler:cloud-network",
+        "tabler:pizza",
+        "tabler:database",
+        "tabler:sparkles",
+        "tabler:shield-lock",
+        "tabler:device-gamepad",
+        "tabler:device-mobile",
+      ];
+      const colors = ["#38bdf8", "#c084fc", "#ffffff"];
+      const iconName = icons[Math.floor(Math.random() * icons.length)];
+      const colorName = colors[Math.floor(Math.random() * colors.length)];
+
+      const circleRadius = 50;
+      const angleIncrement = (2 * Math.PI) / 40;
+      const angle = i * angleIncrement;
+      const left = 50 + circleRadius * Math.cos(angle);
+      const top = 50 + circleRadius * Math.sin(angle);
+      return (
+        <Icon
+          name={iconName}
+          class="absolute opacity-5 animate-float hover:opacity-30"
+          style={{
+            width: `${Math.random() * 100 + 40}px`,
+            height: `${Math.random() * 100 + 40}px`,
+            left: `${left}%`,
+            top: `${top}%`,
+            animationDuration: `${Math.random() * 10 + 5}s`,
+            animationDelay: `${Math.random() * 5}s`,
+            color: colorName,
+          }}
+        />
+      );
+    })
+  }
 </div>
