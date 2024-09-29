@@ -1,18 +1,17 @@
 # [Deps] Install dependencies only when needed
-FROM node:18-alpine AS deps
+FROM oven/bun:1 as base
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
+
+FROM base as install
+RUN mkdir -p /temp/dev
 # Install dependencies based on the preferred package manager
-COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN \
-    if [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm fetch; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
 
+# Note packages are needed to solve workspace deps
+COPY package.json bun.lockb packages /temp/dev/
 
-WORKDIR /app
+RUN cd /temp/dev && bun install --frozen-lockfile
 COPY . .
 
 ARG DIRECTUS_API_TOKEN
@@ -24,14 +23,13 @@ RUN test -n ${DIRECTUS_URL}
 
 
 
-RUN pnpm install -r --offline && npm run build
+RUN bun install --frozen-lockfile && bun run build
 
 # [Static] Production image, copy build assets and run the standalone node server
-FROM deps as server
+FROM base as server
 WORKDIR /app
 
 EXPOSE 3000
 ENV HOST=0.0.0.0
 ENV PORT=3000
-CMD ["node", "server.mjs"]
-
+CMD ["bun", "run", "start"]

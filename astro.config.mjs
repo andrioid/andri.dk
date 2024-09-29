@@ -3,8 +3,8 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
+import bun from "@nurodev/astro-bun";
 
-import node from "@astrojs/node";
 import { setLayout } from "./src/lib/remark-default-layout";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
@@ -38,8 +38,6 @@ export default defineConfig({
       da: "en",
     },
   },
-  output: "server",
-  adapter: node({
-    mode: "middleware",
-  }),
+  output: "server", // hybrid later
+  adapter: bun(),
 });

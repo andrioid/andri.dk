@@ -5,7 +5,6 @@ import {
   type CollectionEntry,
 } from "astro:content";
 import MarkdownIt from "markdown-it";
-import Shiki from "markdown-it-shiki";
 import { IS_DEV } from "../utils/dev";
 import { sanitizePost } from "../utils/sanitize";
 import { getAssetURL, getDirectusClient } from "./cms";
