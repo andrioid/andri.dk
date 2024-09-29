@@ -2,7 +2,9 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div
+  class="absolute hidden md:block inset-0 overflow-hidden pointer-events-none"
+>
   {
     [...Array(40)].map((_, i) => {
       const icons = [
