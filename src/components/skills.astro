@@ -1,68 +1,63 @@
 ---
-import { dataTransform } from "../lib/cv";
+import { skillTransformed } from "@lib/cv/data-utils";
 import Icon from "./Icon.astro";
 import { twMerge } from "tailwind-merge";
 
 interface Props {
-	categories: ReturnType<typeof dataTransform>;
+  categories: ReturnType<typeof skillTransformed>;
 }
 
 const { categories } = Astro.props as Props;
 
 function getColor(id?: string) {
-	switch (id) {
-		case "operations":
-			return "#065f46";
-		case "programming":
-			return "#2460A7";
-		case "data":
-			return "#491D70";
-		default:
-			return "#000000";
-	}
+  switch (id) {
+    case "operations":
+      return "#065f46";
+    case "programming":
+      return "#2460A7";
+    case "data":
+      return "#491D70";
+    default:
+      return "#000000";
+  }
 }
 
 function getCategoryClass(id?: string) {
-	switch (id) {
-		case "operations":
-			return "border-emerald-800 text-emerald-800";
-		case "programming":
-			return "border-blue-800 text-blue-800";
-		case "data":
-			return "border-purple-800 text-purple-800";
-		default:
-			return "";
-	}
+  switch (id) {
+    case "operations":
+      return "border-emerald-800 text-emerald-800";
+    case "programming":
+      return "border-blue-800 text-blue-800";
+    case "data":
+      return "border-purple-800 text-purple-800";
+    default:
+      return "";
+  }
 }
 ---
 
 <div class="flex flex-row flex-wrap justify-between">
-	{
-		categories.map((c) => (
-			<div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col p-6 md:p-0 mb-4 lg:mb-0">
-				<h2
-					class="font-semibold uppercase text-sm mb-4"
-					style={`color: ${getColor(c.id)}`}
-				>
-					{c.name}
-				</h2>
-				<div class="flex flex-wrap gap-x-2 gap-y-2">
-					{c.keywords &&
-						c.keywords.map((s) => (
-							<span
-								class={twMerge(
-									"andri-tag",
-									getCategoryClass(c.id),
-								)}
-							>
-								{s.name}
-								{c.preferred?.includes(s.name) ? (
-									<Icon name="heart" class="text-red-600" />
-								) : null}
-							</span>
-						))}
-				</div>
-			</div>
-		))
-	}
+  {
+    categories.map((c) => (
+      <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col p-6 md:p-0 mb-4 lg:mb-0">
+        <h2
+          class="font-semibold uppercase text-sm mb-4"
+          style={`color: ${getColor(c.id)}`}
+        >
+          {c.name}
+        </h2>
+        <div class="flex flex-wrap gap-x-2 gap-y-2">
+          {c.keywords &&
+            c.keywords.map((s) => (
+              <span class={twMerge("andri-tag", getCategoryClass(c.id))}>
+                {s.name}
+                {c.preferred?.includes(s.name) ? (
+                  <Icon name="heart" class="text-red-600" />
+                ) : null}
+              </span>
+            ))}
+        </div>
+      </div>
+    ))
+  }
 </div>

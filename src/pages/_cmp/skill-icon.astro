@@ -1,42 +1,43 @@
 ---
+import { skillTransformed } from "@lib/cv/data-utils";
 import { Icon } from "astro-icon/components";
-import type { dataTransform } from "../../lib/cv";
+
 import { twMerge } from "tailwind-merge";
 
 export interface Props {
-	skill: ReturnType<typeof dataTransform>[number]["keywords"][number];
-	containerClass?: string;
-	className?: string;
+  skill: ReturnType<typeof skillTransformed>[number]["keywords"][number];
+  containerClass?: string;
+  className?: string;
 }
 
 const { skill, containerClass, className } = Astro.props as Props;
 
 const icon = (() => {
-	if (skill.name === "Go") return "tabler:brand-golang";
-	if (skill.name === "React") return "tabler:brand-react";
-	if (skill.name === "React Native") return "tabler:brand-react-native";
-	if (skill.name === "JavaScript") return "tabler:brand-javascript";
-	if (skill.name === "PHP") return "tabler:brand-php";
-	if (skill.name === "HTML/CSS") return "tabler:brand-html5";
-	if (skill.name === "Linux") return "simple-icons:linux";
-	if (skill.name === "Docker") return "tabler:brand-docker";
-	if (skill.name === "Kubernetes") return "simple-icons:kubernetes";
-	if (skill.name === "MySQL") return "tabler:brand-mysql";
-	if (skill.name === "GraphQL") return "tabler:brand-graphql";
-	if (skill.name === "TypeScript") return "tabler:brand-typescript";
-	return "";
+  if (skill.name === "Go") return "tabler:brand-golang";
+  if (skill.name === "React") return "tabler:brand-react";
+  if (skill.name === "React Native") return "tabler:brand-react-native";
+  if (skill.name === "JavaScript") return "tabler:brand-javascript";
+  if (skill.name === "PHP") return "tabler:brand-php";
+  if (skill.name === "HTML/CSS") return "tabler:brand-html5";
+  if (skill.name === "Linux") return "simple-icons:linux";
+  if (skill.name === "Docker") return "tabler:brand-docker";
+  if (skill.name === "Kubernetes") return "simple-icons:kubernetes";
+  if (skill.name === "MySQL") return "tabler:brand-mysql";
+  if (skill.name === "GraphQL") return "tabler:brand-graphql";
+  if (skill.name === "TypeScript") return "tabler:brand-typescript";
+  return "";
 })();
 ---
 
 <div class={icon && containerClass}>
-	{
-		icon && (
-			<Icon
-				class={twMerge("hover:text-white", className)}
-				title={skill.name}
-				name={icon}
-			/>
-		)
-	}
-	<span class="sr-only">{skill.name}</span>
+  {
+    icon && (
+      <Icon
+        class={twMerge("hover:text-white", className)}
+        title={skill.name}
+        name={icon}
+      />
+    )
+  }
+  <span class="sr-only">{skill.name}</span>
 </div>

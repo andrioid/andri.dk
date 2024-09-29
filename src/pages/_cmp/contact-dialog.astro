@@ -3,65 +3,60 @@ import { Icon } from "astro-icon/components";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
-	children: HTMLElement;
+  children: HTMLElement;
 };
 
-const props = Astro.props;
+//const props = Astro.props;
 ---
 
 <!-- somehow get the slot to trigger the dialog -->
 <div id="contact-button"><slot /></div>
 <div
-	id="contact-dialog"
-	class={twMerge(
-		"hidden md:min-w-[40em] w-full h-full md:w-auto md:h-auto p-6 bg-white text-black rounded-md shadow-md drop-shadow-lg border border-gray-300 text-base",
-		"top-0 left-0 md:-translate-x-1/2 md:-translate-y-1/2 md:top-1/2 md:left-1/2 fixed z-10"
-	)}
+  id="contact-dialog"
+  class={twMerge(
+    "hidden md:min-w-[40em] w-full h-full md:w-auto md:h-auto p-6 bg-white text-black rounded-md shadow-md drop-shadow-lg border border-gray-300 text-base",
+    "top-0 left-0 md:-translate-x-1/2 md:-translate-y-1/2 md:top-1/2 md:left-1/2 fixed z-10",
+  )}
 >
-	<div class="flex flex-row justify-between text-base mb-8" role="button">
-		<h3 class="text-xl font-semibold">Contact Andri</h3>
-		<button id="contact-close"><Icon name="tabler:x" /></button>
-	</div>
-	<div class="flex flex-col text-base">
-		<label for="contact-email" class="font-semibold text-sm">E-mail</label>
-		<input
-			id="contact-email"
-			class="border rounded-md"
-			type="email"
-			placeholder="Your email address"
-		/>
-		<label for="contact-textarea" class="font-semibold text-sm"
-			>Message</label
-		>
-		<textarea
-			id="contact-textarea"
-			class="w-full h-[10em] border rounded-md"></textarea>
-		<button class="mt-6 rounded-md bg-andri text-white py-1 px-2"
-			>Send</button
-		>
-	</div>
+  <div class="flex flex-row justify-between text-base mb-8" role="button">
+    <h3 class="text-xl font-semibold">Contact Andri</h3>
+    <button id="contact-close"><Icon name="tabler:x" /></button>
+  </div>
+  <div class="flex flex-col text-base">
+    <label for="contact-email" class="font-semibold text-sm">E-mail</label>
+    <input
+      id="contact-email"
+      class="border rounded-md"
+      type="email"
+      placeholder="Your email address"
+    />
+    <label for="contact-textarea" class="font-semibold text-sm">Message</label>
+    <textarea id="contact-textarea" class="w-full h-[10em] border rounded-md"
+    ></textarea>
+    <button class="mt-6 rounded-md bg-andri text-white py-1 px-2">Send</button>
+  </div>
 
-	<script>
-		(() => {
-			const dialog = document.querySelector(
-				"#contact-dialog"
-			) as HTMLDivElement;
-			const dialogButton = document.querySelector("#contact-button");
-			const closeButton = document.querySelector("#contact-close");
-			if (!dialogButton || !dialog) {
-				console.warn("Couldn't find dialog elements");
-				return;
-			}
+  <script>
+    (() => {
+      const dialog = document.querySelector(
+        "#contact-dialog",
+      ) as HTMLDivElement;
+      const dialogButton = document.querySelector("#contact-button");
+      const closeButton = document.querySelector("#contact-close");
+      if (!dialogButton || !dialog) {
+        console.warn("Couldn't find dialog elements");
+        return;
+      }
 
-			console.log("dialog", dialog);
-			console.log("button", dialogButton);
+      console.log("dialog", dialog);
+      console.log("button", dialogButton);
 
-			dialogButton?.addEventListener("click", () => {
-				dialog.classList.remove("hidden");
-			});
-			closeButton?.addEventListener("click", () => {
-				dialog.classList.add("hidden");
-			});
-		})();
-	</script>
+      dialogButton?.addEventListener("click", () => {
+        dialog.classList.remove("hidden");
+      });
+      closeButton?.addEventListener("click", () => {
+        dialog.classList.add("hidden");
+      });
+    })();
+  </script>
 </div>

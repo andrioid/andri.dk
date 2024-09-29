@@ -1,5 +1,6 @@
 ---
-import PagesLayout from "@layouts/PagesLayout.astro";
+import Layout from "@layouts/Layout.astro";
+import PageContainer from "@layouts/page-container.astro";
 import { actions } from "astro:actions";
 import { isInputError } from "astro:actions";
 
@@ -7,15 +8,17 @@ const result = Astro.getActionResult(actions.contactMe);
 const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 ---
 
-<PagesLayout title="Contact me">
-	<form method="post" action={actions.contactMe}>
-		<input
-			class="block rounded-md border py-1 px-2"
-			name="email"
-			type="email"
-			aria-describedby="error"
-		/>
-		{inputErrors.email && <p id="error">{inputErrors.email.join(",")}</p>}
-		<button type="submit">Wat</button>
-	</form>
-</PagesLayout>
+<Layout title="Contact me">
+  <PageContainer>
+    <form method="post" action={actions.contactMe}>
+      <input
+        class="block rounded-md border py-1 px-2"
+        name="email"
+        type="email"
+        aria-describedby="error"
+      />
+      {inputErrors.email && <p id="error">{inputErrors.email.join(",")}</p>}
+      <button type="submit">Wat</button>
+    </form>
+  </PageContainer>
+</Layout>titletiContacttme

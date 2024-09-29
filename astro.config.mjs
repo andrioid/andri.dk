@@ -1,9 +1,10 @@
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
 import bun from "@nurodev/astro-bun";
+import node from "@astrojs/node";
 
 import { setLayout } from "./src/lib/remark-default-layout";
 import mdx from "@astrojs/mdx";
@@ -20,7 +21,7 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      external: ["svgo"],
+      external: ["svgo", "@react-pdf/renderer"],
       noExternal: ["path-to-regexp"],
     },
     optimizeDeps: {
@@ -39,5 +40,7 @@ export default defineConfig({
     },
   },
   output: "server", // hybrid later
-  adapter: bun(),
+  adapter: node({
+    mode: "middleware",
+  }),
 });

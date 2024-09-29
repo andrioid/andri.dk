@@ -1,9 +1,5 @@
 import { readItem, readItems } from "@directus/sdk";
-import {
-  getCollection,
-  getEntryBySlug,
-  type CollectionEntry,
-} from "astro:content";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import MarkdownIt from "markdown-it";
 import { IS_DEV } from "../utils/dev";
 import { sanitizePost } from "../utils/sanitize";
@@ -34,7 +30,7 @@ export async function getPosts({
     translateFromCMS,
   );
 
-  const allPosts = [...ccPosts, ...cmsPosts]
+  const allPosts: Array<CommonBlog> = [...ccPosts, ...cmsPosts]
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .filter((p) => p.status === "published" || showDraft === true);
   return allPosts.slice(0, limit);
@@ -42,7 +38,7 @@ export async function getPosts({
 
 export async function getPost(slug: string): Promise<CommonBlogRendered> {
   const client = getDirectusClient();
-  const ccItem = await getEntryBySlug("blog", slug);
+  const ccItem = await getEntry("blog", slug);
   if (ccItem) {
     return {
       ...translateFromContentSchema(ccItem),

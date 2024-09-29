@@ -2,7 +2,6 @@
 // Find all blog posts to generate
 import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import PagesLayout from "@layouts/PagesLayout.astro";
 import { getPost } from "../../lib/cms";
 import { IS_DEV } from "../../lib/utils/dev";
 import PageContainer from "@layouts/page-container.astro";
@@ -61,7 +60,7 @@ const { Content } = (await post.render?.()) ?? {};
             {
               tags &&
                 tags.map((t) => (
-                  <span class="text-sm rounded-md text-black border-black border py-1 px-2 text-base">
+                  <span class="text-sm rounded-md text-black border-black border py-1 px-2">
                     {t}
                   </span>
                 ))
