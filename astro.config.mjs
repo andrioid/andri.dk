@@ -6,8 +6,8 @@ import remarkEmbedImages from "remark-embed-images";
 
 import node from "@astrojs/node";
 import { setLayout } from "./src/lib/remark-default-layout";
-import mdx from "@astrojs/mdx"
-import sitemap from "@astrojs/sitemap"
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://andri.dk/",
@@ -16,12 +16,12 @@ export default defineConfig({
   markdown: {
     drafts: true,
     remarkPlugins: [remarkEmbedImages, setLayout],
-    syntaxHighlight: "shiki",
     shikiConfig: { theme: "github-dark" },
   },
   vite: {
     ssr: {
       external: ["svgo"],
+      noExternal: ["path-to-regexp"],
     },
     optimizeDeps: {
       exclude: ["social-cards"], // https://github.com/evanw/esbuild/issues/1051#issuecomment-1006992549
