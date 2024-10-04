@@ -14,7 +14,7 @@ interface AstroFile extends VFile {
 }
 
 export const setLayout = () => {
-  const transformer = (_, file: AstroFile) => {
+  const transformer = (_node: unknown, file: AstroFile) => {
     if (file.data.astro.frontmatter.slug) {
       // Not a file, but a loaded resource
       return;

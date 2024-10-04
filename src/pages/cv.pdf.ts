@@ -1,9 +1,15 @@
 // Note: Does not work with Deno SSR yet
-import { resumeToString } from "react-cv";
-import cvData from "../../packages/cv/resume.json";
+
+import { resumeRaw } from "@lib/cv/index";
+import { resumeToString } from "@lib/cv/pdf-utils";
+
 export const prerender = true;
 
 export async function GET() {
-	const pdfBlob = await resumeToString(cvData);
-	return new Response(pdfBlob);
+  const pdfBlob = await resumeToString(resumeRaw);
+  return new Response(pdfBlob, {
+    headers: {
+      "content-type": "application/pdf",
+    },
+  });
 }

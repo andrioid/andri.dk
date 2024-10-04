@@ -3,11 +3,11 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
-
+import bun from "@nurodev/astro-bun";
 import node from "@astrojs/node";
 import { setLayout } from "./src/lib/remark-default-layout";
-import mdx from "@astrojs/mdx"
-import sitemap from "@astrojs/sitemap"
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://andri.dk/",
@@ -16,12 +16,12 @@ export default defineConfig({
   markdown: {
     drafts: true,
     remarkPlugins: [remarkEmbedImages, setLayout],
-    syntaxHighlight: "shiki",
     shikiConfig: { theme: "github-dark" },
   },
   vite: {
     ssr: {
-      external: ["svgo"],
+      external: ["svgo", "@react-pdf/renderer"],
+      noExternal: ["path-to-regexp"],
     },
     optimizeDeps: {
       exclude: ["social-cards"], // https://github.com/evanw/esbuild/issues/1051#issuecomment-1006992549
@@ -38,7 +38,7 @@ export default defineConfig({
       da: "en",
     },
   },
-  output: "server",
+  output: "server", // hybrid later
   adapter: node({
     mode: "middleware",
   }),

@@ -2,29 +2,28 @@
 // Find all blog posts to generate
 import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import PagesLayout from "@layouts/PagesLayout.astro";
 import { getPost } from "../../lib/cms";
 import { IS_DEV } from "../../lib/utils/dev";
 import PageContainer from "@layouts/page-container.astro";
 
 interface Props {
-	entry: CollectionEntry<"blog">;
+  entry: CollectionEntry<"blog">;
 }
 const { slug } = Astro.params;
 if (!slug) {
-	return new Response(null, {
-		status: 404,
-		statusText: "Not found",
-	});
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
 }
 
 if (!slug) throw new Error("Can't call page without slug");
 const post = await getPost(slug);
 if (post.status !== "published" && !IS_DEV) {
-	return new Response(null, {
-		status: 404,
-		statusText: "Not found",
-	});
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
 }
 
 const { tags, date } = post;
@@ -32,56 +31,50 @@ const { Content } = (await post.render?.()) ?? {};
 ---
 
 <Layout
-	title={post.title}
-	description={post.description}
-	subtitle={post.description}
-	blogPost={post}
+  title={post.title}
+  description={post.description}
+  subtitle={post.description}
+  blogPost={post}
 >
-	<PageContainer isHome={false}>
-		<div
-			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"
-		>
-			<div
-				class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl"
-			>
-				<div>
-					<h1>
-						{post.title}
-					</h1>
-					<div
-						class="text-base text-gray-600 flex justify-start mb-4"
-					>
-						<p>
-							{
-								date.toLocaleDateString(undefined, {
-									year: "numeric",
-									month: "short",
-									day: "numeric",
-								})
-							}
-						</p>
-					</div>
-					<div class="mb-4 flex gap-2">
-						{
-							tags &&
-								tags.map((t) => (
-									<span class="text-sm rounded-md text-black border-black border py-1 px-2 text-base">
-										{t}
-									</span>
-								))
-						}
-					</div>
-				</div>
+  <PageContainer isHome={false}>
+    <div
+      class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"
+    >
+      <div class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl">
+        <div>
+          <h1>
+            {post.title}
+          </h1>
+          <div class="text-base text-gray-600 flex justify-start mb-4">
+            <p>
+              {
+                date.toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })
+              }
+            </p>
+          </div>
+          <div class="mb-4 flex gap-2">
+            {
+              tags &&
+                tags.map((t) => (
+                  <span class="text-sm rounded-md text-black border-black border py-1 px-2">
+                    {t}
+                  </span>
+                ))
+            }
+          </div>
+        </div>
 
-				<article
-					class="mb-6 prose lg:prose-lg"
-					set:html={post.rendered}
-				>
-					{Content && <Content />}
-				</article>
+        <article class="mb-6 prose lg:prose-lg" set:html={post.rendered}>
+          <p>content starts</p>
+          {Content && <Content />}
+        </article>
 
-				<p>&nbsp;</p>
-			</div>
-		</div>
-	</PageContainer>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </PageContainer>
 </Layout>

@@ -1,27 +1,15 @@
 {
   "compilerOptions": {
     // Enable top-level await, and other modern ESM features.
-    "target": "ESNext",
-    "module": "ESNext",
-    "jsx": "preserve",
-    // Enable node-style module resolution, for things like npm package imports.
-    "moduleResolution": "Bundler",
-    // Enable JSON imports.
-    "resolveJsonModule": true,
-    // Enable stricter transpilation for better output.
-    "isolatedModules": true,
-    // Add type definitions for our Vite runtime.
-    "types": ["vite/client"],
-    // JSON imports
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"]
-    }
+      "@layouts/*": ["src/layouts/*"],
+      "@lib/*": ["src/lib/*"],
+      "@static/*": ["static/*"]
+    },
+    "noUnusedLocals": false,
+    "verbatimModuleSyntax": false
   },
   "extends": "astro/tsconfigs/strict",
   "exclude": ["packages/react-cv/dist", "dist"]

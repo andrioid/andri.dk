@@ -3,17 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "prebuild": "cd packages/react-cv && pnpm run build",
-    "predev": "pnpm run prebuild",
+    "dev": "bunx astro dev",
+    "dev:node": "bunx astro dev",
+    "start": "bun run ./dist/server/entry.mjs",
+    "build": "bunx astro build",
+    "sprebuild": "cd packages/react-cv && pnpm run build",
+    "spredev": "pnpm run prebuild",
     "format": "prettier --write .",
     "verify:formatting": "prettier . --check",
-    "preview": "astro preview",
+    "preview": "bunx astro preview",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "node": "node server.mjs",
-    "check": "astro check"
+    "check": "astro check",
+    "build:bin": "bun build server.mjs --compile --outfile ./app"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.6",
@@ -26,14 +28,14 @@
     "@iconify-json/lucide": "^1.2.4",
     "@iconify-json/simple-icons": "^1.2.2",
     "@iconify-json/tabler": "^1.2.2",
+    "@nurodev/astro-bun": "^1.1.5",
     "@radix-ui/react-popover": "^1.1.1",
+    "@react-pdf/renderer": "3.3.4",
     "astro": "^4.15.6",
     "astro-icon": "^1.1.1",
     "express": "^4.21.0",
     "markdown-it": "^13.0.2",
-    "markdown-it-shiki": "^0.9.0",
     "react": "^18.3.1",
-    "react-cv": "workspace:*",
     "react-dom": "^18.3.1",
     "satori": "^0.10.14",
     "satori-html": "^0.3.2",
@@ -50,6 +52,7 @@
     "@fontsource/inter": "^5.1.0",
     "@fontsource/montserrat": "~5.0.20",
     "@tailwindcss/typography": "~0.5.15",
+    "@types/bun": "^1.1.10",
     "@types/markdown-it": "^13.0.9",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
@@ -66,10 +69,6 @@
     "tailwindcss": "~3.4.11",
     "unified": "^11.0.5",
     "vfile": "^6.0.3"
-  },
-  "engines": {
-    "node": ">=18",
-    "pnpm": ">=8"
   },
   "workspaces": [
     "packages/*"
