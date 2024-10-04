@@ -1,11 +1,11 @@
 import { Image } from "@react-pdf/renderer";
 import path from "node:path";
-import andriPic from "@static/img/andri.jpg";
+import { STATIC_DIR } from "../pdf-utils";
 
-export const Head = ({ src }: { src: any }) => {
+export const Head = () => {
   return (
     <Image
-      source={andriPic.src}
+      source={path.join(STATIC_DIR, "img/andri.jpg")}
       style={{
         width: 90,
         height: 90,

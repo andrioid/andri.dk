@@ -70,10 +70,6 @@
     "unified": "^11.0.5",
     "vfile": "^6.0.3"
   },
-  "engines": {
-    "node": ">=18",
-    "pnpm": ">=8"
-  },
   "workspaces": [
     "packages/*"
   ]

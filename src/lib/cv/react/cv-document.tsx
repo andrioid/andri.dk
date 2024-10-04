@@ -46,6 +46,7 @@ export const CVDocument = ({
               &nbsp;&nbsp;Aalborg, Denmark
             </Text>
           </View>
+          <Head />
         </View>
 
         <View
