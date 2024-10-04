@@ -7,42 +7,39 @@ import { colors } from "./colors";
 import { createElement } from "react";
 import { CVWrapper } from "./react/cv-wrapper";
 
-import montserratRegular from "@static/fonts/pdf/Montserrat-Regular.ttf?url";
-import monsterratLight from "@static/fonts/pdf/Montserrat-Light.ttf?url";
-import monsterratItalitc from "@static/fonts/pdf/Montserrat-Italic.ttf?url";
-import monsterratSemiBold from "@static/fonts/pdf/Montserrat-SemiBold.ttf?url";
-import brands from "@static/fonts/pdf/brands.ttf?url";
-import awesome from "@static/fonts/pdf/awesome.ttf?url";
+import { dirname } from "path";
+
+// PDF can only be generated server-side (import doesnt work well with this)
+export const STATIC_DIR = path.join(process.cwd(), "static");
 
 function fixFontImport(imp: string): string {
-  const out = path.join(process.cwd(), imp);
+  const out = path.join(STATIC_DIR, "fonts/pdf", imp);
   if (!fs.existsSync(out)) {
     throw new Error("Font not found: " + out);
   }
-  console.log("Fix font", out);
   return out;
 }
 
 export function registerFonts() {
   Font.registerHyphenationCallback((word) => [word]);
-  console.log("Montserrat", fixFontImport(montserratRegular));
+
   try {
     Font.register({
       family: DEFAULT_FONT,
       fonts: [
         {
-          src: fixFontImport(montserratRegular),
+          src: fixFontImport("Montserrat-Regular.ttf"),
         },
         {
-          src: fixFontImport(monsterratSemiBold),
+          src: fixFontImport("Montserrat-SemiBold.ttf"),
           fontWeight: 700,
         },
         {
-          src: fixFontImport(monsterratLight),
+          src: fixFontImport("Montserrat-Light.ttf"),
           fontWeight: 300,
         },
         {
-          src: fixFontImport(monsterratItalitc),
+          src: fixFontImport("Montserrat-Italic.ttf"),
           fontStyle: "italic",
         },
       ],
@@ -50,11 +47,11 @@ export function registerFonts() {
 
     Font.register({
       family: "Brands",
-      src: fixFontImport(brands),
+      src: fixFontImport("brands.ttf"),
     });
     Font.register({
       family: "Awesome",
-      src: fixFontImport(awesome),
+      src: fixFontImport("awesome-solid.ttf"),
     });
   } catch (err) {
     console.error("WTF");

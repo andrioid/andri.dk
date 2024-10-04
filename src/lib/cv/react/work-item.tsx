@@ -16,7 +16,6 @@ export const WorkItem = ({
 }) => {
   //tags = tags.sort();
   const period = periodToString(item.startDate, item.endDate);
-  return null; // TODO
   return (
     <View
       wrap={false}

@@ -5,7 +5,7 @@ import {
 } from "social-cards";
 import { getPost, getPosts } from "../../lib/cms";
 
-export const prerender = true;
+export const prerender = false; // TODO: Enable this again later
 export async function getStaticPaths() {
   const allPosts = await getPosts({ limit: 1000 });
 

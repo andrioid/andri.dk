@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "bunx --bun astro dev",
+    "dev": "bunx astro dev",
     "dev:node": "bunx astro dev",
     "start": "bun run ./dist/server/entry.mjs",
-    "build": "bunx --bun astro build",
+    "build": "bunx astro build",
     "sprebuild": "cd packages/react-cv && pnpm run build",
     "spredev": "pnpm run prebuild",
     "format": "prettier --write .",
@@ -15,7 +15,7 @@
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "node": "node server.mjs",
     "check": "astro check",
-    "build:bin": "bun build server.mjs --compile --outfile dist/app-bin"
+    "build:bin": "bun build server.mjs --compile --outfile ./app"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.6",
