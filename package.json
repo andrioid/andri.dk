@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "bunx astro dev",
     "dev:node": "bunx astro dev",
-    "start": "bun run ./dist/server/entry.mjs",
+    "start": "bun run server.mjs",
     "build": "bunx astro build",
     "sprebuild": "cd packages/react-cv && pnpm run build",
     "spredev": "pnpm run prebuild",
