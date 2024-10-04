@@ -12,7 +12,7 @@ FROM base as build
 WORKDIR /app
 
 COPY . .
-#RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile
 
 ARG DIRECTUS_API_TOKEN
 ENV DIRECTUS_TOKEN=$DIRECTUS_API_TOKEN
@@ -23,7 +23,7 @@ RUN test -n ${DIRECTUS_URL}
 RUN bun run build
 
 # [Static] Production image, copy build assets and run the standalone node server
-FROM base as server
+FROM build as server
 WORKDIR /app
 
 EXPOSE 3000
