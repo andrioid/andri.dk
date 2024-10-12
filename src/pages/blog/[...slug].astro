@@ -2,7 +2,7 @@
 // Find all blog posts to generate
 import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import { getPost } from "../../lib/cms";
+import { getPost, getPosts } from "../../lib/cms";
 import { IS_DEV } from "../../lib/utils/dev";
 import PageContainer from "@layouts/page-container.astro";
 
@@ -28,6 +28,13 @@ if (post.status !== "published" && !IS_DEV) {
 
 const { tags, date } = post;
 const { Content } = (await post.render?.()) ?? {};
+
+export async function getStaticPaths() {
+  const posts = await getPosts({});
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
 ---
 
 <Layout
