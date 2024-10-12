@@ -5,15 +5,12 @@
   "scripts": {
     "dev": "bunx astro dev",
     "dev:node": "bunx astro dev",
-    "start": "bun run server.mjs",
+    "start": "bun --bun server.mjs",
     "build": "bunx astro build",
-    "sprebuild": "cd packages/react-cv && pnpm run build",
-    "spredev": "pnpm run prebuild",
     "format": "prettier --write .",
     "verify:formatting": "prettier . --check",
     "preview": "bunx astro preview",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
-    "node": "node server.mjs",
     "check": "astro check",
     "build:bin": "bun build server.mjs --compile --outfile ./app"
   },

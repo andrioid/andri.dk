@@ -4,23 +4,24 @@ import { colors } from "../colors";
 
 export function Footer({ name, email }: { name: string; email: string }) {
   return (
-    <View
-      fixed
-      style={styles.footer}
-      render={(page) => (
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text style={styles.footerText}>{name}</Text>
+    <View fixed style={styles.footer}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text style={styles.footerText}>{name}</Text>
 
-          <Text style={styles.footerText}>{email}</Text>
-          <Text style={styles.footerText}>TODO FOOTER</Text>
-        </View>
-      )}
-    />
+        <Text style={styles.footerText}>{email}</Text>
+        <Text
+          style={styles.footerText}
+          render={({ pageNumber, totalPages }) =>
+            `${pageNumber} / ${totalPages}`
+          }
+        />
+      </View>
+    </View>
   );
 }
 

@@ -7,8 +7,6 @@ import { colors } from "./colors";
 import { createElement } from "react";
 import { CVWrapper } from "./react/cv-wrapper";
 
-import { dirname } from "path";
-
 // PDF can only be generated server-side (import doesnt work well with this)
 export const STATIC_DIR = path.join(process.cwd(), "static");
 
@@ -62,16 +60,6 @@ export async function resumeToString(resume: Resume) {
   registerFonts();
   const cvDoc = createElement(CVWrapper, { resume: resume });
   return renderToBuffer(cvDoc as any);
-}
-
-async function stream2buffer(stream: NodeJS.ReadableStream): Promise<Buffer> {
-  return new Promise<Buffer>((resolve, reject) => {
-    const _buf = Array<any>();
-
-    stream.on("data", (chunk) => _buf.push(chunk));
-    stream.on("end", () => resolve(Buffer.concat(_buf)));
-    stream.on("error", (err) => reject(`error converting stream - ${err}`));
-  });
 }
 
 export function getColor(name: keyof typeof colors | string): string {

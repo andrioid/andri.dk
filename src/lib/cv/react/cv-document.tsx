@@ -25,11 +25,10 @@ export const CVDocument = ({
   education: Education[];
   work: Work[];
   skills: Skill[];
-  // TODO: fix types, create a wrapper component
 }) => {
   const idxFirstSpace = basics.name.indexOf(" ");
-  const firstName = basics.name.substr(0, idxFirstSpace + 1);
-  const lastName = basics.name.substr(idxFirstSpace + 1, basics.name.length);
+  const firstName = basics.name.substring(0, idxFirstSpace + 1);
+  const lastName = basics.name.substring(idxFirstSpace + 1);
 
   return (
     <Document author={basics.name} subject={`${basics.name} CV`}>

@@ -1,29 +1,29 @@
 ---
 import { Icon } from "astro-icon/components";
-import cv from "../../packages/cv/resume.json";
+import { resumeRaw as cv } from "@lib/cv";
 
 export interface Props {
-	profile: (typeof cv.basics.profiles)[number];
+  profile: (typeof cv.basics.profiles)[number];
 }
 
 const { profile } = Astro.props as Props;
 
 const icon = (() => {
-	if (profile.network === "Twitter") {
-		return "tabler:brand-x";
-	}
-	if (profile.network === "LinkedIn") {
-		return "tabler:brand-linkedin";
-	}
-	if (profile.network === "GitHub") return "tabler:brand-github";
-	if (profile.network === "Bluesky") return "tabler:brand-bluesky";
-	if (profile.network === "Mastodon") return "tabler:brand-mastodon";
+  if (profile.network === "Twitter") {
+    return "tabler:brand-x";
+  }
+  if (profile.network === "LinkedIn") {
+    return "tabler:brand-linkedin";
+  }
+  if (profile.network === "GitHub") return "tabler:brand-github";
+  if (profile.network === "Bluesky") return "tabler:brand-bluesky";
+  if (profile.network === "Mastodon") return "tabler:brand-mastodon";
 
-	return "tabler:question-mark";
+  return "tabler:question-mark";
 })();
 ---
 
 <a href={profile.url}>
-	<Icon class="hover:text-hover" title={profile.network} name={icon} />
-	<span class="sr-only">{profile.network}</span>
+  <Icon class="hover:text-hover" title={profile.network} name={icon} />
+  <span class="sr-only">{profile.network}</span>
 </a>

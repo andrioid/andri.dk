@@ -1,4 +1,3 @@
-import { Document } from "@react-pdf/renderer";
 import type { Resume } from "..";
 import { CVDocument } from "./cv-document";
 

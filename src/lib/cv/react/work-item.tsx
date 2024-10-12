@@ -67,9 +67,10 @@ export const WorkItem = ({
                 }
                 return false;
               });
+              const skill = skills[idx];
 
-              if (skills[idx]?.id && colors[skills[idx].id!]) {
-                color = colors[skills[idx].id];
+              if (skill?.id && colors[skill.id as keyof typeof colors]) {
+                color = colors[skill.id as keyof typeof colors];
               }
             }
             return (
