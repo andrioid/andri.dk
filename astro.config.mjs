@@ -37,7 +37,7 @@ export default defineConfig({
       da: "en",
     },
   },
-  output: "hybrid", // hybrid later
+  output: "static", // hybrid later
   adapter: node({
     mode: "middleware",
   }),
