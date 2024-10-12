@@ -1,5 +1,5 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors")
+import defaultTheme from "tailwindcss/defaultTheme";
+import colors from "tailwindcss/colors";
 
 const sizes = {
   height: {
@@ -28,7 +28,7 @@ module.exports = {
     extend: {
       colors: {
         andri: "#59B4FF",
-        hover: colors.pink["500"]
+        hover: colors.pink["500"],
       },
       height: {
         300: "300px",
@@ -49,5 +49,8 @@ module.exports = {
   variants: {
     boxShadow: ["responsive", "hover", "focus"],
   },
-  plugins: [require("@tailwindcss/typography"), ({ addVariant }) => addVariant("target", "&:target")], // markdown auto typography
+  plugins: [
+    require("@tailwindcss/typography"),
+    ({ addVariant }) => addVariant("target", "&:target"),
+  ], // markdown auto typography
 };
