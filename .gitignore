@@ -9,4 +9,4 @@ yarn-error.log
 dist/
 .astro/
 .env
-./app
+app
