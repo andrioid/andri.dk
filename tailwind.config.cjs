@@ -1,5 +1,5 @@
-import defaultTheme from "tailwindcss/defaultTheme";
-import colors from "tailwindcss/colors";
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 const sizes = {
   height: {
