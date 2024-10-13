@@ -9,6 +9,7 @@
     "build": "bunx astro build",
     "format": "prettier --write .",
     "verify:formatting": "prettier . --check",
+    "verify:types": "tsc --noEmit",
     "preview": "bunx astro preview",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "check": "astro check",

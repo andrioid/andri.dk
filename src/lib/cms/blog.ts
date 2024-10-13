@@ -1,9 +1,6 @@
-import { readItem, readItems } from "@directus/sdk";
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import MarkdownIt from "markdown-it";
 import { IS_DEV } from "../utils/dev";
-import { sanitizePost } from "../utils/sanitize";
-import { getAssetURL, getDirectusClient } from "./cms";
 
 const parser = new MarkdownIt({
   html: true,
@@ -14,9 +11,6 @@ parser.use(Shiki, {
 });
 */
 
-// Get all of the blog posts. Both from content-collection, but also Directus
-
-// TODO: Only fetch the fields we need
 export async function getPosts(opts?: {
   limit?: number;
 }): Promise<Array<CollectionEntry<"blog">>> {
