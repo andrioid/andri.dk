@@ -1,9 +1,9 @@
 ---
 import Card from "../../components/card.astro";
-import Layout from "@layouts/Layout.astro";
+import Layout from "~/layouts/Layout.astro";
 import Section from "../../components/Section.astro";
 import { getPosts } from "../../lib/cms";
-import PageContainer from "@layouts/page-container.astro";
+import PageContainer from "~/layouts/page-container.astro";
 
 const allPosts = await getPosts();
 ---

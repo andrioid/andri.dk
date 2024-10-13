@@ -21,6 +21,7 @@ module.exports = {
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "./src/**/*.html",
+    "./src/**/*.mdx",
     "./src/**/*.js",
     "./src/**/*.astro",
   ],
