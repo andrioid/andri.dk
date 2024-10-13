@@ -1,26 +1,29 @@
 import { VFile } from "vfile";
-import type { CommonBlog } from "../cms";
 
 // This sets our default layout even if there is no frontmatter
 // - Use case: Simple pages like /now or /using
+type MarkdownFileFrontmatter = {
+  layout?: string;
+  title: string;
+  description?: string;
+};
 interface AstroFile extends VFile {
   data: {
     astro: {
-      frontmatter: CommonBlog & {
-        layout?: string;
-      };
+      frontmatter: MarkdownFileFrontmatter;
     };
   };
 }
 
 export const setLayout = () => {
   const transformer = (_node: unknown, file: AstroFile) => {
-    if (file.data.astro.frontmatter.slug) {
-      // Not a file, but a loaded resource
-      return;
+    const filePath = file.history[0];
+    if (filePath.match(/src\/pages\//i)) {
+      file.data.astro.frontmatter.layout =
+        file.data.astro.frontmatter.layout ?? "@layouts/MdPageLayout.astro";
     }
-    file.data.astro.frontmatter.layout =
-      file.data.astro.frontmatter.layout ?? "@layouts/MdPageLayout.astro";
+    // We can  add additional automatic layouts here.
+    // For now, I like that the astro pages dictate layout for blog posts
   };
   return transformer;
 };

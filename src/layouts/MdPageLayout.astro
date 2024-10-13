@@ -1,11 +1,13 @@
 ---
-// Find all blog posts to generate
-import type { CommonBlog } from "src/lib/cms";
+// A layout for markdown pages. Not blog posts.
 import Layout from "./Layout.astro";
 import PageContainer from "./page-container.astro";
 
 type Props = {
-  frontmatter: CommonBlog;
+  frontmatter: {
+    title: string;
+    description?: string;
+  };
 };
 
 const { frontmatter: post } = Astro.props;

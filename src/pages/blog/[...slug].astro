@@ -2,45 +2,34 @@
 // Find all blog posts to generate
 import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import { getPost, getPosts } from "../../lib/cms";
 import { IS_DEV } from "../../lib/utils/dev";
 import PageContainer from "@layouts/page-container.astro";
+import {
+  getCollection,
+  getEntry,
+  type ContentCollectionKey,
+} from "astro:content";
 
 interface Props {
-  entry: CollectionEntry<"blog">;
+  post: CollectionEntry<"blog">;
 }
-const { slug } = Astro.params;
-if (!slug) {
-  return new Response(null, {
-    status: 404,
-    statusText: "Not found",
-  });
-}
-
-if (!slug) throw new Error("Can't call page without slug");
-const post = await getPost(slug);
-if (post.status !== "published" && !IS_DEV) {
-  return new Response(null, {
-    status: 404,
-    statusText: "Not found",
-  });
-}
-
-const { tags, date } = post;
+const { post } = Astro.props;
 const { Content } = (await post.render?.()) ?? {};
+const { date, title, description, draft, tags } = post.data;
 
 export async function getStaticPaths() {
-  const posts = await getPosts({});
-  return posts.map((post) => ({
+  const entries = await getCollection("blog");
+  return entries.map((post) => ({
     params: { slug: post.slug },
+    props: { post },
   }));
 }
 ---
 
 <Layout
-  title={post.title}
-  description={post.description}
-  subtitle={post.description}
+  title={title}
+  description={description}
+  subtitle={description}
   blogPost={post}
 >
   <PageContainer isHome={false}>
@@ -50,7 +39,7 @@ export async function getStaticPaths() {
       <div class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl">
         <div>
           <h1>
-            {post.title}
+            {title}
           </h1>
           <div class="text-base text-gray-600 flex justify-start mb-4">
             <p>
@@ -75,8 +64,7 @@ export async function getStaticPaths() {
           </div>
         </div>
 
-        <article class="mb-6 prose lg:prose-lg" set:html={post.rendered}>
-          <p>content starts</p>
+        <article class="mb-6 prose lg:prose-lg">
           {Content && <Content />}
         </article>
 

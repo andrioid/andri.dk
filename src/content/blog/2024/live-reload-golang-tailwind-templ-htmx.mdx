@@ -1,0 +1,71 @@
+---
+title: Live reloading a Go web application
+date: "2023-12-19"
+---
+
+import video from "./live-reloading-golang.mp4";
+
+I was playing around with server-rendering, and couldn't really find a good workflow for restarting the Go server, generate templates and generate CSS on changes without manually reloading it.
+
+<video controls>
+  <source src={video} />
+</video>
+
+It's not quite as instant as hot-module-reloading in JS, but it's better than managing it yourself.
+
+### NPM dependencies
+
+We're not really using NPM for anything except developer tooling, but you need it all the same.
+
+```shell
+npm init
+npm install -D browser-sync concurrently nodemon tailwindcss
+```
+
+### Go dependencies
+
+If you're using [Templ](https://templ.guide), then run...
+
+```shell
+go install github.com/a-h/templ/cmd/templ@latest
+```
+
+### package.json
+
+Then change the scripts portion of your `package.json` look like this.
+
+```json
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "Note: Strictly used for dev tools. Not production",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "watch:go": "nodemon -e go,sql --exec 'go build . && ./app' --signal SIGTERM",
+    "watch:css": "tailwindcss -i ./web/global.css -o ./web/public/generated.css --watch",
+    "watch:templ": "templ generate --watch",
+    "watch:browser": "browser-sync start --port 3001 --no-ui --proxy 'localhost:3000' --files ./app",
+    "dev": "concurrently npm:watch:* --kill-others",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2",
+    "tailwindcss": "^3.3.6"
+  }
+}
+```
+
+### Run it
+
+```shell
+npm run dev
+```
+
+### Honorable mention
+
+I tried using [Air](https://github.com/cosmtrek/air), but ended up dropping it for Nodemon. I already needed NPM for Tailwind (plugins), and it works great.

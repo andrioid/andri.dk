@@ -17,91 +17,23 @@ parser.use(Shiki, {
 // Get all of the blog posts. Both from content-collection, but also Directus
 
 // TODO: Only fetch the fields we need
-export async function getPosts({
-  limit = 10000,
-  showDraft = IS_DEV,
-}: {
+export async function getPosts(opts?: {
   limit?: number;
-  showDraft?: boolean;
-}) {
-  const ccPosts = (await getCollection("blog")).map(translateFromContentSchema);
-  const client = getDirectusClient();
-  const cmsPosts = (await client.request(readItems("blog"))).map(
-    translateFromCMS,
-  );
-
-  const allPosts: Array<CommonBlog> = [...ccPosts, ...cmsPosts]
-    .sort((a, b) => b.date.getTime() - a.date.getTime())
-    .filter((p) => p.status === "published" || showDraft === true);
-  return allPosts.slice(0, limit);
+}): Promise<Array<CollectionEntry<"blog">>> {
+  const posts = await getCollection("blog");
+  const sortedAndFiltered = posts
+    // Sort by date
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    // Never show drafts, unless in DEV
+    .filter((p) => !p.data.draft || IS_DEV);
+  if (opts?.limit) {
+    return sortedAndFiltered.slice(0, opts.limit);
+  }
+  return sortedAndFiltered;
 }
 
-export async function getPost(slug: string): Promise<CommonBlogRendered> {
-  const client = getDirectusClient();
+export async function getPost(slug: string): Promise<CollectionEntry<"blog">> {
   const ccItem = await getEntry("blog", slug);
-  if (ccItem) {
-    return {
-      ...translateFromContentSchema(ccItem),
-      render: ccItem.render,
-    };
-  }
-  try {
-    const cmsItem = await client.request(readItem("blog", slug));
-    if (!ccItem && !cmsItem) throw new Error("Page not found");
-    return {
-      ...translateFromCMS(cmsItem),
-      // TODO Allow HTML, and sanitize for video/preview tags
-      rendered: sanitizePost(parser.render(cmsItem.body)),
-    };
-  } catch (err) {
-    throw new Error("Page not found");
-  }
-}
-
-export type DirectusBlog = {
-  title: string;
-  slug: string;
-  body: string;
-  coverImage?: string;
-  date: string;
-  description?: string;
-  tags?: Array<string>;
-  status: "draft" | "published" | "idea";
-};
-
-export type CommonBlog = {
-  title: string;
-  slug: string;
-  body: string;
-  coverImage?: string;
-  status: "draft" | "published" | "idea";
-  description?: string;
-  tags?: Array<string>;
-  date: Date;
-};
-
-export type CommonBlogRendered = CommonBlog & {
-  rendered?: string;
-  render?: CollectionEntry<"blog">["render"];
-};
-
-function translateFromContentSchema(post: CollectionEntry<"blog">): CommonBlog {
-  return {
-    body: post.body,
-    date: post.data.date,
-    description: post.data.description,
-    status: post.data.draft === true ? "draft" : "published",
-    slug: post.slug,
-    title: post.data.title,
-    coverImage: post.data.coverImage,
-    tags: post.data.tags,
-  };
-}
-
-function translateFromCMS(post: DirectusBlog): CommonBlog {
-  return {
-    ...post,
-    date: new Date(post.date),
-    coverImage: post.coverImage ? getAssetURL(post.coverImage) : undefined,
-  };
+  if (!ccItem) throw new Error("Post not found in content collection");
+  return ccItem;
 }
