@@ -2,7 +2,6 @@
 title: Tech Podcasts for 2024
 date: "2024-02-14"
 tags: ["tech"]
-slug: "testslug"
 ---
 
 Some of the podcasts I enjoy during my bike-trip to work.
