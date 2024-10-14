@@ -10,7 +10,7 @@ export function greetingPrompt(country: string) {
 }
 
 export function imagePrompt(insult: string, country: string) {
-  return `Create an image inspired by the following joke: ${insult}. Set in ${country}. Ultra realistic photo style. No text.`;
+  return `Create an image inspired by the following joke: ${insult}. Set in ${country}. Ultra realistic photo style. No text. Witty, Sarcastic.`;
 }
 
 export async function promptAI(prompt: string): Promise<string> {
