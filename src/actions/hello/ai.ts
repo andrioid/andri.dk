@@ -6,11 +6,17 @@ const client = new OpenAI({
 });
 
 export function greetingPrompt(country: string) {
-  return `You are an internet troll, full of sarcasm and wit. Make up an insult about the country of ${country}`;
+  return `You are a travel journalist, full of sarcasm and wit. Make up a very short insult about the country and the people of ${country}`;
 }
 
 export function imagePrompt(insult: string, country: string) {
-  return `Summarize the following joke: "${insult}". Caricature art style, no text, people, wide-view, ${country}'.`;
+  const prompt = [
+    `Summarize the following joke about ${country}: "${insult}"`,
+    "stunning shot, beautiful nature, happy people",
+    "Caricature art-style",
+    "No text",
+  ];
+  return prompt.join(". ");
 }
 
 export async function promptAI(prompt: string): Promise<string> {
@@ -25,6 +31,7 @@ export async function promptAI(prompt: string): Promise<string> {
       },
     ],
     max_tokens: 150,
+    max_completion_tokens: 100,
   });
 
   const msg = data.choices[0].message?.content;

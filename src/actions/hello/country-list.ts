@@ -154,6 +154,7 @@ export const COUNTRIES = [
   "Senegal",
   "Serbia",
   "Seychelles",
+  "Scotland",
   "Sierra Leone",
   "Singapore",
   "Slovakia",
