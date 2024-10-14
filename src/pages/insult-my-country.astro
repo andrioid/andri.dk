@@ -6,7 +6,7 @@ import PageContainer from "~/layouts/page-container.astro";
 const prerender = false;
 
 const { data } = await Astro.callAction(actions.hello.getCountry, {});
-const defaultCountry = data ?? "";
+const defaultCountry = data ?? undefined;
 ---
 
 <Layout title="Insult my country">
@@ -27,7 +27,7 @@ const defaultCountry = data ?? "";
             COUNTRIES.map((country) => (
               <option
                 selected={
-                  country.toLowerCase() === defaultCountry.toLowerCase()
+                  country.toLowerCase() === defaultCountry?.toLowerCase()
                     ? true
                     : false
                 }
@@ -61,12 +61,13 @@ const defaultCountry = data ?? "";
   const button = document.querySelector("button");
   const results = document.querySelector("#results");
   const countryEl = document.querySelector("#country") as HTMLSelectElement;
-  const country = countryEl
-    ? (countryEl.value as (typeof COUNTRIES)[number])
-    : undefined;
 
   button?.addEventListener("click", async () => {
     if (!button || !results) return; // No reason to continue
+    const country = countryEl
+      ? (countryEl.value as (typeof COUNTRIES)[number])
+      : undefined;
+
     button.setAttribute("disabled", "disabled");
     results.classList.add("hidden");
     // Show alert pop-up with greeting from action
