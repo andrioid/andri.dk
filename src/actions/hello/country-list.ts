@@ -7,6 +7,7 @@ export const COUNTRIES = [
   "Antigua and Barbuda",
   "Argentina",
   "Armenia",
+  "Aruba",
   "Australia",
   "Austria",
   "Azerbaijan",
