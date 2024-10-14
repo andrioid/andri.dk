@@ -24,7 +24,7 @@ export async function promptAI(prompt: string): Promise<string> {
         content: prompt,
       },
     ],
-    max_tokens: 100,
+    max_tokens: 150,
   });
 
   const msg = data.choices[0].message?.content;
