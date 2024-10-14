@@ -1,7 +1,7 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { getCountryFromHeaders } from "./country";
-import { greetingPrompt, promptAI } from "./ai";
+import { aiImage, greetingPrompt, imagePrompt, promptAI } from "./ai";
 import { COUNTRIES } from "./country-list";
 
 export const hello = {
@@ -9,20 +9,38 @@ export const hello = {
     input: z.object({
       country: z.enum(COUNTRIES).optional(),
     }),
-    handler: async (input, ctx) => {
+    handler: async (
+      input,
+      ctx,
+    ): Promise<{
+      insult: string;
+      image?: string;
+    }> => {
       const country = input.country;
-      // if (country === undefined)
-      //   country = (await getCountryFromHeaders(ctx.request.headers)) as
-      //     | (typeof COUNTRIES)[number]
-      //     | undefined;
-
-      // https://discord.com/channels/830184174198718474/1295282295510405202
-      // TODO: Revisit this. Can't find the IP in the Astro request
       if (!country)
-        return "I couldn't figure out where you're from. So no insult for you.";
-      const greeting = await promptAI(greetingPrompt(country));
-      if (greeting) return greeting;
-      return `Something went wrong`;
+        return {
+          insult:
+            "I couldn't figure out where you're from. So no insult for you.",
+        };
+      const insult = await promptAI(greetingPrompt(country));
+      let img = undefined;
+      try {
+        img = await aiImage(imagePrompt(insult, country));
+      } catch (err) {
+        console.error("Image generation failed", err);
+      }
+
+      console.log("[Insult] " + insult, img);
+
+      if (insult)
+        return {
+          insult: insult,
+          image: img,
+        };
+      return {
+        insult: `Something went wrong`,
+        image: img,
+      };
     },
   }),
   getCountry: defineAction({

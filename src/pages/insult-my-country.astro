@@ -12,7 +12,7 @@ const defaultCountry = data ?? undefined;
 <Layout title="Insult my country">
   <PageContainer>
     <div
-      class="p-8 bg-white rounded-md md:min-w-[40rem] self-center text-gray-900"
+      class="p-8 bg-white rounded-md md:min-w-[40rem] self-center text-gray-900 max-w-xl"
     >
       <h1>Insult my country</h1>
       <p>This is a silly parody experiment. Don't take it seriously.</p>
@@ -45,11 +45,12 @@ const defaultCountry = data ?? undefined;
           >
         </div>
       </div>
-      <div
-        id="results"
-        class="max-w-xl hidden mt-6 rounded-md p-4 border border-andri"
-      >
+      <div id="results" class="hidden mt-6 rounded-md p-4 border border-andri">
       </div>
+      <img
+        class="hidden mt-4 rounded-md border border-andri"
+        id="result_image"
+      />
     </div>
   </PageContainer>
 </Layout>title
@@ -60,6 +61,9 @@ const defaultCountry = data ?? undefined;
 
   const button = document.querySelector("button");
   const results = document.querySelector("#results");
+  const resultImageEl = document.querySelector(
+    "#result_image",
+  ) as HTMLImageElement;
   const countryEl = document.querySelector("#country") as HTMLSelectElement;
 
   button?.addEventListener("click", async () => {
@@ -70,6 +74,7 @@ const defaultCountry = data ?? undefined;
 
     button.setAttribute("disabled", "disabled");
     results.classList.add("hidden");
+    resultImageEl.classList.add("hidden");
     // Show alert pop-up with greeting from action
     const { data, error } = await actions.hello.getGreeting({
       country,
@@ -81,7 +86,11 @@ const defaultCountry = data ?? undefined;
       results.classList.remove("hidden");
       return;
     }
-    results.innerHTML = data;
+    results.innerHTML = data.insult;
+    if (data.image) {
+      resultImageEl.src = data.image;
+    }
     results.classList.remove("hidden");
+    resultImageEl.classList.remove("hidden");
   });
 </script>

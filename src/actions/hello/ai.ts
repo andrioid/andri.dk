@@ -1,44 +1,43 @@
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://api.model.box/v1",
+  apiKey: import.meta.env.MODEL_BOX_API_KEY,
+});
+
 export function greetingPrompt(country: string) {
   return `You are an internet troll, full of sarcasm and wit. Make up an insult about the country of ${country}`;
 }
 
+export function imagePrompt(insult: string, country: string) {
+  return `Create an image inspired by the following joke: ${insult}. Set in ${country}. Ultra realistic photo style. No text.`;
+}
+
 export async function promptAI(prompt: string): Promise<string> {
-  const apiKey = import.meta.env.MODEL_BOX_API_KEY;
-  if (!apiKey)
-    throw new Error("Seems someone forgot to add an API key to the secrets...");
-  try {
-    const response = await fetch("https://api.model.box/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
+  const data = await client.chat.completions.create({
+    model: "meta-llama/llama-3.2-3b-instruct",
+    messages: [
+      {
+        role: "user",
+        content: prompt,
       },
-      body: JSON.stringify({
-        model: "meta-llama/llama-3.2-3b-instruct",
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        max_tokens: 100,
-      }),
-    });
+    ],
+    max_tokens: 100,
+  });
 
-    if (!response.ok) {
-      console.error(response.statusText);
-      if (response.body) {
-        const body = response.body;
-      }
+  const msg = data.choices[0].message?.content;
+  if (!msg) throw new Error("No response from AI");
+  return msg;
+}
 
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+export async function aiImage(prompt: string): Promise<string | undefined> {
+  const data = await client.images.generate({
+    prompt,
+    n: 1,
+    size: "1024x1024",
+    model: "black-forest-labs/flux-schnell",
+  });
 
-    const data = await response.json();
-    const msg = data.choices[0].message;
-    console.log("[Insult] " + msg.content);
-    return msg.content;
-  } catch (error) {
-    throw new Error("Failed to talk to the AI API");
-  }
+  const img = data.data[0];
+  return img.url;
 }
