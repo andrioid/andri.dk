@@ -20,8 +20,7 @@ jobs:
           push: true
           tags: registry.fly.io/andridk:${{ github.sha }}
           build-args: |
-            DIRECTUS_API_TOKEN=${{ secrets.DIRECTUS_API_TOKEN }}
-            DIRECTUS_URL=${{ secrets.DIRECTUS_URL }}
+            MODEL_BOX_API_KEY=${{ secrets.MODEL_BOX_API_KEY }}
       - run: flyctl deploy --image registry.fly.io/andridk:${{ github.sha }}
 
   # deploy:

@@ -1,0 +1,50 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import PageContainer from "~/layouts/page-container.astro";
+---
+
+<Layout title="Insult my country">
+  <PageContainer>
+    <div
+      class="p-8 bg-white rounded-md min-w-[40rem] self-center text-gray-900"
+    >
+      <h1>Insult my country</h1>
+      <p>This is a silly parody experiment. Don't take it seriously.</p>
+      <div class="mt-4">
+        <button
+          class="rounded-full bg-andri py-1 px-4 font-medium text-white disabled:bg-gray-100 disabled:text-gray-300"
+          >Bring it!</button
+        >
+      </div>
+      <div
+        id="results"
+        class="max-w-xl hidden mt-6 rounded-md p-4 border border-andri"
+      >
+      </div>
+    </div>
+  </PageContainer>
+</Layout>title
+
+<script>
+  import { actions } from "astro:actions";
+
+  const button = document.querySelector("button");
+  const results = document.querySelector("#results");
+
+  button?.addEventListener("click", async () => {
+    if (!button || !results) return; // No reason to continue
+    button.setAttribute("disabled", "disabled");
+    results.classList.add("hidden");
+    // Show alert pop-up with greeting from action
+    const { data, error } = await actions.hello.getGreeting({
+      name: "Houston",
+    });
+    if (error || data === undefined) {
+      results.innerHTML = "💩";
+      results.classList.remove("hidden");
+      return;
+    }
+    results.innerHTML = data;
+    results.classList.remove("hidden");
+  });
+</script>
