@@ -2,23 +2,18 @@
 // Find all blog posts to generate
 import { type CollectionEntry } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
-import { IS_DEV } from "../../lib/utils/dev";
 import PageContainer from "~/layouts/page-container.astro";
-import {
-  getCollection,
-  getEntry,
-  type ContentCollectionKey,
-} from "astro:content";
+import { getPosts } from "~/lib/cms";
 
 interface Props {
   post: CollectionEntry<"blog">;
 }
 const { post } = Astro.props;
 const { Content } = (await post.render?.()) ?? {};
-const { date, title, description, draft, tags } = post.data;
+const { date, title, description, tags } = post.data;
 
 export async function getStaticPaths() {
-  const entries = await getCollection("blog");
+  const entries = await getPosts();
   return entries.map((post) => ({
     params: { slug: post.slug },
     props: { post },
@@ -26,12 +21,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout
-  title={title}
-  description={description}
-  subtitle={description}
-  blogPost={post}
->
+<Layout title={title} description={description} subtitle={description}>
   <PageContainer isHome={false}>
     <div
       class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"

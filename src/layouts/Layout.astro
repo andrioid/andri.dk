@@ -1,20 +1,15 @@
 ---
 import "../css/global.css";
 import { site } from "../constants";
-import type { CommonBlogRendered } from "../lib/cms";
 export interface Props {
   title: string;
   subtitle?: string;
   description?: string;
   coverImage?: string;
-  blogPost?: CommonBlogRendered;
   lang?: string;
 }
 
-const { blogPost, lang = "en", ...props } = Astro.props as Props;
-const title = blogPost?.title || props.title;
-const description = blogPost?.description || props.description;
-const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
+const { lang = "en", title, description } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -38,10 +33,11 @@ const ogImage = blogPost ? `/blog/${blogPost.slug}.png` : undefined;
     <link rel="webmention" href="https://webmention.io/andri.dk/webmention" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="shortcut icon" href="/img/coffee-icon.png" />
-
+    <!-- Maybe later
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    -->
 
     <title>{`andri.dk | ${title}`}</title>
   </head>

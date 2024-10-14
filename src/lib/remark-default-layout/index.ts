@@ -20,7 +20,7 @@ export const setLayout = () => {
     const filePath = file.history[0];
     if (filePath.match(/src\/pages\//i)) {
       file.data.astro.frontmatter.layout =
-        file.data.astro.frontmatter.layout ?? "@layouts/MdPageLayout.astro";
+        file.data.astro.frontmatter.layout ?? "@layouts/md-page-layout.astro";
     }
     // We can  add additional automatic layouts here.
     // For now, I like that the astro pages dictate layout for blog posts

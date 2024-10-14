@@ -1,15 +1,5 @@
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
-import MarkdownIt from "markdown-it";
 import { IS_DEV } from "../utils/dev";
-
-const parser = new MarkdownIt({
-  html: true,
-});
-/*
-parser.use(Shiki, {
-	theme: "github-dark",
-});
-*/
 
 export async function getPosts(opts?: {
   limit?: number;
