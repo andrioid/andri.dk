@@ -10,7 +10,7 @@ export function greetingPrompt(country: string) {
 }
 
 export function imagePrompt(insult: string, country: string) {
-  return `People of ${country} in ${country}. Inspired by "${insult}". Image should have a caricature artstyle, and look silly.`;
+  return `People of ${country} in ${country}. Inspired by "${insult}". Image should have a caricature artstyle, and look like it's taken from a drone'.`;
 }
 
 export async function promptAI(prompt: string): Promise<string> {
@@ -26,7 +26,10 @@ export async function promptAI(prompt: string): Promise<string> {
   });
 
   const msg = data.choices[0].message?.content;
-  if (!msg) throw new Error("No response from AI");
+  if (!msg)
+    throw new Error("No response from AI", {
+      cause: data,
+    });
   return msg;
 }
 
