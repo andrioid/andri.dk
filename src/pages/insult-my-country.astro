@@ -71,12 +71,17 @@ const defaultCountry = data ?? undefined;
     const country = countryEl
       ? (countryEl.value as (typeof COUNTRIES)[number])
       : undefined;
+    if (!country) {
+      alert("Can't insult your country, if you don't tell me what it is!");
+      return;
+    }
 
     button.setAttribute("disabled", "disabled");
     results.classList.add("hidden");
     resultImageEl.classList.add("hidden");
     resultImageEl.src = "";
     // Show alert pop-up with greeting from action
+
     const { data, error } = await actions.hello.getGreeting({
       country,
     });

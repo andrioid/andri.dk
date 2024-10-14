@@ -1,6 +1,6 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { getCountryFromHeaders } from "./country";
+import { getCountryFromIP, getIPfromHeaders } from "./country";
 import { aiImage, greetingPrompt, imagePrompt, promptAI } from "./ai";
 import { COUNTRIES } from "./country-list";
 
@@ -45,9 +45,15 @@ export const hello = {
   }),
   getCountry: defineAction({
     handler: async (input, ctx) => {
+      let ip = getIPfromHeaders(ctx.request.headers);
+      if (!ip) {
+        return;
+      }
+
       try {
-        return getCountryFromHeaders(ctx.request.headers);
+        return getCountryFromIP(ip);
       } catch (err) {
+        console.error(err);
         return undefined;
       }
     },

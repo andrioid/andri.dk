@@ -1,16 +1,20 @@
-export async function getCountryFromHeaders(
-  headers: Headers,
+export async function getCountryFromIP(
+  ipAddress: string,
 ): Promise<undefined | string> {
-  const ip = headers.get("x-forwarded-for")?.split(",")[0].trim();
-  if (!ip) return;
-
   try {
-    const res = await fetch(`http://ip-api.com/json/${ip}`);
+    const res = await fetch(`http://ip-api.com/json/${ipAddress}`);
     const resJ = await res.json();
-    if (resJ.country) {
-      return resJ.country;
+    if (!resJ.country) {
+      return;
     }
+    return resJ.country;
   } catch (_err) {
+    console.error(`[Geolocation] Failed for ${ipAddress}`);
     // ignore and return undefined
   }
+}
+
+export function getIPfromHeaders(headers: Headers) {
+  const ip = headers.get("x-forwarded-for")?.split(",")[0].trim();
+  return ip;
 }
