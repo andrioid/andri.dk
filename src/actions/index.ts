@@ -19,8 +19,20 @@ export const server = {
     handler: async (input, ctx) => {
       // https://discord.com/channels/830184174198718474/1295282295510405202
       // TODO: Revisit this. Can't find the IP in the Astro request
-      console.log("hello called, headers", ctx.request.headers);
-      return `Hello ${input.name}`;
+      const ip = ctx.request.headers
+        .get("x-forwarded-for")
+        ?.split(",")[0]
+        .trim();
+      if (!ip) return "Go away";
+      //if (!ip) ip = "193.4.194.2";
+
+      const res = await fetch(`http://ip-api.com/json/${ip}`);
+      const resJ = await res.json();
+      if (resJ.country) {
+        return `Hi ${resJ.country}`;
+      }
+
+      return `Something went wrong`;
     },
   }),
 };
