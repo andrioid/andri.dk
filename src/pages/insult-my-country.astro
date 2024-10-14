@@ -75,6 +75,7 @@ const defaultCountry = data ?? undefined;
     button.setAttribute("disabled", "disabled");
     results.classList.add("hidden");
     resultImageEl.classList.add("hidden");
+    resultImageEl.src = "";
     // Show alert pop-up with greeting from action
     const { data, error } = await actions.hello.getGreeting({
       country,

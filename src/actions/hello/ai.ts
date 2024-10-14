@@ -15,7 +15,9 @@ export function imagePrompt(insult: string, country: string) {
 
 export async function promptAI(prompt: string): Promise<string> {
   const data = await client.chat.completions.create({
-    model: "meta-llama/llama-3.2-3b-instruct",
+    //model: "meta-llama/llama-3.2-3b-instruct",
+    model: "deepseek/deepseek-chat",
+
     messages: [
       {
         role: "user",
