@@ -10,7 +10,7 @@ export function greetingPrompt(country: string) {
 }
 
 export function imagePrompt(insult: string, country: string) {
-  return `Create an image inspired by the following joke: ${insult}. Set in ${country}. Ultra realistic photo style. No text. Witty, Sarcastic.`;
+  return `People of ${country} in ${country}. Inspired by "${insult}". Image should have a caricature artstyle, and look silly.`;
 }
 
 export async function promptAI(prompt: string): Promise<string> {
@@ -34,7 +34,7 @@ export async function aiImage(prompt: string): Promise<string | undefined> {
   const data = await client.images.generate({
     prompt,
     n: 1,
-    size: "1024x1024",
+    size: "512x512",
     model: "black-forest-labs/flux-schnell",
   });
 
