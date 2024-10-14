@@ -30,7 +30,6 @@ export async function promptAI(prompt: string): Promise<string> {
       console.error(response.statusText);
       if (response.body) {
         const body = response.body;
-        console.log("body", response.headers);
       }
 
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,6 +37,7 @@ export async function promptAI(prompt: string): Promise<string> {
 
     const data = await response.json();
     const msg = data.choices[0].message;
+    console.log("[Insult] " + msg.content);
     return msg.content;
   } catch (error) {
     throw new Error("Failed to talk to the AI API");
