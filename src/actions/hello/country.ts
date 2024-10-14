@@ -5,8 +5,10 @@ export async function getCountryFromIP(
     const res = await fetch(`http://ip-api.com/json/${ipAddress}`);
     const resJ = await res.json();
     if (!resJ.country) {
+      console.warn(`[Geolocation] Received response, but no country`);
       return;
     }
+    console.log("country found", resJ.country);
     return resJ.country;
   } catch (_err) {
     console.error(`[Geolocation] Failed for ${ipAddress}`);

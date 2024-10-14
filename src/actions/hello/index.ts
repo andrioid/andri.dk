@@ -46,7 +46,11 @@ export const hello = {
   getCountry: defineAction({
     handler: async (input, ctx) => {
       let ip = getIPfromHeaders(ctx.request.headers);
+      //console.log("! getCountry", ip);
       if (!ip) {
+        //ip = "193.4.194.2";
+        //ip = "77.75.80.174"; // dk
+        console.log("!!! No ip found for client (normal for dev)");
         return;
       }
 
