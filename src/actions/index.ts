@@ -19,6 +19,7 @@ export const server = {
     handler: async (input, ctx) => {
       // https://discord.com/channels/830184174198718474/1295282295510405202
       // TODO: Revisit this. Can't find the IP in the Astro request
+      console.log("hello called, headers", ctx.request.headers);
       return `Hello ${input.name}`;
     },
   }),

@@ -16,5 +16,6 @@ const app = express();
 app.use(noWWW);
 app.use(express.static("dist/client/"));
 app.use(ssrHandler);
+console.log("[andri.dk] Server listening on port 3000");
 
 app.listen(3000);
