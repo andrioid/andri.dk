@@ -1,7 +1,8 @@
 export async function getCountryFromHeaders(
   headers: Headers,
-): Promise<void | string> {
+): Promise<undefined | string> {
   const ip = headers.get("x-forwarded-for")?.split(",")[0].trim();
+  if (!ip) return "Iceland";
   if (!ip) return;
 
   try {

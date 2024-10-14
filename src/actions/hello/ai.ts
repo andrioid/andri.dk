@@ -23,7 +23,6 @@ export async function promptAI(prompt: string): Promise<string> {
         ],
         max_tokens: 100,
       }),
-      //signal: AbortSignal.timeout(1000),
     });
 
     if (!response.ok) {
