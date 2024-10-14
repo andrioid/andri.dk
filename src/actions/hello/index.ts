@@ -7,7 +7,7 @@ import { COUNTRIES } from "./country-list";
 export const hello = {
   getGreeting: defineAction({
     input: z.object({
-      country: z.enum(COUNTRIES).optional(),
+      country: z.enum(COUNTRIES),
     }),
     handler: async (
       input,

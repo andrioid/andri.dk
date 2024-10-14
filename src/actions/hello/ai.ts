@@ -10,7 +10,7 @@ export function greetingPrompt(country: string) {
 }
 
 export function imagePrompt(insult: string, country: string) {
-  return `People of ${country} in ${country}. Inspired by "${insult}". Image should have a caricature artstyle, and look like it's taken from a drone'.`;
+  return `Summarize the following joke: "${insult}". Caricature art style, no text, people, wide-view, ${country}'.`;
 }
 
 export async function promptAI(prompt: string): Promise<string> {
