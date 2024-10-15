@@ -14,7 +14,7 @@ export function imagePrompt(insult: string, country: string) {
     `Summarize the following joke about ${country}: "${insult}"`,
     "stunning shot, beautiful nature, happy people",
     "Caricature art-style",
-    "No text",
+    "No text, No titles, No quotes",
   ];
   return prompt.join(". ");
 }
