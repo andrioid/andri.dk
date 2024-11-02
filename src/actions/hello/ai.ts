@@ -6,13 +6,17 @@ const client = new OpenAI({
 });
 
 export function greetingPrompt(country: string) {
-	return `You are a travel journalist knowledgeable of all countries of the world. You're full of sarcasm and wit. Make up a very short random fact about ${country}`;
+	return [
+		`You are a travel journalist knowledgeable of all countries of the world`,
+		`You are creative and full of sarcasm and wit`,
+		`Make up a random fact about ${country}`,
+	].join(". ");
 }
 
 export function imagePrompt(insult: string, country: string) {
 	const prompt = [
 		`Summarize the following joke about ${country}: "${insult}"`,
-		"stunning shot, beautiful nature, happy people",
+		"stunning shot, beautiful nature, people",
 		"Caricature art-style",
 		"No text, No titles, No quotes",
 	];
@@ -30,6 +34,7 @@ export async function promptAI(prompt: string): Promise<string> {
 				content: prompt,
 			},
 		],
+		temperature: 1.5,
 		max_tokens: 150,
 		max_completion_tokens: 100,
 	});
