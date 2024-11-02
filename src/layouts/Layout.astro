@@ -2,11 +2,11 @@
 import "../css/global.css";
 import { site } from "../constants";
 export interface Props {
-  title: string;
-  subtitle?: string;
-  description?: string;
-  coverImage?: string;
-  lang?: string;
+	title: string;
+	subtitle?: string;
+	description?: string;
+	coverImage?: string;
+	lang?: string;
 }
 
 const { lang = "en", title, description } = Astro.props as Props;
@@ -14,40 +14,42 @@ const { lang = "en", title, description } = Astro.props as Props;
 
 <!doctype html>
 <html lang={lang}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="og:title" content={title} />
-    <meta name="twitter:title" content={title} />
-    <meta name="description" content={description} />
-    <meta name="og:description" content={description} />
-    <meta name="author" content={site.author} />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="RSS for andri.dk"
-      href="/rss.xml"
-    />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="og:title" content={title} />
+		<meta name="twitter:title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="og:description" content={description} />
+		<meta name="author" content={site.author} />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="RSS for andri.dk"
+			href="/rss.xml"
+		/>
 
-    <link rel="pingback" href="https://webmention.io/andri.dk/xmlrpc" />
-    <link rel="webmention" href="https://webmention.io/andri.dk/webmention" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="shortcut icon" href="/img/coffee-icon.png" />
-    <!-- Maybe later
+		<link rel="pingback" href="https://webmention.io/andri.dk/xmlrpc" />
+		<link
+			rel="webmention"
+			href="https://webmention.io/andri.dk/webmention"
+		/>
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="shortcut icon" href="/img/coffee-icon.png" />
+		<script
+			defer
+			src="https://ep-umami.fly.dev/script.js"
+			data-website-id="8302b903-1052-49fa-a755-ba95c167ae6a"></script>
+		<!-- Maybe later
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     -->
 
-    <title>{`andri.dk | ${title}`}</title>
-  </head>
+		<title>{`andri.dk | ${title}`}</title>
+	</head>
 
-  <body class="bg-gray-200">
-    <slot />
-    <script
-      is:inline
-      data-goatcounter="https://andrioid.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"></script>
-  </body>
+	<body class="bg-gray-200">
+		<slot />
+	</body>
 </html>
