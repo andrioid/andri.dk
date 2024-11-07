@@ -1,6 +1,6 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { hello } from "./hello";
+import { insults } from "./insults";
 
 export const server = {
   contactMe: defineAction({
@@ -13,5 +13,5 @@ export const server = {
       return `Hello, ${input.email}!`;
     },
   }),
-  hello,
+  insults,
 };

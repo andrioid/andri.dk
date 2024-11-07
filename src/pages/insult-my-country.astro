@@ -1,11 +1,11 @@
 ---
 import { actions } from "astro:actions";
-import { COUNTRIES } from "~/actions/hello/country-list";
+import { COUNTRIES } from "~/actions/insults/country-list";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
 const prerender = false;
 
-const { data } = await Astro.callAction(actions.hello.getCountry, {});
+const { data } = await Astro.callAction(actions.insults.getCountry, {});
 const defaultCountry = data ?? undefined;
 ---
 
@@ -57,7 +57,7 @@ const defaultCountry = data ?? undefined;
 
 <script>
   import { actions } from "astro:actions";
-  import { COUNTRIES } from "~/actions/hello/country-list";
+  import { COUNTRIES } from "~/actions/insults/country-list";
 
   const button = document.querySelector("button");
   const results = document.querySelector("#results");
@@ -82,7 +82,7 @@ const defaultCountry = data ?? undefined;
     resultImageEl.src = "";
     // Show alert pop-up with greeting from action
 
-    const { data, error } = await actions.hello.getGreeting({
+    const { data, error } = await actions.insults.insultMyCountry({
       country,
     });
     button.removeAttribute("disabled");

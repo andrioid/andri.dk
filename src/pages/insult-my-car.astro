@@ -1,0 +1,79 @@
+---
+const prerender = false;
+import { actions } from "astro:actions";
+import { CAR_BRANDS } from "~/actions/insults/cars";
+import Layout from "~/layouts/Layout.astro";
+import PageContainer from "~/layouts/page-container.astro";
+---
+
+<Layout title="Insult my car">
+  <PageContainer>
+    <div
+      class="p-8 bg-white rounded-md md:min-w-[40rem] self-center text-gray-900 max-w-xl"
+    >
+      <h1>Insult my car</h1>
+      <p>This is a silly parody experiment. Don't take it seriously.</p>
+      <div class="mt-4">
+        <form method="post" action={actions.insults.insultMyCar}>
+          <select
+            name="brand"
+            id="country"
+            class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-andri focus:border-andri"
+          >
+            {CAR_BRANDS.map((brand) => <option value={brand}>{brand}</option>)}
+          </select>
+          <div class="mt-4">
+            <button
+              class="rounded-full bg-andri py-1 px-4 font-medium text-white disabled:bg-gray-100 disabled:text-gray-300"
+              >Bring it!</button
+            >
+          </div>
+        </form>
+      </div>
+      <div id="results" class="hidden mt-6 rounded-md p-4 border border-andri">
+      </div>
+      <img
+        class="hidden mt-4 rounded-md border border-andri"
+        id="result_image"
+      />
+    </div>
+  </PageContainer>
+</Layout>
+<script>
+  import { actions } from "astro:actions";
+
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = document.querySelector("button");
+    const results = document.querySelector("#results");
+    const resultImageEl = document.querySelector(
+      "#result_image",
+    ) as HTMLImageElement;
+    if (!button || !results) return; // No reason to continue
+
+    button.setAttribute("disabled", "disabled");
+    results.classList.add("hidden");
+    resultImageEl.classList.add("hidden");
+    resultImageEl.src = "";
+
+    const formData = new FormData(form);
+    const { error, data } = await actions.insults.insultMyCar(formData);
+
+    // Show alert pop-up with greeting from action
+
+    button.removeAttribute("disabled");
+
+    if (error || data === undefined) {
+      results.innerHTML = "💩";
+      results.classList.remove("hidden");
+      return;
+    }
+    results.innerHTML = data.insult;
+    if (data.image) {
+      resultImageEl.src = data.image;
+    }
+    results.classList.remove("hidden");
+    resultImageEl.classList.remove("hidden");
+  });
+</script>

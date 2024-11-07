@@ -1,11 +1,17 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
+import { CAR_BRANDS, insultCarImagePrompt, insultCarPrompt } from "./cars";
 import { getCountryFromIP, getIPfromHeaders } from "./country";
-import { aiImage, greetingPrompt, imagePrompt, promptAI } from "./ai";
+import {
+  aiImage,
+  insultCountryImagePrompt,
+  insultCountryPrompt,
+  promptAI,
+} from "./country-ai";
 import { COUNTRIES } from "./country-list";
 
-export const hello = {
-  getGreeting: defineAction({
+export const insults = {
+  insultMyCountry: defineAction({
     input: z.object({
       country: z.enum(COUNTRIES),
     }),
@@ -22,10 +28,10 @@ export const hello = {
           insult:
             "I couldn't figure out where you're from. So no insult for you.",
         };
-      const insult = await promptAI(greetingPrompt(country));
+      const insult = await promptAI(insultCountryPrompt(country));
       let img = undefined;
       try {
-        img = await aiImage(imagePrompt(insult, country));
+        img = await aiImage(insultCountryImagePrompt(insult, country));
       } catch (err) {
         console.error("Image generation failed", err);
       }
@@ -60,6 +66,26 @@ export const hello = {
         console.error(err);
         return undefined;
       }
+    },
+  }),
+  insultMyCar: defineAction({
+    input: z.object({
+      brand: z.enum(CAR_BRANDS),
+    }),
+    accept: "form",
+    handler: async (input, ctx) => {
+      const insult = await promptAI(insultCarPrompt(input.brand));
+      let img = undefined;
+      try {
+        img = await aiImage(insultCarImagePrompt(insult, input.brand));
+      } catch (err) {
+        console.error("Image generation failed", err);
+      }
+
+      return {
+        insult,
+        image: img,
+      };
     },
   }),
 };
