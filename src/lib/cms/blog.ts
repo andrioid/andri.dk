@@ -5,10 +5,6 @@ export async function getPosts(opts?: {
 	limit?: number;
 }): Promise<Array<CollectionEntry<"blog">>> {
 	const posts = await getCollection("blog");
-	console.log(
-		"posts",
-		posts.map((p) => p.id),
-	);
 
 	const sortedAndFiltered = posts
 		// Sort by date
