@@ -1,6 +1,6 @@
 ---
-import "../css/global.css";
 import { site } from "../constants";
+import "../css/global.css";
 export interface Props {
 	title: string;
 	subtitle?: string;
@@ -37,7 +37,7 @@ const { lang = "en", title, description } = Astro.props as Props;
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="shortcut icon" href="/img/coffee-icon.png" />
 		<script
-			defer
+			is:inline
 			src="https://ep-umami.fly.dev/script.js"
 			data-website-id="8302b903-1052-49fa-a755-ba95c167ae6a"></script>
 		<!-- Maybe later

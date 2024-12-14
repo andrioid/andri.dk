@@ -1,6 +1,6 @@
 ---
 title: Tech Podcasts for 2024
-date: "2024-02-14"
+date: "2024-02-14T00:00:00.000Z"
 tags: ["tech"]
 ---
 

@@ -1,12 +1,12 @@
+import mdx from "@astrojs/mdx";
+import node from "@astrojs/node";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
-import node from "@astrojs/node";
 import { setLayout } from "./src/lib/remark-default-layout";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://andri.dk/",
@@ -37,7 +37,7 @@ export default defineConfig({
       da: "en",
     },
   },
-  output: "hybrid", // hybrid later
+  output: "server",
   adapter: node({
     mode: "middleware",
   }),

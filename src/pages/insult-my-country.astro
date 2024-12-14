@@ -3,100 +3,106 @@ import { actions } from "astro:actions";
 import { COUNTRIES } from "~/actions/insults/country-list";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
-const prerender = false;
 
 const { data } = await Astro.callAction(actions.insults.getCountry, {});
 const defaultCountry = data ?? undefined;
 ---
 
 <Layout title="Insult my country">
-  <PageContainer>
-    <div
-      class="p-8 bg-white rounded-md md:min-w-[40rem] self-center text-gray-900 max-w-xl"
-    >
-      <h1>Insult my country</h1>
-      <p>This is a silly parody experiment. Don't take it seriously.</p>
-      <div class="mt-4">
-        <select
-          id="country"
-          class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-andri focus:border-andri"
-        >
-          <option aria-placeholder="No country detected, select your own"
-          ></option>
-          {
-            COUNTRIES.map((country) => (
-              <option
-                selected={
-                  country.toLowerCase() === defaultCountry?.toLowerCase()
-                    ? true
-                    : false
-                }
-                value={country}
-              >
-                {country}
-              </option>
-            ))
-          }
-        </select>
-        <div class="mt-4">
-          <button
-            class="rounded-full bg-andri py-1 px-4 font-medium text-white disabled:bg-gray-100 disabled:text-gray-300"
-            >Bring it!</button
-          >
-        </div>
-      </div>
-      <div id="results" class="hidden mt-6 rounded-md p-4 border border-andri">
-      </div>
-      <img
-        class="hidden mt-4 rounded-md border border-andri"
-        id="result_image"
-      />
-    </div>
-  </PageContainer>
+	<PageContainer>
+		<div
+			class="p-8 bg-white rounded-md md:min-w-[40rem] self-center text-gray-900 max-w-xl"
+		>
+			<h1>Insult my country</h1>
+			<p>This is a silly parody experiment. Don't take it seriously.</p>
+			<div class="mt-4">
+				<select
+					id="country"
+					class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-andri focus:border-andri"
+				>
+					<option
+						aria-placeholder="No country detected, select your own"
+					></option>
+					{
+						COUNTRIES.map((country) => (
+							<option
+								selected={
+									country.toLowerCase() ===
+									defaultCountry?.toLowerCase()
+										? true
+										: false
+								}
+								value={country}
+							>
+								{country}
+							</option>
+						))
+					}
+				</select>
+				<div class="mt-4">
+					<button
+						class="rounded-full bg-andri py-1 px-4 font-medium text-white disabled:bg-gray-100 disabled:text-gray-300"
+						>Bring it!</button
+					>
+				</div>
+			</div>
+			<div
+				id="results"
+				class="hidden mt-6 rounded-md p-4 border border-andri"
+			>
+			</div>
+			<img
+				class="hidden mt-4 rounded-md border border-andri"
+				id="result_image"
+			/>
+		</div>
+	</PageContainer>
 </Layout>title
 
 <script>
-  import { actions } from "astro:actions";
-  import { COUNTRIES } from "~/actions/insults/country-list";
+	import { actions } from "astro:actions";
+	import { COUNTRIES } from "~/actions/insults/country-list";
 
-  const button = document.querySelector("button");
-  const results = document.querySelector("#results");
-  const resultImageEl = document.querySelector(
-    "#result_image",
-  ) as HTMLImageElement;
-  const countryEl = document.querySelector("#country") as HTMLSelectElement;
+	const button = document.querySelector("button");
+	const results = document.querySelector("#results");
+	const resultImageEl = document.querySelector(
+		"#result_image"
+	) as HTMLImageElement;
+	const countryEl = document.querySelector("#country") as HTMLSelectElement;
 
-  button?.addEventListener("click", async () => {
-    if (!button || !results) return; // No reason to continue
-    const country = countryEl
-      ? (countryEl.value as (typeof COUNTRIES)[number])
-      : undefined;
-    if (!country) {
-      alert("Can't insult your country, if you don't tell me what it is!");
-      return;
-    }
+	button?.addEventListener("click", async () => {
+		if (!button || !results) return; // No reason to continue
+		const country = countryEl
+			? (countryEl.value as (typeof COUNTRIES)[number])
+			: undefined;
+		if (!country) {
+			alert(
+				"Can't insult your country, if you don't tell me what it is!"
+			);
+			return;
+		}
 
-    button.setAttribute("disabled", "disabled");
-    results.classList.add("hidden");
-    resultImageEl.classList.add("hidden");
-    resultImageEl.src = "";
-    // Show alert pop-up with greeting from action
+		button.setAttribute("disabled", "disabled");
+		results.classList.add("hidden");
+		resultImageEl.classList.add("hidden");
+		resultImageEl.src = "";
+		// Show alert pop-up with greeting from action
 
-    const { data, error } = await actions.insults.insultMyCountry({
-      country,
-    });
-    button.removeAttribute("disabled");
+		const { data, error } = await actions.insults.insultMyCountry({
+			country,
+		});
+		button.removeAttribute("disabled");
 
-    if (error || data === undefined) {
-      results.innerHTML = "💩";
-      results.classList.remove("hidden");
-      return;
-    }
-    results.innerHTML = data.insult;
-    if (data.image) {
-      resultImageEl.src = data.image;
-    }
-    results.classList.remove("hidden");
-    resultImageEl.classList.remove("hidden");
-  });
+		if (error || data === undefined) {
+			results.innerHTML = "💩";
+			results.classList.remove("hidden");
+			return;
+		}
+		results.innerHTML = data.insult;
+		if (data.image) {
+			resultImageEl.src = data.image;
+		}
+		results.classList.remove("hidden");
+		resultImageEl.classList.remove("hidden");
+	});
 </script>
