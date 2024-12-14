@@ -27,6 +27,7 @@ RUN bun run build && bun run build:bin
 FROM debian:buster-slim as server
 COPY --from=build /app/app .
 COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules/html-escaper ./node_modules/html-escaper
 EXPOSE 3000
 ENV HOST=0.0.0.0
 ENV PORT=3000
