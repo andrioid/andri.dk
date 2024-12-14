@@ -1,61 +1,69 @@
 ---
+import { Icon } from "astro-icon/components";
+import Image from "astro/components/Image.astro";
+import BackgroundIcons from "src/pages/_cmp/background-icons.astro";
 import NavItems from "~/components/nav-items.astro";
 import ProfileIcon from "~/components/profile-icon.astro";
-import { Icon } from "astro-icon/components";
-import BackgroundIcons from "src/pages/_cmp/background-icons.astro";
-import Image from "astro/components/Image.astro";
-import andratar from "../../static/img/coffee-art.jpg";
 import { resumeRaw } from "~/lib/cv";
+import andratar from "../../static/img/coffee-art.jpg";
 
 type Props = {
-  isHome?: boolean;
+	isHome?: boolean;
 };
 
 const { isHome = false } = Astro.props;
 ---
 
 <div
-  class="flex flex-col h-dvh font-sans overflow-auto md:overflow-hidden bg-gradient-to-b from-andri to-black text-white"
+	class="flex flex-col h-dvh font-sans overflow-auto md:overflow-hidden bg-gradient-to-b from-andri to-black text-white"
 >
-  <BackgroundIcons />
-  <header class="p-4">
-    <nav class="flex justify-between items-center gap-4">
-      <div class="flex-1">
-        <a href="/" class="">
-          <div class="flex items-center flex-shrink-0 text-white mr-6">
-            <Image
-              alt="avatar"
-              src={andratar}
-              class="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
-            />
-            <span class="font-semibold text-xl tracking-tight inline-block">
-              {!isHome && <span class="drop-shadow-md">Andri</span>}
-            </span>
-          </div>
-        </a>
-      </div>
-      <div class="flex-5">
-        <ul
-          class="flex space-x-y topmenu flex-wrap gap-x-1 gap-y-4 justify-end text-sm"
-        >
-          <NavItems isHome={isHome} />
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <main class="flex-grow flex flex-col md:overflow-scroll">
-    <slot />
-  </main>
+	<BackgroundIcons />
+	<header class="p-4">
+		<nav class="flex justify-between items-center gap-4">
+			<div class="flex-1">
+				<a href="/" class="">
+					<div
+						class="flex items-center flex-shrink-0 text-white mr-6"
+					>
+						<Image
+							alt="avatar"
+							src={andratar}
+							class="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
+						/>
+						<span
+							class="font-semibold text-xl tracking-tight inline-block"
+						>
+							{
+								!isHome && (
+									<span class="drop-shadow-md">Andri</span>
+								)
+							}
+						</span>
+					</div>
+				</a>
+			</div>
+			<div class="flex-5">
+				<ul
+					class="flex space-x-y topmenu flex-wrap gap-x-1 gap-y-4 justify-end text-sm"
+				>
+					<NavItems isHome={isHome} />
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<main class="flex-grow flex flex-col md:overflow-scroll">
+		<slot />
+	</main>
 
-  <footer
-    id="contact"
-    class="relative p-4 flex justify-center text-4xl flex-shrink"
-  >
-    <a class="hover:text-hover transition-colors mr-4" href="/rss.xml">
-      <Icon name="tabler:rss" />
-      <span class="sr-only">Email</span>
-    </a>
+	<footer
+		id="contact"
+		class="relative p-4 flex justify-center text-4xl flex-shrink gap-2"
+	>
+		<a class="hover:text-hover transition-colors mr-2" href="/rss.xml">
+			<Icon name="tabler:rss" />
+			<span class="sr-only">Email</span>
+		</a>
 
-    {resumeRaw.basics.profiles.map((p) => <ProfileIcon profile={p} />)}
-  </footer>
+		{resumeRaw.basics.profiles.map((p) => <ProfileIcon profile={p} />)}
+	</footer>
 </div>
