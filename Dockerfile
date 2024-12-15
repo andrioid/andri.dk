@@ -22,6 +22,7 @@ ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
 RUN test -n ${DIRECTUS_API_TOKEN}
 RUN test -n ${DIRECTUS_URL}
 RUN bun run build && bun run build:bin
+RUN bun install --production
 
 # [SERVER]
 FROM debian:buster-slim as server
