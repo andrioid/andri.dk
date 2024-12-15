@@ -14,8 +14,8 @@
     "preview": "bunx astro preview",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "check": "astro check",
-    "build:bin": "bun build --compile --external html-escaper --outfile ./app server.mjs",
-    "bundle": "bun build --target bun --bundle --external html-escaper --outfile ./dist/weird-bun-bundle server.mjs"
+    "build:bin": "bun build --compile --packages external --outfile ./app server.mjs",
+    "bundle": "bun build --target bun --bundle --packages external --outfile ./dist/weird-bun-bundle server.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "4.0.2",

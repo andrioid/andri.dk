@@ -29,7 +29,7 @@ COPY --from=build /app/app .
 COPY --from=build /app/dist ./dist
 # There's a bug in where bun bundle messes up the html-escaper module
 # https://discord.com/channels/876711213126520882/1317424049890267137
-COPY --from=build /app/node_modules/html-escaper ./node_modules/html-escaper
+COPY --from=build /app/node_modules ./node_modules
 EXPOSE 3000
 ENV HOST=0.0.0.0
 ENV PORT=3000
