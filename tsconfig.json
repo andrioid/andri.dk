@@ -9,7 +9,8 @@
       "@lib/*": ["src/lib/*"]
     },
     "noUnusedLocals": false,
-    "verbatimModuleSyntax": false
+    "verbatimModuleSyntax": false,
+    "strictNullChecks": true
   },
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
