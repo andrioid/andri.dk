@@ -22,7 +22,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/setup-buildx-action@v3
       - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v5
@@ -33,9 +32,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           build-args: |
             MODEL_BOX_API_KEY=${{ secrets.MODEL_BOX_API_KEY }}
   deploy:
+    name: Deploy to Fly.io
     needs: build
     uses: ./.github/workflows/deploy-fly.yml
     with:
