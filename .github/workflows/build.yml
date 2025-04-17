@@ -10,6 +10,8 @@ jobs:
   build:
     name: Build image
     runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.meta.outputs.tags }}
     permissions:
       contents: read
       packages: write
@@ -47,6 +49,6 @@ jobs:
     uses: ./.github/workflows/deploy-fly.yml
     with:
       app_name: andridk
-      tag: ${{ github.sha }}
+      image: ${{ needs.build.outputs.image }}
     secrets:
       FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

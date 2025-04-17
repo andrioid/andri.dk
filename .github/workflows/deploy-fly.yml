@@ -7,17 +7,17 @@ on:
         type: string
         description: "Name of the Fly app"
         required: true
-      tag:
+      image:
         type: string
-        description: "Tag of the Docker image"
+        description: "Image to pull and deploy"
         default: latest
     secrets:
       FLY_API_TOKEN:
         required: true
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-  IMAGE_GHCR: ghcr.io/${{ github.repository }}:${{ inputs.tag }}
-  IMAGE_FLY: registry.fly.io/${{ inputs.app_name }}:${{ inputs.tag }}
+  IMAGE_GHCR: ${{ inputs.image }}
+  IMAGE_FLY: registry.fly.io/${{ inputs.app_name }}:${{ github.sha }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
