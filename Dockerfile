@@ -1,34 +1,34 @@
-# [1] Base Image
-FROM oven/bun:1 as base
+FROM jdxcode/mise:latest AS tools
 
-# [INSTALL] Dependencies
-FROM base as install
+RUN mise use -g bun@1 node@lts
+
+# [DEPENDENCIES]
+FROM tools AS dependencies
+
 WORKDIR /app
 COPY package.json bun.lockb ./
 # Needed for workspace deps
 COPY packages ./packages/
 RUN bun install --frozen-lockfile
 
-# [2] Build image (including dev deps)
-FROM install as build
+# [BUILD]
+FROM dependencies AS build
+
 WORKDIR /app
-
 COPY . .
-RUN bun install --frozen-lockfile
+RUN bun run build && bun run build:bin
+RUN bun install --frozen-lockfile --production
 
+# [SERVER]
+FROM debian:buster-slim AS server
+# For the AI experiments
 ARG MODEL_BOX_API_KEY
 ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
 
-RUN test -n ${DIRECTUS_API_TOKEN}
-RUN test -n ${DIRECTUS_URL}
-RUN bun run build && bun run build:bin
-RUN bun install --production
-
-# [SERVER]
-FROM debian:buster-slim as server
 COPY --from=build /app/app .
 COPY --from=build /app/dist ./dist
 # There's a bug in where bun bundle messes up the html-escaper module
+# so we ship all packages as external and therefore require node_modules
 # https://discord.com/channels/876711213126520882/1317424049890267137
 COPY --from=build /app/node_modules ./node_modules
 EXPOSE 3000
