@@ -10,7 +10,7 @@ on:
       image:
         type: string
         description: "Image to pull and deploy"
-        default: latest
+        required: true
     secrets:
       FLY_API_TOKEN:
         required: true
@@ -20,5 +20,5 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --image ${{ inputs.image }} --app ${{ inputs.app_name }}
+      - uses: superfly/flyctl-actions/setup-flyctl@v1
+      - run: flyctl deploy --app ${{ inputs.app_name }} --image ${{ inputs.image }}
