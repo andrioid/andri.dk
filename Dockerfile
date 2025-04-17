@@ -21,7 +21,7 @@ RUN bun install --frozen-lockfile --production
 
 # [SERVER]
 FROM debian:buster-slim AS server
-# For the AI experiments
+
 ARG MODEL_BOX_API_KEY
 ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
 
