@@ -16,11 +16,9 @@ on:
         required: true
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-  IMAGE_GHCR: ${{ inputs.image }}
-  IMAGE_FLY: registry.fly.io/${{ inputs.app_name }}:sha-${{ github.sha }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: superfly/flyctl-actions/setup-flyctl@v1
-      - run: flyctl deploy --image ${{ env.IMAGE_FLY }} --app ${{ inputs.app_name }}
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --image ${{ inputs.image }} --app ${{ inputs.app_name }}
