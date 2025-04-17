@@ -36,12 +36,8 @@ jobs:
           build-args: |
             MODEL_BOX_API_KEY=${{ secrets.MODEL_BOX_API_KEY }}
   deploy:
-    name: Deploy to Fly.io
-    runs-on: ubuntu-latest
     needs: build
-    steps:
-      - uses: actions/checkout@v4
-      - uses: andrioid/andri.dk/.github/workflows/deploy-fly.yml@${{ github.sha }}
-        with:
-          app_name: andridk
-          tag: ${{ github.sha }}
+    uses: andrioid/andri.dk/.github/workflows/deploy-fly.yml@${{ github.sha }}
+    with:
+      app_name: andridk
+      tag: ${{ github.sha }}
