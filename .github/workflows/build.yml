@@ -41,3 +41,5 @@ jobs:
     with:
       app_name: andridk
       tag: ${{ github.sha }}
+    secrets:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
