@@ -37,7 +37,7 @@ jobs:
             MODEL_BOX_API_KEY=${{ secrets.MODEL_BOX_API_KEY }}
   deploy:
     needs: build
-    uses: andrioid/andri.dk/.github/workflows/deploy-fly.yml@master
+    uses: andrioid/andri.dk/.github/workflows/deploy-fly.yml@v1
     with:
       app_name: andridk
       tag: ${{ github.sha }}

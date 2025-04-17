@@ -2,6 +2,7 @@ name: Deploy to Fly.io
 
 on:
   workflow_call:
+    version: 1
     inputs:
       app_name:
         type: string
@@ -22,7 +23,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: superfly/flyctl-actions/setup-flyctl@v1.5
+      - uses: superfly/flyctl-actions/setup-flyctl@v1
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
