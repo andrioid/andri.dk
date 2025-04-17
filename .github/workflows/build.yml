@@ -31,7 +31,7 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ steps.meta.outputs.tags }} registry.fly.io/andridk:${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             MODEL_BOX_API_KEY=${{ secrets.MODEL_BOX_API_KEY }}
