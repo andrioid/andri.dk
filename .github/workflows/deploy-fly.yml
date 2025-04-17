@@ -2,7 +2,6 @@ name: Deploy to Fly.io
 
 on:
   workflow_call:
-    version: 1
     inputs:
       app_name:
         type: string
