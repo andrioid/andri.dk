@@ -41,7 +41,7 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v4
-      - uses: .github/workflows/deploy-fly.yml
+      - uses: andrioid/andri.dk/.github/workflows/deploy-fly.yml
         with:
           app_name: andridk
           tag: ${{ github.sha }}
