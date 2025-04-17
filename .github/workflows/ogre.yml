@@ -1,4 +1,4 @@
-name: Fly Deploy
+name: Self-Hosting on Ogre
 on:
   push:
     branches:
@@ -26,7 +26,7 @@ jobs:
       - uses: docker/setup-buildx-action@v3
       - name: Extract metadata for Docker
         id: meta
-        uses: docker/metadata-action@v6
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - uses: docker/build-push-action@v6
