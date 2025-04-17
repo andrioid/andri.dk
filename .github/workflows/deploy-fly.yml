@@ -21,4 +21,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: superfly/flyctl-actions/setup-flyctl@v1
-      - run: flyctl deploy --app ${{ inputs.app_name }} --image ${{ inputs.image }}
+      - run: flyctl deploy --app ${{ inputs.app_name }} --image registry.fly.io/andridk:master
