@@ -25,6 +25,8 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: superfly/flyctl-actions/setup-flyctl@v1
+      - run: flyctl auth docker
       - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v5
