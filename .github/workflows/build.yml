@@ -29,7 +29,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref
+            type=ref,event=branch
+            type=ref,event=pr
             type=sha
       - uses: docker/build-push-action@v6
         with:
