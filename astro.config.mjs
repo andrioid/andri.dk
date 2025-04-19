@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
 import { setLayout } from "./src/lib/remark-default-layout";
 
@@ -41,4 +41,9 @@ export default defineConfig({
   adapter: node({
     mode: "middleware",
   }),
+  env: {
+    schema: {
+      MODEL_BOX_API_KEY: envField.string({ context: "server", access: "public"})
+    }
+  }
 });
