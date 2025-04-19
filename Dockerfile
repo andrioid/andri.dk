@@ -14,6 +14,10 @@ RUN bun install --frozen-lockfile
 # [BUILD]
 FROM dependencies AS build
 
+ARG MODEL_BOX_API_KEY
+ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
+
+
 WORKDIR /app
 COPY . .
 RUN bun run build && bun run build:bin
