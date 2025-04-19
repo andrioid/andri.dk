@@ -38,7 +38,7 @@ jobs:
           echo "$OGRE_GITOPS_HOST_FINGERPRINT" >> ~/.ssh/known_hosts
       - name: SSH Command Runner
         run: |
-          ssh ${GITOPS_USER}@${GITOPS_HOST} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null << 'EOF'
+          ssh gitops@ogre.scrolls.org << 'EOF'
               set -e
               set -x
               set-container andridk ${IMAGE_TAG}
