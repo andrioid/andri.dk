@@ -35,5 +35,5 @@ jobs:
           ssh gitops@ogre.scrolls.org << 'EOF'
               set -e
               set -x
-              set-container andridk "{{ github.sha}}"
+              set-container andridk "${{ github.sha}}"
           EOF
