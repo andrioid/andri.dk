@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       image: ${{ steps.meta.outputs.tags }}
-      version: ${{ steps.meta.outputs.version }}
     permissions:
       contents: read
       packages: write
@@ -37,9 +36,9 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             registry.fly.io/andridk
           tags: |
-            type=sha,format:long
             type=ref,event=branch
             type=ref,event=pr
+            ${{ github.sha }}
 
       - uses: docker/build-push-action@v6
         with:
@@ -63,8 +62,6 @@ jobs:
     name: Deploy to Ogre
     needs: build
     uses: ./.github/workflows/deploy-ogre.yml
-    with:
-      image_tag: ${{ needs.build.outputs.version }}
     secrets:
       GITOPS_HOST: ${{ secrets.GITOPS_HOST }}
       GITOPS_USER: ${{ secrets.GITOPS_USER }}
