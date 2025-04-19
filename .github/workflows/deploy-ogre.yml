@@ -16,6 +16,13 @@ on:
         required: true
       OGRE_GITOPS_HOST_FINGERPRINT:
         required: true
+env:
+  GITOPS_HOST: ${{ secrets.GITOPS_HOST }}
+  GITOPS_USER: ${{ secrets.GITOPS_USER }}
+  OGRE_GITOPS_KEY: ${{ secrets.OGRE_GITOPS_KEY }}
+  OGRE_GITOPS_HOST_FINGERPRINT: ${{ secrets.OGRE_GITOPS_HOST_FINGERPRINT }}
+  IMAGE_TAG: ${{ inputs.image_tag }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,13 +33,13 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.OGRE_GITOPS_KEY }}" > ~/.ssh/id_rsa
+          echo "$OGRE_GITOPS_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          echo "${{ secrets.OGRE_GITOPS_HOST_FINGERPRINT }}" >> ~/.ssh/known_hosts
+          echo "$OGRE_GITOPS_HOST_FINGERPRINT" >> ~/.ssh/known_hosts
       - name: SSH Command Runner
         run: |
-          ssh ${{ secrets.GITOPS_USER }}@${{ secrets.GITOPS_HOST }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null << 'EOF'
+          ssh ${GITOPS_USER}@${GITOPS_HOST} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null << 'EOF'
               set -e
               set -x
-              set-container andridk ${{ inputs.image_tag }}
+              set-container andridk ${IMAGE_TAG}
           EOF
