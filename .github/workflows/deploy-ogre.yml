@@ -19,8 +19,6 @@ env:
 
 jobs:
   deploy:
-    env:
-      SHA: ${{ github.sha }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -34,9 +32,8 @@ jobs:
           echo "$OGRE_GITOPS_HOST_FINGERPRINT" >> ~/.ssh/known_hosts
       - name: SSH Command Runner
         run: |
-          IMAGE_TAG="$SHA"
           ssh gitops@ogre.scrolls.org << 'EOF'
               set -e
               set -x
-              set-container andridk $SHA
+              set-container andridk "{{ github.sha}}"
           EOF
