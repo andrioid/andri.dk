@@ -1,0 +1,38 @@
+name: Deploy to Ogre
+
+on:
+  workflow_call:
+    inputs:
+      image_tag:
+        type: string
+        description: "Tag of the image to deploy"
+        required: true
+    secrets:
+      GITOPS_HOST:
+        required: true
+      GITOPS_USER:
+        required: true
+      OGRE_GITOPS_KEY:
+        required: true
+      OGRE_GITOPS_HOST_FINGERPRINT:
+        required: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.OGRE_GITOPS_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.OGRE_GITOPS_HOST_FINGERPRINT }}" >> ~/.ssh/known_hosts
+      - name: SSH Command Runner
+        run: |
+          ssh ${{ secrets.GITOPS_USER }}@${{ secrets.GITOPS_HOST }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null << 'EOF'
+              set -e
+              set -x
+              set-container andridk ${{ inputs.image_tag }}
+          EOF
