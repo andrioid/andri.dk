@@ -38,5 +38,5 @@ jobs:
           ssh gitops@ogre.scrolls.org << 'EOF'
               set -e
               set -x
-              set-container andridk ${IMAGE_TAG}
+              set-container andridk $SHA
           EOF
