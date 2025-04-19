@@ -28,6 +28,7 @@ RUN bun install --frozen-lockfile --production
 FROM build AS server
 
 ARG MODEL_BOX_API_KEY
+RUN test -n "$MODEL_BOX_API_KEY" || (echo "MODEL_BOX_API_KEY is required" && exit 1)
 ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
 
 # There's a bug in where bun bundle messes up the html-escaper module
