@@ -23,7 +23,7 @@ export function PaskaEgg() {
 		setIsCracked(true);
 		const { data, error } = await actions.paskar.malshattur();
 		if (data) {
-			console.log("Data: ", data.response);
+			console.log("Data: ", data);
 			setText(data.response);
 			setCatagory(data.catagory);
 		} else if (error) {

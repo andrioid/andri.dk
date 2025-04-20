@@ -16,16 +16,22 @@ const efnisflokkar: Array<string> = [
 	"Fjölskyldan",
 ];
 
+const models: Array<string> = [
+	"google/gemini-2.5-flash-preview",
+	"openai/o4-mini",
+	"anthropic/claude-3-haiku",
+];
+
 export const paskar = {
 	malshattur: defineAction({
 		handler: async () => {
 			const randomEfnisflokkur =
 				efnisflokkar[Math.floor(Math.random() * efnisflokkar.length)];
+			const randomModel =
+				models[Math.floor(Math.random() * models.length)];
 
 			const response = await textPrompt(randomEfnisflokkur, {
-				//model: "google/gemini-2.5-flash-preview",
-				model: "openai/o4-mini",
-				//model: "google/gemini-2.5-pro",
+				model: randomModel,
 				messages: [
 					{
 						role: "system",
@@ -39,12 +45,13 @@ export const paskar = {
 						].join("."),
 					},
 				],
-				temperature: 1,
+				//temperature: 1,
 			});
 
 			return {
 				response,
 				catagory: randomEfnisflokkur,
+				model: randomModel,
 			};
 		},
 	}),
