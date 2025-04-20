@@ -16,6 +16,7 @@ env:
   GITOPS_USER: ${{ secrets.GITOPS_USER }}
   OGRE_GITOPS_KEY: ${{ secrets.OGRE_GITOPS_KEY }}
   OGRE_GITOPS_HOST_FINGERPRINT: ${{ secrets.OGRE_GITOPS_HOST_FINGERPRINT }}
+  SSH_OPTS: "-o ConnectTimeout=5 ConnectionAttempts=3"
 
 jobs:
   deploy:
