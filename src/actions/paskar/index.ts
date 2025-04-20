@@ -5,11 +5,15 @@ const efnisflokkar: Array<string> = [
 	"Stjórnmál",
 	"Fiskveiðar",
 	"Tæknimál",
-	"Náttúra",
-	"Ferðamennska",
+	"Íslensk náttúra",
 	"Menning",
 	"Iðnaðarmenn",
-	"Börn",
+	"Fólkið í landinu",
+	"Tölvuleikir",
+	"Töpuð viska",
+	"Biblían",
+	"Íþróttir",
+	"Fjölskyldan",
 ];
 
 export const paskar = {
@@ -19,21 +23,27 @@ export const paskar = {
 				efnisflokkar[Math.floor(Math.random() * efnisflokkar.length)];
 
 			const response = await textPrompt(randomEfnisflokkur, {
-				model: "google/gemini-2.5-flash-preview",
+				//model: "google/gemini-2.5-flash-preview",
+				model: "google/gemini-2.5-pro",
 				messages: [
 					{
 						role: "system",
 						content: [
 							"Þú ert glettinn en duglegur íslenskur málfræðingur.",
-							"Málshættir eru fullir af visku sem eldri kynslóðir hafa miðlað til okkar. Þeir eru oft notaðir til að veita ráð, leiðbeina eða skýra ákveðna lífsreynslu. Þeir eru einnig oft notaðir í skáldskap og ljóðum til að bæta dýrmætum merkingum og fegurð við textann.",
-							"Þitt starf er að svara öllu með stuttum málshætti tengdum spurningunni. Svaraðu með einum málshætti í einni setningu.",
+							"Málshættir eru stuttar setningar skrifaðar í eldra og oft tvítengdu máli og opnir til túlkunar",
+							"Þú ert að skrifa málshátt sem tengist ákveðnu efnisflokki.",
+							"Þú skrifar rétta íslensku og kannt að fallbeygja orð",
+							"Þitt starf er að svara með stuttum málshætti tengdum efnislokki spurningarinnar",
+							"Svaraðu með einum málshætti í einni setningu.",
 						].join("."),
 					},
 				],
+				temperature: 2,
 			});
 
 			return {
 				response,
+				catagory: randomEfnisflokkur,
 			};
 		},
 	}),
