@@ -28,7 +28,12 @@ export const PaperScroll: FC<PaperScrollProps> = ({
 		const link = document.createElement("a");
 		link.href = dataUrl;
 		link.download = "malshattur.png";
-		link.click();
+		//link.click();
+		const newTab = window.open();
+		if (newTab) {
+			newTab.document.body.innerHTML = `<img src="${dataUrl}" alt="Málsháttur" />`;
+			newTab.document.title = "Málsháttur";
+		}
 	}
 
 	return (
