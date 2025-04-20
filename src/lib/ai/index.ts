@@ -25,15 +25,20 @@ export async function textPrompt(
 		role: "user",
 		content: userPrompt,
 	});
-	const data = await client.chat.completions.create({
-		...body,
-		//model: "meta-llama/llama-3.2-3b-instruct",
-		model: "deepseek/deepseek-chat",
-		messages,
-		temperature: 1.5,
-		max_tokens: 150,
-		max_completion_tokens: 100,
-	});
+	const data = await client.chat.completions.create(
+		{
+			...body,
+			//model: "meta-llama/llama-3.2-3b-instruct",
+			model: "deepseek/deepseek-chat",
+			messages,
+			temperature: 1.5,
+			max_tokens: 150,
+			max_completion_tokens: 100,
+		},
+		{
+			timeout: 30 * 1000,
+		},
+	);
 
 	const msg = data.choices[0].message?.content;
 	if (!msg)

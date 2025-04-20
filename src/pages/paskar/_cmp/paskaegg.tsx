@@ -64,7 +64,7 @@ export function PaskaEgg() {
 			)}
 			{/* Egg bottom half */}
 			<path
-				d="M40 150 C40 230, 160 230, 160 150 C160 70, 100 20, 100 20 C100 20, 40 70, 40 150"
+				d="M40 150 C40 230, 160 230, 160 150 C160 90, 100 50, 100 50 C100 50, 40 90, 40 150"
 				fill="#8B4513"
 				stroke="#643200"
 				strokeWidth="4"
@@ -77,7 +77,7 @@ export function PaskaEgg() {
 			/>
 			{/* Egg top half */}
 			<path
-				d="M40 150 C40 70, 100 20, 100 20 C100 20, 160 70, 160 150"
+				d="M40 150 C40 90, 100 50, 100 50 C100 50, 160 90, 160 150"
 				fill="#8B4513"
 				stroke="#643200"
 				strokeWidth="4"
