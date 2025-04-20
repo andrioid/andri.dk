@@ -6,20 +6,31 @@ const efnisflokkar: Array<string> = [
 	"Fiskveiðar",
 	"Tæknimál",
 	"Íslensk náttúra",
-	"Menning",
+	"Bókmenntir",
+	"Tónlist",
+	"Tómstundir",
+	"Skemmtun",
 	"Iðnaðarmenn",
 	"Fólkið í landinu",
 	"Tölvuleikir",
-	"Töpuð viska",
-	"Biblían",
+	"Viska",
+	"Kristin trú",
 	"Íþróttir",
 	"Fjölskyldan",
+	"Kærleikur",
+	"Vinátta",
+	"Vísindi",
+	"Yngri kynslóðin",
+	"Eldri kynslóðin",
+	"Samvera",
 ];
 
 const models: Array<string> = [
 	"google/gemini-2.5-flash-preview",
 	"openai/o4-mini",
-	"anthropic/claude-3-haiku",
+	//"openai/o1-preview",
+	//"google/gemini-2.5-pro",
+	"gpt-4-turbo",
 ];
 
 export const paskar = {
