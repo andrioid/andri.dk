@@ -43,7 +43,8 @@ export const PaperScroll: FC<PaperScrollProps> = ({
 				)}
 			>
 				<span className="font-medium text-left">{text}</span>
-				<div className="text-xs text-gray-500 flex justify-end">
+				<div className="text-xs text-gray-400 flex justify-between">
+					<span>andri.dk/paskar</span>
 					<span>{efnisflokkur}</span>
 				</div>
 			</div>
