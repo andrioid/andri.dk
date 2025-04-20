@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "bunx --bun astro dev",
     "dev:node": "bunx astro dev",
-    "start": "bun --bun server.mjs",
-    "build": "bunx astro build",
+    "start": "node server.mjs",
+    "build": "astro build",
     "format": "prettier --write .",
     "verify:formatting": "prettier . --check",
     "verify:types": "tsc --noEmit",
