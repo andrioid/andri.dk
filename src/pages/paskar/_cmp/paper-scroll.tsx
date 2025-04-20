@@ -31,6 +31,7 @@ export const PaperScroll: FC<PaperScrollProps> = ({
 		//link.click();
 		const newTab = window.open();
 		if (newTab) {
+			newTab.document.location = dataUrl;
 			newTab.document.body.innerHTML = `<img src="${dataUrl}" alt="Málsháttur" />`;
 			newTab.document.title = "Málsháttur";
 		}
