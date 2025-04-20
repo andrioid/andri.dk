@@ -29,9 +29,6 @@ export async function textPrompt(
 		{
 			model: "deepseek/deepseek-chat",
 			messages,
-			temperature: 1.5,
-			max_tokens: 150,
-			max_completion_tokens: 100,
 			...body,
 		},
 		{

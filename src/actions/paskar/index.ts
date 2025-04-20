@@ -24,7 +24,8 @@ export const paskar = {
 
 			const response = await textPrompt(randomEfnisflokkur, {
 				//model: "google/gemini-2.5-flash-preview",
-				model: "google/gemini-2.5-pro",
+				model: "openai/o4-mini",
+				//model: "google/gemini-2.5-pro",
 				messages: [
 					{
 						role: "system",
@@ -38,7 +39,7 @@ export const paskar = {
 						].join("."),
 					},
 				],
-				temperature: 2,
+				temperature: 1,
 			});
 
 			return {
