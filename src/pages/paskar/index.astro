@@ -1,0 +1,32 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import PageContainer from "~/layouts/page-container.astro";
+import { PaskaEgg } from "./_cmp/paskaegg.tsx";
+---
+
+<Layout title="Páskamálshættir">
+	<PageContainer>
+		<div
+			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex justify-center md:flex-grow"
+		>
+			<div
+				class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl"
+			>
+				<article
+					class="mb-6 prose prose-sm md:prose-base prose-li:m-0 prose-headings:mb-1 prose-headings:m-0"
+				>
+					<h1 class="text-3xl font-bold m2-4">Páskamálshættir</h1>
+					<p>
+						Þreytt á sömu málsháttunum ár eftir ár? Prófum eitthvað
+						nýtt...
+					</p>
+					<div class="mt-6">
+						<PaskaEgg client:only="react" />
+					</div>
+				</article>
+
+				<p>&nbsp;</p>
+			</div>
+		</div>
+	</PageContainer>
+</Layout>
