@@ -42,7 +42,7 @@ export const PaperScroll: FC<PaperScrollProps> = ({
 			<div
 				ref={divRef}
 				className={twMerge(
-					"m-6 flex-col gap-2 bg-yellow-200 min-h-10 py-4 px-10 drop-shadow-2xl transition-[width] duration-800 ease-in-out rotate-1",
+					"flex-col gap-2 bg-yellow-200 min-h-10 py-4 px-10 drop-shadow-2xl transition-[width] duration-800 ease-in-out rotate-1",
 					"border border-gray-300",
 					!!text ? "w-auto min-w-96 flex" : "w-0 hidden",
 					className,
