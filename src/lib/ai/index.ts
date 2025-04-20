@@ -27,13 +27,12 @@ export async function textPrompt(
 	});
 	const data = await client.chat.completions.create(
 		{
-			...body,
-			//model: "meta-llama/llama-3.2-3b-instruct",
 			model: "deepseek/deepseek-chat",
 			messages,
 			temperature: 1.5,
 			max_tokens: 150,
 			max_completion_tokens: 100,
+			...body,
 		},
 		{
 			timeout: 30 * 1000,
