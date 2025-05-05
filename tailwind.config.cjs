@@ -45,6 +45,10 @@ module.exports = {
         headline: ["Montserrat Variable", defaultTheme.fontFamily.headline],
         mono: ["Source Code Pro variable", defaultTheme.fontFamily.mono],
       },
+
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      }
     },
   },
   variants: {
