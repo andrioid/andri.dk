@@ -1,5 +1,4 @@
 name: Deploy to Fly.io
-
 on:
   workflow_call:
     inputs:
