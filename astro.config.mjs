@@ -2,7 +2,7 @@ import mdx from "@astrojs/mdx";
 import node from "@astrojs/node";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import { defineConfig, envField } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
@@ -10,7 +10,7 @@ import { setLayout } from "./src/lib/remark-default-layout";
 
 export default defineConfig({
   site: "https://andri.dk/",
-  integrations: [react(), mdx(), tailwind(), icon(), sitemap()],
+  integrations: [react(), mdx(), icon(), sitemap()],
   trailingSlash: "ignore",
   markdown: {
     drafts: true,
@@ -18,6 +18,7 @@ export default defineConfig({
     shikiConfig: { theme: "github-dark" },
   },
   vite: {
+    plugins: [tailwindcss()],
     ssr: {
       external: ["svgo", "@react-pdf/renderer"],
       noExternal: ["path-to-regexp"],
@@ -29,21 +30,17 @@ export default defineConfig({
   i18n: {
     defaultLocale: "en",
     locales: ["en", "da", "is"],
-    routing: {
-      prefixDefaultLocale: false,
-    },
-    fallback: {
-      is: "en",
-      da: "en",
-    },
+    routing: { prefixDefaultLocale: false },
+    fallback: { is: "en", da: "en" },
   },
   output: "server",
-  adapter: node({
-    mode: "middleware",
-  }),
+  adapter: node({ mode: "middleware" }),
   env: {
     schema: {
-      MODEL_BOX_API_KEY: envField.string({ context: "server", access: "public"})
-    }
-  }
+      MODEL_BOX_API_KEY: envField.string({
+        context: "server",
+        access: "public",
+      }),
+    },
+  },
 });

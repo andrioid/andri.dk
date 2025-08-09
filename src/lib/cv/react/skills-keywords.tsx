@@ -1,5 +1,6 @@
 import { Text } from "@react-pdf/renderer";
 import { Skill } from "../types";
+import { JSX } from "astro/jsx-runtime";
 
 export function SkillKeywords({ skill }: { skill: Skill }) {
   let out: JSX.Element[] = [];

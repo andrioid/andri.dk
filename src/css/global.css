@@ -1,8 +1,27 @@
+@import "tailwindcss";
 @import "@fontsource-variable/montserrat";
 @import "@fontsource-variable/source-code-pro";
 
-@tailwind base;
-@tailwind components;
+@theme {
+  --color-andri: #59b4ff;
+  --color-hover: theme(colors.pink.500);
+
+  --spacing-300: 300px;
+  --spacing-350: 350px;
+
+  --height-half-screen: 50vh;
+  --height-one-third-screen: 33vh;
+
+  --width-none: 0px;
+  --width-half-screen: 50vw;
+  --width-one-third-screen: 33vw;
+
+  --font-sans: "Montserrat Variable";
+  --font-headline: "Montserrat Variable";
+  --font-mono: "Source Code Pro Variable";
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+}
 
 .andri-tag {
   @apply inline-block border-gray-600 border rounded-md px-3 py-1 text-sm font-semibold lowercase;
@@ -29,7 +48,7 @@ a.link {
   }
 }
 .topmenu li a {
-  @apply bg-sky-700 rounded-md py-2 px-3 text-white bg-opacity-80 hover:bg-white hover:text-sky-900 font-semibold;
+  @apply bg-sky-700/80 rounded-md py-2 px-3 text-white hover:bg-white hover:text-sky-900 font-semibold;
 }
 
 .btn {
@@ -45,8 +64,6 @@ a.link {
     @apply text-gray-900 font-bold text-xl md:text-4xl mb-2;
   }
 }
-
-@tailwind utilities;
 
 @keyframes spin {
   from {
