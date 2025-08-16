@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@fontsource-variable/montserrat";
 @import "@fontsource-variable/source-code-pro";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-andri: #59b4ff;
@@ -17,9 +18,7 @@
   --width-one-third-screen: 33vw;
 
   --font-sans: "Montserrat Variable";
-  --font-headline: "Montserrat Variable";
   --font-mono: "Source Code Pro Variable";
-
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
 }
 
