@@ -18,6 +18,8 @@ jobs:
       packages: write
       attestations: write
       id-token: write
+    env:
+      MODEL_BOX_API_KEY: ${{ secrets.MODEL_BOX_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
