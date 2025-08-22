@@ -21,6 +21,8 @@ RUN npm ci
 # Note: We tried this single static file, but bun messes up ssr
 FROM dependencies AS server
 COPY . .
+# If dist/ is missing, abort
+RUN if [ ! -d dist ]; then echo "dist/ directory is missing. Please run 'npm run build' first." && exit 1; fi
 
 # There's a bug in where bun bundle messes up the html-escaper module
 # so we ship all packages as external and therefore require node_modules
