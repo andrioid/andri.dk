@@ -12,12 +12,14 @@
     "verify:formatting": "prettier . --check",
     "verify:types": "tsc --noEmit",
     "preview": "bunx astro preview",
+    "md-social": "md-social",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "check": "astro check",
     "build:bin": "bun build --compile --packages external --outfile ./app server.mjs",
     "bundle": "bun build --target bun --bundle --packages external --outfile ./dist/weird-bun-bundle server.mjs"
   },
   "dependencies": {
+    "@andrioid/md-social": "^0.0.1-053d1d0",
     "@astrojs/mdx": "^4.3.3",
     "@astrojs/node": "^9.4.0",
     "@astrojs/react": "^4.3.0",

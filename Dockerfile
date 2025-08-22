@@ -1,6 +1,9 @@
+# Note: This doesnt build anything, just sets up for hosting
 FROM jdxcode/mise:latest AS tools
-
-RUN mise use -g node@lts
+WORKDIR /app/mise
+COPY mise .
+RUN mise trust
+RUN mise install
 
 # [DEPENDENCIES]
 FROM tools AS dependencies
@@ -11,23 +14,10 @@ COPY package.json package-lock.json ./
 COPY packages ./packages/
 RUN npm ci
 
-# [BUILD]
-FROM dependencies AS build
-
-ARG MODEL_BOX_API_KEY
-ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
-
-
-WORKDIR /app
-COPY . .
-RUN npm run build
 # [SERVER]
 # Note: We tried this single static file, but bun messes up ssr
-FROM build AS server
-
-ARG MODEL_BOX_API_KEY
-RUN test -n "$MODEL_BOX_API_KEY" || (echo "MODEL_BOX_API_KEY is required" && exit 1)
-ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
+FROM dependencies AS server
+COPY . .
 
 # There's a bug in where bun bundle messes up the html-escaper module
 # so we ship all packages as external and therefore require node_modules
