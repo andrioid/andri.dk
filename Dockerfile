@@ -1,5 +1,8 @@
 # Note: This doesnt build anything, just sets up for hosting
 FROM jdxcode/mise:latest AS tools
+RUN useradd -m -u 1000 app && mkdir -p /app/mise && chown app:app -R /app && mkdir -p /mise && chown app:app -R /mise
+USER app
+
 WORKDIR /app/mise
 COPY mise .
 RUN mise trust
@@ -25,6 +28,5 @@ COPY . .
 EXPOSE 3000
 ENV HOST=0.0.0.0
 ENV PORT=3000
-USER 1000:1000
 ENTRYPOINT [ "npm" ]
 CMD ["run", "start"]
