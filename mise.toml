@@ -1,0 +1,5 @@
+[tools]
+node = "lts"
+
+[task_config]
+includes = ["scripts", "tasks"]

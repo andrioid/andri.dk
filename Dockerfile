@@ -1,16 +1,14 @@
 # Note: This doesnt build anything, just sets up for hosting
 FROM jdxcode/mise:latest AS tools
-RUN useradd -m -u 1000 app && mkdir -p /app/mise && chown app:app -R /app && mkdir -p /mise && chown app:app -R /mise
-USER app
-
-WORKDIR /app/mise
-COPY mise .
+COPY mise.toml .
 RUN mise trust
 RUN mise install
 
 # [DEPENDENCIES]
 FROM tools AS dependencies
 
+RUN useradd -m -u 1000 app && mkdir -p /app && chown app:app /app
+USER app
 WORKDIR /app
 COPY package.json package-lock.json ./
 # Needed for workspace deps
