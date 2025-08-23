@@ -12,7 +12,7 @@
     "verify:formatting": "prettier . --check",
     "verify:types": "tsc --noEmit",
     "preview": "bunx astro preview",
-    "md-social": "md-social",
+    "md-social": "md-social src/content/blog",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "check": "astro check",
     "build:bin": "bun build --compile --packages external --outfile ./app server.mjs",

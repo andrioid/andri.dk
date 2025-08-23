@@ -9,7 +9,7 @@ env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
   build:
-    name: Build & deploy
+    name: Build
     runs-on: ubuntu-latest
     outputs:
       image: ${{ steps.meta.outputs.tags }}
@@ -70,3 +70,18 @@ jobs:
       GITOPS_USER: ${{ secrets.GITOPS_USER }}
       OGRE_GITOPS_KEY: ${{ secrets.OGRE_GITOPS_KEY }}
       OGRE_GITOPS_HOST_FINGERPRINT: ${{ secrets.OGRE_GITOPS_HOST_FINGERPRINT }}
+  md-social:
+    name: md-social
+    needs:
+      - deploy-fly
+      - deploy-ogre
+    runs-on: ubuntu-latest
+    env:
+      BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+      BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+      MD_BASE_URL: https://andri.dk/blog
+      DEBUG: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+      - run: npm ci && npm run md-social
