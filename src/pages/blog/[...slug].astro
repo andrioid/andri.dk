@@ -1,6 +1,7 @@
 ---
 // Find all blog posts to generate
-import { render } from "astro:content";
+import { CollectionEntry, render } from "astro:content";
+import { BlueSkyInteractions } from "~/components/bluesky-interactions";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
 import { getPost } from "~/lib/cms";
@@ -10,9 +11,9 @@ if (!slug) {
 	//return Astro.redirect("/404");
 	throw new Error("Missing param slug");
 }
-const post = await getPost(slug);
-const { Content } = (await render(post)) ?? {};
+const post: CollectionEntry<"blog"> = await getPost(slug);
 const { date, title, description, tags } = post.data;
+const { Content } = (await render(post)) ?? {};
 
 /* reconsider for static?
 export async function getStaticPaths() {
@@ -65,6 +66,14 @@ export async function getStaticPaths() {
 				<article class="mb-6 prose lg:prose-lg">
 					{Content && <Content />}
 				</article>
+				{
+					post.data.social?.bluesky && (
+						<BlueSkyInteractions
+							client:only="react"
+							atUri={post.data.social?.bluesky}
+						/>
+					)
+				}
 
 				<p>&nbsp;</p>
 			</div>

@@ -55,17 +55,21 @@ a.link {
   @apply bg-blue-700;
 }
 
-@layer base {
-  h1 {
-    @apply text-gray-900 font-bold text-xl md:text-4xl mb-2;
-  }
-}
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@layer base {
+  h1 {
+    @apply text-gray-900 font-bold text-xl md:text-4xl mb-2;
+  }
+
+  h3 {
+    @apply text-gray-900 font-bold text-lg md:text-xl;
   }
 }
