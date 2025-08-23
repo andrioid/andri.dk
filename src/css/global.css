@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource-variable/montserrat";
 @import "@fontsource-variable/source-code-pro";
 @plugin "@tailwindcss/typography";
 
@@ -17,8 +16,6 @@
   --width-half-screen: 50vw;
   --width-one-third-screen: 33vw;
 
-  --font-sans: "Montserrat Variable";
-  --font-mono: "Source Code Pro Variable";
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
 }
 
