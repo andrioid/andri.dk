@@ -1,13 +1,12 @@
 ---
 date: "2025-08-31T00:00:00.000Z"
-social:
-    bluesky: at://did:plc:rrrwbar3wv576qpsymwey5p5/app.bsky.feed.post/3lx2p2qooru2d
 tags:
-    - devtools
-    - devops
-    - programming
+  - devtools
+  - devops
+  - programming
 title: Making development fun again with Mise
 ---
+
 Have you ever joined a new project and then spend an entire day setting up your developer-environment? Worked on a large project where one of the many tech-debts are that nobody updated the runtime for 10 years, and now nobody dares touch it?
 
 - "What version of Java/Python/etc do I need to run the backend?"
