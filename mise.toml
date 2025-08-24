@@ -1,5 +1,6 @@
 [tools]
 node = "lts"
+"ubi:linebender/resvg" = { version = "latest", exe = "resvg" }
 
 [task_config]
 includes = ["scripts", "tasks"]

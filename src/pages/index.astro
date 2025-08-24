@@ -1,34 +1,38 @@
 ---
 export const prerender = true;
 import Layout from "~/layouts/Layout.astro";
-import SkillOverview from "./_cmp/skill-overview.astro";
 import PageContainer from "~/layouts/page-container.astro";
 import { resumeProcessed, resumeRaw } from "~/lib/cv";
+import SkillOverview from "./_cmp/skill-overview.astro";
 
 const dt = resumeProcessed;
 const cv = resumeRaw;
 ---
 
 <Layout
-  title={cv.basics.name}
-  description={cv.basics.label}
-  coverImage="./static/img/wave.svg"
+	title={cv.basics.name}
+	description={cv.basics.label}
+	ogImage="./static/img/wave.svg"
 >
-  <PageContainer isHome={true}>
-    <div class="w-full flex-grow flex-col flex justify-center items-center p-4">
-      <div class="text-center space-y-4">
-        <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">
-          {resumeRaw.basics.name}
-        </h1>
-        <p class="text-large md:text-xl text-sky-300 drop-shadow-lg">
-          {resumeRaw.basics.label}
-        </p>
-        <p class="text-white drop-shadow-sm">
-          {resumeRaw.basics.location.city},
-          {resumeRaw.basics.location.countryCode}
-        </p>
-      </div>
-      <SkillOverview dt={dt} />
-    </div>
-  </PageContainer>
+	<PageContainer isHome={true}>
+		<div
+			class="w-full flex-grow flex-col flex justify-center items-center p-4"
+		>
+			<div class="text-center space-y-4">
+				<h1
+					class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg"
+				>
+					{resumeRaw.basics.name}
+				</h1>
+				<p class="text-large md:text-xl text-sky-300 drop-shadow-lg">
+					{resumeRaw.basics.label}
+				</p>
+				<p class="text-white drop-shadow-sm">
+					{resumeRaw.basics.location.city},
+					{resumeRaw.basics.location.countryCode}
+				</p>
+			</div>
+			<SkillOverview dt={dt} />
+		</div>
+	</PageContainer>
 </Layout>

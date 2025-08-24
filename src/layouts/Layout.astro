@@ -3,13 +3,13 @@ import { site } from "../constants";
 import "../css/global.css";
 export interface Props {
 	title: string;
-	subtitle?: string;
 	description?: string;
-	coverImage?: string;
 	lang?: string;
+	/** open-graph image */
+	ogImage?: string;
 }
 
-const { lang = "en", title, description } = Astro.props as Props;
+const { lang = "en", title, description, ogImage } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -25,7 +25,7 @@ const { lang = "en", title, description } = Astro.props as Props;
 		<link
 			rel="alternate"
 			type="application/rss+xml"
-			title="RSS for andri.dk"
+			title="andri.dk - latest posts"
 			href="/rss.xml"
 		/>
 
@@ -39,12 +39,14 @@ const { lang = "en", title, description } = Astro.props as Props;
 		<script
 			is:inline
 			src="https://ep-umami.fly.dev/script.js"
-			data-website-id="8302b903-1052-49fa-a755-ba95c167ae6a"></script>
-		<!-- Maybe later
-    <meta property="og:image" content={ogImage} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={ogImage} />
-    -->
+			data-website-id="8302b903-1052-49fa-a755-ba95c167ae6a">
+		</script>
+		{ogImage && (
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content={ogImage} />
+
+		)}
 
 		<title>{`andri.dk | ${title}`}</title>
 	</head>
