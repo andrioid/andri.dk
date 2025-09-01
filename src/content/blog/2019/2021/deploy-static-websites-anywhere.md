@@ -1,10 +1,15 @@
 ---
-title: Deploy Static Websites Anywhere
-draft: false
-tags: ["jamstack", "devops", "ci", "cd", "hosting"]
 date: "2021-05-01T00:00:00.000Z"
+draft: false
+ogImage: static/img/social/2019/2021/deploy-static-websites-anywhere.png
+tags:
+    - jamstack
+    - devops
+    - ci
+    - cd
+    - hosting
+title: Deploy Static Websites Anywhere
 ---
-
 Before I started my carrier in Software Development, I was a System- and Network Administrator. I used to setup web servers and managed my own little server room. I truly, do not miss upgrading operating-systems on live services or dealing with hardware failure. However, hosting web-pages back then was much easier. You'd get an FTP/SFTP access and you'd upload your files. Then they got served statically...
 
 Today, everything is about **scale** and maybe prematurely so. If you want to host a typical static site today, many hosting providers force you to add a Github (or similar) integration to your repository. To be fair; these providers offer automatic TLS, CDN, fail over and full scaling. But, what if I want to upload my own files? What if I already have a build-pipeline somewhere? Then this forced build-process is not convenient, but quite **annoying**.

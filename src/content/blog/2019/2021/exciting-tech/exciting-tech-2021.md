@@ -1,10 +1,12 @@
 ---
-title: I'm excited for - 2021 edition
-draft: true
-tags: ["backend", "frontend"]
 date: "2021-12-30T00:00:00.000Z"
+draft: true
+ogImage: static/img/social/2019/2021/exciting-tech/exciting-tech-2021.png
+tags:
+    - backend
+    - frontend
+title: I'm excited for - 2021 edition
 ---
-
 ### Creating websites, fast
 
 - Next.js

@@ -1,5 +1,6 @@
 ---
 date: "2025-08-31T00:00:00.000Z"
+ogImage: static/img/social/2025/mise-en-place.png
 social:
     bluesky: at://did:plc:rrrwbar3wv576qpsymwey5p5/app.bsky.feed.post/3lx2pt6p2722u
 tags:

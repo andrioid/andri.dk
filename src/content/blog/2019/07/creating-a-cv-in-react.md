@@ -1,11 +1,13 @@
 ---
-slug: "2019-07/creating-a-cv-in-react"
+cover: cvscreenshot.png
 date: "2019-07-22T00:00:00.000Z"
-title: "Creating a CV in React"
-tags: ["cv", "projects"]
-cover: "cvscreenshot.png"
+ogImage: static/img/social/2019/07/creating-a-cv-in-react.png
+slug: 2019-07/creating-a-cv-in-react
+tags:
+    - cv
+    - projects
+title: Creating a CV in React
 ---
-
 ## TLDR;
 
 - [See my CV](/cv.pdf)

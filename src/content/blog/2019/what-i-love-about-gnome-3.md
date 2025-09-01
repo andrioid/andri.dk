@@ -1,10 +1,11 @@
 ---
-slug: "what-i-love-about-gnome-3"
 date: "2011-12-12T13:28:10.000Z"
-title: "What I love about Gnome 3"
-tags: ["blog"]
+ogImage: static/img/social/2019/what-i-love-about-gnome-3.png
+slug: what-i-love-about-gnome-3
+tags:
+    - blog
+title: What I love about Gnome 3
 ---
-
 There has been a lot written about Gnome 3 in the past half a year. People do not like change, and the fact that we now have Unity, Gnome 3 and KDE 4 leaves many people wanting their fucking old desktop back. I tried Unity for a few months, didn't really get used it. In this article, I would like to focus on the positive part of my Gnome Shell experience (with Ubuntu 11.10).
 
 ### It stays out of your way

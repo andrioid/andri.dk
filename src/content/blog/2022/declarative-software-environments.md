@@ -1,11 +1,15 @@
 ---
-slug: "2022/declarative-software-environments"
 date: "2022-07-14T00:00:00.000Z"
-title: "Declarative Software Environments"
-description: "How I envision we can bring as much value as possible out of a software team"
-tags: ["blog", "rant", "software", "devops"]
+description: How I envision we can bring as much value as possible out of a software team
+ogImage: static/img/social/2022/declarative-software-environments.png
+slug: 2022/declarative-software-environments
+tags:
+    - blog
+    - rant
+    - software
+    - devops
+title: Declarative Software Environments
 ---
-
 Someone smart, who works in infrastructure said to me recently (paraphrasing):
 
 > We can't have secure defaults on Kubernetes clusters, because the developers require full freedom to work on the cluster

@@ -1,11 +1,13 @@
 ---
-slug: "2020/02/tech-choices-app"
 date: "2020-02-01T00:00:00.000Z"
-title: "Tech Choices: Web & Mobile App development"
-tags: ["react", "reactnative"]
 draft: true
+ogImage: static/img/social/2019/2020/why-react-native.png
+slug: 2020/02/tech-choices-app
+tags:
+    - react
+    - reactnative
+title: 'Tech Choices: Web & Mobile App development'
 ---
-
 Tech Choice is where I explain a particular tech choice that I have experience with. I do not claim that it's better than what you're currently using or a silver bullet. All this is, is a fellow developer sharing his experience.
 
 # Web & Mobile App development

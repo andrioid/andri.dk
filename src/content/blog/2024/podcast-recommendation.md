@@ -1,9 +1,10 @@
 ---
-title: Tech Podcasts for 2024
 date: "2024-02-14T00:00:00.000Z"
-tags: ["tech"]
+ogImage: static/img/social/2024/podcast-recommendation.png
+tags:
+    - tech
+title: Tech Podcasts for 2024
 ---
-
 Some of the podcasts I enjoy during my bike-trip to work.
 
 ### [Soft Skills Engineering](https://softskills.audio/)

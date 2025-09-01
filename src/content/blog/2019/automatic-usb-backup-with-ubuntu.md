@@ -1,10 +1,11 @@
 ---
-slug: "automatic-usb-backup-with-ubuntu"
 date: "2010-08-10T17:35:44.000Z"
-title: "Automatic USB backup with Ubuntu"
-tags: ["blog"]
+ogImage: static/img/social/2019/automatic-usb-backup-with-ubuntu.png
+slug: automatic-usb-backup-with-ubuntu
+tags:
+    - blog
+title: Automatic USB backup with Ubuntu
 ---
-
 **As a part of my site restoration, this page was salvaged and may not be up to date** Everyone has important files like personal photographs, bank statements, a life's accumulation of porn and so and and so forth that would be hard or impossible to recover if that damn hard drive would fail. I've always been well aware of the dangers of not taking backups but yet still lazy enough to ignore it. Backup for the lazy includes the following steps:
 
 - Put USB stick in computer

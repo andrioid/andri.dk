@@ -1,0 +1,72 @@
+<svg
+	width="1200"
+	height="630"
+	viewBox="0 0 400 209"
+	font-size="12"
+	font-family="sans-serif, Ubuntu Sans"
+	version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+	<defs>
+		<clipPath id="clip">
+			<use xlink:href="#authorImageRect" />
+		</clipPath>
+		<rect
+			id="authorImageRect"
+			width="10"
+			height="10"
+			x="40"
+			y="156"
+			fill="blue"
+			rx="50"
+		/>
+
+		<filter id="shadow" asx="0" asy="0">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+			<feOffset dx="0.5" dy="-0.5" />
+			<feMerge>
+				<feMergeNode />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs>
+	<g>
+		<image
+			width="100%"
+			height="100%"
+			x="0"
+			y="-1"
+			xlink:href="data:image/svg&#43;xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgICB2aWV3Qm94PSIwIDAgMTIwMCA2MzAiCiAgICB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiPgoKICAgIDwhLS0gR3JhZGllbnQgZGVmaW5pdGlvbiAtLT4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZC12ZXJ0aWNhbCIKICAgICAgICAgICAgeDE9IjAlIiB5MT0iMCUiCiAgICAgICAgICAgIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNTliNGZmIiAvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9ImJsYWNrIiAvPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ&#43;CiAgICA8L2RlZnM&#43;CgogICAgPCEtLSBTaGFwZSB1c2luZyB0aGUgZ3JhZGllbnQgLS0&#43;CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQtdmVydGljYWwpIiAvPgo8L3N2Zz4="
+			preserveAspectRatio="xMidYMid slice"
+			transform="scale(1.1,1.1)"
+		/>
+		<g filter="url(#shadow)">
+			<rect
+				width="360"
+				height="120"
+				x="20"
+				y="140"
+				rx="10"
+				style="fill: #fff; stroke-width: 0;"
+			/>
+		</g>
+		<g stroke="2" clip-path="url(#clip)">
+			<image
+				width="10"
+				height="10"
+				x="40"
+				y="156"
+				xlink:href=""
+			/>
+		</g>
+		<g class="texts" font-size="1.1em" fill="#000">
+			<text x="30" y="160" font-weight="bold">
+				Blogging with Obsidian, Gatsby and Nextcloud
+			</text>
+			<text x="30" y="173" fill="#5b5b5b"
+				style="font-size: 0.6em;">
+				2021-04-24
+			</text> ${tags} </g>
+	</g>
+</svg>

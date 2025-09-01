@@ -1,10 +1,11 @@
 ---
-slug: "predictions-for-2012"
 date: "2011-12-30T19:38:17.000Z"
-title: "Predictions for 2012"
-tags: ["blog"]
+ogImage: static/img/social/2019/predictions-for-2012.png
+slug: predictions-for-2012
+tags:
+    - blog
+title: Predictions for 2012
 ---
-
 Please don't call me cheesy, but I am going to attempt to do some predictions for the year 2012 - like so many others.
 
 - 2012 will not be the year of the Linux desktop. We're already there, but nobody noticed.
