@@ -11,7 +11,7 @@
     "verify:formatting": "prettier . --check",
     "verify:types": "tsc --noEmit",
     "preview": "astro preview",
-    "md-social": "md-social src/content/blog",
+    "md-social": "md-social parse src/content/blog",
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "check": "astro check",
     "build:bin": "bun build --compile --packages external --outfile ./app server.mjs",
