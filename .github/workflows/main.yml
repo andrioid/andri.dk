@@ -80,10 +80,17 @@ jobs:
       BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
       BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
       MD_BASE_URL: https://andri.dk/blog
+      PUBLISH_MAX_DAYS: 7
+      VERBOSE: 1
+      BASE_URL: https://andri.dk/blog
+      OG_IMAGE_BG: static/img/gradient.svg
+      OG_DEST_DIR: static/img/social
+
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
-      - run: npm ci && npm run md-social
+      - run: npm ci
+      - run: npm run md-social parse
       - name: Commit & Push
         run: |
           git config user.name "github-actions[bot]"
