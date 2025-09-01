@@ -1,10 +1,11 @@
 ---
-slug: "2020/10/adding-web-apps-to-the-linux-desktop"
 date: "2020-10-02T00:00:00.000Z"
-title: "Adding Progressive Web Apps (PWA) to the Linux Desktop"
-tags: ["linux"]
+ogImage: static/img/social/2019/2020/pwa-from-desktop.png
+slug: 2020/10/adding-web-apps-to-the-linux-desktop
+tags:
+    - linux
+title: Adding Progressive Web Apps (PWA) to the Linux Desktop
 ---
-
 At work, we use Microsoft Teams, and we used to (and sort of still) use Slack. I recently switched from a Macbook Pro to a Linux laptop (again), and what annoys me greatly is that when I "share screen/application" in the Slack or Teams app it offers me only to share my entire monitor.
 
 Sure, it's annoying that I can't pick what window is shared; but what makes it unbearable for other people on my team is that my monitor is ultra-wide so everything I share becomes really tiny on their screen. Sorry.

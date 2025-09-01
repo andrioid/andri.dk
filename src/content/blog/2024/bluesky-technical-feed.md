@@ -1,9 +1,12 @@
 ---
-title: Technical Scrolls for Bluesky
 date: "2024-12-31T00:00:00.000Z"
-tags: ["tech", "bluesky", "atproto"]
+ogImage: static/img/social/2024/bluesky-technical-feed.png
+tags:
+    - tech
+    - bluesky
+    - atproto
+title: Technical Scrolls for Bluesky
 ---
-
 I've always been interested in technology, and not much else. When social networks emerged I was excited for all the technical content I'd have access to. Unfortunately big-tech has no interest in allowing us to control how we consume content. Facebook started out with allowing you to select all your interests so that they could better show you interesting things. Typing this out loud now, makes me think I was incredibly naive. Of course they did that so they could show me interesting _ads_. Twitter somehow was different, because I could selectively follow people who posted things that were interesting to me.
 
 Try out [Following Tech](https://bsky.app/profile/technical.scrolls.org/feed/tech-following) or [Technical Scrolls](https://bsky.app/profile/technical.scrolls.org/feed/tech-all) and DM [me](https://bsky.app/profile/andri.dk) on Bluesky if you have any feedback.

@@ -1,10 +1,13 @@
 ---
-title: ENV files
-draft: false
-tags: ["env", "devops", "node.js"]
 date: "2021-12-18T00:00:00.000Z"
+draft: false
+ogImage: static/img/social/2019/2021/env-files.png
+tags:
+    - env
+    - devops
+    - node.js
+title: ENV files
 ---
-
 An environmental-variable is a way for the environment (your operating-system, or shell) to share information with future processes. Some ENV vars are global (and set by the OS), others are only useful in a certain context.
 
 You could be using a configuration file, but the world of hosting has very much adopted the [12 Factor App](https://12factor.net) way of configuring applications. For environments like CI/CD, Heroku and Kubernetes, this makes a lot of sense.

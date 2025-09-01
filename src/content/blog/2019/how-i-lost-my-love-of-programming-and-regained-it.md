@@ -1,10 +1,11 @@
 ---
-slug: "how-i-lost-my-love-of-programming-and-regained-it"
 date: "2013-03-16T08:38:07.000Z"
-title: "How I lost my love of programming and regained it"
-tags: ["blog"]
+ogImage: static/img/social/2019/how-i-lost-my-love-of-programming-and-regained-it.png
+slug: how-i-lost-my-love-of-programming-and-regained-it
+tags:
+    - blog
+title: How I lost my love of programming and regained it
 ---
-
 As a kid in Iceland, I was always fascinated by all things technical. Be it light-switches at my grandmothers house or what is generally described as the idiot-box. I have always loved this stuff, and still do.
 
 When I was eight years old, I discovered the delightful world of computers and in retrospect, many of my friends were handpicked, because they had interesting toys to play with. I spent all of the time I could playing and "messing" with computers. It started with computer games, but eventually I ran out of games for our Amstrad CPC 128k and had to resort to reading the computer manual to retype some of the programming examples in the back. I still remember the light-bulb-moment when I was at school and figured out what "IF" really meant through our English class. I created all sorts of simple menu programs with pixel graphics for our first family computer in BASIC, without having any idea of what I was doing was actually programming.

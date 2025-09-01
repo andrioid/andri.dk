@@ -1,11 +1,14 @@
 ---
-slug: "2019/09/announcing-gatsby-plugin-social-cards"
 date: "2019-09-15T00:00:00.000Z"
-title: "Announcing gatsby-plugin-social-cards"
-tags: ["react", "gatsbyjs", "open-graph"]
 draft: false
+ogImage: static/img/social/2019/09/social-cards/social-cards.png
+slug: 2019/09/announcing-gatsby-plugin-social-cards
+tags:
+    - react
+    - gatsbyjs
+    - open-graph
+title: Announcing gatsby-plugin-social-cards
 ---
-
 Ever seen those images shown next to posts on Twitter, Slack or Facebook? Ever wonder where they come from? Me too!
 
 This plugin will create automatic cards for your (ReMark) at build-time.

@@ -1,10 +1,15 @@
 ---
-title: Host Static Websites on a VPS with TLS
-draft: false
-tags: ["jamstack", "devops", "ci", "cd", "hosting"]
 date: "2021-05-02T00:00:00.000Z"
+draft: false
+ogImage: static/img/social/2019/2021/host-static-websites-on-a-vps.png
+tags:
+    - jamstack
+    - devops
+    - ci
+    - cd
+    - hosting
+title: Host Static Websites on a VPS with TLS
 ---
-
 Hosting doesn't have to be complicated or expensive. I'll show you how to host a static site for $6/mo on DigitalOcean ([ref link](https://m.do.co/c/eb735821ebb8)).
 
 Be warned, this is a bit technical and you will need to type some things into a terminal. I will explain what each line does on the way.

@@ -1,10 +1,15 @@
 ---
-slug: "modern-php-development-links"
 date: "2012-05-20T15:36:24.000Z"
-title: "Modern PHP Development Links"
-tags: ["ci", "bdd", "tdd", "php", "blog"]
+ogImage: static/img/social/2019/modern-php-development-links.png
+slug: modern-php-development-links
+tags:
+    - ci
+    - bdd
+    - tdd
+    - php
+    - blog
+title: Modern PHP Development Links
 ---
-
 I started hacking around with PHP in 1998 but never really considered it development until I learned what I used to consider "superior languages". A decade later, PHP is going strong and I am actually employed at a company where we do a lot of PHP (my opinions are my own). I've been wanting to implement something smart for deploying PHP projects (like continuous-integration) and decided to compile a list of useful links here. Wouldn't really consider this an article, just a placeholder of links.
 
 ### Test Frameworks

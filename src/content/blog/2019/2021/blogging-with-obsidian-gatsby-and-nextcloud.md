@@ -1,10 +1,13 @@
 ---
-title: Blogging with Obsidian, Gatsby and Nextcloud
-tags: ["gatsby", "nextcloud", "obsidian"]
-draft: false
 date: "2021-04-24T00:00:00.000Z"
+draft: false
+ogImage: static/img/social/2019/2021/blogging-with-obsidian-gatsby-and-nextcloud.png
+tags:
+    - gatsby
+    - nextcloud
+    - obsidian
+title: Blogging with Obsidian, Gatsby and Nextcloud
 ---
-
 Finding the motivation to blog has always been hard for me. Sometimes, because I have nothing to blog about, and that's fair. But sometimes it is because I'm not on a computer with my Gatsby site setup, or I just want to write something down quick.
 
 Maybe unsurprising, I have the same problem with note-taking and I've attempted and abandoned countless platforms. Recently I bought Nextcloud hosting for my photos and I can happily report that my photos and files are synchronized nicely. Then I discovered Obsidian and found that using Nextcloud to sync my notes allowed my to have them everywhere.

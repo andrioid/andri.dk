@@ -1,11 +1,13 @@
 ---
-slug: "2020/03/meetings-from-home"
 date: "2020-03-16T00:00:00.000Z"
-title: "Meetings from Home: Tools"
-tags: ["working-from-home", "tools"]
 draft: false
+ogImage: static/img/social/2019/2020/meetings-from-home.png
+slug: 2020/03/meetings-from-home
+tags:
+    - working-from-home
+    - tools
+title: 'Meetings from Home: Tools'
 ---
-
 Are you working from home? Here's a list of some great tools that you can use for free.
 
 If you have anything to add to the list, please give me a shout at [@andrioid](https://twitter.com/andrioid).

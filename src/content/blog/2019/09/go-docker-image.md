@@ -1,11 +1,14 @@
 ---
-slug: "2019/09/slim-docker-images-for-golang"
 date: "2019-09-06T00:00:00.000Z"
-title: "Slim Docker images for your Go application"
-tags: ["hosting", "docker", "golang"]
 draft: false
+ogImage: static/img/social/2019/09/go-docker-image.png
+slug: 2019/09/slim-docker-images-for-golang
+tags:
+    - hosting
+    - docker
+    - golang
+title: Slim Docker images for your Go application
 ---
-
 How to build a slim Docker container for your Go application using multi-stage images.
 
 I'm using Go 1.13 and the community module proxy to build the binary and Alpine as a base image. It adds a user and group instead of running as root.

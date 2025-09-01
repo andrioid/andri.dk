@@ -1,11 +1,14 @@
 ---
-slug: "gatsby-meetup-site"
 date: "2019-08-25T00:00:00.000Z"
-title: "Making a Gatsby site from Meetup event data"
-tags: ["react", "gatsby", "meetup"]
 draft: false
+ogImage: static/img/social/2019/08/gatsby-meetup-site.png
+slug: gatsby-meetup-site
+tags:
+    - react
+    - gatsby
+    - meetup
+title: Making a Gatsby site from Meetup event data
 ---
-
 As part of my talk preperation for Aalborg Frontend Meetup, I was going to do a walkthrough of a new Gatsby site and use [gatsby-source-meetup](https://www.gatsbyjs.org/packages/gatsby-source-meetup/?=meetup) to import the upcoming events.
 
 Imagine my surprise, when I discovered that Meetup had stopped issuing API keys.

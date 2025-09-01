@@ -1,11 +1,15 @@
 ---
-slug: "2019/08/react-redux-go-webassembly"
 date: "2019-12-01T00:00:00.000Z"
-title: "React Redux, with Go reducers in Webassembly"
-tags: ["react", "redux", "go", "webassembly"]
 draft: true
+ogImage: static/img/social/2019/drafts/redux-reducers-in-go.png
+slug: 2019/08/react-redux-go-webassembly
+tags:
+    - react
+    - redux
+    - go
+    - webassembly
+title: React Redux, with Go reducers in Webassembly
 ---
-
 If you're reading this, you must be wondering if this is some sort of a click-bait. Why on earth would someone mix React, Redux, Go and Webassembly? Well, I'll tell you!
 
 # Introduction

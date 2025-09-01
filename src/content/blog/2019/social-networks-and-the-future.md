@@ -1,10 +1,11 @@
 ---
-slug: "social-networks-and-the-future"
 date: "2011-08-21T09:57:54.000Z"
-title: "Social Networks and the future"
-tags: ["blog"]
+ogImage: static/img/social/2019/social-networks-and-the-future.png
+slug: social-networks-and-the-future
+tags:
+    - blog
+title: Social Networks and the future
 ---
-
 I live abroad, disconnected from friends, ex co-workers and family so I try to use social tools to stay in touch. With the rise of Facebook, Twitter, Google+ and every other web 2.0 webpage on the Internet - you can be social everywhere. Now, the problem is simply to pick the right services and try to inform your friends. What is missing, is a way to be social **with your contacts** and not just with the company supplying this specific social service. We can split social networks into two groups:
 
 - **Contact networks** (such as: Twitter, Facebook, Google+)

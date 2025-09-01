@@ -1,10 +1,12 @@
 ---
-slug: "2019/07/breaking-the-silence"
 date: "2019-07-06T00:00:00.000Z"
-title: "Breaking the silence"
-tags: ["portfolio", "personal"]
+ogImage: static/img/social/2019/breaking-the-silence.png
+slug: 2019/07/breaking-the-silence
+tags:
+    - portfolio
+    - personal
+title: Breaking the silence
 ---
-
 As you can see from my frontpage, I haven't blogged since 2014. Sorry about that.
 
 I'm learning new things while building this site, again again. It's currently running on Gatsby with Tailwind-CSS, GraphQL and a few plugins.
