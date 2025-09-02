@@ -1,3 +1,7 @@
+---
+import "../../css/global.css";
+---
+
 <!doctype html>
 <html lang="en" class="bg-black font-mono font-medium h-full w-full min-h-dvh">
 	<head>
@@ -9,7 +13,9 @@
 		class="h-full min-h-dvh w-full p-8 bg-gradient-radial from-lime-400/20 from-1% to-100% to-transparent text-lime-400 leading-[1rem]"
 	>
 		<div id="terminal" class="h-full block">
-			<div id="scanline"></div>
+			<div class="overflow-none">
+				<div id="scanline"></div>
+			</div>
 			<h1 class="text-lime-500">Retro</h1>
 			<p>Welcome to the Retro page!</p>
 			<div class="grid grid-cols-4 gap-4">

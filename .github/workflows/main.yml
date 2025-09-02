@@ -85,6 +85,7 @@ jobs:
       VERBOSE: 1
       BASE_URL: https://andri.dk/blog
       OG_IMAGE_BG: public/img/gradient.svg
+      OG_IMAGE_AUTHOR: public/img/coffee-art.jpg
       OG_DEST_DIR: public/img/social
 
     steps:
