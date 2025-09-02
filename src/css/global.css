@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "@fontsource-variable/source-code-pro";
-@plugin "@tailwindcss/typography";
 
 @theme {
   --color-andri: #59b4ff;
@@ -71,5 +70,212 @@ a.link {
 
   h3 {
     @apply text-gray-900 font-bold text-lg md:text-xl;
+  }
+}
+
+@layer components {
+  .markdown {
+    @apply text-slate-800 dark:text-slate-200 leading-relaxed antialiased;
+    @apply selection:bg-sky-200/60 dark:selection:bg-sky-400/30;
+    @apply [word-break:break-word] [overflow-wrap:anywhere];
+    @apply text-base lg:text-lg;
+
+    /* Headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-semibold tracking-tight text-slate-900 dark:text-white scroll-mt-24;
+    }
+    h1 {
+      @apply text-3xl md:text-4xl lg:text-4xl mt-6 mb-3;
+    }
+    h2 {
+      @apply text-2xl md:text-3xl mt-8 mb-3 border-b border-slate-200/70 dark:border-slate-700/50 pb-1;
+    }
+    h3 {
+      @apply text-xl md:text-2xl mt-6 mb-2;
+    }
+    h4 {
+      @apply text-lg md:text-xl mt-5 mb-2;
+    }
+    h5 {
+      @apply text-base md:text-lg mt-4 mb-2;
+    }
+    h6 {
+      @apply text-sm uppercase tracking-wider text-slate-500 mt-4 mb-1;
+    }
+
+    /* Paragraphs */
+    p {
+      @apply my-4 leading-7;
+    }
+    p:first-child {
+      @apply mt-0;
+    }
+    .lead,
+    p.lead {
+      @apply text-lg md:text-xl leading-8 text-slate-700 dark:text-slate-300;
+    }
+
+    /* Links */
+    a {
+      @apply text-sky-700 dark:text-sky-400 underline underline-offset-4 decoration-slate-300 dark:decoration-slate-600;
+      @apply hover:text-sky-800 hover:dark:text-sky-300 hover:decoration-sky-400 transition-colors;
+    }
+
+    /* Inline code */
+    code:not(pre code) {
+      @apply rounded px-1.5 py-0.5 text-[0.95em] font-medium;
+      @apply bg-slate-100 text-slate-800 dark:bg-slate-800/70 dark:text-slate-100;
+      @apply border border-slate-200 dark:border-slate-700;
+    }
+
+    /* Code blocks */
+    pre {
+      @apply relative my-5 rounded-xl overflow-x-auto bg-slate-950 text-slate-100 border border-slate-800;
+    }
+    pre code {
+      @apply block min-w-full p-4 text-sm leading-7;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      @apply my-6 pl-4 pr-3 py-2 border-l-4 rounded-r-lg italic;
+      @apply border-slate-300 dark:border-slate-600 bg-slate-50/80 dark:bg-slate-800/40;
+      @apply text-slate-700 dark:text-slate-300;
+    }
+    blockquote p {
+      @apply my-2;
+    }
+    blockquote footer {
+      @apply mt-2 text-sm not-italic text-slate-500;
+    }
+
+    /* Lists */
+    ul {
+      @apply my-4 list-disc pl-6 space-y-2;
+    }
+    ol {
+      @apply my-4 list-decimal pl-6 space-y-2;
+    }
+    li > ul,
+    li > ol {
+      @apply mt-2;
+    }
+
+    /* HR */
+    hr {
+      @apply my-10 border-0 h-px bg-gradient-to-r from-transparent via-slate-300/70 to-transparent dark:via-slate-700;
+    }
+
+    /* Images & figures */
+    img {
+      @apply block max-w-full rounded-xl shadow-sm my-4 border border-slate-200 dark:border-slate-700;
+    }
+    figure {
+      @apply my-6;
+    }
+    figcaption {
+      @apply mt-2 text-center text-sm text-slate-500 dark:text-slate-400;
+    }
+
+    /* Tables */
+    table {
+      @apply w-full text-left text-sm md:text-base border-collapse my-6 overflow-hidden rounded-xl;
+    }
+    thead th {
+      @apply bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold;
+      @apply border-b border-slate-200 dark:border-slate-700 px-3 py-2;
+    }
+    tbody tr {
+      @apply border-b border-slate-200 dark:border-slate-700;
+    }
+    tbody tr:nth-child(odd) {
+      @apply bg-slate-50/40 dark:bg-slate-800/30;
+    }
+    td {
+      @apply align-top px-3 py-2;
+    }
+
+    /* Small / captions */
+    small,
+    .small {
+      @apply text-xs text-slate-500 dark:text-slate-400;
+    }
+
+    /* Definition lists */
+    dl {
+      @apply my-6;
+    }
+    dt {
+      @apply font-semibold text-slate-900 dark:text-white mt-4;
+    }
+    dd {
+      @apply ml-4 text-slate-700 dark:text-slate-300;
+    }
+
+    /* KBD */
+    kbd {
+      @apply inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[0.8em];
+      @apply border-slate-300 bg-white text-slate-700 shadow-sm dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200;
+    }
+
+    /* Highlight */
+    mark {
+      @apply rounded px-1.5 py-0.5 bg-yellow-200/70 dark:bg-yellow-400/30;
+    }
+
+    /* Details / summary */
+    details {
+      @apply my-4 rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden;
+    }
+    summary {
+      @apply cursor-pointer select-none px-4 py-3 bg-slate-50 dark:bg-slate-800/60 font-medium;
+    }
+    details[open] > summary {
+      @apply border-b border-slate-200 dark:border-slate-700;
+    }
+    details > *:not(summary) {
+      @apply px-4 py-3;
+    }
+
+    /* Superscript */
+    sup {
+      @apply text-[0.75em] align-super;
+    }
+
+    /* Code fence language labels */
+    pre[data-lang]::before {
+      content: attr(data-lang);
+      @apply absolute right-3 top-2 text-[11px] uppercase tracking-wider text-slate-400;
+    }
+
+    /* Spacing refinements */
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p {
+      @apply mt-2;
+    }
+    p + h2,
+    ul + h2,
+    ol + h2,
+    pre + h2 {
+      @apply mt-8;
+    }
+    p + h3,
+    ul + h3,
+    ol + h3,
+    pre + h3 {
+      @apply mt-6;
+    }
+
+    /* Callouts */
+    .callout {
+      @apply my-5 rounded-xl border px-4 py-3 bg-sky-50 dark:bg-sky-900/20 border-sky-200 dark:border-sky-800;
+    }
   }
 }
