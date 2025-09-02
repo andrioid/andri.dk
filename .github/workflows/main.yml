@@ -83,8 +83,8 @@ jobs:
       PUBLISH_MAX_DAYS: 7
       VERBOSE: 1
       BASE_URL: https://andri.dk/blog
-      OG_IMAGE_BG: static/img/gradient.svg
-      OG_DEST_DIR: static/img/social
+      OG_IMAGE_BG: public/img/gradient.svg
+      OG_DEST_DIR: public/img/social
 
     steps:
       - uses: actions/checkout@v4
