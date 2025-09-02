@@ -1,5 +1,4 @@
 ---
-coverImage: og-cover.png
 date: "2025-09-02T00:00:00.000Z"
 ogImage: 2025/og-image-cards.png
 title: Open-Graph images with SVG and Go
