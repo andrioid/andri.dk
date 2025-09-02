@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+  workflow_call:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository}}
