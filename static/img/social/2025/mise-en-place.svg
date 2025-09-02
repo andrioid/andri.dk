@@ -62,7 +62,7 @@
 		</g>
 		<g class="texts" font-size="1.1em" fill="#000">
 			<text x="30" y="160" font-weight="bold">
-				Making development fun again with Mise
+				Replacing Makefile, direnv, asdf and more with Mise
 			</text>
 			<text x="30" y="173" fill="#5b5b5b"
 				style="font-size: 0.6em;">
