@@ -1,7 +1,7 @@
 ---
 author: Andri Óskarsson
 date: "2013-04-06T10:09:36.000Z"
-ogImage: static/img/social/2019/how-a-computer-should-behave.png
+ogImage: 2019/how-a-computer-should-behave.png
 slug: how-a-computer-should-behave
 tags: []
 title: How a Computer should behave

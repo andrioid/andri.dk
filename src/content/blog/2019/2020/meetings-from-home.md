@@ -1,7 +1,7 @@
 ---
 date: "2020-03-16T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/2020/meetings-from-home.png
+ogImage: 2019/2020/meetings-from-home.png
 slug: 2020/03/meetings-from-home
 tags:
     - working-from-home

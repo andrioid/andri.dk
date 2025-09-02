@@ -1,6 +1,6 @@
 ---
 date: "2011-12-07T09:55:04.000Z"
-ogImage: static/img/social/2019/icelandic-virtual-keyboard-for-meego-harmattan.png
+ogImage: 2019/icelandic-virtual-keyboard-for-meego-harmattan.png
 slug: icelandic-virtual-keyboard-for-meego-harmattan
 tags:
     - meego

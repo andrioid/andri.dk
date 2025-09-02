@@ -1,6 +1,6 @@
 ---
 date: "2010-08-10T00:00:00.000Z"
-ogImage: static/img/social/2019/piping-remote-backups-through-ssh-with-tar.png
+ogImage: 2019/piping-remote-backups-through-ssh-with-tar.png
 slug: piping-remote-backups-through-ssh-with-tar
 tags:
     - linux

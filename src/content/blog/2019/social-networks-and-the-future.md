@@ -1,6 +1,6 @@
 ---
 date: "2011-08-21T09:57:54.000Z"
-ogImage: static/img/social/2019/social-networks-and-the-future.png
+ogImage: 2019/social-networks-and-the-future.png
 slug: social-networks-and-the-future
 tags:
     - blog

@@ -1,6 +1,6 @@
 ---
 date: "2014-01-03T08:19:54.000Z"
-ogImage: static/img/social/2019/2013-tech-stack.png
+ogImage: 2019/2013-tech-stack.png
 slug: 2013-tech-stack
 tags:
     - blog

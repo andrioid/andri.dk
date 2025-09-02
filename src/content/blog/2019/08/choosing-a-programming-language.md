@@ -1,7 +1,7 @@
 ---
 date: "2019-08-04T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/08/choosing-a-programming-language.png
+ogImage: 2019/08/choosing-a-programming-language.png
 slug: 2019/08/choosing-a-programming-language
 tags:
     - programming

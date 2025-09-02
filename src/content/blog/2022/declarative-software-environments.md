@@ -1,7 +1,7 @@
 ---
 date: "2022-07-14T00:00:00.000Z"
 description: How I envision we can bring as much value as possible out of a software team
-ogImage: static/img/social/2022/declarative-software-environments.png
+ogImage: 2022/declarative-software-environments.png
 slug: 2022/declarative-software-environments
 tags:
     - blog

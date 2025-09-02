@@ -1,6 +1,6 @@
 ---
 date: "2010-08-10T17:35:44.000Z"
-ogImage: static/img/social/2019/automatic-usb-backup-with-ubuntu.png
+ogImage: 2019/automatic-usb-backup-with-ubuntu.png
 slug: automatic-usb-backup-with-ubuntu
 tags:
     - blog

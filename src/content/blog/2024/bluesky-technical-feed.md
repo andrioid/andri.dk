@@ -1,6 +1,6 @@
 ---
 date: "2024-12-31T00:00:00.000Z"
-ogImage: static/img/social/2024/bluesky-technical-feed.png
+ogImage: 2024/bluesky-technical-feed.png
 tags:
     - tech
     - bluesky

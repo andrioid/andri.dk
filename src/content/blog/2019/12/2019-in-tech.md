@@ -1,7 +1,7 @@
 ---
 date: "2019-12-29T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/12/2019-in-tech.png
+ogImage: 2019/12/2019-in-tech.png
 slug: 2019/12/2019-in-tech
 tags:
     - technology

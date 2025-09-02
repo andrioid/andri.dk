@@ -1,7 +1,7 @@
 ---
 date: "2021-05-01T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/2021/deploy-static-websites-anywhere.png
+ogImage: 2019/2021/deploy-static-websites-anywhere.png
 tags:
     - jamstack
     - devops

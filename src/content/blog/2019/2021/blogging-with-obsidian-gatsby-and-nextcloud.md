@@ -1,7 +1,7 @@
 ---
 date: "2021-04-24T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/2021/blogging-with-obsidian-gatsby-and-nextcloud.png
+ogImage: 2019/2021/blogging-with-obsidian-gatsby-and-nextcloud.png
 tags:
     - gatsby
     - nextcloud

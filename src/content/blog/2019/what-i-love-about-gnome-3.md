@@ -1,6 +1,6 @@
 ---
 date: "2011-12-12T13:28:10.000Z"
-ogImage: static/img/social/2019/what-i-love-about-gnome-3.png
+ogImage: 2019/what-i-love-about-gnome-3.png
 slug: what-i-love-about-gnome-3
 tags:
     - blog

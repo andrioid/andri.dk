@@ -1,7 +1,7 @@
 ---
 date: "2019-09-15T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/09/social-cards/social-cards.png
+ogImage: 2019/09/social-cards/social-cards.png
 slug: 2019/09/announcing-gatsby-plugin-social-cards
 tags:
     - react

@@ -1,7 +1,7 @@
 ---
 date: "2019-08-25T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/08/gatsby-meetup-site.png
+ogImage: 2019/08/gatsby-meetup-site.png
 slug: gatsby-meetup-site
 tags:
     - react

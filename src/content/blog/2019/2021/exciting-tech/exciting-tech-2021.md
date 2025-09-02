@@ -1,7 +1,7 @@
 ---
 date: "2021-12-30T00:00:00.000Z"
 draft: true
-ogImage: static/img/social/2019/2021/exciting-tech/exciting-tech-2021.png
+ogImage: 2019/2021/exciting-tech/exciting-tech-2021.png
 tags:
     - backend
     - frontend

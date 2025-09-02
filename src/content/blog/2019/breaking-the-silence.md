@@ -1,6 +1,6 @@
 ---
 date: "2019-07-06T00:00:00.000Z"
-ogImage: static/img/social/2019/breaking-the-silence.png
+ogImage: 2019/breaking-the-silence.png
 slug: 2019/07/breaking-the-silence
 tags:
     - portfolio

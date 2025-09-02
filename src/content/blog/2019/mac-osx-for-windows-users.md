@@ -1,6 +1,6 @@
 ---
 date: "2010-08-10T00:00:00.000Z"
-ogImage: static/img/social/2019/mac-osx-for-windows-users.png
+ogImage: 2019/mac-osx-for-windows-users.png
 slug: mac-osx-for-windows-users
 tags:
     - mac

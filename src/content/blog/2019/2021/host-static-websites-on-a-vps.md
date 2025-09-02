@@ -1,7 +1,7 @@
 ---
 date: "2021-05-02T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/2021/host-static-websites-on-a-vps.png
+ogImage: 2019/2021/host-static-websites-on-a-vps.png
 tags:
     - jamstack
     - devops

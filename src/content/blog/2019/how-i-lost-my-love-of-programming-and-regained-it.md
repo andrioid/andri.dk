@@ -1,6 +1,6 @@
 ---
 date: "2013-03-16T08:38:07.000Z"
-ogImage: static/img/social/2019/how-i-lost-my-love-of-programming-and-regained-it.png
+ogImage: 2019/how-i-lost-my-love-of-programming-and-regained-it.png
 slug: how-i-lost-my-love-of-programming-and-regained-it
 tags:
     - blog

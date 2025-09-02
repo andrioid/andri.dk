@@ -1,7 +1,7 @@
 ---
 date: "2019-12-01T00:00:00.000Z"
 draft: true
-ogImage: static/img/social/2019/drafts/redux-reducers-in-go.png
+ogImage: 2019/drafts/redux-reducers-in-go.png
 slug: 2019/08/react-redux-go-webassembly
 tags:
     - react

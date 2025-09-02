@@ -1,6 +1,6 @@
 ---
 date: "2020-10-02T00:00:00.000Z"
-ogImage: static/img/social/2019/2020/pwa-from-desktop.png
+ogImage: 2019/2020/pwa-from-desktop.png
 slug: 2020/10/adding-web-apps-to-the-linux-desktop
 tags:
     - linux

@@ -1,7 +1,7 @@
 ---
 date: "2019-09-06T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/09/go-docker-image.png
+ogImage: 2019/09/go-docker-image.png
 slug: 2019/09/slim-docker-images-for-golang
 tags:
     - hosting

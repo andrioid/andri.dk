@@ -1,6 +1,6 @@
 ---
 date: "2012-05-20T15:36:24.000Z"
-ogImage: static/img/social/2019/modern-php-development-links.png
+ogImage: 2019/modern-php-development-links.png
 slug: modern-php-development-links
 tags:
     - ci

@@ -1,6 +1,6 @@
 ---
 date: "2024-02-14T00:00:00.000Z"
-ogImage: static/img/social/2024/podcast-recommendation.png
+ogImage: 2024/podcast-recommendation.png
 tags:
     - tech
 title: Tech Podcasts for 2024

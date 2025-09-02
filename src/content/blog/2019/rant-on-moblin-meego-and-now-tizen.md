@@ -1,6 +1,6 @@
 ---
 date: "2011-09-28T08:54:19.000Z"
-ogImage: static/img/social/2019/rant-on-moblin-meego-and-now-tizen.png
+ogImage: 2019/rant-on-moblin-meego-and-now-tizen.png
 slug: rant-on-moblin-meego-and-now-tizen
 tags:
     - blog

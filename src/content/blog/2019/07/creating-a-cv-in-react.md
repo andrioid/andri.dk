@@ -1,7 +1,7 @@
 ---
 cover: cvscreenshot.png
 date: "2019-07-22T00:00:00.000Z"
-ogImage: static/img/social/2019/07/creating-a-cv-in-react.png
+ogImage: 2019/07/creating-a-cv-in-react.png
 slug: 2019-07/creating-a-cv-in-react
 tags:
     - cv

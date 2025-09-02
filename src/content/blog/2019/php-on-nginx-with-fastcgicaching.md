@@ -1,6 +1,6 @@
 ---
 date: "2013-05-12T12:21:07.000Z"
-ogImage: static/img/social/2019/php-on-nginx-with-fastcgicaching.png
+ogImage: 2019/php-on-nginx-with-fastcgicaching.png
 slug: php-on-nginx-with-fastcgicaching
 tags:
     - caching

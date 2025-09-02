@@ -1,6 +1,6 @@
 ---
 date: "2011-12-30T19:38:17.000Z"
-ogImage: static/img/social/2019/predictions-for-2012.png
+ogImage: 2019/predictions-for-2012.png
 slug: predictions-for-2012
 tags:
     - blog

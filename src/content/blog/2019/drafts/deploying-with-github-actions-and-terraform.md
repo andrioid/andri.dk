@@ -1,7 +1,7 @@
 ---
 date: "2020-06-18T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/drafts/deploying-with-github-actions-and-terraform.png
+ogImage: 2019/drafts/deploying-with-github-actions-and-terraform.png
 slug: 2020/devops/app-stack-with-terraform-on-gcp
 tags:
     - hosting

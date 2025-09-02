@@ -1,7 +1,7 @@
 ---
 date: "2020-02-01T00:00:00.000Z"
 draft: true
-ogImage: static/img/social/2019/2020/why-react-native.png
+ogImage: 2019/2020/why-react-native.png
 slug: 2020/02/tech-choices-app
 tags:
     - react

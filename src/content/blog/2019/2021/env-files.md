@@ -1,7 +1,7 @@
 ---
 date: "2021-12-18T00:00:00.000Z"
 draft: false
-ogImage: static/img/social/2019/2021/env-files.png
+ogImage: 2019/2021/env-files.png
 tags:
     - env
     - devops

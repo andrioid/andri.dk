@@ -1,7 +1,7 @@
 ---
 date: "2022-07-02T00:00:00.000Z"
 description: How I built my new site with Astro
-ogImage: static/img/social/2022/migrating-to-astro.png
+ogImage: 2022/migrating-to-astro.png
 slug: 2022/migrating-to-astro
 tags:
     - blog
