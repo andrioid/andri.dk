@@ -2,14 +2,13 @@
 date: "2025-08-31T00:00:00.000Z"
 ogImage: static/img/social/2025/mise-en-place.png
 social:
-  bluesky: at://did:plc:rrrwbar3wv576qpsymwey5p5/app.bsky.feed.post/3lx2pt6p2722u
+    bluesky: at://did:plc:rrrwbar3wv576qpsymwey5p5/app.bsky.feed.post/3lx2pt6p2722u
 tags:
-  - devtools
-  - devops
-  - programming
+    - devtools
+    - devops
+    - programming
 title: Replacing Makefile, direnv, asdf and more with Mise
 ---
-
 Have you ever joined a new project and then spend an entire day setting up your developer-environment? Worked on a large project where one of the many tech-debts are that nobody updated the runtime for 10 years, and now nobody dares touch it?
 
 - "What version of Java/Python/etc do I need to run the backend?"
