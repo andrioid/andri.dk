@@ -12,7 +12,7 @@ if (!slug) {
 	throw new Error("Missing param slug");
 }
 const post: CollectionEntry<"blog"> = await getPost(slug);
-const { date, title, description, tags } = post.data;
+const { date, title, description, tags, ogImage } = post.data;
 const { Content } = (await render(post)) ?? {};
 
 /* reconsider for static?
@@ -26,7 +26,11 @@ export async function getStaticPaths() {
 */
 ---
 
-<Layout title={title} description={description}>
+<Layout
+	title={title}
+	description={description}
+	ogImage={`//img/social/${ogImage}`}
+>
 	<PageContainer isHome={false}>
 		<div
 			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"

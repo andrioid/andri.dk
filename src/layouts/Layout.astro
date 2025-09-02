@@ -19,8 +19,10 @@ const { lang = "en", title, description, ogImage } = Astro.props as Props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="og:title" content={title} />
 		<meta name="twitter:title" content={title} />
-		<meta name="description" content={description} />
-		<meta name="og:description" content={description} />
+		{description && (
+			<meta name="description" content={description} />
+			<meta name="og:description" content={description} />
+		)}
 		<meta name="author" content={site.author} />
 		<link
 			rel="alternate"
@@ -42,9 +44,9 @@ const { lang = "en", title, description, ogImage } = Astro.props as Props;
 			data-website-id="8302b903-1052-49fa-a755-ba95c167ae6a">
 		</script>
 		{ogImage && (
-		<meta property="og:image" content={ogImage} />
+		<meta property="og:image" content={`${ogImage}`} />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image" content={`${ogImage}`} />
 
 		)}
 
