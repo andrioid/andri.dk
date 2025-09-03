@@ -1,13 +1,15 @@
 ---
 date: "2025-09-02T00:00:00.000Z"
 ogImage: 2025/og-image-cards.png
-title: Open-Graph images with SVG and Go
+social:
+    bluesky: at://did:plc:rrrwbar3wv576qpsymwey5p5/app.bsky.feed.post/3lxvyvll2ey2y
 tags:
     - markdown
     - go
     - svg
     - dx
     - ssg
+title: Open-Graph images with SVG and Go
 ---
 Posts that have social-cards, or og-image attached get more views, and they look much better when shared.
 
