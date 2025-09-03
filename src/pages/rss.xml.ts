@@ -27,5 +27,6 @@ export async function GET() {
 		})),
 		// (optional) inject custom xml
 		customData: `<language>en-us</language>`,
+		stylesheet: `minimal.xslt`,
 	});
 }
