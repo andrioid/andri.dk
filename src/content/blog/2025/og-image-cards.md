@@ -13,7 +13,7 @@ title: Open-Graph images with SVG and Go
 ---
 Posts that have social-cards, or og-image attached get more views, and they look much better when shared.
 
-I'm creating a tool called [md-social](https://github.com/andrioid/md-social) that was originally meant for posting my posts on Bluesky automatically, and registering the the post-id back in the markdown. But, I've since extended it to also generate social-cards too. I know of other tools in this area, but I think it's ridicilous to use a full complete browser to rasterize an SVG file.
+I'm creating a tool called [md-social](https://github.com/andrioid/md-social) that was originally meant for posting my posts on Bluesky automatically, and registering the the post-id back in the markdown. But, I've since extended it to also generate social-cards too.
 
 ### Wait, haven't you created stuff like this before?
 
@@ -39,6 +39,12 @@ OG_DEST_DIR: public/img/social
 If you don't set the Bluesky stuff, then it will skip it.
 
 The tool can be configured with flags, or environment variables and is [available on NPM too](https://www.npmjs.com/package/@andrioid/md-social).
+
+
+### Look ma! No browser!
+I know of other tools in this area, but I think it's ridicilous to launch a full complete browser to rasterize an SVG file.
+
+How the images are created is rather simple. First we generate an SVG from a template with certain values from the markdown file, such as title and description. Then we inject images (background, author) as base64 data urls into the SVG file. Afterwards we run resvg to convert the svg to png so that the social sites accept it.
 
 ![og-image-example](og-image-example.png)
 
