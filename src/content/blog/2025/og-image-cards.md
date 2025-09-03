@@ -1,6 +1,8 @@
 ---
 date: "2025-09-02T00:00:00.000Z"
 ogImage: 2025/og-image-cards.png
+social:
+    bluesky: at://did:plc:rrrwbar3wv576qpsymwey5p5/app.bsky.feed.post/3lxu44uz4lb2q
 title: Open-Graph images with SVG and Go
 tags:
     - markdown
