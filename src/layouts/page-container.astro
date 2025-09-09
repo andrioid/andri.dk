@@ -1,7 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
-import BackgroundIcons from "src/pages/_cmp/background-icons.astro";
 import NavItems from "~/components/nav-items.astro";
 import ProfileIcon from "~/components/profile-icon.astro";
 import { resumeRaw } from "~/lib/cv";
@@ -15,7 +14,6 @@ const { isHome = false } = Astro.props;
 <div
 	class="flex flex-col h-dvh font-sans overflow-auto md:overflow-hidden bg-gradient-to-b from-andri to-black"
 >
-	<BackgroundIcons />
 	<header class="p-4">
 		<nav class="flex justify-between items-center gap-4">
 			<div class="flex-1">
@@ -55,7 +53,7 @@ const { isHome = false } = Astro.props;
 
 	<footer
 		id="contact"
-		class="relative p-4 flex justify-center text-4xl flex-shrink gap-2 text-white"
+		class="relative p-4 flex justify-center text-4xl flex-shrink gap-2 text-fg"
 	>
 		<a class="hover:text-hover transition-colors mr-2" href="/rss.xml">
 			<Icon name="tabler:rss" />

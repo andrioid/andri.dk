@@ -4,6 +4,8 @@
 @theme {
   --color-andri: #59b4ff;
   --color-hover: theme(colors.pink.500);
+  --color-fg: theme(colors.gray.800);
+  --color-bg: theme(colors.white);
 
   --spacing-300: 300px;
   --spacing-350: 350px;
@@ -15,7 +17,14 @@
   --width-half-screen: 50vw;
   --width-one-third-screen: 33vw;
 
-  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --bg-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+}
+:root {
+  @media (prefers-color-scheme: dark) {
+    --color-andri: #033359ff;
+    --color-bg: theme(colors.gray.800);
+    --color-fg: theme(colors.white);
+  }
 }
 
 .andri-tag {
@@ -65,18 +74,17 @@ a.link {
 
 @layer base {
   h1 {
-    @apply text-gray-900 font-bold text-xl md:text-4xl mb-2;
+    @apply text-fg font-bold text-xl md:text-4xl mb-2;
   }
 
   h3 {
-    @apply text-gray-900 font-bold text-lg md:text-xl;
+    @apply text-fg font-bold text-lg md:text-xl;
   }
 }
 
 @layer components {
   .markdown {
-    @apply text-slate-800  leading-relaxed antialiased;
-    @apply selection:bg-sky-200/60;
+    @apply leading-relaxed antialiased;
     @apply [word-break:break-word] [overflow-wrap:anywhere];
     @apply text-base lg:text-lg;
 
@@ -87,13 +95,13 @@ a.link {
     h4,
     h5,
     h6 {
-      @apply font-semibold tracking-tight text-slate-900  scroll-mt-24;
+      @apply font-semibold tracking-tight scroll-mt-24;
     }
     h1 {
       @apply text-3xl md:text-4xl lg:text-4xl mt-6 mb-3;
     }
     h2 {
-      @apply text-2xl md:text-3xl mt-8 mb-3 border-b border-slate-200/70 pb-1;
+      @apply text-2xl md:text-3xl mt-8 mb-3 border-b border-fg/70 pb-1;
     }
     h3 {
       @apply text-xl md:text-2xl mt-6 mb-2;
@@ -105,7 +113,7 @@ a.link {
       @apply text-base md:text-lg mt-4 mb-2;
     }
     h6 {
-      @apply text-sm uppercase tracking-wider text-slate-500 mt-4 mb-1;
+      @apply text-sm uppercase tracking-wider mt-4 mb-1;
     }
 
     /* Paragraphs */
@@ -117,7 +125,7 @@ a.link {
     }
     .lead,
     p.lead {
-      @apply text-lg md:text-xl leading-8 text-slate-700;
+      @apply text-lg md:text-xl leading-8;
     }
 
     /* Links */

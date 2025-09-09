@@ -33,18 +33,14 @@ export async function getStaticPaths() {
 >
 	<PageContainer isHome={false}>
 		<div
-			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"
+			class="text-fg pt-4 bg-bg/50 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"
 		>
-			<div
-				class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl"
-			>
+			<div class="bg-bg py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl">
 				<div>
 					<h1>
 						{title}
 					</h1>
-					<div
-						class="text-base text-gray-600 flex justify-start mb-4"
-					>
+					<div class="text-base text-fg/60 flex justify-start mb-4">
 						<p>
 							{
 								date.toLocaleDateString(undefined, {
@@ -59,7 +55,7 @@ export async function getStaticPaths() {
 						{
 							tags &&
 								tags.map((t) => (
-									<span class="text-sm rounded-md text-black border-black border py-1 px-2">
+									<span class="text-sm rounded-md text-fg/80 border-fg/80 border py-1 px-2">
 										{t}
 									</span>
 								))
