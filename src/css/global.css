@@ -1,6 +1,17 @@
 @import "tailwindcss";
 @import "@fontsource-variable/source-code-pro";
 
+:root {
+  --background: theme(colors.white);
+  --foreground: theme(colors.gray.800);
+
+  @media (prefers-color-scheme: dark) {
+    --color-andri: #033359ff;
+    --color-bg: theme(colors.gray.800);
+    --color-fg: theme(colors.white);
+  }
+}
+
 @theme {
   --color-andri: #59b4ff;
   --color-hover: theme(colors.pink.500);
@@ -18,13 +29,6 @@
   --width-one-third-screen: 33vw;
 
   --bg-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-}
-:root {
-  @media (prefers-color-scheme: dark) {
-    --color-andri: #033359ff;
-    --color-bg: theme(colors.gray.800);
-    --color-fg: theme(colors.white);
-  }
 }
 
 .andri-tag {

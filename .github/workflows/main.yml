@@ -62,20 +62,19 @@ jobs:
       image: ${{ needs.build.outputs.image }}
     secrets:
       FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-  deploy-ogre:
-    name: Deploy to Ogre
-    needs: build
-    uses: ./.github/workflows/deploy-ogre.yml
-    secrets:
-      GITOPS_HOST: ${{ secrets.GITOPS_HOST }}
-      GITOPS_USER: ${{ secrets.GITOPS_USER }}
-      OGRE_GITOPS_KEY: ${{ secrets.OGRE_GITOPS_KEY }}
-      OGRE_GITOPS_HOST_FINGERPRINT: ${{ secrets.OGRE_GITOPS_HOST_FINGERPRINT }}
+  # deploy-ogre:
+  #   name: Deploy to Ogre
+  #   needs: build
+  #   uses: ./.github/workflows/deploy-ogre.yml
+  #   secrets:
+  #     GITOPS_HOST: ${{ secrets.GITOPS_HOST }}
+  #     GITOPS_USER: ${{ secrets.GITOPS_USER }}
+  #     OGRE_GITOPS_KEY: ${{ secrets.OGRE_GITOPS_KEY }}
+  #     OGRE_GITOPS_HOST_FINGERPRINT: ${{ secrets.OGRE_GITOPS_HOST_FINGERPRINT }}
   md-social:
     name: md-social
     needs:
       - deploy-fly
-      - deploy-ogre
     runs-on: ubuntu-latest
     env:
       BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
