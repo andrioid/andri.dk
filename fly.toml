@@ -10,6 +10,10 @@ kill_timeout = 5
 [experimental]
 auto_rollback = true
 
+[[vm]]
+size = "shared-cpu-1x"
+memory = "512mb"
+  
 [[services]]
 http_checks = []
 internal_port = 3000
