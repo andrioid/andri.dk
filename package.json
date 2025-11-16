@@ -15,15 +15,16 @@
     "deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "check": "astro check",
     "build:bin": "bun build --compile --packages external --outfile ./app server.mjs",
-    "bundle": "bun build --target bun --bundle --packages external --outfile ./dist/weird-bun-bundle server.mjs"
+    "bundle": "bun build --target bun --bundle --packages external --outfile ./dist/weird-bun-bundle server.mjs",
+    "upgrade": "npx @astrojs/upgrade"
   },
   "dependencies": {
     "@andrioid/md-social": "^0.0.1-053d1d0",
-    "@astrojs/mdx": "^4.3.3",
-    "@astrojs/node": "^9.4.0",
-    "@astrojs/react": "^4.3.0",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "^3.4.2",
+    "@astrojs/mdx": "^4.3.10",
+    "@astrojs/node": "^9.5.0",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/rss": "^4.0.13",
+    "@astrojs/sitemap": "^3.6.0",
     "@fontsource-variable/inter": "^5.1.1",
     "@fontsource-variable/montserrat": "^5.2",
     "@fontsource-variable/source-code-pro": "^5.1.1",
@@ -33,7 +34,7 @@
     "@iconify-json/simple-icons": "^1.2.17",
     "@iconify-json/tabler": "^1.2.13",
     "@react-pdf/renderer": "^4",
-    "astro": "^5.12.9",
+    "astro": "^5.15.8",
     "astro-icon": "^1.1.5",
     "express": "^5",
     "html2canvas": "^1.4.1",
@@ -47,7 +48,7 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.4",
+    "@astrojs/check": "^0.9.5",
     "@tailwindcss/vite": "^4.1.11",
     "@types/bun": "^1.1.14",
     "@types/markdown-it": "^14",
