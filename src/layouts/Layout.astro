@@ -38,11 +38,6 @@ const { lang = "en", title, description, ogImage } = Astro.props as Props;
 		/>
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="shortcut icon" href="/img/coffee-icon.png" />
-		<script
-			is:inline
-			src="https://ep-umami.fly.dev/script.js"
-			data-website-id="8302b903-1052-49fa-a755-ba95c167ae6a">
-		</script>
 		{ogImage && (
 		<meta property="og:image" content={`${ogImage}`} />
 		<meta name="twitter:card" content="summary_large_image" />
