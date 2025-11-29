@@ -20,10 +20,10 @@
   },
   "dependencies": {
     "@andrioid/md-social": "^0.0.1-053d1d0",
-    "@astrojs/mdx": "^4.3.10",
-    "@astrojs/node": "^9.5.0",
+    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/node": "^9.5.1",
     "@astrojs/react": "^4.4.2",
-    "@astrojs/rss": "^4.0.13",
+    "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource-variable/inter": "^5.1.1",
     "@fontsource-variable/montserrat": "^5.2",
@@ -34,7 +34,7 @@
     "@iconify-json/simple-icons": "^1.2.17",
     "@iconify-json/tabler": "^1.2.13",
     "@react-pdf/renderer": "^4",
-    "astro": "^5.15.8",
+    "astro": "^5.16.2",
     "astro-icon": "^1.1.5",
     "express": "^5",
     "html2canvas": "^1.4.1",
@@ -48,7 +48,7 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.5",
+    "@astrojs/check": "^0.9.6",
     "@tailwindcss/vite": "^4.1.11",
     "@types/bun": "^1.1.14",
     "@types/markdown-it": "^14",
@@ -58,7 +58,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "~0.14.1",
     "sanitize-html": "^2.14.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "~4.1.17",
     "vfile": "^6.0.3"
   },
   "workspaces": [
