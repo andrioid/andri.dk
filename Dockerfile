@@ -13,6 +13,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 # Needed for workspace deps
 COPY packages ./packages/
+RUN mise trust
 RUN npm ci
 
 # [SERVER]
