@@ -12,6 +12,18 @@ RUN mise trust && mise install
 COPY packages ./packages/
 RUN npm ci
 
+FROM dependencies as build
+COPY . .
+RUN npm run build
+
+FROM build as server-build
+EXPOSE 3000
+ENV HOST=0.0.0.0
+ENV PORT=3000
+ENTRYPOINT [ "npm" ]
+CMD ["run", "start"]
+RUN
+
 # [SERVER]
 # Note: We tried this single static file, but bun messes up ssr
 FROM dependencies AS server
