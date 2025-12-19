@@ -17,6 +17,8 @@ COPY . .
 RUN npm run build
 
 FROM build as server-build
+ARG MODEL_API_KEY
+ENV MODEL_API_KEY=$ARG
 EXPOSE 3000
 ENV HOST=0.0.0.0
 ENV PORT=3000
