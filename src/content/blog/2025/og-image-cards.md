@@ -10,6 +10,7 @@ tags:
     - dx
     - ssg
 title: Open-Graph images with SVG and Go
+draft: true
 ---
 Posts that have social-cards, or og-image attached get more views, and they look much better when shared.
 
