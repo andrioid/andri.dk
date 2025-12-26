@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
+import { twMerge } from "tailwind-merge";
 import NavItems from "~/components/nav-items.astro";
 import ProfileIcon from "~/components/profile-icon.astro";
 import { resumeRaw } from "~/lib/cv";
@@ -39,7 +40,12 @@ const { isHome = false } = Astro.props;
       </div>
     </nav>
   </header>
-  <main class="grow flex flex-col md:overflow-auto">
+  <main
+    class={twMerge(
+      "grow flex flex-col md:overflow-auto ",
+      !isHome && "bg-gray-300",
+    )}
+  >
     <slot />
   </main>
 
