@@ -8,11 +8,11 @@ import { getPost } from "~/lib/cms";
 
 const { slug } = Astro.params;
 if (!slug) {
-	//return Astro.redirect("/404");
-	throw new Error("Missing param slug");
+  //return Astro.redirect("/404");
+  throw new Error("Missing param slug");
 }
 const post: CollectionEntry<"blog"> = await getPost(slug);
-const { date, title, description, tags, ogImage } = post.data;
+const { date, title, description, tags } = post.data;
 const { Content } = (await render(post)) ?? {};
 
 /* reconsider for static?
@@ -27,56 +27,56 @@ export async function getStaticPaths() {
 ---
 
 <Layout
-	title={title}
-	description={description}
-	ogImage={ogImage ? `/img/social/${ogImage}` : undefined}
+  title={title}
+  description={description}
+  ogImage={`/blog/${slug}.og.png`}
 >
-	<PageContainer isHome={false}>
-		<div
-			class="text-fg pt-4 bg-bg/50 py-2 md:py-10 md:px-10 md:flex md:flex-grow justify-center"
-		>
-			<div class="bg-bg py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl">
-				<div>
-					<h1>
-						{title}
-					</h1>
-					<div class="text-base text-fg/60 flex justify-start mb-4">
-						<p>
-							{
-								date.toLocaleDateString(undefined, {
-									year: "numeric",
-									month: "short",
-									day: "numeric",
-								})
-							}
-						</p>
-					</div>
-					<div class="mb-4 flex gap-2">
-						{
-							tags &&
-								tags.map((t) => (
-									<span class="text-sm rounded-md text-fg/80 border-fg/80 border py-1 px-2">
-										{t}
-									</span>
-								))
-						}
-					</div>
-				</div>
+  <PageContainer isHome={false}>
+    <div
+      class="text-fg pt-4 bg-bg/50 py-2 md:py-10 md:px-10 md:flex md:grow justify-center"
+    >
+      <div class="bg-bg py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl">
+        <div>
+          <h1>
+            {title}
+          </h1>
+          <div class="text-base text-fg/60 flex justify-start mb-4">
+            <p>
+              {
+                date.toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })
+              }
+            </p>
+          </div>
+          <div class="mb-4 flex gap-2">
+            {
+              tags &&
+                tags.map((t) => (
+                  <span class="text-sm rounded-md text-fg/80 border-fg/80 border py-1 px-2">
+                    {t}
+                  </span>
+                ))
+            }
+          </div>
+        </div>
 
-				<article class="mb-6 markdown">
-					{Content && <Content />}
-				</article>
-				{
-					post.data.social?.bluesky && (
-						<BlueSkyInteractions
-							client:only="react"
-							atUri={post.data.social?.bluesky}
-						/>
-					)
-				}
+        <article class="mb-6 markdown">
+          {Content && <Content />}
+        </article>
+        {
+          post.data.social?.bluesky && (
+            <BlueSkyInteractions
+              client:only="react"
+              atUri={post.data.social?.bluesky}
+            />
+          )
+        }
 
-				<p>&nbsp;</p>
-			</div>
-		</div>
-	</PageContainer>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </PageContainer>
 </Layout>

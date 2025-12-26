@@ -20,7 +20,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     ssr: {
-      external: ["svgo", "@react-pdf/renderer"],
+      external: ["svgo", "@react-pdf/renderer", "@takumi-rs/core"],
       noExternal: ["path-to-regexp"],
     },
     optimizeDeps: {
