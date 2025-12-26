@@ -34,7 +34,7 @@ export async function GET({ params }: { params: Params }) {
     {
       width: 1200,
       height: 630,
-      format: "png",
+      format: "webp",
       headers: {
         "Cache-Control": "public, max-age=3600",
       },

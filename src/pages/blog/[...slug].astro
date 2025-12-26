@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 <Layout
   title={title}
   description={description}
-  ogImage={`/blog/${slug}.og.png`}
+  ogImage={new URL(`/blog/${slug}.og`, Astro.site?.origin).toString()}
 >
   <PageContainer isHome={false}>
     <div
