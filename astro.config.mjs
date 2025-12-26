@@ -9,10 +9,7 @@ import remarkEmbedImages from "remark-embed-images";
 import { setLayout } from "./src/lib/remark-default-layout";
 
 export default defineConfig({
-  site:
-    import.meta.env.MODE === "development"
-      ? "http://localhost:4321"
-      : "https://andri.dk/",
+  site: "https://andri.dk/",
   integrations: [react(), mdx(), icon(), sitemap()],
   trailingSlash: "ignore",
   markdown: {
