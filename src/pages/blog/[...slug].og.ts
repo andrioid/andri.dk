@@ -2,27 +2,23 @@
 import type { PersistentImage } from "@takumi-rs/core";
 import { ImageResponse } from "@takumi-rs/image-response";
 import { Params } from "astro";
-import { CollectionEntry } from "astro:content";
+import { CollectionEntry, getEntry } from "astro:content";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { createElement } from "react";
 import { getPost } from "~/lib/cms";
 import { OgImage } from "./_cmp/og";
 
-const avatarUrl = path.join(process.cwd(), "public/img/coffee-art.jpg");
-const avatar = readFileSync(avatarUrl);
-
 const persistentImages: Array<PersistentImage> = [
   {
     src: "avatar",
-    data: avatar,
+    data: readFileSync(path.join(process.cwd(), "public/img/coffee-art.jpg")),
   },
 ];
 
 export async function GET({ params }: { params: Params }) {
   const { slug } = params;
   if (!slug) {
-    //return Astro.redirect("/404");
     throw new Error("Missing param slug");
   }
   const post: CollectionEntry<"blog"> = await getPost(slug);
@@ -42,4 +38,11 @@ export async function GET({ params }: { params: Params }) {
       persistentImages,
     },
   );
+}
+
+// Simplified version of my getPost using a content-collection "blog"
+async function getPostImpl(slug: string): Promise<CollectionEntry<"blog">> {
+  const post = await getEntry("blog", slug);
+  if (!post) throw new Error("Post not found");
+  return post;
 }

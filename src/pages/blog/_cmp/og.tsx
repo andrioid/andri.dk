@@ -33,3 +33,11 @@ export function OgImage({ post }: { post: CollectionEntry<"blog"> }) {
     </div>
   );
 }
+
+export function HelloOG() {
+  return (
+    <div tw="bg-white w-full h-full flex items-center justify-center">
+      <h1 tw="text-4xl font-bold">Hello</h1>
+    </div>
+  );
+}
