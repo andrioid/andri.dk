@@ -24,9 +24,7 @@ export function OgImage({ post }: { post: CollectionEntry<"blog"> }) {
         </div>
         <div id="tags" tw="flex flex-row gap-4 font-semibold">
           {post.data.tags?.map((tag) => (
-            <span tw="rounded-full bg-white text-black py-1.5 px-4">
-              #{tag}
-            </span>
+            <span tw="rounded-full bg-white text-black py-2 px-5">#{tag}</span>
           )) ?? null}
         </div>
       </div>
