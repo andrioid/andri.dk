@@ -23,6 +23,7 @@ As a part of this process, I've also had to
 - Remove all of the social-media posting stuff from my blog. It has always felt like a scope-creep to have it here, so now it's a part of my n8n setup and if that dies, that's not the end of the world.
 - [Redo how I'm generating open-graph images](https://andri.dk/blog/2025/takomi-og-image/) because my earlier way of doing it didn't feel quite right.
 - Setup hosting and automatic deployments on my own server via Dokploy
+- Create an alternative open-graph image for code-snippet like posts
 
 ![n8n workflow](./n8n-example1.png)
 
