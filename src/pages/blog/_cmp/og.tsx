@@ -32,10 +32,30 @@ export function OgImage({ post }: { post: CollectionEntry<"blog"> }) {
   );
 }
 
-export function HelloOG() {
+/**
+ * TODO: Try to get this working
+ */
+export function OgImageCode({ post }: { post: CollectionEntry<"blog"> }) {
   return (
-    <div tw="bg-white w-full h-full flex items-center justify-center">
-      <h1 tw="text-4xl font-bold">Hello</h1>
+    <div
+      tw="bg-black w-full h-full flex flex-col justify-evenly text-white px-16 gap-6 py-8 "
+      style={{
+        backgroundImage: "linear-gradient(to bottom, #033359ff, black)",
+      }}
+    >
+      <h1 id="title" tw="text-5xl font-bold">
+        {post.data.title}
+      </h1>
+      <div dangerouslySetInnerHTML={{ __html: `<p>hello</p>` }} />
+      <pre tw="block whitespace-pre font-mono text-lg">{codeblock}</pre>
     </div>
   );
 }
+
+const codeblock = `
+function HelloWorld() {
+  return (
+    <p>Hello</p>
+ )
+}
+`;
