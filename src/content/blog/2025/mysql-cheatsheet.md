@@ -5,7 +5,7 @@ tags:
 title: "MySQL/MariaDB cheatsheet"
 ---
 
-A few useful snippets while using MariaDB/MySQL. Copied from my notes.
+A few useful snippets while using MariaDB/MySQL. Copied from my notes. Get ready for some YELLING.
 
 ```sql
 -- show slave status without your eyes bleeding
@@ -15,7 +15,7 @@ SHOW SLAVE STATUS\G
 SHOW MASTER STATUS\G
 
 -- processes
-show processlist;
+SHOW PROCESSLIST;
 
 -- show users
 SELECT User, Host FROM mysql.user;

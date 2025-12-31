@@ -4,7 +4,7 @@ import { codesnippetToImageBuffer } from "./code-snippet-to-container";
 
 const highlighter = await createHighlighter({
   themes: ["github-dark"],
-  langs: ["tsx", "ts", "sql", "shell"],
+  langs: ["tsx", "ts", "sql", "shell", "js", "bash", "php", "html", "css"],
 });
 
 export async function codesnippetResponse({
