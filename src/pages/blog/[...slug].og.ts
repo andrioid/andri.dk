@@ -7,6 +7,8 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { createElement } from "react";
 import { getPost } from "~/lib/cms";
+import { codesnippetFromMarkdown } from "./_cmp/code-snippet-from-md";
+import { codesnippetResponse } from "./_cmp/code-snippet-response";
 import { OgImage } from "./_cmp/og";
 
 const persistentImages: Array<PersistentImage> = [
@@ -22,6 +24,14 @@ export async function GET({ params }: { params: Params }) {
     throw new Error("Missing param slug");
   }
   const post: CollectionEntry<"blog"> = await getPost(slug);
+
+  // If most of the content is a single code snippet, then use it as the og-image
+  const snippet = codesnippetFromMarkdown(post.body);
+  if (snippet && post.body) {
+    if (snippet.code.length > post.body.length * 0.5) {
+      return await codesnippetResponse(snippet);
+    }
+  }
 
   return new ImageResponse(
     createElement(OgImage, {
