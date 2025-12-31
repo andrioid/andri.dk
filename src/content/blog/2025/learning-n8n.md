@@ -17,6 +17,7 @@ Then occasionally, it checks if the post has been shared on social-media:
 1. If it's shared already, abort
 2. Create a post on Bluesky and store a reference to the at-protocol URL
 3. Create a post on LinkedIn and store a reference to the post
+4. Add Bluesky comments by fetching the atUri from an n8n web-hook
 
 As a part of this process, I've also had to
 
