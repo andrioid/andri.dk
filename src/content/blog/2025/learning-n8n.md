@@ -24,4 +24,6 @@ As a part of this process, I've also had to
 - [Redo how I'm generating open-graph images](https://andri.dk/blog/2025/takomi-og-image/) because my earlier way of doing it didn't feel quite right.
 - Setup hosting and automatic deployments on my own server via Dokploy
 
-Did you do anything interesting with your Holiday Vacation?
+![n8n workflow](./n8n-example1.png)
+
+### Did you do anything interesting with your Holiday Vacation?
