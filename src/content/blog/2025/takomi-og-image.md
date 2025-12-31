@@ -7,9 +7,9 @@ title: Social-media images directly into PNG from JSX with Takumi
 
 Improving engagement of your online content can come down to how it's previewed on social-media services. If you're like me, and not keen on creating these open-graph images by hand for every post then you can generate them programmatically.
 
-## [Takumi](https://takumi.kane.tw/)
+## Takumi
 
-Takumi is a tool that receives JSX and outputs images. It has support for (some) CSS, Tailwind and HTML. We'll be using React's JSX in this example; but there's also a lower-level API you can use if you like. It can run on Node.js, or in the browser using WASM.
+[Takumi](https://takumi.kane.tw/) is a tool that receives JSX and outputs images. It has support for (some) CSS, Tailwind and HTML. We'll be using React's JSX in this example; but there's also a lower-level API you can use if you like. It can run on Node.js, or in the browser using WASM.
 
 If your template looks like this
 
