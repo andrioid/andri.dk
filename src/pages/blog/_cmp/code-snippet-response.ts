@@ -1,20 +1,29 @@
-import { codeToImage } from "shiki-image";
-import { CodeSnippet } from "./code-snippet-from-md";
+import { Renderer } from "@takumi-rs/core";
+import { createHighlighter } from "shiki";
+import { codesnippetToImageBuffer } from "./code-snippet-to-container";
 
-// TODO: While shiki-image is nice, it's a rather thin wrapper and we could implement it ourselves
+const highlighter = await createHighlighter({
+  themes: ["github-dark"],
+  langs: ["tsx", "ts", "sql", "shell"],
+});
 
-export async function codesnippetResponse(
-  snippet: CodeSnippet,
-): Promise<Response> {
-  const buffer = await codeToImage(snippet.code, {
-    lang: snippet.lang as any, // BundledLanguage isn't exported and I'm lazy
-    theme: "github-dark",
-    width: 1200,
-    height: 630,
-    format: "webp",
-    style: {
-      backgroundImage: "linear-gradient(to bottom, #033359ff, black)",
-    },
+export async function codesnippetResponse({
+  code,
+  lang,
+  theme,
+  renderer,
+}: {
+  code: string;
+  lang: string;
+  theme?: string;
+  renderer: Renderer;
+}): Promise<Response> {
+  // Grab 20 lines
+  const buffer = await codesnippetToImageBuffer({
+    code,
+    lang: lang as any, // this comes from markdown
+    renderer,
+    highlighter,
   });
   if (!buffer) throw new Error("Unable to create shiki-image");
   return new Response(buffer as unknown as any, {

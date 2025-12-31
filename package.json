@@ -44,7 +44,6 @@
     "react": "^19",
     "react-dom": "^19",
     "remark-embed-images": "^5",
-    "shiki-image": "^0.1.4",
     "simple-icons": "^15",
     "tailwind-merge": "^3",
     "typescript": "^5.7.2"
