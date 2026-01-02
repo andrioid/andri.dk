@@ -1,6 +1,6 @@
 import { Renderer } from "@takumi-rs/core";
 import { createHighlighter } from "shiki";
-import { codesnippetToImageBuffer } from "./code-snippet-to-container";
+import { codesnippetToImageContainer } from "./code-snippet-to-container";
 
 const highlighter = await createHighlighter({
   themes: ["github-dark"],
@@ -11,19 +11,23 @@ export async function codesnippetResponse({
   code,
   lang,
   theme,
-  renderer,
+  renderer = new Renderer(),
 }: {
   code: string;
   lang: string;
   theme?: string;
   renderer: Renderer;
 }): Promise<Response> {
-  // Grab 20 lines
-  const buffer = await codesnippetToImageBuffer({
+  const root = codesnippetToImageContainer({
     code,
     lang: lang as any, // this comes from markdown
-    renderer,
     highlighter,
+  });
+  const buffer = await renderer.render(root, {
+    format: "webp",
+    width: 1200,
+    height: 630,
+    drawDebugBorder: false,
   });
   if (!buffer) throw new Error("Unable to create shiki-image");
   return new Response(buffer as unknown as any, {

@@ -3,9 +3,7 @@ export type CodeSnippet = {
   code: string;
 };
 
-export function codesnippetFromMarkdown(
-  md: string | undefined,
-): CodeSnippet | null {
+export function codesnippetFromMarkdown(md: string): CodeSnippet | null {
   if (!md) return null;
   // Find the ```<lang>\n<code>``` from string
   const match = md.match(/```(\w+)\n([\s\S]*?)```/);

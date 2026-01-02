@@ -1,22 +1,11 @@
 // Note: Does not work with Deno SSR yet
-import { Renderer, type PersistentImage } from "@takumi-rs/core";
-import { ImageResponse } from "@takumi-rs/image-response";
+import { Renderer } from "@takumi-rs/core";
 import { Params } from "astro";
-import { CollectionEntry, getEntry } from "astro:content";
-import { readFileSync } from "node:fs";
-import path from "node:path";
-import { createElement } from "react";
+import { CollectionEntry } from "astro:content";
 import { getPost } from "~/lib/cms";
 import { codesnippetFromMarkdown } from "./_cmp/code-snippet-from-md";
 import { codesnippetResponse } from "./_cmp/code-snippet-response";
-import { OgImage } from "./_cmp/og";
-
-const persistentImages: Array<PersistentImage> = [
-  {
-    src: "avatar",
-    data: readFileSync(path.join(process.cwd(), "public/img/coffee-art.jpg")),
-  },
-];
+import { ogCardResponse } from "./_cmp/og-card-response";
 
 const takumiRenderer = new Renderer();
 
@@ -28,7 +17,7 @@ export async function GET({ params }: { params: Params }) {
   const post: CollectionEntry<"blog"> = await getPost(slug);
 
   // If most of the content is a single code snippet, then use it as the og-image
-  const snippet = codesnippetFromMarkdown(post.body);
+  const snippet = codesnippetFromMarkdown(post.body ?? "");
   if (snippet && post.body) {
     if (snippet.code.length > post.body.length * 0.5) {
       return await codesnippetResponse({
@@ -38,28 +27,5 @@ export async function GET({ params }: { params: Params }) {
       });
     }
   }
-
-  // Otherwise create a card-image
-  return new ImageResponse(
-    createElement(OgImage, {
-      post: post,
-    }),
-    {
-      width: 1200,
-      height: 630,
-      format: "webp",
-      headers: {
-        "Cache-Control": "public, max-age=3600",
-      },
-      drawDebugBorder: false,
-      persistentImages,
-    },
-  );
-}
-
-// Simplified version of my getPost using a content-collection "blog"
-async function getPostImpl(slug: string): Promise<CollectionEntry<"blog">> {
-  const post = await getEntry("blog", slug);
-  if (!post) throw new Error("Post not found");
-  return post;
+  return ogCardResponse({ post, renderer: takumiRenderer });
 }

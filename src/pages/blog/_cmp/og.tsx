@@ -1,8 +1,11 @@
+import { type PersistentImage } from "@takumi-rs/core";
 import { CollectionEntry } from "astro:content";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { site } from "~/constants";
 import { dateToIsoDate } from "~/lib/date-utils";
 
-export function OgImage({ post }: { post: CollectionEntry<"blog"> }) {
+export function OgPostCard({ post }: { post: CollectionEntry<"blog"> }) {
   return (
     <div
       tw="bg-black w-full h-full flex flex-col justify-evenly text-white px-16 gap-6 py-8 "
@@ -32,30 +35,9 @@ export function OgImage({ post }: { post: CollectionEntry<"blog"> }) {
   );
 }
 
-/**
- * TODO: Try to get this working
- */
-export function OgImageCode({ post }: { post: CollectionEntry<"blog"> }) {
-  return (
-    <div
-      tw="bg-black w-full h-full flex flex-col justify-evenly text-white px-16 gap-6 py-8 "
-      style={{
-        backgroundImage: "linear-gradient(to bottom, #033359ff, black)",
-      }}
-    >
-      <h1 id="title" tw="text-5xl font-bold">
-        {post.data.title}
-      </h1>
-      <div dangerouslySetInnerHTML={{ __html: `<p>hello</p>` }} />
-      <pre tw="block whitespace-pre font-mono text-lg">{codeblock}</pre>
-    </div>
-  );
-}
-
-const codeblock = `
-function HelloWorld() {
-  return (
-    <p>Hello</p>
- )
-}
-`;
+export const ogCardpersistentImages: Array<PersistentImage> = [
+  {
+    src: "avatar",
+    data: readFileSync(path.join(process.cwd(), "public/img/coffee-art.jpg")),
+  },
+];

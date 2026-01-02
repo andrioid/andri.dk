@@ -1,23 +1,20 @@
-import { Renderer } from "@takumi-rs/core";
-import { container, text } from "@takumi-rs/helpers";
+import { container, ContainerNode, text } from "@takumi-rs/helpers";
 import { BundledLanguage, BundledTheme, HighlighterGeneric } from "shiki";
 
 const DEFAULT_FONT_SIZE = 32;
 const DEFAULT_LINE_HEIGHT = 1.3;
 
-export async function codesnippetToImageBuffer({
+export function codesnippetToImageContainer({
   code,
   lang,
-  renderer,
   theme = "github-dark",
   highlighter,
 }: {
   code: string;
   lang: BundledLanguage;
   theme?: string;
-  renderer: Renderer;
   highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
-}): Promise<Buffer<ArrayBufferLike>> {
+}): ContainerNode {
   const { tokens, fg, bg } = highlighter.codeToTokens(code, {
     theme: theme,
     lang: lang,
@@ -74,10 +71,6 @@ export async function codesnippetToImageBuffer({
     },
     children: [codeContainer],
   });
-  return await renderer.render(root, {
-    format: "webp",
-    width: 1200,
-    height: 630,
-    drawDebugBorder: false,
-  });
+
+  return root;
 }
