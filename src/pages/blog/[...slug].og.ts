@@ -1,13 +1,11 @@
 // Note: Does not work with Deno SSR yet
-import { Renderer } from "@takumi-rs/core";
 import { Params } from "astro";
 import { CollectionEntry } from "astro:content";
 import { getPost } from "~/lib/cms";
 import { codesnippetFromMarkdown } from "./_cmp/code-snippet-from-md";
 import { codesnippetResponse } from "./_cmp/code-snippet-response";
 import { ogCardResponse } from "./_cmp/og-card-response";
-
-const takumiRenderer = new Renderer();
+import { takumiRenderer } from "./_cmp/takumi";
 
 export async function GET({ params }: { params: Params }) {
   const { slug } = params;

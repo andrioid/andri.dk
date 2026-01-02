@@ -1,7 +1,4 @@
-import { type PersistentImage } from "@takumi-rs/core";
 import { CollectionEntry } from "astro:content";
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { site } from "~/constants";
 import { dateToIsoDate } from "~/lib/date-utils";
 
@@ -34,10 +31,3 @@ export function OgPostCard({ post }: { post: CollectionEntry<"blog"> }) {
     </div>
   );
 }
-
-export const ogCardpersistentImages: Array<PersistentImage> = [
-  {
-    src: "avatar",
-    data: readFileSync(path.join(process.cwd(), "public/img/coffee-art.jpg")),
-  },
-];

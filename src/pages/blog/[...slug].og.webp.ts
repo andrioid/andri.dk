@@ -1,5 +1,4 @@
 // Note: Does not work with Deno SSR yet
-import { Renderer } from "@takumi-rs/core";
 import { fromJsx } from "@takumi-rs/helpers/jsx";
 import { APIRoute } from "astro";
 import { CollectionEntry } from "astro:content";
@@ -8,8 +7,8 @@ import { getPost } from "~/lib/cms";
 import { codesnippetFromMarkdown } from "./_cmp/code-snippet-from-md";
 import { codesnippetToImageContainer } from "./_cmp/code-snippet-to-container";
 import { OgPostCard } from "./_cmp/og";
+import { takumiRenderer } from "./_cmp/takumi";
 
-const takumiRenderer = new Renderer();
 const highlighter = await createHighlighter({
   themes: ["github-dark"],
   langs: ["tsx", "ts", "sql", "shell", "js", "bash", "php", "html", "css"],

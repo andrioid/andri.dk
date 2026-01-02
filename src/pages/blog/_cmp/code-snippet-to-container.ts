@@ -33,6 +33,7 @@ export function codesnippetToImageContainer({
       fontFamily: "monospace",
       whiteSpace: "pre",
       overflowWrap: "anywhere",
+      textWrap: "pretty",
       flexGrow: 1,
       flexBasis: 0,
       flexWrap: "wrap", // we only have room for one row, but we dont want to show it
