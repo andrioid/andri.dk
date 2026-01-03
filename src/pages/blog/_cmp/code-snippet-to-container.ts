@@ -32,12 +32,9 @@ export function codesnippetToImageContainer({
       lineHeight: DEFAULT_LINE_HEIGHT,
       fontFamily: "monospace",
       whiteSpace: "pre",
-      overflowWrap: "anywhere",
-      textWrap: "pretty",
       flexGrow: 1,
       flexBasis: 0,
       flexWrap: "wrap", // we only have room for one row, but we dont want to show it
-      textOverflow: "ellipsis",
       minWidth: 0,
       minHeight: 0,
       rowGap: "10em",
@@ -53,7 +50,10 @@ export function codesnippetToImageContainer({
           width: "100%",
         },
         children: line.map((token) =>
-          text(token.content, { color: token.color, display: "inline" }),
+          text(token.content, {
+            color: token.color,
+            display: "inline",
+          }),
         ),
       }),
     ),
