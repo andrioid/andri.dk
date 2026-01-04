@@ -16,5 +16,6 @@ export function codesnippetFromMarkdown(md: string): Array<CodeSnippet> | null {
       code: m[2],
     });
   }
+  if (snippets.length === 0) return null;
   return snippets;
 }
