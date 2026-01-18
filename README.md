@@ -25,7 +25,7 @@ This is the source code for andri.dk, a personal website and portfolio built wit
 │   ├── components/         # Re-usable components (Astro and React)
 │   ├── content/            # Astro content collections. E.g. blog posts
 │   ├── lib/                # Utility functions and libraries
-│   └── pages/              # Page routes and layouts
+│   └── pages/              # Page routes and layouts. E.g. index.astro, about.md, now.mdx
 ├── public/                 # Static assets
 ├── astro.config.mjs        # Astro configuration
 ├── package.json            # Dependencies and scripts
