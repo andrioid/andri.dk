@@ -3,7 +3,7 @@ import { Font, renderToBuffer } from "@react-pdf/renderer";
 import fs from "node:fs";
 import path from "node:path";
 import { createElement } from "react";
-import { DEFAULT_FONT, Resume } from "./";
+import { DEFAULT_FONT, type Resume } from "./";
 import { colors } from "./colors";
 import { CVWrapper } from "./react/cv-wrapper";
 
