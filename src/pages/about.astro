@@ -1,0 +1,91 @@
+---
+export const prerender = true;
+import Layout from "~/layouts/Layout.astro";
+import PageContainer from "~/layouts/page-container.astro";
+import { resumeRaw } from "~/lib/cv";
+
+const cv = resumeRaw;
+---
+
+<Layout
+	title="About"
+	description={cv.basics.label}
+>
+	<PageContainer>
+		<div class="max-w-4xl mx-auto px-4 py-8">
+			<h1 class="text-3xl font-bold mb-6">About Me</h1>
+			
+			<div class="prose prose-lg dark:prose-invert">
+				<p class="text-lg">
+					{cv.basics.summary}
+				</p>
+				
+				<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div>
+						<h2 class="text-2xl font-semibold mb-4">Personal Information</h2>
+						<ul class="space-y-2">
+							<li><span class="font-medium">Name:</span> {cv.basics.name}</li>
+							<li><span class="font-medium">Location:</span> {cv.basics.location.city}, {cv.basics.location.countryCode}</li>
+							<li><span class="font-medium">Email:</span> {cv.basics.email}</li>
+							<li><span class="font-medium">Website:</span> <a href={cv.basics.website} class="text-blue-600 hover:underline">{cv.basics.website}</a></li>
+						</ul>
+					</div>
+					
+					<div>
+						<h2 class="text-2xl font-semibold mb-4">Skills</h2>
+						<ul class="list-disc pl-5 space-y-1">
+							{cv.skills.map((skill) => (
+								<li class="mb-1">{skill.name} - {skill.level}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+				
+				<div class="mt-8">
+					<h2 class="text-2xl font-semibold mb-4">Experience</h2>
+					<div class="space-y-4">
+						{cv.work.map((job) => (
+							<div class="border-l-4 border-blue-500 pl-4 py-1">
+								<h3 class="text-xl font-medium">{job.position}</h3>
+								<p class="text-gray-600 dark:text-gray-400">
+									{job.company} • {job.startDate} {job.endDate && ` - ${job.endDate}`}
+								</p>
+								<p>{job.summary}</p>
+								{job.keywords && job.keywords.length > 0 && (
+									<p class="mt-2">Keywords: {job.keywords.join(", ")}</p>
+								)}
+							</div>
+						))}
+					</div>
+				</div>
+				
+				<div class="mt-8">
+					<h2 class="text-2xl font-semibold mb-4">Education</h2>
+					<div class="space-y-4">
+						{cv.education.map((education) => (
+							<div class="border-l-4 border-green-500 pl-4 py-1">
+								<h3 class="text-xl font-medium">{education.area}</h3>
+								<p class="text-gray-600 dark:text-gray-400">
+									{education.institution} • {education.startDate} {education.endDate && ` - ${education.endDate}`}
+								</p>
+								<p>{education.studyType}</p>
+							</div>
+						))}
+					</div>
+				</div>
+				
+				<div class="mt-8">
+					<h2 class="text-2xl font-semibold mb-4">Profiles</h2>
+					<ul class="space-y-2">
+						{cv.basics.profiles.map((profile) => (
+							<li>
+								<span class="font-medium">{profile.network}:</span> 
+								<a href={profile.url} class="text-blue-600 hover:underline">{profile.username}</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</PageContainer>
+</Layout>
