@@ -4,12 +4,13 @@ description: How I envision we can bring as much value as possible out of a soft
 ogImage: 2022/declarative-software-environments.png
 slug: 2022/declarative-software-environments
 tags:
-    - blog
-    - rant
-    - software
-    - devops
+  - blog
+  - rant
+  - software
+  - devops
 title: Declarative Software Environments
 ---
+
 Someone smart, who works in infrastructure said to me recently (paraphrasing):
 
 > We can't have secure defaults on Kubernetes clusters, because the developers require full freedom to work on the cluster

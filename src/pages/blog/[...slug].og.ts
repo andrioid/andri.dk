@@ -8,22 +8,22 @@ import { ogCardResponse } from "./_cmp/og-card-response";
 import { takumiRenderer } from "./_cmp/takumi";
 
 export async function GET({ params }: { params: Params }) {
-  const { slug } = params;
-  if (!slug) {
-    throw new Error("Missing param slug");
-  }
-  const post: CollectionEntry<"blog"> = await getPost(slug);
+	const { slug } = params;
+	if (!slug) {
+		throw new Error("Missing param slug");
+	}
+	const post: CollectionEntry<"blog"> = await getPost(slug);
 
-  // If most of the content is a single code snippet, then use it as the og-image
-  const snippet = codesnippetFromMarkdown(post.body ?? "");
-  if (snippet && post.body) {
-    if (snippet[0].code.length > post.body.length * 0.5) {
-      return await codesnippetResponse({
-        code: snippet[0].code,
-        lang: snippet[0].lang,
-        renderer: takumiRenderer,
-      });
-    }
-  }
-  return ogCardResponse({ post, renderer: takumiRenderer });
+	// If most of the content is a single code snippet, then use it as the og-image
+	const snippet = codesnippetFromMarkdown(post.body ?? "");
+	if (snippet && post.body) {
+		if (snippet[0].code.length > post.body.length * 0.5) {
+			return await codesnippetResponse({
+				code: snippet[0].code,
+				lang: snippet[0].lang,
+				renderer: takumiRenderer,
+			});
+		}
+	}
+	return ogCardResponse({ post, renderer: takumiRenderer });
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "node server.mjs",
+    "lint": "oxlint .",
     "build": "astro build",
     "format": "prettier --write .",
     "verify:formatting": "prettier . --check",

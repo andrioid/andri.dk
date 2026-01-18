@@ -70,9 +70,9 @@ npm run verify:formatting
 ### General
 
 - Follow JavaScript/TypeScript best practices
-- Use TypeScript for type safety
+- Use strict TypeScript for type safety
 - Prefer functional programming style where appropriate
-- Maintain consistent file naming (kebab-case for files, PascalCase for components)
+- Maintain consistent file naming (kebab-case for all files)
 - Use absolute imports with path aliases (@components, @lib, @layouts, ~)
 
 ### Imports
@@ -123,17 +123,18 @@ npm run verify:formatting
 
 ## Configuration Files
 
-- ESLint configuration in `.eslintrc.js` with TypeScript parser
 - Prettier with Astro plugin in `.prettierrc.mjs`
 - TypeScript configuration in `tsconfig.json` with strict mode
 - Astro configuration in `astro.config.mjs`
+- oxlint configuration in `.oxlintrc.json`
+- Mise configuration in `mise.toml`
 
 ## CI/CD and Quality Checks
 
 - Uses Astro for build system
 - Type checking with TypeScript
 - Code formatting with Prettier
-- ESLint for code quality
+- oxlint for code quality
 - GitHub Actions workflows (if present)
 
 ## Special Considerations

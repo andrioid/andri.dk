@@ -3,9 +3,10 @@ date: "2010-08-10T00:00:00.000Z"
 ogImage: 2019/piping-remote-backups-through-ssh-with-tar.png
 slug: piping-remote-backups-through-ssh-with-tar
 tags:
-    - linux
+  - linux
 title: Piping remote backups through SSH with tar
 ---
+
 **As a part of my site restoration, this page was salvaged and may not be up to date**
 
 While usually operating some sort of backup systems, it may become necessary to perform at remote backup of a machine without initiating locally. There can be a number of reasons to do this, such as:

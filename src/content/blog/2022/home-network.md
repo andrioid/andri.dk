@@ -4,10 +4,11 @@ description: Or how my home probably has better network than the office.
 ogImage: 2022/home-network.png
 slug: 2022/home-network
 tags:
-    - blog
-    - networking
+  - blog
+  - networking
 title: Upgrading the home-network
 ---
+
 Our home-network has been running on an Edgerouter Lite (now discontinued) for 8 years or so and it worked just fine. But, during the summer the heat in our garage has been exceeding 30C/86F degrees and it gave up on me. Now it peeps like a little bird when I turn it on.
 
 ![edge-router-lite](edge-router-lite-borked.png)

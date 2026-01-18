@@ -6,8 +6,8 @@ import { resumeToString } from "@lib/cv/pdf-utils";
 export const prerender = true;
 
 export async function GET() {
-  const pdfBlob = await resumeToString(resumeRaw);
-  return new Response(pdfBlob as unknown as any, {
-    headers: { "content-type": "application/pdf" },
-  });
+	const pdfBlob = await resumeToString(resumeRaw);
+	return new Response(pdfBlob as unknown as any, {
+		headers: { "content-type": "application/pdf" },
+	});
 }

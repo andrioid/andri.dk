@@ -4,9 +4,10 @@ draft: false
 ogImage: 2019/12/2019-in-tech.png
 slug: 2019/12/2019-in-tech
 tags:
-    - technology
+  - technology
 title: 2019 in Tech
 ---
+
 Every year, or that was my plan back in 2013; I do a review of what technology I've been using during the year and reflect on my experiences.
 
 This year has been fun in many ways. I have been creating apps, websites, microservices and APIs.

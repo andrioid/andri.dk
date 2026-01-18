@@ -4,10 +4,11 @@ draft: false
 ogImage: 2019/08/choosing-a-programming-language.png
 slug: 2019/08/choosing-a-programming-language
 tags:
-    - programming
-    - discussion
+  - programming
+  - discussion
 title: Choosing a programming language
 ---
+
 Imagine that you're a CTO, a Tech Lead or someone that has to make an early technical decision that will effect the company for years to come. What programming language do you choose?
 
 # The cost of abstraction

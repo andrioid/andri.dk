@@ -3,9 +3,10 @@ date: "2014-01-03T08:19:54.000Z"
 ogImage: 2019/2013-tech-stack.png
 slug: 2013-tech-stack
 tags:
-    - blog
+  - blog
 title: 2013 Tech Stack
 ---
+
 As I do pretty much, every year. 2013 was spent learning new technologies. Here's a short list.
 
 - Go: I taught myself a little bit of Golang and made a few small prototypes in it. I love the language so far, and while it is a bit restrictive, it's for my own good, as the code is easier to handle.

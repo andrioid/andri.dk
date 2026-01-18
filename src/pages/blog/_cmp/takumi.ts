@@ -4,30 +4,32 @@ import path from "node:path";
 import { createHighlighter } from "shiki";
 
 const takumiImages: Array<PersistentImage> = [
-  {
-    src: "avatar",
-    data: readFileSync(path.join(process.cwd(), "public/img/coffee-art.jpg")),
-  },
+	{
+		src: "avatar",
+		data: readFileSync(
+			path.join(process.cwd(), "public/img/coffee-art.jpg"),
+		),
+	},
 ];
 
 export const takumiRenderer = new Renderer({
-  persistentImages: takumiImages,
+	persistentImages: takumiImages,
 });
 
 export const highlighter = await createHighlighter({
-  themes: ["github-dark"],
-  langs: [
-    "tsx",
-    "ts",
-    "sql",
-    "shell",
-    "js",
-    "bash",
-    "php",
-    "html",
-    "css",
-    "toml",
-    "yaml",
-    "dockerfile",
-  ],
+	themes: ["github-dark"],
+	langs: [
+		"tsx",
+		"ts",
+		"sql",
+		"shell",
+		"js",
+		"bash",
+		"php",
+		"html",
+		"css",
+		"toml",
+		"yaml",
+		"dockerfile",
+	],
 });

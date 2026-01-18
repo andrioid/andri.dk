@@ -66,7 +66,7 @@ const defaultCountry = data ?? undefined;
 	const button = document.querySelector("button");
 	const results = document.querySelector("#results");
 	const resultImageEl = document.querySelector(
-		"#result_image"
+		"#result_image",
 	) as HTMLImageElement;
 	const countryEl = document.querySelector("#country") as HTMLSelectElement;
 
@@ -77,7 +77,7 @@ const defaultCountry = data ?? undefined;
 			: undefined;
 		if (!country) {
 			alert(
-				"Can't insult your country, if you don't tell me what it is!"
+				"Can't insult your country, if you don't tell me what it is!",
 			);
 			return;
 		}

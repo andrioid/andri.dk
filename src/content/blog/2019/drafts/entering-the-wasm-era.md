@@ -4,10 +4,11 @@ draft: true
 ogImage: 2019/drafts/entering-the-wasm-era.png
 slug: entering-the-wasm-era
 tags:
-    - hosting
-    - cloud
+  - hosting
+  - cloud
 title: Entering the era of Webassembly
 ---
+
 TOC:
 
 - Recent developments
