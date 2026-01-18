@@ -1,5 +1,11 @@
 # Project Agent Guidelines
 
+## Important rules
+
+- Be aware of cognitive load when doing changes.
+- Responses should be concise and straight to the point.
+- If unsure, ask before changing something
+
 ## Build, Lint, and Test Commands
 
 ### Build Commands
@@ -25,6 +31,13 @@ npm run verify:formatting
 
 # Verify TypeScript types
 npm run verify:types
+
+# Fix formatting errors
+npm run prettier --write
+
+# Fix linting errors
+npm run lint --fix
+
 ```
 
 ### Test Commands
