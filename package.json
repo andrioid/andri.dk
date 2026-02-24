@@ -22,7 +22,7 @@
   "dependencies": {
     "@andrioid/md-social": "^0.0.1-053d1d0",
     "@astrojs/mdx": "^4.3.12",
-    "@astrojs/node": "^9.5.1",
+    "@astrojs/node": "^9.5.4",
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
