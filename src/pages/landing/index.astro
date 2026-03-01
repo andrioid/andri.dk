@@ -119,6 +119,38 @@ export const prerender = true;
 							exitTerminal,
 						);
 
+						// Back button — positioned above the terminal
+						const backBtn = document.createElement("button");
+						backBtn.id = "terminal-back-btn";
+						backBtn.textContent = "\u2190 back";
+						Object.assign(backBtn.style, {
+							position: "fixed",
+							left: `${rect.left}px`,
+							top: `${Math.max(4, rect.top - 40)}px`,
+							padding: "6px 16px",
+							fontFamily: "'Source Code Pro Variable', monospace",
+							fontSize: "14px",
+							color: "#59b4ff",
+							background: "rgba(6, 4, 14, 0.7)",
+							backdropFilter: "blur(8px)",
+							WebkitBackdropFilter: "blur(8px)",
+							border: "1px solid rgba(89, 180, 255, 0.2)",
+							borderRadius: "6px",
+							cursor: "pointer",
+							zIndex: "20",
+							transition: "color 0.15s ease, background 0.15s ease",
+						});
+						backBtn.addEventListener("pointerenter", () => {
+							backBtn.style.color = "#fff";
+							backBtn.style.background = "rgba(89, 180, 255, 0.15)";
+						});
+						backBtn.addEventListener("pointerleave", () => {
+							backBtn.style.color = "#59b4ff";
+							backBtn.style.background = "rgba(6, 4, 14, 0.7)";
+						});
+						backBtn.addEventListener("click", exitTerminal);
+						document.body.appendChild(backBtn);
+
 						resizeHandler = () => {
 							const r = api.getScreenRect();
 							if (!r) return;
@@ -126,6 +158,11 @@ export const prerender = true;
 							terminalEl.style.top = `${r.top}px`;
 							terminalEl.style.width = `${r.width}px`;
 							terminalEl.style.height = `${r.height}px`;
+							const btn = document.getElementById("terminal-back-btn");
+							if (btn) {
+								btn.style.left = `${r.left}px`;
+								btn.style.top = `${Math.max(4, r.top - 40)}px`;
+							}
 							termInstance?.fit();
 						};
 						window.addEventListener("resize", resizeHandler);
@@ -141,6 +178,7 @@ export const prerender = true;
 					termInstance = null;
 					terminalEl.classList.remove("active");
 					terminalEl.innerHTML = "";
+					document.getElementById("terminal-back-btn")?.remove();
 
 					api.zoomOut(() => {
 						overlay.style.opacity = "";

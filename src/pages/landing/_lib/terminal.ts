@@ -55,8 +55,8 @@ export async function createTerminal(
 	terminal.loadAddon(fitAddon);
 	terminal.open(container);
 	fitAddon.fit();
+	terminal.focus();
 
-	// Boot text matching the CRT canvas
 	terminal.write(PROMPT);
 
 	let currentLine = "";

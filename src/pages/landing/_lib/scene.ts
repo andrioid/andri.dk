@@ -75,6 +75,7 @@ export function createScene(
 
 	buildRoom(scene);
 	buildWindow(scene);
+	buildCarpet(scene);
 	buildDesk(scene);
 	buildAmstrad(scene);
 	buildDeskLamp(scene);
@@ -393,54 +394,13 @@ export function createScene(
 	return { cleanup, zoomToScreen, zoomOut, getScreenRect };
 }
 
-function createWallTexture(w: number, h: number): THREE.CanvasTexture {
-	const canvas = document.createElement("canvas");
-	canvas.width = w;
-	canvas.height = h;
-	const ctx = canvas.getContext("2d")!;
-
-	// Flat white-ish base
-	ctx.fillStyle = "#ede9e3";
-	ctx.fillRect(0, 0, w, h);
-
-	// Very faint horizontal brick lines — painted-over brick look
-	ctx.strokeStyle = "rgba(190, 182, 172, 0.25)";
-	ctx.lineWidth = 1;
-
-	const brickH = 24;
-	const brickW = 52;
-
-	for (let row = 0; row < h / brickH; row++) {
-		const y = row * brickH;
-		ctx.beginPath();
-		ctx.moveTo(0, y);
-		ctx.lineTo(w, y);
-		ctx.stroke();
-
-		const offset = row % 2 === 0 ? 0 : brickW / 2;
-		for (let x = offset; x < w; x += brickW) {
-			ctx.beginPath();
-			ctx.moveTo(x, y);
-			ctx.lineTo(x, y + brickH);
-			ctx.stroke();
-		}
-	}
-
-	const texture = new THREE.CanvasTexture(canvas);
-	texture.wrapS = THREE.RepeatWrapping;
-	texture.wrapT = THREE.RepeatWrapping;
-	return texture;
-}
-
 function buildRoom(scene: THREE.Scene) {
 	const halfW = ROOM_WIDTH / 2;
 	const halfD = ROOM_DEPTH / 2;
 
-	// White brick walls
-	const backBrickTex = createWallTexture(512, 256);
-	backBrickTex.repeat.set(4, 2);
+	// Flat walls — no brick texture for low-poly aesthetic
 	const wallMat = new THREE.MeshStandardMaterial({
-		map: backBrickTex,
+		flatShading: true,
 		color: 0xf0ece6,
 		roughness: 0.85,
 		metalness: 0,
@@ -454,10 +414,8 @@ function buildRoom(scene: THREE.Scene) {
 	backWall.receiveShadow = true;
 	scene.add(backWall);
 
-	const sideBrickTex = createWallTexture(512, 256);
-	sideBrickTex.repeat.set(3, 2);
 	const sideWallMat = new THREE.MeshStandardMaterial({
-		map: sideBrickTex,
+		flatShading: true,
 		color: 0xeae5de,
 		roughness: 0.85,
 		metalness: 0,
@@ -483,6 +441,7 @@ function buildRoom(scene: THREE.Scene) {
 
 	// Ceiling — off-white
 	const ceilingMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0xf5f2ed,
 		roughness: 0.95,
 	});
@@ -494,49 +453,31 @@ function buildRoom(scene: THREE.Scene) {
 	ceiling.position.y = ROOM_HEIGHT;
 	scene.add(ceiling);
 
-	// Floor — warm hardwood with plank texture
+	// Floor — simple flat planks for low-poly look
 	const floorCanvas = document.createElement("canvas");
-	floorCanvas.width = 512;
-	floorCanvas.height = 512;
+	floorCanvas.width = 128;
+	floorCanvas.height = 128;
 	const fctx = floorCanvas.getContext("2d")!;
 
-	// Base wood color
-	fctx.fillStyle = "#6b5040";
-	fctx.fillRect(0, 0, 512, 512);
-
-	// Plank lines
-	const plankW = 80;
-	fctx.strokeStyle = "rgba(40, 25, 15, 0.3)";
-	fctx.lineWidth = 2;
-	for (let x = 0; x < 512; x += plankW) {
-		fctx.beginPath();
-		fctx.moveTo(x, 0);
-		fctx.lineTo(x, 512);
-		fctx.stroke();
-	}
-
-	// Subtle grain lines
-	fctx.strokeStyle = "rgba(90, 60, 35, 0.15)";
-	fctx.lineWidth = 1;
-	for (let i = 0; i < 60; i++) {
-		const y = Math.random() * 512;
-		const xStart = Math.random() * 512;
-		const len = 40 + Math.random() * 120;
-		fctx.beginPath();
-		fctx.moveTo(xStart, y);
-		fctx.lineTo(xStart + len, y + (Math.random() - 0.5) * 4);
-		fctx.stroke();
+	// Alternating plank colors — flat, no grain
+	const plankColors = ["#6b5040", "#7a5c4a", "#604838", "#725848"];
+	const plankW = 32;
+	for (let i = 0; i < 4; i++) {
+		fctx.fillStyle = plankColors[i];
+		fctx.fillRect(i * plankW, 0, plankW, 128);
 	}
 
 	const floorTexture = new THREE.CanvasTexture(floorCanvas);
 	floorTexture.wrapS = THREE.RepeatWrapping;
 	floorTexture.wrapT = THREE.RepeatWrapping;
-	floorTexture.repeat.set(3, 3);
+	floorTexture.repeat.set(4, 4);
+	floorTexture.magFilter = THREE.NearestFilter;
 
 	const floorMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		map: floorTexture,
-		roughness: 0.6,
-		metalness: 0.02,
+		roughness: 0.7,
+		metalness: 0,
 	});
 
 	const floor = new THREE.Mesh(
@@ -550,6 +491,7 @@ function buildRoom(scene: THREE.Scene) {
 
 	// Baseboard — warm wood
 	const baseboardMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x8b7355,
 		roughness: 0.7,
 	});
@@ -585,29 +527,20 @@ function drawCloud(
 	w: number,
 	h: number,
 ) {
-	// Build up a soft cloud from multiple overlapping ellipses
+	// Chunky low-poly style clouds — fewer, larger puffs
 	const puffs: [number, number, number, number][] = [
 		[0, 0, w, h],
-		[-w * 0.45, h * 0.15, w * 0.55, h * 0.7],
-		[w * 0.4, h * 0.1, w * 0.5, h * 0.75],
-		[-w * 0.15, -h * 0.3, w * 0.6, h * 0.6],
-		[w * 0.2, -h * 0.2, w * 0.45, h * 0.55],
-		[-w * 0.6, h * 0.25, w * 0.35, h * 0.5],
-		[w * 0.55, h * 0.2, w * 0.3, h * 0.5],
+		[-w * 0.5, h * 0.15, w * 0.5, h * 0.7],
+		[w * 0.45, h * 0.1, w * 0.45, h * 0.75],
 	];
 
 	ctx.save();
-	ctx.globalAlpha = 0.7;
+	ctx.globalAlpha = 0.75;
 	for (const [px, py, pw, ph] of puffs) {
 		ctx.beginPath();
 		ctx.ellipse(cx + px, cy + py, pw, ph, 0, 0, Math.PI * 2);
 		ctx.fill();
 	}
-	// Brighter core for volume
-	ctx.globalAlpha = 0.5;
-	ctx.beginPath();
-	ctx.ellipse(cx, cy, w * 0.6, h * 0.5, 0, 0, Math.PI * 2);
-	ctx.fill();
 	ctx.restore();
 }
 
@@ -622,6 +555,7 @@ function buildWindow(scene: THREE.Scene) {
 
 	// Window frame — dark wood
 	const frameMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x3a2a1a,
 		roughness: 0.7,
 		metalness: 0.05,
@@ -691,6 +625,7 @@ function buildWindow(scene: THREE.Scene) {
 
 	// Window sill
 	const sillMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x4a3828,
 		roughness: 0.65,
 	});
@@ -782,6 +717,7 @@ function buildWindow(scene: THREE.Scene) {
 
 function buildDesk(scene: THREE.Scene) {
 	const deskMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x8b6240,
 		roughness: 0.55,
 		metalness: 0.03,
@@ -799,6 +735,7 @@ function buildDesk(scene: THREE.Scene) {
 
 	// Desk front panel
 	const frontMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x6b4a28,
 		roughness: 0.6,
 	});
@@ -815,6 +752,7 @@ function buildDesk(scene: THREE.Scene) {
 
 	// Desk legs
 	const legMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x5a3a18,
 		roughness: 0.7,
 	});
@@ -853,6 +791,7 @@ function buildDesk(scene: THREE.Scene) {
 
 	// Side panel (left) — gives the desk some substance
 	const sidePanelMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x6b4a28,
 		roughness: 0.6,
 	});
@@ -869,6 +808,7 @@ function buildAmstrad(scene: THREE.Scene) {
 
 	// The CPC 6128 has a separate keyboard unit that sits in front of the monitor
 	const baseMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x4a4a4a,
 		roughness: 0.5,
 		metalness: 0.08,
@@ -893,6 +833,7 @@ function buildAmstrad(scene: THREE.Scene) {
 	const kbZ = DESK_Z + 0.2;
 
 	const kbMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x3a3a3a,
 		roughness: 0.5,
 		metalness: 0.08,
@@ -908,6 +849,7 @@ function buildAmstrad(scene: THREE.Scene) {
 
 	// Floppy drive slot on the right side of keyboard
 	const slotMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2a2a2a,
 		roughness: 0.3,
 	});
@@ -920,11 +862,13 @@ function buildAmstrad(scene: THREE.Scene) {
 
 	// Keyboard keys — lighter keys on dark body for contrast
 	const keyMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x5a5a5a,
 		roughness: 0.35,
 		metalness: 0.05,
 	});
 	const keyLightMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x707070,
 		roughness: 0.3,
 		metalness: 0.05,
@@ -967,6 +911,7 @@ function buildAmstrad(scene: THREE.Scene) {
 
 	// Monitor — CRT sitting on the riser
 	const monitorMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x3c3c3c,
 		roughness: 0.45,
 		metalness: 0.08,
@@ -989,6 +934,7 @@ function buildAmstrad(scene: THREE.Scene) {
 
 	// Slight bevel — a second darker box inset on the front face
 	const bezelMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2a2a2a,
 		roughness: 0.3,
 	});
@@ -1103,7 +1049,7 @@ function buildAmstrad(scene: THREE.Scene) {
 	const ledMat = new THREE.MeshBasicMaterial({
 		color: 0xff3333,
 	});
-	const led = new THREE.Mesh(new THREE.SphereGeometry(0.005, 8, 8), ledMat);
+	const led = new THREE.Mesh(new THREE.SphereGeometry(0.005, 4, 4), ledMat);
 	led.position.set(0.2, monY - monH / 2 + 0.025, monZ + monD / 2 + 0.012);
 	scene.add(led);
 
@@ -1124,6 +1070,7 @@ function buildAmstrad(scene: THREE.Scene) {
 
 	// Power cable — runs from back of monitor down to the floor
 	const cableMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x1a1a1a,
 		roughness: 0.8,
 	});
@@ -1134,13 +1081,14 @@ function buildAmstrad(scene: THREE.Scene) {
 		new THREE.Vector3(0.1, 0.01, monZ - monD / 2 - 0.2),
 	];
 	const cableCurve = new THREE.CatmullRomCurve3(cablePoints);
-	const cableGeo = new THREE.TubeGeometry(cableCurve, 16, 0.005, 6, false);
+	const cableGeo = new THREE.TubeGeometry(cableCurve, 8, 0.005, 4, false);
 	const cable = new THREE.Mesh(cableGeo, cableMat);
 	cable.castShadow = true;
 	scene.add(cable);
 
 	// Desk mat under the keyboard area
 	const deskMatMaterial = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2a2a2a,
 		roughness: 0.9,
 		metalness: 0,
@@ -1161,12 +1109,13 @@ function buildDeskLamp(scene: THREE.Scene) {
 
 	// Lamp base
 	const baseMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0xc4944a,
 		roughness: 0.3,
 		metalness: 0.6,
 	});
 	const base = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.06, 0.08, 0.02, 16),
+		new THREE.CylinderGeometry(0.06, 0.08, 0.02, 6),
 		baseMat,
 	);
 	base.position.set(lampX, baseY + 0.01, lampZ);
@@ -1175,12 +1124,13 @@ function buildDeskLamp(scene: THREE.Scene) {
 
 	// Lamp arm
 	const armMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0xb0843a,
 		roughness: 0.35,
 		metalness: 0.5,
 	});
 	const arm = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.008, 0.008, 0.35, 8),
+		new THREE.CylinderGeometry(0.008, 0.008, 0.35, 5),
 		armMat,
 	);
 	arm.position.set(lampX, baseY + 0.19, lampZ);
@@ -1191,13 +1141,14 @@ function buildDeskLamp(scene: THREE.Scene) {
 
 	// Lamp shade — cone
 	const shadeMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0xd4a44a,
 		roughness: 0.4,
 		metalness: 0.3,
 		side: THREE.DoubleSide,
 	});
 	const shade = new THREE.Mesh(
-		new THREE.ConeGeometry(0.08, 0.07, 16, 1, true),
+		new THREE.ConeGeometry(0.08, 0.07, 6, 1, true),
 		shadeMat,
 	);
 	shade.position.set(lampX + 0.05, baseY + 0.37, lampZ - 0.03);
@@ -1210,7 +1161,7 @@ function buildDeskLamp(scene: THREE.Scene) {
 	const bulbMat = new THREE.MeshBasicMaterial({
 		color: 0xffe8a0,
 	});
-	const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.015, 8, 8), bulbMat);
+	const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.015, 4, 4), bulbMat);
 	bulb.position.set(lampX + 0.05, baseY + 0.35, lampZ - 0.03);
 	scene.add(bulb);
 }
@@ -1240,6 +1191,7 @@ function buildCoffeeMug(scene: THREE.Scene) {
 	const mugTexture = new THREE.CanvasTexture(mugCanvas);
 
 	const mugMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		map: mugTexture,
 		roughness: 0.25,
 		metalness: 0.02,
@@ -1250,7 +1202,7 @@ function buildCoffeeMug(scene: THREE.Scene) {
 	const mugR2 = 0.038;
 	const mugH = 0.1;
 	const mug = new THREE.Mesh(
-		new THREE.CylinderGeometry(mugR1, mugR2, mugH, 24, 1, true),
+		new THREE.CylinderGeometry(mugR1, mugR2, mugH, 6, 1, true),
 		mugMat,
 	);
 	mug.position.set(mugX, baseY + mugH / 2, mugZ);
@@ -1259,11 +1211,12 @@ function buildCoffeeMug(scene: THREE.Scene) {
 
 	// Mug bottom
 	const bottomMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x1a1a1a,
 		roughness: 0.3,
 	});
 	const bottom = new THREE.Mesh(
-		new THREE.CircleGeometry(mugR2, 24),
+		new THREE.CircleGeometry(mugR2, 6),
 		bottomMat,
 	);
 	bottom.rotation.x = Math.PI / 2;
@@ -1272,12 +1225,13 @@ function buildCoffeeMug(scene: THREE.Scene) {
 
 	// Coffee surface inside
 	const coffeeMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x3a1f0a,
 		roughness: 0.2,
 		metalness: 0.05,
 	});
 	const coffee = new THREE.Mesh(
-		new THREE.CircleGeometry(mugR1 - 0.003, 24),
+		new THREE.CircleGeometry(mugR1 - 0.003, 6),
 		coffeeMat,
 	);
 	coffee.rotation.x = -Math.PI / 2;
@@ -1286,11 +1240,12 @@ function buildCoffeeMug(scene: THREE.Scene) {
 
 	// Handle — black, scaled up
 	const handleMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x1a1a1a,
 		roughness: 0.25,
 	});
 	const handle = new THREE.Mesh(
-		new THREE.TorusGeometry(0.032, 0.007, 8, 16, Math.PI),
+		new THREE.TorusGeometry(0.032, 0.007, 4, 8, Math.PI),
 		handleMat,
 	);
 	handle.position.set(mugX + 0.06, baseY + mugH / 2, mugZ);
@@ -1327,6 +1282,7 @@ function buildDeskMouse(scene: THREE.Scene) {
 	const mouseZ = DESK_Z + 0.2;
 
 	const bodyMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x1a1a1a,
 		roughness: 0.3,
 		metalness: 0.05,
@@ -1346,12 +1302,13 @@ function buildDeskMouse(scene: THREE.Scene) {
 
 	// Rounded top shell — black
 	const shellMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x222222,
 		roughness: 0.25,
 		metalness: 0.05,
 	});
 	const shell = new THREE.Mesh(
-		new THREE.SphereGeometry(0.034, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2),
+		new THREE.SphereGeometry(0.034, 5, 4, 0, Math.PI * 2, 0, Math.PI / 2),
 		shellMat,
 	);
 	shell.scale.set(0.88, 0.55, 1.5);
@@ -1361,6 +1318,7 @@ function buildDeskMouse(scene: THREE.Scene) {
 
 	// Mouse button divider line
 	const dividerMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x333333,
 		roughness: 0.4,
 	});
@@ -1373,12 +1331,13 @@ function buildDeskMouse(scene: THREE.Scene) {
 
 	// Scroll wheel
 	const wheelMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x444444,
 		roughness: 0.5,
 		metalness: 0.1,
 	});
 	const wheel = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.005, 0.005, 0.012, 8),
+		new THREE.CylinderGeometry(0.005, 0.005, 0.012, 6),
 		wheelMat,
 	);
 	wheel.position.set(mouseX, baseY + bodyH + 0.01, mouseZ - 0.018);
@@ -1387,6 +1346,7 @@ function buildDeskMouse(scene: THREE.Scene) {
 
 	// Mouse cable
 	const cableMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x1a1a1a,
 		roughness: 0.8,
 	});
@@ -1397,7 +1357,7 @@ function buildDeskMouse(scene: THREE.Scene) {
 		new THREE.Vector3(0.15, baseY + 0.003, DESK_Z - 0.15),
 	];
 	const cableCurve = new THREE.CatmullRomCurve3(cablePoints);
-	const cableGeo = new THREE.TubeGeometry(cableCurve, 12, 0.004, 5, false);
+	const cableGeo = new THREE.TubeGeometry(cableCurve, 8, 0.004, 4, false);
 	const cable = new THREE.Mesh(cableGeo, cableMat);
 	scene.add(cable);
 }
@@ -1409,6 +1369,7 @@ function buildPlant(scene: THREE.Scene) {
 
 	// Pot — terracotta
 	const potMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0xc4613e,
 		roughness: 0.7,
 		metalness: 0,
@@ -1416,7 +1377,7 @@ function buildPlant(scene: THREE.Scene) {
 
 	// Pot body — tapered cylinder
 	const pot = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.05, 0.04, 0.07, 12),
+		new THREE.CylinderGeometry(0.05, 0.04, 0.07, 6),
 		potMat,
 	);
 	pot.position.set(plantX, baseY + 0.035, plantZ);
@@ -1425,7 +1386,7 @@ function buildPlant(scene: THREE.Scene) {
 
 	// Pot rim
 	const rim = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.055, 0.05, 0.01, 12),
+		new THREE.CylinderGeometry(0.055, 0.05, 0.01, 6),
 		potMat,
 	);
 	rim.position.set(plantX, baseY + 0.07, plantZ);
@@ -1433,21 +1394,23 @@ function buildPlant(scene: THREE.Scene) {
 
 	// Soil
 	const soilMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x3a2a1a,
 		roughness: 0.95,
 	});
-	const soil = new THREE.Mesh(new THREE.CircleGeometry(0.045, 12), soilMat);
+	const soil = new THREE.Mesh(new THREE.CircleGeometry(0.045, 6), soilMat);
 	soil.rotation.x = -Math.PI / 2;
 	soil.position.set(plantX, baseY + 0.068, plantZ);
 	scene.add(soil);
 
 	// Stem
 	const stemMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2d8b2d,
 		roughness: 0.7,
 	});
 	const stem = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.004, 0.005, 0.15, 6),
+		new THREE.CylinderGeometry(0.004, 0.005, 0.15, 5),
 		stemMat,
 	);
 	stem.position.set(plantX, baseY + 0.14, plantZ);
@@ -1455,6 +1418,7 @@ function buildPlant(scene: THREE.Scene) {
 
 	// Leaves — simple elongated boxes at various angles
 	const leafMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x3da03d,
 		roughness: 0.6,
 		metalness: 0,
@@ -1489,6 +1453,7 @@ function buildFloppyDisks(scene: THREE.Scene) {
 
 	for (const f of floppies) {
 		const mat = new THREE.MeshStandardMaterial({
+			flatShading: true,
 			color: f.color,
 			roughness: 0.5,
 			metalness: 0.05,
@@ -1505,6 +1470,7 @@ function buildFloppyDisks(scene: THREE.Scene) {
 
 		// Metal slider on floppy
 		const sliderMat = new THREE.MeshStandardMaterial({
+			flatShading: true,
 			color: 0xc0c0c0,
 			roughness: 0.2,
 			metalness: 0.8,
@@ -1537,31 +1503,36 @@ function buildWallDecorations(scene: THREE.Scene) {
 		url: pizza2Url.src,
 	});
 
-	// Bookshelf on left wall
-	buildBookshelf(scene);
+	// Matching bookshelves along the left wall
+	const shelfWidth = 0.9;
+	const shelfZ1 = -halfD + shelfWidth / 2 + 0.02;
+	const shelfZ2 = shelfZ1 + shelfWidth + 0.04;
+	buildBookshelf(scene, shelfZ1);
+	buildBookshelf(scene, shelfZ2);
 }
 
-function buildBookshelf(scene: THREE.Scene) {
+function buildBookshelf(scene: THREE.Scene, zCenter: number) {
 	const halfW = ROOM_WIDTH / 2;
-	const halfD = ROOM_DEPTH / 2;
 
-	// Floor-standing bookshelf in the left-back corner
-	const shelfDepth = 0.3; // depth into room (x-axis, away from wall)
-	const shelfWidth = 0.9; // width along back wall (z-axis)
-	const shelfHeight = 2.0; // total height
+	// Floor-standing bookshelf against the left wall
+	const shelfDepth = 0.3;
+	const shelfWidth = 0.9;
+	const shelfHeight = 2.0;
 	const shelfThick = 0.02;
 	const numShelves = 5;
 
 	const shelfX = -halfW + shelfDepth / 2 + 0.02;
-	const shelfZ = -halfD + shelfWidth / 2 + 0.02;
+	const shelfZ = zCenter;
 
 	const woodMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x5c4228,
 		roughness: 0.6,
 		metalness: 0.02,
 	});
 
 	const darkWoodMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x4a3420,
 		roughness: 0.65,
 	});
@@ -1624,7 +1595,12 @@ function buildBookshelf(scene: THREE.Scene) {
 		0x4488aa,
 	];
 	const bookMaterials = bookPalette.map(
-		(c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.75 }),
+		(c) =>
+			new THREE.MeshStandardMaterial({
+				flatShading: true,
+				color: c,
+				roughness: 0.75,
+			}),
 	);
 	const bookGeo = new THREE.BoxGeometry(1, 1, 1);
 	let colorIdx = 0;
@@ -1679,6 +1655,7 @@ function buildPictureFrame(
 		| { type: "image"; url: string },
 ) {
 	const frameMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x3a2818,
 		roughness: 0.5,
 		metalness: 0.08,
@@ -1711,6 +1688,7 @@ function buildPictureFrame(
 
 	// White mat / passepartout
 	const matMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0xf5f0e8,
 		roughness: 0.9,
 		metalness: 0,
@@ -1747,6 +1725,7 @@ function buildPictureFrame(
 
 	// Backing panel
 	const backMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2a1c0e,
 		roughness: 0.8,
 	});
@@ -1760,12 +1739,100 @@ function buildPictureFrame(
 	scene.add(frameGroup);
 }
 
+function buildCarpet(scene: THREE.Scene) {
+	// Low-poly kilim-style area rug under the desk/chair area
+	const rugW = 2.4;
+	const rugD = 1.8;
+	const rugX = 0;
+	const rugZ = DESK_Z + 0.4;
+	const rugY = 0.003;
+
+	// Main body — warm burgundy
+	const bodyMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
+		color: 0x8b3a3a,
+		roughness: 0.95,
+		metalness: 0,
+	});
+	const body = new THREE.Mesh(new THREE.PlaneGeometry(rugW, rugD), bodyMat);
+	body.rotation.x = -Math.PI / 2;
+	body.position.set(rugX, rugY, rugZ);
+	body.receiveShadow = true;
+	scene.add(body);
+
+	// Border strips — gold/ochre
+	const borderMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
+		color: 0xc8a44e,
+		roughness: 0.9,
+		metalness: 0,
+	});
+	const borderW = 0.06;
+	const borderY = rugY + 0.001;
+
+	// Top/bottom borders (along x-axis)
+	for (const dz of [-rugD / 2 + borderW / 2, rugD / 2 - borderW / 2]) {
+		const strip = new THREE.Mesh(
+			new THREE.PlaneGeometry(rugW - borderW * 2, borderW),
+			borderMat,
+		);
+		strip.rotation.x = -Math.PI / 2;
+		strip.position.set(rugX, borderY, rugZ + dz);
+		scene.add(strip);
+	}
+
+	// Left/right borders (along z-axis)
+	for (const dx of [-rugW / 2 + borderW / 2, rugW / 2 - borderW / 2]) {
+		const strip = new THREE.Mesh(
+			new THREE.PlaneGeometry(borderW, rugD),
+			borderMat,
+		);
+		strip.rotation.x = -Math.PI / 2;
+		strip.position.set(rugX + dx, borderY, rugZ);
+		scene.add(strip);
+	}
+
+	// Center diamonds — geometric kilim pattern
+	const diamondMat1 = new THREE.MeshStandardMaterial({
+		flatShading: true,
+		color: 0x4a7a6a,
+		roughness: 0.9,
+		metalness: 0,
+	});
+	const diamondMat2 = new THREE.MeshStandardMaterial({
+		flatShading: true,
+		color: 0xd4a44a,
+		roughness: 0.9,
+		metalness: 0,
+	});
+	const diamondY = rugY + 0.002;
+	const diamondSize = 0.18;
+
+	const diamonds = [
+		{ x: -0.5, z: rugZ, mat: diamondMat1, s: diamondSize },
+		{ x: 0, z: rugZ, mat: diamondMat2, s: diamondSize * 1.2 },
+		{ x: 0.5, z: rugZ, mat: diamondMat1, s: diamondSize },
+	];
+
+	for (const d of diamonds) {
+		const diamond = new THREE.Mesh(
+			new THREE.PlaneGeometry(d.s, d.s),
+			d.mat,
+		);
+		diamond.rotation.x = -Math.PI / 2;
+		diamond.rotation.z = Math.PI / 4;
+		diamond.position.set(rugX + d.x, diamondY, d.z);
+		scene.add(diamond);
+	}
+}
+
 function buildChair(scene: THREE.Scene) {
 	const chairX = 0.15;
 	const chairZ = DESK_Z + 0.9;
 
 	// Chair base — cylinder
 	const baseMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2a2a2a,
 		roughness: 0.5,
 		metalness: 0.3,
@@ -1773,7 +1840,7 @@ function buildChair(scene: THREE.Scene) {
 
 	// Central column — taller for realistic seat height (~0.45m)
 	const column = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.02, 0.025, 0.42, 8),
+		new THREE.CylinderGeometry(0.02, 0.025, 0.42, 6),
 		baseMat,
 	);
 	column.position.set(chairX, 0.22, chairZ);
@@ -1782,6 +1849,7 @@ function buildChair(scene: THREE.Scene) {
 
 	// Star base — 5 legs
 	const legMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x333333,
 		roughness: 0.4,
 		metalness: 0.4,
@@ -1802,7 +1870,7 @@ function buildChair(scene: THREE.Scene) {
 
 		// Caster wheel
 		const wheel = new THREE.Mesh(
-			new THREE.SphereGeometry(0.014, 8, 8),
+			new THREE.SphereGeometry(0.014, 4, 4),
 			baseMat,
 		);
 		wheel.position.set(
@@ -1815,6 +1883,7 @@ function buildChair(scene: THREE.Scene) {
 
 	// Seat cushion — raised to ~0.45m
 	const seatMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x8b3a62,
 		roughness: 0.75,
 		metalness: 0,
@@ -1829,6 +1898,7 @@ function buildChair(scene: THREE.Scene) {
 
 	// Backrest — taller and repositioned
 	const backMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x7a2d55,
 		roughness: 0.75,
 		metalness: 0,
@@ -1850,13 +1920,14 @@ function buildFloorPlant(scene: THREE.Scene) {
 
 	// Large pot — dark ceramic
 	const potMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2a2a2a,
 		roughness: 0.6,
 		metalness: 0.05,
 	});
 
 	const pot = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.15, 0.12, 0.35, 16),
+		new THREE.CylinderGeometry(0.15, 0.12, 0.35, 6),
 		potMat,
 	);
 	pot.position.set(plantX, 0.175, plantZ);
@@ -1866,7 +1937,7 @@ function buildFloorPlant(scene: THREE.Scene) {
 
 	// Pot rim
 	const rim = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.17, 0.15, 0.03, 16),
+		new THREE.CylinderGeometry(0.17, 0.15, 0.03, 6),
 		potMat,
 	);
 	rim.position.set(plantX, 0.36, plantZ);
@@ -1874,21 +1945,23 @@ function buildFloorPlant(scene: THREE.Scene) {
 
 	// Soil
 	const soilMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2a1e12,
 		roughness: 0.95,
 	});
-	const soil = new THREE.Mesh(new THREE.CircleGeometry(0.14, 16), soilMat);
+	const soil = new THREE.Mesh(new THREE.CircleGeometry(0.14, 6), soilMat);
 	soil.rotation.x = -Math.PI / 2;
 	soil.position.set(plantX, 0.355, plantZ);
 	scene.add(soil);
 
 	// Main stem
 	const stemMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2d6b2d,
 		roughness: 0.7,
 	});
 	const stem = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.012, 0.015, 0.7, 6),
+		new THREE.CylinderGeometry(0.012, 0.015, 0.7, 5),
 		stemMat,
 	);
 	stem.position.set(plantX, 0.72, plantZ);
@@ -1896,12 +1969,14 @@ function buildFloorPlant(scene: THREE.Scene) {
 
 	// Large tropical-style leaves radiating outward
 	const leafMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x2d7a2d,
 		roughness: 0.6,
 		side: THREE.DoubleSide,
 	});
 
 	const darkLeafMat = new THREE.MeshStandardMaterial({
+		flatShading: true,
 		color: 0x1a5c1a,
 		roughness: 0.6,
 		side: THREE.DoubleSide,
