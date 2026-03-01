@@ -10,3 +10,5 @@ dist/
 .astro/
 .env
 app
+tmp/
+.playwright-cli/
