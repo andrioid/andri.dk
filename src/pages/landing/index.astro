@@ -1,0 +1,335 @@
+---
+import "../../css/global.css";
+import { Icon } from "astro-icon/components";
+
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ANDRI.DK</title>
+		<meta name="description" content="Andri Óskarsson — Software Developer & Systems Engineer based in Aalborg, Denmark" />
+	</head>
+	<body>
+		<canvas id="scene"></canvas>
+
+		<div class="overlay">
+			<div class="panel">
+				<div class="content">
+					<h1 class="anim" style="--i:0">
+						Andri<br/>Óskarsson
+					</h1>
+
+					<p class="label anim" style="--i:1">Software Developer &amp; Systems Engineer</p>
+
+					<p class="location anim" style="--i:2">Aalborg, Denmark</p>
+
+					<hr class="divider anim" style="--i:3" />
+
+					<nav class="anim" style="--i:4">
+						<a href="/blog">./blog</a>
+						<a href="/cv.pdf">./cv</a>
+						<a href="/now">./now</a>
+						<a href="/contact">./contact</a>
+					</nav>
+
+					<div class="socials anim" style="--i:5">
+						<a href="https://github.com/andrioid" target="_blank" rel="noopener" aria-label="GitHub">
+							<Icon name="simple-icons:github" />
+						</a>
+						<a href="https://bsky.app/profile/andri.dk" target="_blank" rel="noopener" aria-label="Bluesky">
+							<Icon name="simple-icons:bluesky" />
+						</a>
+						<a href="https://linkedin.com/in/andriosk" target="_blank" rel="noopener" aria-label="LinkedIn">
+							<Icon name="simple-icons:linkedin" />
+						</a>
+						<a href="https://hachyderm.io/@andrioid" target="_blank" rel="noopener" aria-label="Mastodon">
+							<Icon name="simple-icons:mastodon" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="terminal-overlay"></div>
+
+		<script>
+			import { createScene } from "./_lib/scene";
+
+			const canvas = document.getElementById("scene") as HTMLCanvasElement;
+			const overlay = document.querySelector(".overlay") as HTMLElement;
+			const terminalEl = document.getElementById("terminal-overlay") as HTMLElement;
+			const isMobile = "ontouchstart" in window;
+
+			if (canvas) {
+				const api = createScene(canvas, isMobile);
+				let termInstance: { dispose(): void; fit(): void } | null = null;
+				let resizeHandler: (() => void) | null = null;
+
+				canvas.addEventListener("zoom-to-screen", () => {
+					overlay.style.opacity = "0";
+
+					api.zoomToScreen(async () => {
+						const rect = api.getScreenRect();
+						if (!rect || !terminalEl) return;
+
+						terminalEl.style.left = `${rect.left}px`;
+						terminalEl.style.top = `${rect.top}px`;
+						terminalEl.style.width = `${rect.width}px`;
+						terminalEl.style.height = `${rect.height}px`;
+						terminalEl.classList.add("active");
+
+						const { createTerminal } = await import("./_lib/terminal");
+						termInstance = await createTerminal(terminalEl, exitTerminal);
+
+						resizeHandler = () => {
+							const r = api.getScreenRect();
+							if (!r) return;
+							terminalEl.style.left = `${r.left}px`;
+							terminalEl.style.top = `${r.top}px`;
+							terminalEl.style.width = `${r.width}px`;
+							terminalEl.style.height = `${r.height}px`;
+							termInstance?.fit();
+						};
+						window.addEventListener("resize", resizeHandler);
+					});
+				});
+
+				function exitTerminal() {
+					if (resizeHandler) {
+						window.removeEventListener("resize", resizeHandler);
+						resizeHandler = null;
+					}
+					termInstance?.dispose();
+					termInstance = null;
+					terminalEl.classList.remove("active");
+					terminalEl.innerHTML = "";
+
+					api.zoomOut(() => {
+						overlay.style.opacity = "";
+					});
+				}
+			}
+		</script>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		overflow: hidden;
+		background: #0a0a0a;
+	}
+
+	#scene {
+		display: block;
+		width: 100%;
+		height: 100dvh;
+	}
+
+	.overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 40%;
+		height: 100dvh;
+		pointer-events: none;
+		z-index: 10;
+		transition: opacity 0.4s ease;
+	}
+
+	#terminal-overlay {
+		position: fixed;
+		z-index: 15;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.3s ease;
+		overflow: hidden;
+		border: 2px solid rgba(60, 60, 60, 0.6);
+		box-sizing: border-box;
+	}
+
+	#terminal-overlay.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.panel {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		background: linear-gradient(
+			to right,
+			rgba(6, 4, 14, 0.55) 0%,
+			rgba(6, 4, 14, 0.50) 70%,
+			rgba(6, 4, 14, 0.25) 90%,
+			rgba(6, 4, 14, 0) 100%
+		);
+		backdrop-filter: blur(16px) saturate(1.1);
+		-webkit-backdrop-filter: blur(16px) saturate(1.1);
+	}
+
+	.content {
+		padding: 0 3rem 0 clamp(2rem, 5vw, 4rem);
+		max-width: 100%;
+	}
+
+	.anim {
+		opacity: 0;
+		transform: translateY(10px);
+		animation: fade-up 0.6s ease forwards;
+		animation-delay: calc(0.3s + var(--i, 0) * 0.1s);
+	}
+
+	@keyframes fade-up {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	h1 {
+		font-family: "Montserrat", "Inter", sans-serif;
+		font-size: clamp(2rem, 3.5vw, 3.2rem);
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0 0 0.6rem;
+		letter-spacing: -0.02em;
+		line-height: 1.05;
+	}
+
+	.label {
+		font-family: "Inter", sans-serif;
+		font-size: clamp(0.82rem, 1.1vw, 1.05rem);
+		color: #ffffff;
+		margin: 0 0 0.25rem;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+	}
+
+	.location {
+		font-family: "Inter", sans-serif;
+		font-size: clamp(0.72rem, 0.9vw, 0.88rem);
+		color: rgba(255, 255, 255, 0.5);
+		margin: 0;
+		font-weight: 400;
+		letter-spacing: 0.01em;
+	}
+
+	.divider {
+		border: none;
+		height: 1px;
+		background: linear-gradient(
+			to right,
+			rgba(255, 255, 255, 0.08),
+			rgba(255, 255, 255, 0.03) 80%,
+			transparent
+		);
+		margin: 1.5rem 0;
+	}
+
+	nav {
+		display: flex;
+		gap: 1.4rem;
+		margin-bottom: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	nav a {
+		font-family: "Source Code Pro Variable", monospace;
+		font-size: clamp(0.78rem, 1vw, 0.95rem);
+		color: var(--color-andri, #59b4ff);
+		text-decoration: none;
+		pointer-events: auto;
+		transition: color 0.15s ease, text-shadow 0.15s ease;
+		font-weight: 500;
+	}
+
+	nav a:hover {
+		color: #ffffff;
+		text-shadow: 0 0 12px rgba(89, 180, 255, 0.25);
+	}
+
+	.socials {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.socials a {
+		color: rgba(255, 255, 255, 0.35);
+		pointer-events: auto;
+		transition: color 0.15s ease;
+		display: flex;
+		align-items: center;
+	}
+
+	.socials a:hover {
+		color: rgba(255, 255, 255, 0.75);
+	}
+
+	.socials a :global(svg) {
+		width: clamp(1rem, 1.3vw, 1.2rem);
+		height: clamp(1rem, 1.3vw, 1.2rem);
+	}
+
+	@media (max-width: 768px) {
+		.overlay {
+			width: 100%;
+			height: auto;
+			top: auto;
+			bottom: 0;
+		}
+
+		.panel {
+			background: linear-gradient(
+				to top,
+				rgba(6, 4, 14, 0.7) 0%,
+				rgba(6, 4, 14, 0.55) 70%,
+				rgba(6, 4, 14, 0) 100%
+			);
+			align-items: flex-end;
+		}
+
+		.content {
+			padding: 3rem 1.5rem 2rem;
+		}
+
+		h1 {
+			font-size: clamp(1.6rem, 7vw, 2.4rem);
+		}
+
+		.divider {
+			margin: 1rem 0;
+		}
+
+		nav {
+			margin-bottom: 1rem;
+		}
+
+		.socials a :global(svg) {
+			width: 1.1rem;
+			height: 1.1rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.anim {
+			opacity: 1;
+			transform: none;
+			animation: none;
+		}
+
+		nav a,
+		.socials a {
+			transition: none;
+		}
+	}
+</style>
