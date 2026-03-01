@@ -99,6 +99,54 @@ export const prerender = true;
 					null;
 				let resizeHandler: (() => void) | null = null;
 
+				// Day/night toggle
+				const hour = new Date().getHours();
+				let isDaytime = hour >= 7 && hour < 19;
+
+				const toggleBtn = document.createElement("button");
+				toggleBtn.id = "time-toggle";
+				toggleBtn.textContent = isDaytime ? "\u263E" : "\u2600";
+				toggleBtn.title = isDaytime
+					? "Switch to night"
+					: "Switch to day";
+				Object.assign(toggleBtn.style, {
+					position: "fixed",
+					bottom: "1rem",
+					right: "1rem",
+					width: "36px",
+					height: "36px",
+					padding: "0",
+					fontSize: "18px",
+					lineHeight: "36px",
+					textAlign: "center",
+					color: "rgba(255, 255, 255, 0.4)",
+					background: "rgba(6, 4, 14, 0.4)",
+					backdropFilter: "blur(8px)",
+					WebkitBackdropFilter: "blur(8px)",
+					border: "1px solid rgba(255, 255, 255, 0.08)",
+					borderRadius: "50%",
+					cursor: "pointer",
+					zIndex: "10",
+					transition: "color 0.15s ease, background 0.15s ease",
+				});
+				toggleBtn.addEventListener("pointerenter", () => {
+					toggleBtn.style.color = "rgba(255, 255, 255, 0.75)";
+					toggleBtn.style.background = "rgba(6, 4, 14, 0.6)";
+				});
+				toggleBtn.addEventListener("pointerleave", () => {
+					toggleBtn.style.color = "rgba(255, 255, 255, 0.4)";
+					toggleBtn.style.background = "rgba(6, 4, 14, 0.4)";
+				});
+				toggleBtn.addEventListener("click", () => {
+					isDaytime = !isDaytime;
+					api.setDaytime(isDaytime);
+					toggleBtn.textContent = isDaytime ? "\u263E" : "\u2600";
+					toggleBtn.title = isDaytime
+						? "Switch to night"
+						: "Switch to day";
+				});
+				document.body.appendChild(toggleBtn);
+
 				canvas.addEventListener("zoom-to-screen", () => {
 					overlay.style.opacity = "0";
 
@@ -138,11 +186,13 @@ export const prerender = true;
 							borderRadius: "6px",
 							cursor: "pointer",
 							zIndex: "20",
-							transition: "color 0.15s ease, background 0.15s ease",
+							transition:
+								"color 0.15s ease, background 0.15s ease",
 						});
 						backBtn.addEventListener("pointerenter", () => {
 							backBtn.style.color = "#fff";
-							backBtn.style.background = "rgba(89, 180, 255, 0.15)";
+							backBtn.style.background =
+								"rgba(89, 180, 255, 0.15)";
 						});
 						backBtn.addEventListener("pointerleave", () => {
 							backBtn.style.color = "#59b4ff";
@@ -158,7 +208,8 @@ export const prerender = true;
 							terminalEl.style.top = `${r.top}px`;
 							terminalEl.style.width = `${r.width}px`;
 							terminalEl.style.height = `${r.height}px`;
-							const btn = document.getElementById("terminal-back-btn");
+							const btn =
+								document.getElementById("terminal-back-btn");
 							if (btn) {
 								btn.style.left = `${r.left}px`;
 								btn.style.top = `${Math.max(4, r.top - 40)}px`;
@@ -321,7 +372,7 @@ export const prerender = true;
 	nav a {
 		font-family: "Source Code Pro Variable", monospace;
 		font-size: clamp(0.78rem, 1vw, 0.95rem);
-		color: var(--color-andri, #59b4ff);
+		color: #f3f3f3;
 		text-decoration: none;
 		pointer-events: auto;
 		transition:
@@ -331,7 +382,7 @@ export const prerender = true;
 	}
 
 	nav a:hover {
-		color: #ffffff;
+		color: #d3d3d3;
 		text-shadow: 0 0 12px rgba(89, 180, 255, 0.25);
 	}
 

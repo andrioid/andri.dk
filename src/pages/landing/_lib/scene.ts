@@ -16,6 +16,12 @@ const DESK_TOP_DEPTH = 0.85;
 const DESK_TOP_THICK = 0.05;
 const DESK_Z = -ROOM_DEPTH / 2 + DESK_TOP_DEPTH / 2 + 0.15;
 
+// Window position/size — shared between buildWindow, buildSky, setupTimeLights
+const WIN_X = 1.2;
+const WIN_Y = 1.8;
+const WIN_W = 1.4;
+const WIN_H = 1.3;
+
 function smoothstep(t: number): number {
 	return t * t * (3 - 2 * t);
 }
@@ -30,6 +36,7 @@ export interface SceneAPI {
 		width: number;
 		height: number;
 	} | null;
+	setDaytime(isDaytime: boolean): void;
 }
 
 export function createScene(
@@ -78,7 +85,6 @@ export function createScene(
 	buildCarpet(scene);
 	buildDesk(scene);
 	buildAmstrad(scene);
-	buildDeskLamp(scene);
 	buildCoffeeMug(scene);
 	buildDeskMouse(scene);
 	buildPlant(scene);
@@ -383,6 +389,25 @@ export function createScene(
 		};
 	}
 
+	function setDaytime(isDaytime: boolean) {
+		// Remove all time-dependent objects (sky, window light, sun light)
+		const toRemove: THREE.Object3D[] = [];
+		scene.traverse((obj) => {
+			if (obj.userData[TIME_DEPENDENT_TAG]) toRemove.push(obj);
+		});
+		for (const obj of toRemove) {
+			if (obj instanceof THREE.Mesh) {
+				obj.geometry.dispose();
+				if (obj.material instanceof THREE.Material)
+					obj.material.dispose();
+			}
+			scene.remove(obj);
+		}
+		// Rebuild with new time
+		buildSky(scene, isDaytime);
+		setupTimeLights(scene, isDaytime);
+	}
+
 	function cleanup() {
 		window.removeEventListener("mousemove", onMouseMove);
 		window.removeEventListener("click", onClick);
@@ -391,7 +416,7 @@ export function createScene(
 		renderer.dispose();
 	}
 
-	return { cleanup, zoomToScreen, zoomOut, getScreenRect };
+	return { cleanup, zoomToScreen, zoomOut, getScreenRect, setDaytime };
 }
 
 function buildRoom(scene: THREE.Scene) {
@@ -544,14 +569,86 @@ function drawCloud(
 	ctx.restore();
 }
 
+const TIME_DEPENDENT_TAG = "time-dependent";
+
+function buildSky(scene: THREE.Scene, isDaytime: boolean) {
+	const halfD = ROOM_DEPTH / 2;
+	const skyCanvas = document.createElement("canvas");
+	skyCanvas.width = 512;
+	skyCanvas.height = 512;
+	const sctx = skyCanvas.getContext("2d")!;
+
+	if (isDaytime) {
+		const grad = sctx.createLinearGradient(0, 0, 0, 512);
+		grad.addColorStop(0, "#4a90d9");
+		grad.addColorStop(0.5, "#87ceeb");
+		grad.addColorStop(0.85, "#b8dff5");
+		grad.addColorStop(1, "#e0f0ff");
+		sctx.fillStyle = grad;
+		sctx.fillRect(0, 0, 512, 512);
+
+		const sunGlow = sctx.createRadialGradient(430, 50, 10, 430, 50, 150);
+		sunGlow.addColorStop(0, "rgba(255, 248, 220, 0.25)");
+		sunGlow.addColorStop(0.5, "rgba(255, 240, 200, 0.08)");
+		sunGlow.addColorStop(1, "rgba(255, 240, 200, 0)");
+		sctx.fillStyle = sunGlow;
+		sctx.fillRect(0, 0, 512, 512);
+
+		sctx.fillStyle = "#ffffff";
+		drawCloud(sctx, 100, 140, 90, 30);
+		drawCloud(sctx, 350, 100, 110, 35);
+		drawCloud(sctx, 220, 250, 60, 20);
+		drawCloud(sctx, 440, 200, 65, 24);
+	} else {
+		const grad = sctx.createLinearGradient(0, 0, 0, 512);
+		grad.addColorStop(0, "#060a1f");
+		grad.addColorStop(0.3, "#0e1430");
+		grad.addColorStop(0.7, "#141a3a");
+		grad.addColorStop(1, "#1a2248");
+		sctx.fillStyle = grad;
+		sctx.fillRect(0, 0, 512, 512);
+
+		sctx.fillStyle = "#ffffff";
+		for (let i = 0; i < 50; i++) {
+			const sx = Math.random() * 512;
+			const sy = Math.random() * 380;
+			const sr = Math.random() * 1.5 + 0.3;
+			sctx.beginPath();
+			sctx.arc(sx, sy, sr, 0, Math.PI * 2);
+			sctx.globalAlpha = 0.4 + Math.random() * 0.6;
+			sctx.fill();
+		}
+		sctx.globalAlpha = 1;
+
+		sctx.fillStyle = "#ffeedd";
+		sctx.beginPath();
+		sctx.arc(380, 80, 25, 0, Math.PI * 2);
+		sctx.fill();
+		sctx.fillStyle = "#0e1430";
+		sctx.beginPath();
+		sctx.arc(370, 75, 22, 0, Math.PI * 2);
+		sctx.fill();
+		const moonGlow = sctx.createRadialGradient(380, 80, 20, 380, 80, 100);
+		moonGlow.addColorStop(0, "rgba(200, 220, 255, 0.08)");
+		moonGlow.addColorStop(1, "rgba(200, 220, 255, 0)");
+		sctx.fillStyle = moonGlow;
+		sctx.fillRect(0, 0, 512, 512);
+	}
+
+	const skyTexture = new THREE.CanvasTexture(skyCanvas);
+	const skyMat = new THREE.MeshBasicMaterial({ map: skyTexture });
+	const sky = new THREE.Mesh(new THREE.PlaneGeometry(WIN_W, WIN_H), skyMat);
+	sky.position.set(WIN_X, WIN_Y, -halfD + 0.005);
+	sky.userData[TIME_DEPENDENT_TAG] = true;
+	scene.add(sky);
+}
+
 function buildWindow(scene: THREE.Scene) {
 	const halfD = ROOM_DEPTH / 2;
-
-	// Window position — right side of back wall
-	const winX = 1.2;
-	const winY = 1.8;
-	const winW = 1.4;
-	const winH = 1.3;
+	const winX = WIN_X;
+	const winY = WIN_Y;
+	const winW = WIN_W;
+	const winH = WIN_H;
 
 	// Window frame — dark wood
 	const frameMat = new THREE.MeshStandardMaterial({
@@ -637,82 +734,10 @@ function buildWindow(scene: THREE.Scene) {
 	sill.castShadow = true;
 	scene.add(sill);
 
-	// Sky — time-based: blue sky with clouds during the day, night sky otherwise
-	const skyCanvas = document.createElement("canvas");
-	skyCanvas.width = 512;
-	skyCanvas.height = 512;
-	const sctx = skyCanvas.getContext("2d")!;
-	const hour = new Date().getHours();
-	const isDaytime = hour >= 7 && hour < 19;
-
-	if (isDaytime) {
-		const grad = sctx.createLinearGradient(0, 0, 0, 512);
-		grad.addColorStop(0, "#4a90d9");
-		grad.addColorStop(0.5, "#87ceeb");
-		grad.addColorStop(0.85, "#b8dff5");
-		grad.addColorStop(1, "#e0f0ff");
-		sctx.fillStyle = grad;
-		sctx.fillRect(0, 0, 512, 512);
-
-		// Subtle sun glow in upper-right
-		const sunGlow = sctx.createRadialGradient(430, 50, 10, 430, 50, 150);
-		sunGlow.addColorStop(0, "rgba(255, 248, 220, 0.25)");
-		sunGlow.addColorStop(0.5, "rgba(255, 240, 200, 0.08)");
-		sunGlow.addColorStop(1, "rgba(255, 240, 200, 0)");
-		sctx.fillStyle = sunGlow;
-		sctx.fillRect(0, 0, 512, 512);
-
-		// Clouds
-		sctx.fillStyle = "#ffffff";
-		drawCloud(sctx, 100, 140, 90, 30);
-		drawCloud(sctx, 350, 100, 110, 35);
-		drawCloud(sctx, 220, 250, 60, 20);
-		drawCloud(sctx, 440, 200, 65, 24);
-	} else {
-		const grad = sctx.createLinearGradient(0, 0, 0, 512);
-		grad.addColorStop(0, "#060a1f");
-		grad.addColorStop(0.3, "#0e1430");
-		grad.addColorStop(0.7, "#141a3a");
-		grad.addColorStop(1, "#1a2248");
-		sctx.fillStyle = grad;
-		sctx.fillRect(0, 0, 512, 512);
-
-		// Stars
-		sctx.fillStyle = "#ffffff";
-		for (let i = 0; i < 50; i++) {
-			const sx = Math.random() * 512;
-			const sy = Math.random() * 380;
-			const sr = Math.random() * 1.5 + 0.3;
-			sctx.beginPath();
-			sctx.arc(sx, sy, sr, 0, Math.PI * 2);
-			sctx.globalAlpha = 0.4 + Math.random() * 0.6;
-			sctx.fill();
-		}
-		sctx.globalAlpha = 1;
-
-		// Moon
-		sctx.fillStyle = "#ffeedd";
-		sctx.beginPath();
-		sctx.arc(380, 80, 25, 0, Math.PI * 2);
-		sctx.fill();
-		// Crescent shadow
-		sctx.fillStyle = "#0e1430";
-		sctx.beginPath();
-		sctx.arc(370, 75, 22, 0, Math.PI * 2);
-		sctx.fill();
-		// Subtle moonlight glow
-		const moonGlow = sctx.createRadialGradient(380, 80, 20, 380, 80, 100);
-		moonGlow.addColorStop(0, "rgba(200, 220, 255, 0.08)");
-		moonGlow.addColorStop(1, "rgba(200, 220, 255, 0)");
-		sctx.fillStyle = moonGlow;
-		sctx.fillRect(0, 0, 512, 512);
-	}
-
-	const skyTexture = new THREE.CanvasTexture(skyCanvas);
-	const skyMat = new THREE.MeshBasicMaterial({ map: skyTexture });
-	const sky = new THREE.Mesh(new THREE.PlaneGeometry(winW, winH), skyMat);
-	sky.position.set(winX, winY, -halfD + 0.005);
-	scene.add(sky);
+	// Sky is built separately so it can be swapped on day/night toggle
+	const initialDaytime =
+		new Date().getHours() >= 7 && new Date().getHours() < 19;
+	buildSky(scene, initialDaytime);
 }
 
 function buildDesk(scene: THREE.Scene) {
@@ -1100,70 +1125,6 @@ function buildAmstrad(scene: THREE.Scene) {
 	deskMat.position.set(0, baseY + 0.003, DESK_Z + 0.05);
 	deskMat.receiveShadow = true;
 	scene.add(deskMat);
-}
-
-function buildDeskLamp(scene: THREE.Scene) {
-	const baseY = DESK_HEIGHT + DESK_TOP_THICK / 2;
-	const lampX = -0.95;
-	const lampZ = DESK_Z - 0.15;
-
-	// Lamp base
-	const baseMat = new THREE.MeshStandardMaterial({
-		flatShading: true,
-		color: 0xc4944a,
-		roughness: 0.3,
-		metalness: 0.6,
-	});
-	const base = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.06, 0.08, 0.02, 6),
-		baseMat,
-	);
-	base.position.set(lampX, baseY + 0.01, lampZ);
-	base.castShadow = true;
-	scene.add(base);
-
-	// Lamp arm
-	const armMat = new THREE.MeshStandardMaterial({
-		flatShading: true,
-		color: 0xb0843a,
-		roughness: 0.35,
-		metalness: 0.5,
-	});
-	const arm = new THREE.Mesh(
-		new THREE.CylinderGeometry(0.008, 0.008, 0.35, 5),
-		armMat,
-	);
-	arm.position.set(lampX, baseY + 0.19, lampZ);
-	// Slight tilt
-	arm.rotation.z = 0.15;
-	arm.rotation.x = -0.1;
-	scene.add(arm);
-
-	// Lamp shade — cone
-	const shadeMat = new THREE.MeshStandardMaterial({
-		flatShading: true,
-		color: 0xd4a44a,
-		roughness: 0.4,
-		metalness: 0.3,
-		side: THREE.DoubleSide,
-	});
-	const shade = new THREE.Mesh(
-		new THREE.ConeGeometry(0.08, 0.07, 6, 1, true),
-		shadeMat,
-	);
-	shade.position.set(lampX + 0.05, baseY + 0.37, lampZ - 0.03);
-	shade.rotation.z = 0.15;
-	shade.rotation.x = Math.PI + 0.2;
-	shade.castShadow = true;
-	scene.add(shade);
-
-	// Warm bulb glow inside shade
-	const bulbMat = new THREE.MeshBasicMaterial({
-		color: 0xffe8a0,
-	});
-	const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.015, 4, 4), bulbMat);
-	bulb.position.set(lampX + 0.05, baseY + 0.35, lampZ - 0.03);
-	scene.add(bulb);
 }
 
 function buildCoffeeMug(scene: THREE.Scene) {
@@ -2008,12 +1969,12 @@ function buildFloorPlant(scene: THREE.Scene) {
 }
 
 function setupLights(scene: THREE.Scene) {
-	// Ambient — strong fill
-	const ambient = new THREE.AmbientLight(0xbbbbee, 0.9);
+	// Ambient — low base so night feels dark, daytime compensated by window/sun
+	const ambient = new THREE.AmbientLight(0xbbbbee, 0.35);
 	scene.add(ambient);
 
-	// Ceiling light — warm overhead
-	const ceilingLight = new THREE.PointLight(0xffe4c4, 1.8, 10);
+	// Ceiling light — low so monitor glow dominates at night
+	const ceilingLight = new THREE.PointLight(0xffe4c4, 0.6, 10);
 	ceilingLight.position.set(0, 2.8, -0.5);
 	ceilingLight.castShadow = true;
 	ceilingLight.shadow.mapSize.width = 512;
@@ -2021,25 +1982,33 @@ function setupLights(scene: THREE.Scene) {
 	ceilingLight.shadow.radius = 8;
 	scene.add(ceilingLight);
 
-	// Desk lamp — warm point light
-	const lampLight = new THREE.PointLight(0xffd080, 1.2, 4);
-	lampLight.position.set(-0.9, DESK_HEIGHT + 0.45, DESK_Z - 0.1);
-	lampLight.castShadow = true;
-	lampLight.shadow.mapSize.width = 512;
-	lampLight.shadow.mapSize.height = 512;
-	lampLight.shadow.radius = 4;
-	scene.add(lampLight);
-
-	// Monitor glow — green tinted
-	const monitorGlow = new THREE.PointLight(MONITOR_GREEN, 0.25, 2.5);
-	monitorGlow.position.set(0, DESK_HEIGHT + 0.5, DESK_Z + 0.3);
+	// Monitor glow — soft green radial aimed forward from screen toward the chair
+	const monitorGlow = new THREE.SpotLight(
+		MONITOR_GREEN,
+		0.8,
+		4,
+		Math.PI / 2.5,
+		1.0,
+	);
+	monitorGlow.position.set(0, DESK_HEIGHT + 0.4, DESK_Z + 0.1);
+	monitorGlow.target.position.set(0, DESK_HEIGHT - 0.2, DESK_Z + 1.5);
 	scene.add(monitorGlow);
+	scene.add(monitorGlow.target);
 
-	// Window light — varies with time of day
-	const windowHour = new Date().getHours();
-	const windowIsDaytime = windowHour >= 7 && windowHour < 19;
-	const windowLightColor = windowIsDaytime ? 0x88bbff : 0x3344aa;
-	const windowLightIntensity = windowIsDaytime ? 0.8 : 0.3;
+	// Subtle fill from behind camera
+	const fillLight = new THREE.PointLight(0x443355, 0.15, 8);
+	fillLight.position.set(0, 2.5, 3);
+	scene.add(fillLight);
+
+	// Time-dependent lights
+	const initialDaytime =
+		new Date().getHours() >= 7 && new Date().getHours() < 19;
+	setupTimeLights(scene, initialDaytime);
+}
+
+function setupTimeLights(scene: THREE.Scene, isDaytime: boolean) {
+	const windowLightColor = isDaytime ? 0x88bbff : 0x3344aa;
+	const windowLightIntensity = isDaytime ? 1.4 : 0.2;
 	const windowLight = new THREE.RectAreaLight(
 		windowLightColor,
 		windowLightIntensity,
@@ -2048,10 +2017,26 @@ function setupLights(scene: THREE.Scene) {
 	);
 	windowLight.position.set(1.2, 1.8, -ROOM_DEPTH / 2 + 0.1);
 	windowLight.lookAt(0, 1.5, 0);
+	windowLight.userData[TIME_DEPENDENT_TAG] = true;
 	scene.add(windowLight);
 
-	// Subtle fill from behind camera
-	const fillLight = new THREE.PointLight(0x443355, 0.15, 8);
-	fillLight.position.set(0, 2.5, 3);
-	scene.add(fillLight);
+	if (isDaytime) {
+		const sunLight = new THREE.DirectionalLight(0xfff4e0, 1.2);
+		sunLight.position.set(1.5, 3, -ROOM_DEPTH / 2 + 0.5);
+		sunLight.target.position.set(-0.5, 0, 0.5);
+		sunLight.castShadow = true;
+		sunLight.shadow.mapSize.width = 512;
+		sunLight.shadow.mapSize.height = 512;
+		sunLight.shadow.radius = 6;
+		sunLight.shadow.camera.near = 0.5;
+		sunLight.shadow.camera.far = 8;
+		sunLight.shadow.camera.left = -3;
+		sunLight.shadow.camera.right = 3;
+		sunLight.shadow.camera.top = 3;
+		sunLight.shadow.camera.bottom = -3;
+		sunLight.userData[TIME_DEPENDENT_TAG] = true;
+		scene.add(sunLight);
+		sunLight.target.userData[TIME_DEPENDENT_TAG] = true;
+		scene.add(sunLight.target);
+	}
 }
