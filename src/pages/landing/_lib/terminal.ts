@@ -57,11 +57,6 @@ export async function createTerminal(
 	fitAddon.fit();
 
 	// Boot text matching the CRT canvas
-	terminal.writeln("Amstrad 128K Microcomputer  (v3)");
-	terminal.writeln("\u00A91985 Amstrad Consumer Electronics plc");
-	terminal.writeln("       and Locomotive Software Ltd.");
-	terminal.writeln("BASIC 1.1");
-	terminal.writeln("");
 	terminal.write(PROMPT);
 
 	let currentLine = "";

@@ -11,7 +11,10 @@ export const prerender = true;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>ANDRI.DK</title>
-		<meta name="description" content="Andri Óskarsson — Software Developer & Systems Engineer based in Aalborg, Denmark" />
+		<meta
+			name="description"
+			content="Andri Óskarsson — Software Developer & Systems Engineer based in Aalborg, Denmark"
+		/>
 	</head>
 	<body>
 		<canvas id="scene"></canvas>
@@ -20,10 +23,12 @@ export const prerender = true;
 			<div class="panel">
 				<div class="content">
 					<h1 class="anim" style="--i:0">
-						Andri<br/>Óskarsson
+						Andri<br />Óskarsson
 					</h1>
 
-					<p class="label anim" style="--i:1">Software Developer &amp; Systems Engineer</p>
+					<p class="label anim" style="--i:1">
+						Software Developer &amp; Systems Engineer
+					</p>
 
 					<p class="location anim" style="--i:2">Aalborg, Denmark</p>
 
@@ -37,16 +42,36 @@ export const prerender = true;
 					</nav>
 
 					<div class="socials anim" style="--i:5">
-						<a href="https://github.com/andrioid" target="_blank" rel="noopener" aria-label="GitHub">
+						<a
+							href="https://github.com/andrioid"
+							target="_blank"
+							rel="noopener"
+							aria-label="GitHub"
+						>
 							<Icon name="simple-icons:github" />
 						</a>
-						<a href="https://bsky.app/profile/andri.dk" target="_blank" rel="noopener" aria-label="Bluesky">
+						<a
+							href="https://bsky.app/profile/andri.dk"
+							target="_blank"
+							rel="noopener"
+							aria-label="Bluesky"
+						>
 							<Icon name="simple-icons:bluesky" />
 						</a>
-						<a href="https://linkedin.com/in/andriosk" target="_blank" rel="noopener" aria-label="LinkedIn">
+						<a
+							href="https://linkedin.com/in/andriosk"
+							target="_blank"
+							rel="noopener"
+							aria-label="LinkedIn"
+						>
 							<Icon name="simple-icons:linkedin" />
 						</a>
-						<a href="https://hachyderm.io/@andrioid" target="_blank" rel="noopener" aria-label="Mastodon">
+						<a
+							href="https://hachyderm.io/@andrioid"
+							target="_blank"
+							rel="noopener"
+							aria-label="Mastodon"
+						>
 							<Icon name="simple-icons:mastodon" />
 						</a>
 					</div>
@@ -59,14 +84,19 @@ export const prerender = true;
 		<script>
 			import { createScene } from "./_lib/scene";
 
-			const canvas = document.getElementById("scene") as HTMLCanvasElement;
+			const canvas = document.getElementById(
+				"scene",
+			) as HTMLCanvasElement;
 			const overlay = document.querySelector(".overlay") as HTMLElement;
-			const terminalEl = document.getElementById("terminal-overlay") as HTMLElement;
+			const terminalEl = document.getElementById(
+				"terminal-overlay",
+			) as HTMLElement;
 			const isMobile = "ontouchstart" in window;
 
 			if (canvas) {
 				const api = createScene(canvas, isMobile);
-				let termInstance: { dispose(): void; fit(): void } | null = null;
+				let termInstance: { dispose(): void; fit(): void } | null =
+					null;
 				let resizeHandler: (() => void) | null = null;
 
 				canvas.addEventListener("zoom-to-screen", () => {
@@ -82,8 +112,12 @@ export const prerender = true;
 						terminalEl.style.height = `${rect.height}px`;
 						terminalEl.classList.add("active");
 
-						const { createTerminal } = await import("./_lib/terminal");
-						termInstance = await createTerminal(terminalEl, exitTerminal);
+						const { createTerminal } =
+							await import("./_lib/terminal");
+						termInstance = await createTerminal(
+							terminalEl,
+							exitTerminal,
+						);
 
 						resizeHandler = () => {
 							const r = api.getScreenRect();
@@ -158,6 +192,10 @@ export const prerender = true;
 	#terminal-overlay.active {
 		opacity: 1;
 		pointer-events: auto;
+
+		.xterm-screen {
+			padding: 20px;
+		}
 	}
 
 	.panel {
@@ -168,7 +206,7 @@ export const prerender = true;
 		background: linear-gradient(
 			to right,
 			rgba(6, 4, 14, 0.55) 0%,
-			rgba(6, 4, 14, 0.50) 70%,
+			rgba(6, 4, 14, 0.5) 70%,
 			rgba(6, 4, 14, 0.25) 90%,
 			rgba(6, 4, 14, 0) 100%
 		);
@@ -248,7 +286,9 @@ export const prerender = true;
 		color: var(--color-andri, #59b4ff);
 		text-decoration: none;
 		pointer-events: auto;
-		transition: color 0.15s ease, text-shadow 0.15s ease;
+		transition:
+			color 0.15s ease,
+			text-shadow 0.15s ease;
 		font-weight: 500;
 	}
 

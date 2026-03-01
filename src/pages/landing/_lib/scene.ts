@@ -1,5 +1,9 @@
 import * as THREE from "three";
 
+import pizza1Url from "../../now/_img/pizza1.png";
+import pizza2Url from "../../now/_img/pizza2.png";
+import pizza3Url from "../../now/_img/pizza3.png";
+
 const MONITOR_GREEN = 0x33ff33;
 const ROOM_WIDTH = 5.5;
 const ROOM_HEIGHT = 3;
@@ -574,6 +578,39 @@ function buildRoom(scene: THREE.Scene) {
 	scene.add(bbRight);
 }
 
+function drawCloud(
+	ctx: CanvasRenderingContext2D,
+	cx: number,
+	cy: number,
+	w: number,
+	h: number,
+) {
+	// Build up a soft cloud from multiple overlapping ellipses
+	const puffs: [number, number, number, number][] = [
+		[0, 0, w, h],
+		[-w * 0.45, h * 0.15, w * 0.55, h * 0.7],
+		[w * 0.4, h * 0.1, w * 0.5, h * 0.75],
+		[-w * 0.15, -h * 0.3, w * 0.6, h * 0.6],
+		[w * 0.2, -h * 0.2, w * 0.45, h * 0.55],
+		[-w * 0.6, h * 0.25, w * 0.35, h * 0.5],
+		[w * 0.55, h * 0.2, w * 0.3, h * 0.5],
+	];
+
+	ctx.save();
+	ctx.globalAlpha = 0.7;
+	for (const [px, py, pw, ph] of puffs) {
+		ctx.beginPath();
+		ctx.ellipse(cx + px, cy + py, pw, ph, 0, 0, Math.PI * 2);
+		ctx.fill();
+	}
+	// Brighter core for volume
+	ctx.globalAlpha = 0.5;
+	ctx.beginPath();
+	ctx.ellipse(cx, cy, w * 0.6, h * 0.5, 0, 0, Math.PI * 2);
+	ctx.fill();
+	ctx.restore();
+}
+
 function buildWindow(scene: THREE.Scene) {
 	const halfD = ROOM_DEPTH / 2;
 
@@ -665,51 +702,76 @@ function buildWindow(scene: THREE.Scene) {
 	sill.castShadow = true;
 	scene.add(sill);
 
-	// Sky — time-based gradient via canvas texture
+	// Sky — time-based: blue sky with clouds during the day, night sky otherwise
 	const skyCanvas = document.createElement("canvas");
 	skyCanvas.width = 512;
 	skyCanvas.height = 512;
 	const sctx = skyCanvas.getContext("2d")!;
+	const hour = new Date().getHours();
+	const isDaytime = hour >= 7 && hour < 19;
 
-	// Night sky
-	const grad = sctx.createLinearGradient(0, 0, 0, 512);
-	grad.addColorStop(0, "#060a1f");
-	grad.addColorStop(0.3, "#0e1430");
-	grad.addColorStop(0.7, "#141a3a");
-	grad.addColorStop(1, "#1a2248");
+	if (isDaytime) {
+		const grad = sctx.createLinearGradient(0, 0, 0, 512);
+		grad.addColorStop(0, "#4a90d9");
+		grad.addColorStop(0.5, "#87ceeb");
+		grad.addColorStop(0.85, "#b8dff5");
+		grad.addColorStop(1, "#e0f0ff");
+		sctx.fillStyle = grad;
+		sctx.fillRect(0, 0, 512, 512);
 
-	sctx.fillStyle = grad;
-	sctx.fillRect(0, 0, 512, 512);
+		// Subtle sun glow in upper-right
+		const sunGlow = sctx.createRadialGradient(430, 50, 10, 430, 50, 150);
+		sunGlow.addColorStop(0, "rgba(255, 248, 220, 0.25)");
+		sunGlow.addColorStop(0.5, "rgba(255, 240, 200, 0.08)");
+		sunGlow.addColorStop(1, "rgba(255, 240, 200, 0)");
+		sctx.fillStyle = sunGlow;
+		sctx.fillRect(0, 0, 512, 512);
 
-	// Stars
-	sctx.fillStyle = "#ffffff";
-	for (let i = 0; i < 50; i++) {
-		const sx = Math.random() * 512;
-		const sy = Math.random() * 380;
-		const sr = Math.random() * 1.5 + 0.3;
+		// Clouds
+		sctx.fillStyle = "#ffffff";
+		drawCloud(sctx, 100, 140, 90, 30);
+		drawCloud(sctx, 350, 100, 110, 35);
+		drawCloud(sctx, 220, 250, 60, 20);
+		drawCloud(sctx, 440, 200, 65, 24);
+	} else {
+		const grad = sctx.createLinearGradient(0, 0, 0, 512);
+		grad.addColorStop(0, "#060a1f");
+		grad.addColorStop(0.3, "#0e1430");
+		grad.addColorStop(0.7, "#141a3a");
+		grad.addColorStop(1, "#1a2248");
+		sctx.fillStyle = grad;
+		sctx.fillRect(0, 0, 512, 512);
+
+		// Stars
+		sctx.fillStyle = "#ffffff";
+		for (let i = 0; i < 50; i++) {
+			const sx = Math.random() * 512;
+			const sy = Math.random() * 380;
+			const sr = Math.random() * 1.5 + 0.3;
+			sctx.beginPath();
+			sctx.arc(sx, sy, sr, 0, Math.PI * 2);
+			sctx.globalAlpha = 0.4 + Math.random() * 0.6;
+			sctx.fill();
+		}
+		sctx.globalAlpha = 1;
+
+		// Moon
+		sctx.fillStyle = "#ffeedd";
 		sctx.beginPath();
-		sctx.arc(sx, sy, sr, 0, Math.PI * 2);
-		sctx.globalAlpha = 0.4 + Math.random() * 0.6;
+		sctx.arc(380, 80, 25, 0, Math.PI * 2);
 		sctx.fill();
+		// Crescent shadow
+		sctx.fillStyle = "#0e1430";
+		sctx.beginPath();
+		sctx.arc(370, 75, 22, 0, Math.PI * 2);
+		sctx.fill();
+		// Subtle moonlight glow
+		const moonGlow = sctx.createRadialGradient(380, 80, 20, 380, 80, 100);
+		moonGlow.addColorStop(0, "rgba(200, 220, 255, 0.08)");
+		moonGlow.addColorStop(1, "rgba(200, 220, 255, 0)");
+		sctx.fillStyle = moonGlow;
+		sctx.fillRect(0, 0, 512, 512);
 	}
-	sctx.globalAlpha = 1;
-
-	// Moon
-	sctx.fillStyle = "#ffeedd";
-	sctx.beginPath();
-	sctx.arc(380, 80, 25, 0, Math.PI * 2);
-	sctx.fill();
-	// Crescent shadow
-	sctx.fillStyle = "#0e1430";
-	sctx.beginPath();
-	sctx.arc(370, 75, 22, 0, Math.PI * 2);
-	sctx.fill();
-	// Subtle moonlight glow
-	const moonGlow = sctx.createRadialGradient(380, 80, 20, 380, 80, 100);
-	moonGlow.addColorStop(0, "rgba(200, 220, 255, 0.08)");
-	moonGlow.addColorStop(1, "rgba(200, 220, 255, 0)");
-	sctx.fillStyle = moonGlow;
-	sctx.fillRect(0, 0, 512, 512);
 
 	const skyTexture = new THREE.CanvasTexture(skyCanvas);
 	const skyMat = new THREE.MeshBasicMaterial({ map: skyTexture });
@@ -954,15 +1016,9 @@ function buildAmstrad(scene: THREE.Scene) {
 	ctx.fillStyle = vignette;
 	ctx.fillRect(0, 0, 512, 384);
 
-	// "READY." text
 	ctx.font = "bold 22px monospace";
 	ctx.fillStyle = "#33ff33";
 	ctx.textBaseline = "middle";
-	ctx.fillText("Amstrad 128K Microcomputer  (v3)", 30, 40);
-	ctx.fillText("©1985 Amstrad Consumer Electronics plc", 30, 70);
-	ctx.fillText("       and Locomotive Software Ltd.", 30, 95);
-	ctx.fillText("BASIC 1.1", 30, 130);
-	ctx.fillText("Ready", 30, 175);
 
 	// Scanline overlay
 	ctx.fillStyle = "rgba(0, 0, 0, 0.06)";
@@ -1013,7 +1069,7 @@ function buildAmstrad(scene: THREE.Scene) {
 	cursor.name = "crt-cursor";
 	// Map canvas coords to 3D: x=30/512 -> screen left edge, y=200/384 -> below "Ready"
 	const cursorScreenX = (30 / 512 - 0.5) * scrW;
-	const cursorScreenY = -(200 / 384 - 0.5) * scrH;
+	const cursorScreenY = -(40 / 384 - 0.5) * scrH;
 	cursor.position.set(
 		cursorScreenX,
 		monY + cursorScreenY,
@@ -1466,19 +1522,20 @@ function buildFloppyDisks(scene: THREE.Scene) {
 function buildWallDecorations(scene: THREE.Scene) {
 	const halfD = ROOM_DEPTH / 2;
 
-	// Picture frame 1 — above desk area on back wall
-	buildPictureFrame(scene, -0.6, 2.2, -halfD + 0.01, 0.3, 0.38, -0.03, [
-		"#e8734a",
-		"#f5a623",
-		"#ffd93d",
-	]);
-
-	// Picture frame 2
-	buildPictureFrame(scene, 0.1, 2.3, -halfD + 0.01, 0.24, 0.3, 0.02, [
-		"#59b4ff",
-		"#c471ed",
-		"#ff6b9d",
-	]);
+	// Gallery wall — pizza photos above the desk, left of the window
+	// Portrait / landscape / portrait arrangement, centered around x=-0.3
+	buildPictureFrame(scene, -0.85, 2.12, -halfD + 0.01, 0.28, 0.36, -0.015, {
+		type: "image",
+		url: pizza1Url.src,
+	});
+	buildPictureFrame(scene, -0.28, 2.22, -halfD + 0.01, 0.38, 0.28, 0.01, {
+		type: "image",
+		url: pizza3Url.src,
+	});
+	buildPictureFrame(scene, 0.22, 2.14, -halfD + 0.01, 0.28, 0.36, 0.02, {
+		type: "image",
+		url: pizza2Url.src,
+	});
 
 	// Bookshelf on left wall
 	buildBookshelf(scene);
@@ -1617,82 +1674,90 @@ function buildPictureFrame(
 	w: number,
 	h: number,
 	rotation: number,
-	gradientColors: string[],
+	content:
+		| { type: "gradient"; colors: string[] }
+		| { type: "image"; url: string },
 ) {
-	// Frame border
 	const frameMat = new THREE.MeshStandardMaterial({
-		color: 0x5a4530,
-		roughness: 0.6,
-		metalness: 0.05,
+		color: 0x3a2818,
+		roughness: 0.5,
+		metalness: 0.08,
 	});
 
-	const frameThick = 0.025;
+	const frameThick = 0.028;
+	const frameDepth = 0.025;
+	const matBorder = 0.02;
 	const frameGroup = new THREE.Group();
 	frameGroup.position.set(x, y, z);
 	frameGroup.rotation.z = rotation;
 
-	// Top
-	frameGroup.add(
-		createFrameEdge(
-			0,
-			h / 2 + frameThick / 2,
-			w + frameThick * 2,
-			frameThick,
+	// Frame edges — top, bottom, left, right
+	const outerW = w + frameThick * 2;
+	const edges: [number, number, number, number][] = [
+		[0, h / 2 + frameThick / 2, outerW, frameThick],
+		[0, -h / 2 - frameThick / 2, outerW, frameThick],
+		[-w / 2 - frameThick / 2, 0, frameThick, h],
+		[w / 2 + frameThick / 2, 0, frameThick, h],
+	];
+	for (const [ex, ey, ew, eh] of edges) {
+		const edge = new THREE.Mesh(
+			new THREE.BoxGeometry(ew, eh, frameDepth),
 			frameMat,
-		),
-	);
-	// Bottom
-	frameGroup.add(
-		createFrameEdge(
-			0,
-			-h / 2 - frameThick / 2,
-			w + frameThick * 2,
-			frameThick,
-			frameMat,
-		),
-	);
-	// Left
-	frameGroup.add(
-		createFrameEdge(-w / 2 - frameThick / 2, 0, frameThick, h, frameMat),
-	);
-	// Right
-	frameGroup.add(
-		createFrameEdge(w / 2 + frameThick / 2, 0, frameThick, h, frameMat),
-	);
+		);
+		edge.position.set(ex, ey, frameDepth / 2);
+		edge.castShadow = true;
+		frameGroup.add(edge);
+	}
 
-	// Picture content — gradient canvas
-	const picCanvas = document.createElement("canvas");
-	picCanvas.width = 128;
-	picCanvas.height = 160;
-	const pctx = picCanvas.getContext("2d")!;
-	const grad = pctx.createLinearGradient(0, 0, 128, 160);
-	gradientColors.forEach((c, i) => {
-		grad.addColorStop(i / (gradientColors.length - 1), c);
+	// White mat / passepartout
+	const matMat = new THREE.MeshStandardMaterial({
+		color: 0xf5f0e8,
+		roughness: 0.9,
+		metalness: 0,
 	});
-	pctx.fillStyle = grad;
-	pctx.fillRect(0, 0, 128, 160);
+	const matPlane = new THREE.Mesh(new THREE.PlaneGeometry(w, h), matMat);
+	matPlane.position.z = 0.002;
+	frameGroup.add(matPlane);
 
-	const picTexture = new THREE.CanvasTexture(picCanvas);
-	const picMat = new THREE.MeshBasicMaterial({ map: picTexture });
-	const pic = new THREE.Mesh(new THREE.PlaneGeometry(w, h), picMat);
-	pic.position.z = 0.001;
+	// Picture content — inset inside the mat
+	const picW = w - matBorder * 2;
+	const picH = h - matBorder * 2;
+	let picMat: THREE.MeshBasicMaterial;
+	if (content.type === "image") {
+		const texture = new THREE.TextureLoader().load(content.url);
+		picMat = new THREE.MeshBasicMaterial({ map: texture });
+	} else {
+		const picCanvas = document.createElement("canvas");
+		picCanvas.width = 128;
+		picCanvas.height = 160;
+		const pctx = picCanvas.getContext("2d")!;
+		const grad = pctx.createLinearGradient(0, 0, 128, 160);
+		content.colors.forEach((c, i) => {
+			grad.addColorStop(i / (content.colors.length - 1), c);
+		});
+		pctx.fillStyle = grad;
+		pctx.fillRect(0, 0, 128, 160);
+		picMat = new THREE.MeshBasicMaterial({
+			map: new THREE.CanvasTexture(picCanvas),
+		});
+	}
+	const pic = new THREE.Mesh(new THREE.PlaneGeometry(picW, picH), picMat);
+	pic.position.z = 0.003;
 	frameGroup.add(pic);
 
-	scene.add(frameGroup);
-}
+	// Backing panel
+	const backMat = new THREE.MeshStandardMaterial({
+		color: 0x2a1c0e,
+		roughness: 0.8,
+	});
+	const back = new THREE.Mesh(
+		new THREE.PlaneGeometry(w + frameThick, h + frameThick),
+		backMat,
+	);
+	back.position.z = -0.001;
+	frameGroup.add(back);
 
-function createFrameEdge(
-	x: number,
-	y: number,
-	w: number,
-	h: number,
-	mat: THREE.Material,
-): THREE.Mesh {
-	// 3D frame edges with actual depth
-	const edge = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.02), mat);
-	edge.position.set(x, y, 0.01);
-	edge.castShadow = true;
-	return edge;
+	scene.add(frameGroup);
 }
 
 function buildChair(scene: THREE.Scene) {
@@ -1895,8 +1960,17 @@ function setupLights(scene: THREE.Scene) {
 	monitorGlow.position.set(0, DESK_HEIGHT + 0.5, DESK_Z + 0.3);
 	scene.add(monitorGlow);
 
-	// Window light — cool moonlit night
-	const windowLight = new THREE.RectAreaLight(0x3344aa, 0.3, 1.4, 1.3);
+	// Window light — varies with time of day
+	const windowHour = new Date().getHours();
+	const windowIsDaytime = windowHour >= 7 && windowHour < 19;
+	const windowLightColor = windowIsDaytime ? 0x88bbff : 0x3344aa;
+	const windowLightIntensity = windowIsDaytime ? 0.8 : 0.3;
+	const windowLight = new THREE.RectAreaLight(
+		windowLightColor,
+		windowLightIntensity,
+		1.4,
+		1.3,
+	);
 	windowLight.position.set(1.2, 1.8, -ROOM_DEPTH / 2 + 0.1);
 	windowLight.lookAt(0, 1.5, 0);
 	scene.add(windowLight);
