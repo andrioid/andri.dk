@@ -161,7 +161,7 @@ export const prerender = true;
 						terminalEl.classList.add("active");
 
 						const { createTerminal } =
-							await import("./_lib/terminal");
+							await import("~/lib/terminal");
 						termInstance = await createTerminal(
 							terminalEl,
 							exitTerminal,

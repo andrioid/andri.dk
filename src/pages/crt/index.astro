@@ -1,0 +1,645 @@
+---
+import "~/css/global.css";
+import { Icon } from "astro-icon/components";
+
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>andri.dk | CRT</title>
+	</head>
+	<body>
+		<div class="room">
+			<!-- Desk surface beneath the monitor -->
+			<div class="desk">
+				<div class="desk-edge"></div>
+			</div>
+
+			<!-- CRT Monitor -->
+			<div class="monitor">
+				<div class="monitor-body">
+					<!-- Top ventilation slots -->
+					<div class="vents">
+						<span></span><span></span><span></span><span></span>
+						<span></span><span></span><span></span><span></span>
+					</div>
+
+					<!-- Screen bezel -->
+					<div class="bezel">
+						<div class="screen-glass">
+							<!-- CRT effects layer -->
+							<div class="crt-effects">
+								<div class="scanline"></div>
+								<div class="screen-lines"></div>
+								<div class="screen-glow"></div>
+								<div class="screen-flicker"></div>
+							</div>
+
+							<!-- Terminal mounts here -->
+							<div id="terminal-container"></div>
+						</div>
+					</div>
+
+					<!-- Bottom panel with brand and controls -->
+					<div class="bottom-panel">
+						<span class="brand-label">andri.dk</span>
+						<div class="controls">
+							<div class="control-knob"></div>
+							<div class="power-led"></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Monitor stand -->
+				<div class="stand-neck"></div>
+				<div class="stand-base"></div>
+			</div>
+
+			<!-- Dock navigation -->
+			<nav class="dock">
+				<a href="/blog" class="dock-item">
+					<Icon name="tabler:pencil" />
+					<span>blog</span>
+				</a>
+				<a href="/now" class="dock-item">
+					<Icon name="tabler:broadcast" />
+					<span>now</span>
+				</a>
+				<a href="/using" class="dock-item">
+					<Icon name="tabler:tool" />
+					<span>using</span>
+				</a>
+			</nav>
+		</div>
+
+		<script>
+			import { createTerminal } from "~/lib/terminal";
+
+			const container = document.getElementById("terminal-container");
+			if (container) {
+				const term = await createTerminal(container, () => {
+					// no-op exit for now — nowhere to go back to
+				});
+
+				function handleResize() {
+					term.fit();
+				}
+				window.addEventListener("resize", handleResize);
+			}
+		</script>
+	</body>
+</html>
+
+<style>
+	@keyframes power-on {
+		0% {
+			opacity: 0;
+			filter: brightness(0);
+		}
+		30% {
+			opacity: 1;
+			filter: brightness(1.6);
+		}
+		60% {
+			filter: brightness(0.95);
+		}
+		100% {
+			filter: brightness(1);
+		}
+	}
+
+	@keyframes scanline-sweep {
+		0% {
+			bottom: 100%;
+		}
+		80% {
+			bottom: 100%;
+		}
+		100% {
+			bottom: -20%;
+		}
+	}
+
+	@keyframes led-pulse {
+		0%,
+		100% {
+			box-shadow:
+				0 0 3px #22c55e,
+				0 0 6px #22c55e;
+		}
+		50% {
+			box-shadow:
+				0 0 6px #22c55e,
+				0 0 12px #22c55e,
+				0 0 18px rgba(34, 197, 94, 0.3);
+		}
+	}
+
+	@keyframes screen-flicker {
+		0%,
+		100% {
+			opacity: 0.008;
+		}
+		50% {
+			opacity: 0.02;
+		}
+	}
+
+	@keyframes chromatic-glitch {
+		0%,
+		100% {
+			text-shadow:
+				0.3px 0 1px rgba(0, 30, 255, 0.3),
+				-0.3px 0 1px rgba(255, 0, 80, 0.15),
+				0 0 2px;
+		}
+		/* Brief glitch spike */
+		48% {
+			text-shadow:
+				0.3px 0 1px rgba(0, 30, 255, 0.3),
+				-0.3px 0 1px rgba(255, 0, 80, 0.15),
+				0 0 2px;
+		}
+		50% {
+			text-shadow:
+				1.2px 0 1px rgba(0, 30, 255, 0.4),
+				-1.2px 0 1px rgba(255, 0, 80, 0.25),
+				0 0 3px;
+		}
+		52% {
+			text-shadow:
+				0.3px 0 1px rgba(0, 30, 255, 0.3),
+				-0.3px 0 1px rgba(255, 0, 80, 0.15),
+				0 0 2px;
+		}
+	}
+
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		overflow: hidden;
+		background: #0c0c0e;
+		font-family: "Source Code Pro Variable", monospace;
+	}
+
+	/* -- Room / environment -- */
+
+	.room {
+		width: 100%;
+		height: 100dvh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		/* Moody vignette */
+		background: radial-gradient(
+			ellipse 80% 70% at 50% 40%,
+			#1a1a22 0%,
+			#0c0c0e 100%
+		);
+	}
+
+	/* -- Desk -- */
+
+	.desk {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 28%;
+		background: linear-gradient(180deg, #2a1f14 0%, #1e1610 100%);
+		/* Wood grain texture via repeating gradient */
+		background-image:
+			linear-gradient(180deg, #2a1f14 0%, #1e1610 100%),
+			repeating-linear-gradient(
+				90deg,
+				transparent,
+				transparent 40px,
+				rgba(0, 0, 0, 0.05) 40px,
+				rgba(0, 0, 0, 0.05) 41px
+			);
+	}
+
+	.desk-edge {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 6px;
+		background: linear-gradient(180deg, #3d2e1e 0%, #2a1f14 100%);
+		box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+	}
+
+	/* -- Monitor -- */
+
+	.monitor {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		animation: power-on 1.2s ease-out forwards;
+		/* Push monitor down so stand sits on desk */
+		margin-bottom: -4vh;
+	}
+
+	.monitor-body {
+		width: clamp(340px, 80vw, 1100px);
+		max-height: 78vh;
+		aspect-ratio: 4 / 3.4;
+		background: linear-gradient(
+			160deg,
+			#4a4a4e 0%,
+			#3e3e42 20%,
+			#333336 50%,
+			#2c2c30 80%,
+			#26262a 100%
+		);
+		border-radius: 18px 18px 12px 12px;
+		padding: 20px 20px 8px;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		box-shadow:
+			/* Depth and 3D effect */
+			inset 0 1px 0 rgba(255, 255, 255, 0.08),
+			inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+			0 8px 32px rgba(0, 0, 0, 0.6),
+			0 2px 8px rgba(0, 0, 0, 0.4);
+	}
+
+	/* -- Ventilation slots -- */
+
+	.vents {
+		display: flex;
+		justify-content: center;
+		gap: 6px;
+		padding: 4px 0 6px;
+	}
+
+	.vents span {
+		width: 24px;
+		height: 3px;
+		background: rgba(0, 0, 0, 0.3);
+		border-radius: 1px;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+	}
+
+	/* -- Bezel (recessed frame around the screen) -- */
+
+	.bezel {
+		flex: 1;
+		background: #1a1a1a;
+		border-radius: 8px;
+		padding: 10px;
+		box-shadow:
+			inset 0 2px 6px rgba(0, 0, 0, 0.8),
+			inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+	}
+
+	/* -- Screen glass (the convex CRT surface) -- */
+
+	.screen-glass {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		border-radius: 6px;
+		overflow: hidden;
+		/* Convex glass curvature simulation */
+		background: #04080e;
+		box-shadow:
+			inset 0 0 60px rgba(0, 30, 80, 0.15),
+			inset 0 0 120px rgba(0, 20, 60, 0.1);
+	}
+
+	/* -- CRT visual effects -- */
+
+	.crt-effects {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 5;
+		border-radius: 6px;
+		overflow: hidden;
+	}
+
+	/* Sweeping scanline band */
+	.scanline {
+		position: absolute;
+		width: 100%;
+		height: 100px;
+		bottom: 100%;
+		z-index: 6;
+		background: linear-gradient(
+			0deg,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(89, 180, 255, 0.1) 10%,
+			rgba(0, 0, 0, 0.05) 100%
+		);
+		opacity: 0.6;
+		animation: scanline-sweep 10s linear infinite;
+	}
+
+	/* Horizontal CRT line pattern */
+	.screen-lines {
+		position: absolute;
+		inset: 0;
+		background: repeating-linear-gradient(
+			0deg,
+			transparent 0px,
+			transparent 3px,
+			rgba(0, 0, 0, 0.08) 3px,
+			rgba(0, 0, 0, 0.08) 4px
+		);
+		z-index: 4;
+	}
+
+	/* Phosphor glow — brighter center, darker edges */
+	.screen-glow {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(
+			ellipse 70% 60% at 50% 50%,
+			rgba(89, 180, 255, 0.03) 0%,
+			transparent 70%
+		);
+		z-index: 3;
+	}
+
+	/* Subtle full-screen flicker */
+	.screen-flicker {
+		position: absolute;
+		inset: 0;
+		background: rgba(255, 255, 255, 1);
+		animation: screen-flicker 4s ease-in-out infinite;
+		z-index: 7;
+	}
+
+	/* -- Terminal container -- */
+
+	#terminal-container {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		animation: chromatic-glitch 8s infinite;
+	}
+
+	/* Override xterm defaults to blend with the CRT */
+	#terminal-container :global(.xterm) {
+		padding: 12px;
+	}
+
+	#terminal-container :global(.xterm-viewport) {
+		overflow-y: hidden !important;
+	}
+
+	/* -- Bottom panel (brand + controls) -- */
+
+	.bottom-panel {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 6px 12px 4px;
+	}
+
+	.brand-label {
+		font-family: "Source Code Pro Variable", monospace;
+		font-size: clamp(0.55rem, 0.9vw, 0.75rem);
+		font-weight: 700;
+		letter-spacing: 0.25em;
+		color: rgba(255, 255, 255, 0.2);
+		text-transform: lowercase;
+	}
+
+	.controls {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.control-knob {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: linear-gradient(135deg, #555 0%, #3a3a3a 50%, #555 100%);
+		box-shadow:
+			inset 0 1px 2px rgba(255, 255, 255, 0.1),
+			inset 0 -1px 2px rgba(0, 0, 0, 0.4),
+			0 1px 3px rgba(0, 0, 0, 0.3);
+	}
+
+	.power-led {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: #22c55e;
+		animation: led-pulse 2s ease-in-out infinite;
+	}
+
+	/* -- Stand -- */
+
+	.stand-neck {
+		width: 50px;
+		height: 28px;
+		background: linear-gradient(
+			90deg,
+			#2a2a2e 0%,
+			#3a3a3e 30%,
+			#404044 50%,
+			#3a3a3e 70%,
+			#2a2a2e 100%
+		);
+		box-shadow:
+			inset -2px 0 4px rgba(0, 0, 0, 0.2),
+			inset 2px 0 4px rgba(0, 0, 0, 0.2);
+	}
+
+	.stand-base {
+		width: 140px;
+		height: 12px;
+		background: linear-gradient(180deg, #404044 0%, #2c2c30 100%);
+		border-radius: 0 0 6px 6px;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			0 4px 12px rgba(0, 0, 0, 0.4);
+		/* Slight trapezoid shape */
+		clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+	}
+
+	/* -- Dock navigation -- */
+
+	.dock {
+		position: relative;
+		z-index: 3;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		margin-top: 16px;
+		padding: 8px 12px;
+		background: linear-gradient(
+			180deg,
+			rgba(50, 50, 55, 0.9) 0%,
+			rgba(35, 35, 40, 0.95) 100%
+		);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 14px;
+		box-shadow:
+			0 4px 20px rgba(0, 0, 0, 0.5),
+			0 1px 3px rgba(0, 0, 0, 0.3),
+			inset 0 1px 0 rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+
+	.dock-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		padding: 8px 16px;
+		border-radius: 10px;
+		text-decoration: none;
+		color: rgba(255, 255, 255, 0.5);
+		transition:
+			color 0.2s ease,
+			background 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.dock-item:hover {
+		color: #59b4ff;
+		background: rgba(89, 180, 255, 0.08);
+		transform: scale(1.08) translateY(-2px);
+		box-shadow: 0 4px 16px rgba(89, 180, 255, 0.1);
+	}
+
+	.dock-item :global(svg) {
+		width: 22px;
+		height: 22px;
+	}
+
+	.dock-item span {
+		font-family: "Source Code Pro Variable", monospace;
+		font-size: 0.65rem;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+	}
+
+	/* -- Responsive -- */
+
+	@media (max-width: 640px) {
+		.room {
+			background: #04080e;
+		}
+
+		.desk {
+			display: none;
+		}
+
+		.monitor {
+			margin-bottom: 0;
+		}
+
+		.monitor-body {
+			width: 100vw;
+			height: 100dvh;
+			max-height: none;
+			aspect-ratio: auto;
+			border-radius: 0;
+			padding: 0;
+			background: #04080e;
+			box-shadow: none;
+		}
+
+		.vents {
+			display: none;
+		}
+
+		.bezel {
+			padding: 0;
+			background: #04080e;
+			border-radius: 0;
+			box-shadow: none;
+		}
+
+		.screen-glass {
+			border-radius: 0;
+		}
+
+		.bottom-panel {
+			display: none;
+		}
+
+		.stand-neck {
+			display: none;
+		}
+
+		.stand-base {
+			display: none;
+		}
+
+		.dock {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin-top: 0;
+			justify-content: center;
+			border-radius: 0;
+			border-left: none;
+			border-right: none;
+			border-bottom: none;
+			padding-bottom: calc(8px + env(safe-area-inset-bottom));
+			background: linear-gradient(
+				180deg,
+				rgba(10, 14, 22, 0.85) 0%,
+				rgba(6, 10, 18, 0.95) 100%
+			);
+			box-shadow:
+				0 -2px 16px rgba(0, 0, 0, 0.5),
+				inset 0 1px 0 rgba(89, 180, 255, 0.06);
+		}
+
+		.dock-item {
+			padding: 8px 20px;
+		}
+
+		.dock-item:hover {
+			transform: none;
+		}
+	}
+
+	/* -- Reduced motion -- */
+
+	@media (prefers-reduced-motion: reduce) {
+		.monitor {
+			animation: none;
+		}
+
+		.scanline {
+			animation: none;
+			display: none;
+		}
+
+		.screen-flicker {
+			animation: none;
+			display: none;
+		}
+
+		.power-led {
+			animation: none;
+		}
+
+		#terminal-container {
+			animation: none;
+		}
+	}
+</style>

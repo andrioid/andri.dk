@@ -1,6 +1,7 @@
 import type { Terminal } from "@xterm/xterm";
+import terminalPrompt from "./terminal-prompt.txt?raw";
 
-const PROMPT = "\x1b[32mguest@andri.dk\x1b[0m:\x1b[34m~\x1b[0m$ ";
+const PROMPT = "$ ";
 
 function handleCommand(
 	terminal: Terminal,
@@ -43,11 +44,11 @@ export async function createTerminal(
 		fontFamily: '"Source Code Pro Variable", monospace',
 		convertEol: true,
 		theme: {
-			background: "#050a05",
-			foreground: "#33ff33",
-			cursor: "#33ff33",
-			cursorAccent: "#050a05",
-			selectionBackground: "rgba(51, 255, 51, 0.25)",
+			background: "#04080e",
+			foreground: "#59b4ff",
+			cursor: "#59b4ff",
+			cursorAccent: "#04080e",
+			selectionBackground: "rgba(89, 180, 255, 0.25)",
 		},
 	});
 
@@ -56,6 +57,10 @@ export async function createTerminal(
 	terminal.open(container);
 	fitAddon.fit();
 	terminal.focus();
+
+	terminal.writeln(terminalPrompt);
+	terminal.write("\n");
+	terminal.writeln("Software Developer & Systems Engineer\n");
 
 	terminal.write(PROMPT);
 
