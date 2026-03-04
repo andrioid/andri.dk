@@ -1,32 +1,10 @@
-import type { Terminal } from "@xterm/xterm";
+import { createActor } from "xstate";
+
 import terminalPrompt from "./terminal-prompt.txt?raw";
+import { terminalMachine } from "./terminal-machine";
+import { parseCommand } from "./terminal-parser";
 
 const PROMPT = "$ ";
-
-function handleCommand(
-	terminal: Terminal,
-	command: string,
-	onExit: () => void,
-) {
-	if (!command) return;
-
-	switch (command) {
-		case "hello":
-			terminal.writeln("Hello! Welcome to my corner of the internet.");
-			terminal.writeln(
-				"I'm Andri \u2014 a software developer based in Aalborg, Denmark.",
-			);
-			break;
-		case "exit":
-			onExit();
-			return;
-		case "clear":
-			terminal.clear();
-			break;
-		default:
-			terminal.writeln(`Syntax Error`);
-	}
-}
 
 export async function createTerminal(
 	container: HTMLElement,
@@ -58,6 +36,11 @@ export async function createTerminal(
 	fitAddon.fit();
 	terminal.focus();
 
+	const actor = createActor(terminalMachine, {
+		input: { terminal, onExit },
+	});
+	actor.start();
+
 	terminal.writeln(terminalPrompt);
 	terminal.write("\n");
 	terminal.writeln("Software Developer & Systems Engineer\n");
@@ -66,13 +49,38 @@ export async function createTerminal(
 
 	let currentLine = "";
 
+	/** Whether the machine is in a state that prompts for input (not a command) */
+	function isPrompting() {
+		const state = actor.getSnapshot();
+		return !state.matches("idle");
+	}
+
 	const dataDisposable = terminal.onData((data) => {
+		// Ignore input if the machine has reached a final state
+		if (actor.getSnapshot().status !== "active") return;
+
 		switch (data) {
 			case "\r": {
 				terminal.writeln("");
-				handleCommand(terminal, currentLine.trim(), onExit);
+				const input = currentLine.trim();
 				currentLine = "";
-				terminal.write(PROMPT);
+
+				if (isPrompting()) {
+					actor.send({ type: "INPUT", value: input });
+				} else if (input) {
+					actor.send({
+						type: "COMMAND",
+						parsed: parseCommand(input),
+					});
+				}
+
+				// Only write prompt if still in idle after handling
+				if (
+					actor.getSnapshot().status === "active" &&
+					actor.getSnapshot().matches("idle")
+				) {
+					terminal.write(PROMPT);
+				}
 				break;
 			}
 			case "\x7f": {
@@ -84,8 +92,15 @@ export async function createTerminal(
 			}
 			case "\x03": {
 				terminal.writeln("^C");
+				actor.send({ type: "INTERRUPT" });
 				currentLine = "";
-				terminal.write(PROMPT);
+
+				if (
+					actor.getSnapshot().status === "active" &&
+					actor.getSnapshot().matches("idle")
+				) {
+					terminal.write(PROMPT);
+				}
 				break;
 			}
 			default: {
@@ -108,6 +123,7 @@ export async function createTerminal(
 	return {
 		dispose() {
 			window.removeEventListener("keydown", onKeyDown);
+			actor.stop();
 			dataDisposable.dispose();
 			terminal.dispose();
 		},
