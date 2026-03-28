@@ -34,7 +34,6 @@ const projectCollection = defineCollection({
 		title: z.string(),
 		startDate: z.string().transform((str) => new Date(str)),
 		endDate: z.string().transform((str) => new Date(str)).optional(),
-		description: z.string(),
 	})
 })
 
