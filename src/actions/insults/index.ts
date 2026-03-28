@@ -1,5 +1,5 @@
 import { defineAction } from "astro:actions";
-import { z } from "astro:schema";
+import { z } from "astro/zod";
 import { CAR_BRANDS, insultCarImagePrompt, insultCarPrompt } from "./cars";
 import { getCountryFromIP, getIPfromHeaders } from "./country";
 import {

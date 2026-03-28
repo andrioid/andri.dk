@@ -10,7 +10,6 @@ const highlighter = await createHighlighter({
 export async function codesnippetResponse({
 	code,
 	lang,
-	theme,
 	renderer = new Renderer(),
 }: {
 	code: string;
