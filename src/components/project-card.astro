@@ -1,0 +1,63 @@
+---
+import { CollectionEntry, render } from "astro:content";
+import GithubRepo from "./github-repo.astro";
+import Icon from "./Icon.astro";
+import Tag from "./tag.astro";
+import Pill from "./pill.astro";
+import { getStars } from "~/lib/github-cache";
+
+interface Props {
+	project: CollectionEntry<"project">;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<div class="md:rounded-md md:shadow bg-white flex flex-col justify-between">
+	<div class="px-4 py-3">
+		<div class="flex justify-between items-start">
+			<div class="">
+				<h3
+					class="text-primary-500 text-xl font-semibold margin-0 leading-none"
+				>
+					{project.data.title}
+				</h3>
+				{
+					project.data.tags && (
+						<div class="flex flex-row gap-1 mt-2">
+							{project.data.github && (
+								<Pill
+									icon="github"
+									url={`https://github.com/${project.data.github}`}
+								>
+									<Icon
+										name="star-filled"
+										class="inline w-3.5 h-3.5 text-amber-500"
+									/>
+
+									{getStars(project.data.github)}
+								</Pill>
+							)}
+
+							{project.data.tags.sort().map((tag) => (
+								<Tag tag={tag} />
+							))}
+						</div>
+					)
+				}
+			</div>
+		</div>
+		<div class="text-gray-600 markdown mt-2">
+			<Content />
+		</div>
+		<div>screenshots</div>
+	</div>
+	<a href="#">
+		<div
+			class="bg-primary-500 text-white md:rounded-b-md py-1 px-4 text-right font-semibold"
+		>
+			More...
+		</div>
+	</a>
+</div>

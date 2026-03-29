@@ -1,0 +1,19 @@
+---
+import { Icon } from "astro-icon/components";
+import { KeysWithSuggestions } from "~/lib/utils/typehelpers";
+import Pill from "./pill.astro";
+import { IconType, supportedIcons } from "./Icon.astro";
+
+interface Props {
+	tag: string;
+}
+
+const { tag } = Astro.props;
+
+let iconName: IconType | undefined = undefined;
+if (tag in supportedIcons) {
+	iconName = tag as IconType;
+}
+---
+
+<Pill icon={iconName}>{tag}</Pill>

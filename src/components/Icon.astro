@@ -1,13 +1,14 @@
 ---
 import { Icon as BaseIcon } from "astro-icon/components";
 import { twMerge } from "tailwind-merge";
+import { KeysWithSuggestions } from "~/lib/utils/typehelpers";
 
 interface Props {
-	name: keyof typeof icons;
+	name: keyof typeof supportedIcons;
 	class?: string;
 }
 
-const icons = {
+export const supportedIcons = {
 	calendar: "tabler:calendar",
 	heart: "tabler:heart",
 	github: "tabler:brand-github",
@@ -18,11 +19,28 @@ const icons = {
 	windows: "tabler:brand-windows",
 	mac: "tabler:brand-apple",
 	linux: "simple-icons:linux",
+	"chevron-right": "tabler:chevron-right",
+	"star-filled": "tabler:star-filled",
+	go: "tabler:brand-golang",
+	typescript: "tabler:brand-typescript",
+	"react-native": "tabler:brand-react-native",
+	react: "tabler:brand-react",
+	mysql: "tabler:brand-mysql",
+	draft: "tabler:pencil-exclamation",
+	tech: "tabler:robot",
+	markdown: "tabler:markdown",
+	nodejs: "tabler:brand-nodejs",
+	rant: "tabler:speakerphone",
+	cloud: "tabler:cloud",
+	php: "tabler:brand-php",
+	networking: "tabler:network",
 };
 
-const baseClass = "inline-icon";
+export type IconType = keyof typeof supportedIcons;
+
+const baseClass = "inline-flex";
 const { name, class: className = "" } = Astro.props;
-const iconData = icons[name];
+const iconData = supportedIcons[name];
 ---
 
 <BaseIcon name={iconData} class={twMerge(baseClass, className)} />

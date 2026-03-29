@@ -1,0 +1,21 @@
+---
+import { twMerge } from "tailwind-merge";
+
+interface Props {
+	href?: string;
+	class?: string;
+}
+const { href, class: className } = Astro.props;
+
+const classes = twMerge("inline-flex group", className);
+---
+
+{
+	href ? (
+		<a href={href} class={classes} target="_blank">
+			<slot />
+		</a>
+	) : (
+		<slot />
+	)
+}

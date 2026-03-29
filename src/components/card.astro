@@ -1,5 +1,6 @@
 ---
 import Icon from "./Icon.astro";
+import Tag from "./tag.astro";
 
 export interface Props {
 	title: string;
@@ -18,12 +19,12 @@ if (link[link.length - 1] !== "/") {
 }
 ---
 
-<a class="flex-1" href={link}>
+<a class="block" href={link}>
 	<div
-		class="flex flex-col p-6 h-full shadow-lg bg-white hover:shadow-2xl text-gray-900 md:rounded-md"
+		class="flex flex-col p-6 h-full shadow-lg bg-white hover:shadow-2xl text-primary-700 md:rounded-md"
 	>
-		<div class="flex-1 flex flex-col justify-start">
-			<span class="text-sm text-gray-600">
+		<div class="flex flex-col justify-start">
+			<span class="text-sm inline-flex items-center gap-1 mb-1">
 				<Icon name="calendar" class="h-5 w-5" />
 				{
 					date && (
@@ -40,24 +41,17 @@ if (link[link.length - 1] !== "/") {
 				}
 			</span>
 
-			<div class="mt-1 font-bold text-lg mb-2">
+			<div class="mt-1 font-medium text-lg text-primary-500">
 				{title}
 			</div>
-			<!-- <div>
-	            <p>Lorem Ipsum stuff Lorem Ipsum stuffLorem Ipsum stuff Lorem Ipsum stuff Lorem Ipsum stuff</p>
-	          </div> -->
 		</div>
 		{
 			tags && tags.length > 0 ? (
 				<div class="mt-4 gap-2 flex">
 					{tags.slice(0, 3).map((t) => (
-						<span class="andri-tag">{t}</span>
+						<Tag tag={t} />
 					))}
-					{draft ? (
-						<span class="andri-tag text-red-700 border-red-700">
-							Draft
-						</span>
-					) : null}
+					{draft ? <Tag tag="draft" /> : null}
 				</div>
 			) : null
 		}

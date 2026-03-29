@@ -6,7 +6,7 @@ slug: 2019/09/slim-docker-images-for-golang
 tags:
   - hosting
   - docker
-  - golang
+  - go
 title: Slim Docker images for your Go application
 ---
 

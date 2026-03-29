@@ -1,0 +1,34 @@
+---
+import OptionalLink from "./optional-link.astro";
+import Icon, { IconType } from "./Icon.astro";
+import { twMerge } from "tailwind-merge";
+
+interface Props {
+	icon?: IconType | undefined;
+	url?: string;
+}
+
+const { icon, url } = Astro.props;
+---
+
+<OptionalLink href={url}>
+	<div
+		class="flex rounded-sm text-xs items-center border border-primary-600 group-hover:border-primary-500 min-h-6 overflow-clip"
+	>
+		{
+			icon && (
+				<span class="text-white bg-primary-600 group-hover:bg-primary-500 px-0.5 h-full items-center inline-flex">
+					<Icon name={icon} class="w-5 h-5 p-0.5" />
+				</span>
+			)
+		}
+		<span
+			class={twMerge(
+				"bg-white rounded-r-sm py-0.5 px-2 font-light lowercase text-primary-800 inline-flex items-center gap-2",
+				!icon && "rounded-l-sm",
+			)}
+		>
+			<slot />
+		</span>
+	</div>
+</OptionalLink>
