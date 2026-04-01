@@ -50,3 +50,5 @@ I've been writing code since I discovered BASIC as an 8 year old playing with ou
 I was asked recently if I feel threatened by the AI gold-rush. I think we're going to see a big disruption in many jobs that have been considered AI-safe. However, I think that critical-thinking, domain-knowledge and the ability to understand problems has never been more important.
 
 Learning new things is fun, and AI is just one more tool for the old toolbox. But, I imagine that there are specialists out there that haven't kept up with the times, or had any reason to. They might have a rude awakening at some point; but should remember that their _real_ value is their domain knowledge and that's not going out of style!
+
+I haven't quite made up my mind on coding-agents yet. But, for now I can see the value in getting a crazy side-project idea, and flesh it out in a couple of days instead of buying a domain and quietly punish myself every time I have to renew it.
