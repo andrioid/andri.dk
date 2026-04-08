@@ -26,7 +26,7 @@ The closest solution I could find at the time was Hugo; but I don't want to gene
 
 So, I started searching; but all of the frameworks were focused on routing and ORM-like libraries and very focused on being the fastest.
 
-[Templ](https://templ.guide) was the first Go template language where my IDE was actually helpful. It's a custom DSL that with Go syntax, that generates a `.go` file for every `.templ` file you write. I really wanted to love Templ, I did! But, the fact that I'm writing a Go project that populates my projects with generated Go files at every turn, was annoying me more than it should have.
+[Templ](https://templ.guide) was the first Go template language where my IDE was actually helpful. It's a custom DSL that with Go syntax, that generates a `.go` file for every `.templ` file you write. I really wanted to love Templ. But, the fact that I'm writing a Go project that populates my projects with generated Go files at every turn, was annoying me more than it should have.
 
 [Gomponents](https://www.gomponents.com/) was also interesting to me. It's sort of like React, for Go. So every HTML-element has a generated function that you can use to write composable HTML with. It works, but I could never get used to writing HTML that way.
 
@@ -130,3 +130,9 @@ Name := p.Name
 Not exactly. In 2002 we didn't have web-components, JS modules in the browsers or hypermedia libraries like [htmx](https://htmx.org/) and [datastar](https://data-star.dev). Modern CSS can also do many things that we previously needed JavaScript for.
 
 I think we can have our server-rendered cake, and eat it too! I'm pretty happy with how the design turned out, and I think this is a sweet spot between composable HTML and the complexity that usually follows.
+
+### OK, you convinced me. What's next?
+
+Check out [Gastro's webpage](https://gastro.andri.dk), [the GitHub repo](https://github.com/andrioid/gastro) and the [examples](https://github.com/andrioid/gastro/tree/main/examples). The Gastro page is written in Gastro, compiles in a few seconds and deploys as a single binary.
+
+Gastro is still in early development, so there will be bugs and rough edges. I'd appreciate any feedback, so we can make it better.
