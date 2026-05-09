@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@andrioid/md-social": "^0.0.1-053d1d0",
-    "@astrojs/mdx": "^5.0.3",
-    "@astrojs/node": "^10.0.4",
-    "@astrojs/react": "^5.0.2",
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/node": "^10.1.0",
+    "@astrojs/react": "^5.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@fontsource-variable/inter": "^5.1.1",
@@ -38,7 +38,7 @@
     "@takumi-rs/image-response": "^0.62.6",
     "@xterm/addon-fit": "^0.11.0",
     "@xterm/xterm": "^6.0.0",
-    "astro": "^6.1.1",
+    "astro": "^6.3.1",
     "astro-icon": "^1.1.5",
     "express": "^5",
     "html2canvas": "^1.4.1",
@@ -54,8 +54,7 @@
     "xstate": "^5.28.0"
   },
   "devDependencies": {
-    "vite": "^7.3.1",
-    "@astrojs/check": "^0.9.8",
+    "@astrojs/check": "^0.9.9",
     "@playwright/cli": "^0.1.1",
     "@tailwindcss/vite": "^4.1.11",
     "@types/bun": "^1.1.14",
@@ -69,7 +68,8 @@
     "prettier-plugin-astro": "~0.14.1",
     "sanitize-html": "^2.14.0",
     "tailwindcss": "~4.1.17",
-    "vfile": "^6.0.3"
+    "vfile": "^6.0.3",
+    "vite": "^7.3.1"
   },
   "workspaces": [
     "packages/*"
