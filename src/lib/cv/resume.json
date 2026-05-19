@@ -40,7 +40,7 @@
       "position": "Lead Frontend Developer",
       "url": "https://apacta.dk",
       "startDate": "2022-06-01",
-      "summary": "Took on an existing SaaS solution with a small team. Since I started, we've been migrating towards a singular user-friendly solution while maintaining existing functionality. My responsibilities include programming, architecture, coordinating and maintaining quality of our product.",
+      "summary": "Led our effort to improve our customer facing web-portal from two systems to one unified portal we've been gradually upgrading from PHP iframes to GraphQL backed React/TypeScript.\n\nMigrated our hosting infrastructure from AWS to a private Kubernetes cluster. Setup Gitops pipeline with preview-deployments and VPN to our cluster and continue to improve infrastructure and developer experience.\n\nMost recently been putting agentic-engineering practices to use, and improve how we can use them in our daily work.",
       "keywords": ["React", "TypeScript", "AWS", "Kubernetes", "GraphQL"]
     },
 
