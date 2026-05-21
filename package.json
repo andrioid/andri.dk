@@ -38,7 +38,7 @@
     "@takumi-rs/image-response": "^0.62.6",
     "@xterm/addon-fit": "^0.11.0",
     "@xterm/xterm": "^6.0.0",
-    "astro": "^6.3.5",
+    "astro": "^6.3.7",
     "astro-icon": "^1.1.5",
     "express": "^5",
     "html2canvas": "^1.4.1",
@@ -54,7 +54,6 @@
     "xstate": "^5.28.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
     "@playwright/cli": "^0.1.1",
     "@tailwindcss/vite": "^4.1.11",
     "@types/bun": "^1.1.14",
