@@ -12,3 +12,4 @@ dist/
 app
 tmp/
 .playwright-cli/
+/letters/
