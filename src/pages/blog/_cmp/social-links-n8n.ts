@@ -12,6 +12,7 @@ export async function socialLinks(slug: string): Promise<SocialLinks> {
         method: "POST",
         body: JSON.stringify({ url: `https://andri.dk/blog/${slug}` }),
         signal: AbortSignal.timeout(1000), // 1 sec timeout
+        headers: { "Content-Type": "application/json" },
       },
     );
     const socialLinks = await linksFromN8N.json();
@@ -21,7 +22,7 @@ export async function socialLinks(slug: string): Promise<SocialLinks> {
     };
   } catch (err) {
     // Not working. But, that's OK. Ignore it.
-    console.debug("error", err);
+    //console.debug("error", err);
     return {
       atUri: null,
       linkedIn: null,
