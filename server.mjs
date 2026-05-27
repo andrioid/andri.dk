@@ -32,7 +32,7 @@ function securityHeaders(req, res, next) {
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self'",
-      "connect-src 'self' https://public.api.bsky.app",
+      "connect-src 'self' https://public.api.bsky.app https://umami.andri.dk",
       "frame-ancestors 'none'",
     ].join("; "),
   );
