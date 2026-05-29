@@ -12,6 +12,9 @@ export default defineConfig({
   site: "https://andri.dk/",
   integrations: [react(), mdx(), icon(), sitemap()],
   trailingSlash: "ignore",
+  redirects: {
+    "/using": { status: 301, destination: "/uses" },
+  },
   markdown: {
     drafts: true,
     remarkPlugins: [remarkEmbedImages, setLayout],
