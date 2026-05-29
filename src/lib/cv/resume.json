@@ -1,11 +1,11 @@
 {
   "basics": {
     "name": "Andri Óskarsson",
-    "label": "Software Developer & Systems Engineer",
+    "label": "Computer Engineer - Software & Infrastructure",
     "picture": "static/andri2.jpg",
     "email": "hello@andri.dk",
     "website": "https://andri.dk",
-    "summary": "I come from Reykjavík, Iceland and am the oldest of 5 brothers. In 2006 I moved to Denmark to study. I now live near Aalborg, Denmark with my wife and son. In my off-time I like to bake pizza, play computer-games, take photos and go for walks.\n\nI've been facinated by computers since age 8 and spend much of my free time, learning more about them.",
+    "summary": "28 years of building software and the infrastructure it runs on. From managing 50 servers and Cisco networks to shipping React apps and Go services.",
     "location": {
       "city": "Aalborg",
       "countryCode": "DK",
@@ -37,11 +37,22 @@
   "work": [
     {
       "company": "Apacta A/S",
-      "position": "Lead Frontend Developer",
+      "position": "Lead Developer",
       "url": "https://apacta.dk",
       "startDate": "2022-06-01",
-      "summary": "Led our effort to improve our customer facing web-portal from two systems to one unified portal we've been gradually upgrading from PHP iframes to GraphQL backed React/TypeScript.\n\nMigrated our hosting infrastructure from AWS to a private Kubernetes cluster. Setup Gitops pipeline with preview-deployments and VPN to our cluster and continue to improve infrastructure and developer experience.\n\nMost recently been putting agentic-engineering practices to use, and improve how we can use them in our daily work.",
-      "keywords": ["React", "TypeScript", "AWS", "Kubernetes", "GraphQL"]
+      "summary": "Responsible for infrastructure, developer experience and leading the frontend architecture for a SaaS for Danish craftsmen.\nConsolidated our control-panel from two solutions into a singular React/TypeScript application enabling new feature development while maintaining existing functionality.\nSet up Gitops (trunk-based deployment), improved developer tooling and VPN. Migrated our hosting from AWS to a bare-metal Kubernetes (k3s) cluster on Hetzner with significant cost-savings and better performance.\nMost recently supercharged our review and issue triaging with help of agentic coding.",
+      "keywords": [
+        "React",
+        "TypeScript",
+        "AWS",
+        "Kubernetes",
+        "GraphQL",
+        "Hetzner",
+        "Linux",
+        "Gitops",
+        "DevOps",
+        "k3s"
+      ]
     },
 
     {
@@ -59,7 +70,7 @@
       "url": "https://www.venuepos.net",
       "startDate": "2020-01-01",
       "endDate": "2021-10-31",
-      "summary": "Assembled a small team and delivered a resiliant, offline capable point-of-sale system. Set up our cloud infrastructure and automated building, monitoring and deployment.",
+      "summary": "Assembled a small team and delivered a resilient, offline capable point-of-sale application in React Native using event-sourcing and SQLite. Built our backend in TypeScript/Node and GraphQL. Set up a managed Kubernetes cluster and Postgres database at GCP. Automated Gitops pipelines from commit to production.",
       "keywords": [
         "React",
         "React Native",
@@ -68,7 +79,8 @@
         "TypeScript",
         "Event Sourcing",
         "Kubernetes",
-        "GraphQL"
+        "GraphQL",
+        "GCP"
       ]
     },
     {
@@ -77,7 +89,7 @@
       "url": "https://www.redia.dk",
       "startDate": "2019-05-01",
       "endDate": "2019-12-31",
-      "summary": "Worked on a web-based teaching platform and a mobile app to help librarians work more effectively. Pitched and developed an image (and video) scaling micro service.",
+      "summary": "Helped to develop a teaching platform for Danish education publisher in React/TypeScript. Developed a mobile app to help librarians work more effectively in React Native. Pitched and developed an image (and video) scaling micro service in Go.",
       "keywords": [
         "React",
         "TypeScript",
@@ -94,11 +106,7 @@
       "url": "https://parkpark.dk",
       "startDate": "2017-01-01",
       "endDate": "2019-05-01",
-      "summary": "Pitched, developed and delivered a new user-focused app. Moved our infrastructure from a single server to full redundancy in Google Cloud. Ran in-house development, trained new employees, managed our infrastructure, coordinated with freelancers and did full-stack software development.",
-      "highlights": [
-        "Pitched, developed and shipped our new app",
-        "Migrated our infrastructure to a managed Kubernetes environment"
-      ],
+      "summary": "Pitched, developed and delivered a new user-focused app in React Native, bumping it from 2 stars to 4 on app-stores. Migrated our LAMP stack from a single server to managed Kubernetes on GCP. Ran in-house development, trained new employees, managed our infrastructure, coordinated with freelancers and did full-stack software development.",
       "keywords": [
         "React",
         "React Native",
@@ -109,8 +117,8 @@
         "Kubernetes",
         "Docker",
         "Linux",
-        "HTML/CSS",
-        "GraphQL"
+        "GraphQL",
+        "GCP"
       ]
     },
     {
@@ -119,11 +127,6 @@
       "startDate": "2015-11-01",
       "endDate": "2017-01-01",
       "summary": "I managed releases, did frontend development and was a Scrum-Master on \"Min Uddannelse\", a large learning platform. I helped introduce React to the organisation, did internal training and helped with recruiting.",
-      "highlights": [
-        "Managed releases and handled deployment pipelines",
-        "Scrum-master on MinUddannelse",
-        "Helped to introduce React to the organization"
-      ],
       "keywords": ["React", "DevOps", "JavaScript", "HTML/CSS", "jQuery"],
       "url": "https://www.uvdata.dk"
     },
@@ -133,9 +136,6 @@
       "startDate": "2012-03-01",
       "endDate": "2015-11-01",
       "summary": "Worked on an internal billing and CRM system as a part of the backend team. I pitched and delivered an automatic plan-upgrade system for usage-warnings that was generating revenue.",
-      "highlights": [
-        "Pitched and delivered automatic product upgrades with usage-warning SMS to customers."
-      ],
       "keywords": [
         "PHP",
         "MySQL",
@@ -176,15 +176,15 @@
       "position": "Systems Administrator",
       "startDate": "2004-01-01",
       "endDate": "2006-07-01",
-      "summary": "Managed our systems and network. Supported our developers. Built our VoIP PBX.",
+      "summary": "Built and managed our local server-room of 50 physical Linux servers on-premises. Set up our network along with VLANs and fiber-optic Internet connection using Cisco and Linux. Researched and deployed a fully functional VoIP telephone system using Asterisk with physical and software clients. Supported the development team with testing environments, source-control and workstations.",
       "keywords": [
         "Linux",
         "Asterisk",
         "Cisco",
         "Windows Server",
-        "SMTP",
+        "Networking",
         "DNS",
-        "DevOps"
+        "VoIP"
       ]
     },
     {
@@ -229,17 +229,15 @@
       "keywords": ["PHP", "MySQL", "Testing", "HTML/CSS"]
     }
   ],
-  "volunteer": [
-    {
-      "organization": "Aalborg React Meetup",
-      "position": "Speaker & Co-host",
-      "website": "https://www.meetup.com/Aalborg-Frontend/",
-      "startDate": "2016-12-13",
-      "endDate": "2020-01-01",
-      "summary": "Speaker and co-organizer"
-    }
-  ],
   "education": [
+    {
+      "institution": "Microsoft",
+      "area": "Azure Fundamentals",
+      "studyType": "Certification",
+      "startDate": "2022-05-16",
+      "endDate": "2022-05-16"
+    },
+
     {
       "institution": "Aalborg University",
       "area": "Computer Engineering",
@@ -253,13 +251,6 @@
       "studyType": "Course",
       "startDate": "2012-05-01",
       "endDate": "2012-05-01"
-    },
-    {
-      "institution": "J.B. Rainsberger / Sprettur ehf",
-      "area": "Agile Design",
-      "studyType": "Course",
-      "startDate": "2012-05-02",
-      "endDate": "2012-05-03"
     },
     {
       "institution": "Aalborg University",
@@ -281,41 +272,28 @@
         "JavaScript",
         "React",
         "React Native",
-        "C",
-        "C++",
-        "C#",
-        "TCL",
-        "Lua",
-        "Vue.js",
-        "TypeScript",
-        "Java",
-        "jQuery"
+        "TypeScript"
       ],
-      "preferred": ["Go", "React", "React Native", "TypeScript"]
+      "preferred": ["Go", "TypeScript", "React Native"]
     },
     {
       "id": "operations",
-      "name": "System Operations",
+      "name": "Infrastructure & Cloud",
       "level": "Senior",
       "keywords": [
-        "Github",
-        "DevOps",
         "Linux",
         "AWS",
         "GCP",
+        "Hetzner",
         "Terraform",
         "Kubernetes",
+        "k3s",
         "Docker",
         "DNS",
-        "SMTP",
-        "Cisco",
-        "Asterisk",
-        "Jenkins",
-        "Gitlab",
-        "Windows",
-        "Mac"
+        "Networking",
+        "Cisco"
       ],
-      "preferred": ["Linux", "Kubernetes", "Docker"]
+      "preferred": ["Linux", "Kubernetes"]
     },
     {
       "id": "data",
@@ -324,9 +302,7 @@
       "keywords": [
         "MySQL",
         "Postgres",
-        "MongoDB",
         "Firestore",
-        "Memcache",
         "Redis",
         "SQLite",
         "Event Sourcing",
@@ -334,19 +310,6 @@
         "OpenAPI"
       ],
       "preferred": ["Postgres"]
-    },
-    {
-      "id": "processes",
-      "name": "Processes and methodologies",
-      "level": "Senior",
-      "keywords": [
-        "Agile",
-        "Kanban",
-        "Scrum",
-        "Lean",
-        "Test Driven Development"
-      ],
-      "preferred": ["Kanban", "Lean"]
     }
   ],
   "languages": [
@@ -375,19 +338,5 @@
   ],
   "meta": {
     "theme": "elegant"
-  },
-  "projects": [
-    {
-      "name": "s3preview",
-      "description": "A tiny microservice that generates and stores image previews on AWS S3.",
-      "highlights": [],
-      "keywords": ["Go", "AWS"],
-      "startDate": "2015-06-13",
-      "endDate": "2016-06-25",
-      "url": "https://github.com/andrioid/s3preview",
-      "roles": ["Creator"],
-      "entity": "Smoogle",
-      "type": "application"
-    }
-  ]
+  }
 }
