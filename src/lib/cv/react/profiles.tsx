@@ -1,5 +1,6 @@
-import { Link, Text, View } from "@react-pdf/renderer";
+import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { URL } from "url";
+import { colors } from "../colors";
 import { Profile } from "../types";
 import { Icon } from "./icon";
 import { Section } from "./section";
@@ -14,65 +15,59 @@ export function Profiles({ profiles = [] }: { profiles: Profile[] }) {
 
   return (
     <Section title="Find me">
-      {filteredProfiles.map((profile, idx) => {
-        const key = `${profile.network}/${profile.username}`;
-        return (
-          <View
-            key={key}
-            style={{
-              marginBottom: idx < profiles!.length ? 5 : 0,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Icon name={profile.network.toLowerCase() as any} />
-              <View
-                style={{
-                  marginLeft: 10,
-                  width: 30,
-                }}
-              >
-                <Text>{profile.network}</Text>
+      <View style={styles.container}>
+        <View style={styles.item}>
+          <View style={styles.splitRow}>
+            <Icon name={"home"} />
+            <View>
+              <Text>Personal page</Text>
+            </View>
+          </View>
+          <Link style={styles.link} src="https://andri.dk">
+            andri.dk
+          </Link>
+        </View>
+        {filteredProfiles.map((profile, idx) => {
+          const key = `${profile.network}/${profile.username}`;
+          return (
+            <View style={styles.item}>
+              <View style={styles.splitRow}>
+                <Icon name={profile.network.toLowerCase() as any} />
+                <View>
+                  <Text>{profile.network}</Text>
+                </View>
+                <Text style={{ fontStyle: "italic" }}>{profile.username}</Text>
               </View>
               <Text
                 style={{
-                  marginLeft: 10,
-                  fontStyle: "italic",
+                  color: "grey",
                 }}
               >
-                {profile.username}
+                <Link style={styles.link} src={profile.url}>{`${
+                  new URL(profile.url).hostname
+                }${new URL(profile.url).pathname}`}</Link>
               </Text>
             </View>
-            <Text
-              style={{
-                color: "grey",
-              }}
-            >
-              <Link src={profile.url}>{`${
-                new URL(profile.url).hostname
-              }${new URL(profile.url).pathname}`}</Link>
-            </Text>
-          </View>
-        );
-      })}
-      <View
-        style={{
-          flexDirection: "row",
-        }}
-      >
-        <Icon name={"home"} />
-        <View
-          style={{
-            marginLeft: 10,
-          }}
-        >
-          <Text>Personal page</Text>
-        </View>
+          );
+        })}
       </View>
-      <Link src="https://andri.dk">andri.dk</Link>
     </Section>
   );
 }
+
+const styles = StyleSheet.create({
+  link: {
+    textDecoration: "none",
+    color: colors.programming,
+  },
+  splitRow: {
+    flexDirection: "row",
+    gap: 5,
+  },
+  item: {
+    gap: 2,
+  },
+  container: {
+    gap: 10,
+  },
+});

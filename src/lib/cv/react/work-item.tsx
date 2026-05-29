@@ -1,4 +1,4 @@
-import { Link, Text, View } from "@react-pdf/renderer";
+import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { colors } from "../colors";
 import { periodToString } from "../data-utils";
 import { Skill, Work } from "../types";
@@ -32,10 +32,12 @@ export const WorkItem = ({
         }}
       >
         <View>
-          <Text style={{ fontWeight: "bold" }}>{item.position}</Text>
-          <Text>
+          <Text>{item.position}</Text>
+          <Text style={styles.companyText}>
             {item.url ? (
-              <Link src={item.url}>{item.company}</Link>
+              <Link src={item.url} style={styles.companyText}>
+                {item.company}
+              </Link>
             ) : (
               item.company
             )}
@@ -82,3 +84,11 @@ export const WorkItem = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  companyText: {
+    textDecoration: "none",
+    color: colors.programming,
+    fontWeight: "semibold",
+  },
+});
