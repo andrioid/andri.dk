@@ -28,10 +28,10 @@ function securityHeaders(req, res, next) {
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self' umami.andri.dk",
+      "script-src 'self' 'unsafe-inline' umami.andri.dk",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
-      "font-src 'self'",
+      "font-src 'self' data:",
       "connect-src 'self' https://public.api.bsky.app https://umami.andri.dk",
       "frame-ancestors 'none'",
     ].join("; "),
