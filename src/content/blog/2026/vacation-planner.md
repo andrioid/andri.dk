@@ -28,6 +28,8 @@ It was important that this was structured, but not so structured that we'd hate 
 
 For all intents and purposes, the tool was now complete. We could look at the itinerary and plan our vacation accordingly.
 
+But, I kept going....
+
 ### Syncing with our calendar
 
 The tool generates a webcal subscription that can be copied into Google/Apple/etc calendars and it automatically updates as you iterate on your plan.
