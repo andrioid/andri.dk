@@ -72,6 +72,32 @@ Below is a screenshot of a test-flight from yesterday
 
 Today, I decided to add _users_ to the platform. If you'd like to play with my little tool you can find it at [trip.andri.dk](https://trip.andri.dk). You'll need a passkey to create an account. Passwords are so 2025!
 
-## Is that all?
+## That's all
 
 This was a surprisingly fun project. But, I still haven't planned our summer vacation yet. So, I should probably go do that now. Bye!
+
+## Still here?
+
+I might was well put a few words on how this was made. With a scope like this, it should be pretty obvious that this was either done over multiple weeks/months, or assisted by AI.
+
+### What separates the vibe-coders from the agentic engineers?
+
+Planning! Not the boring kind, like vacations. Code planning. I spent over half a day iterating on requirements, user-stories and implementation details before allowing allowing the AI to write any code.
+
+### Tech Stack
+
+I went with a server-rendered Go application using [Gastro](https://gastro.andri.dk). If you don't use your own framework, then who will? It also has [Datastar](https://data-star.dev), web-components and some minor JavaScript.
+
+All behaviours have test-cases, and are usually implemented as http tests. I had the AI use a headless browser while implementing to test interactivity.
+
+![tech stack](vp-techstack.png)
+
+Database is [SQLite](https://sqlite.org) and I'm using [sqlc](https://sqlc.dev) to generate type-safe ORM-like functions from the schema. Migrations are managed by [Goose](https://github.com/pressly/goose).
+
+### Conclusion
+
+I'm pretty happy with how this turned out, and the code is surprisingly readable. Most importantly, there is absolutely no browser state/side-effects to spoil my day. Yet the application feels quite dynamic.
+
+I would like to lean more into Datastar SSE patching and signals at some point. But, for now it's mostly just templates and form submittions.
+
+Could I have written this by hand? Sure! But, it would've taken much longer and had less coverage. Besides, this is a low-stakes personal project that scratches an itch. I also used the frictions from this project, to improve Gastro.
