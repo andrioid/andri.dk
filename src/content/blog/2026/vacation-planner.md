@@ -1,7 +1,7 @@
 ---
 title: Over-engineering our vacation in 2026
 date: "2026-06-27"
-tags: [programming]
+tags: [go, gastro]
 ---
 
 I am of two brains. I need structure, but I hate planning. We had decided to stay in Iceland for a few weeks while visiting family and attending family gatherings. But, that left a lot of empty columns in the calendar, and people asking me if we have any plans. I shrugged and asked if they had any ideas.
