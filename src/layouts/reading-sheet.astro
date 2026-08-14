@@ -35,7 +35,7 @@ const { title, description, breadcrumb, class: className } = Astro.props;
 // The paper's inner padding. The measure below is centred inside it, so this is
 // the only thing standing between the page frame and the reading column.
 const gutter = "px-5 sm:px-8 lg:px-16";
-const measure = "mx-auto max-w-3xl";
+const measure = "mx-auto max-w-measure";
 ---
 
 <div
@@ -61,7 +61,7 @@ const measure = "mx-auto max-w-3xl";
 
 	<div
 		class={twMerge(
-			"bg-white py-8 text-gray-800 sm:py-10 md:rounded-xl lg:py-14",
+			"bg-white py-8 font-normal text-gray-800 sm:py-10 md:rounded-xl lg:py-14",
 			gutter,
 			className,
 		)}

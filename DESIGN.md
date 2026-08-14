@@ -23,52 +23,52 @@ colors:
   star-amber: "#fbbf24"
 typography:
   display:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(2.25rem, 6vw, 3.75rem)"
-    fontWeight: 700
+    fontFamily: "Inter Variable, Inter Fallback, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2.25rem → 3.75rem at md"
+    fontWeight: 780
     lineHeight: 1.1
-    letterSpacing: "normal"
+    letterSpacing: "-0.025em"
   page-title:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.875rem, 3vw, 2.25rem)"
+    fontFamily: "Inter Variable, Inter Fallback, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.875rem → 2.25rem at sm"
     fontWeight: 600
     lineHeight: 1.2
-    letterSpacing: "-0.015em"
+    letterSpacing: "-0.025em"
   article-title:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.875rem, 3vw, 2.25rem)"
+    fontFamily: "Inter Variable, Inter Fallback, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.875rem → 2.25rem at sm"
     fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "-0.015em"
+    lineHeight: 1.2
+    letterSpacing: "-0.025em"
   card-title:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Inter Variable, Inter Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 500
     lineHeight: 1.375
     letterSpacing: "normal"
   body:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1rem"
+    fontFamily: "Inter Variable, Inter Fallback, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1rem → 1.125rem at lg"
     fontWeight: 400
     lineHeight: 1.75
     letterSpacing: "normal"
   section-label:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Inter Variable, Inter Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: "0.025em"
   meta:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Inter Variable, Inter Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.6875rem"
-    fontWeight: 400
-    lineHeight: 1.4
+    fontWeight: 450
+    lineHeight: 1.5
     letterSpacing: "normal"
   code:
     fontFamily: "Source Code Pro Variable, ui-monospace, SFMono-Regular, Menlo, monospace"
     fontSize: "0.875rem"
     fontWeight: 400
-    lineHeight: 1.75
+    lineHeight: 1.6
     letterSpacing: "normal"
 rounded:
   sm: "0.25rem"
@@ -113,7 +113,7 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.xl}"
     padding: "2rem 1.25rem"
-    width: "48rem"
+    width: "40rem"
   button:
     backgroundColor: "{colors.primary-500}"
     textColor: "{colors.paper}"
@@ -181,28 +181,42 @@ These two are the system's entire warm vocabulary, and both exist only at glyph 
 
 ## Typography
 
-**Display / Body Font:** the platform UI sans stack (`ui-sans-serif, system-ui, …`)
+**Display / Body Font:** Inter Variable, self-hosted from a hand-built subset (`scripts/subset-inter.sh`) — upright plus true italics, no synthetic oblique
+**Fallback:** `Inter Fallback` — a metric-matched local face, not a second voice. See The Stand-In Rule.
 **Code Font:** Source Code Pro Variable
 
-**Character:** Deliberately unbranded. The gradient, the ramp and the badge texture carry the identity, so the type stays native and instantly legible. Only code changes voice.
+**Character:** One sans doing every job, cut to stop looking like stock Inter. The face is set with `cv11`, Inter's single-storey `a`, which trades the default double-storey bowl for a circle and a stem and gives the whole site a geometric read at every size. `ss08` rounds the quotes and commas to match. The gradient, the ramp and the badge texture still carry most of the identity — but the lettering is now a decision rather than a default. Only code changes voice.
+
+That one substitution is also why the font is subset by hand: `@fontsource-variable/inter` ships its woff2 files with the layout features stripped, so `cv11` is unreachable from the package. The subset costs about 6KB over fontsource's and pins out the `opsz` axis, which is not driven.
+
+Inter is spaced for interface text, so the system tightens it as it grows and leaves it alone when small: `-0.025em` at title and display sizes, `0` at body, `+0.025em`/`+0.06em` on the uppercase labels. Tracking is a function of size here, never a per-component decision.
+
+**The weight axis is used as an axis, not as four static weights.** Off-grid values are legitimate and deliberate: `450` for text on glass, `780` for the hero. A weight that no static family ships is the clearest evidence the axis is being driven.
 
 ### Hierarchy
 
-- **Display** (700, `2.25rem` → `3.75rem`): the name on the home hero. One per site.
-- **Page Title** (600, `1.875rem` → `2.25rem`): the `h1` on an atmosphere route, in white over the gradient with an optional one-line description beneath.
-- **Article Title** (600, same scale): the `h1` inside a reading sheet, in Ink Strong on paper.
-- **Card Title** (500, `1.125rem`): post and project names inside glass, in white, shifting to Sky Highlight on hover.
-- **Section Label** (600, `0.875rem`, uppercase, wide tracking): subsection headings and column headers. Case marks the boundary, not size.
-- **Body** (400, `1rem`, `1.125rem` at `lg`, line-height 1.75): prose inside the sheet, capped at `48rem` — roughly 75 characters.
-- **Meta** (400, `0.6875rem`): feed metadata joined by `·` separators.
+- **Display** (780, `2.25rem` → `3.75rem`, tracking `-0.025em`, balanced): the name on the home hero. One per site. The weight is off-grid on purpose — 700 sat too light against the gradient at 60px.
+- **Title** (600, `1.875rem` → `2.25rem`, tracking `-0.025em`): one role in two tones — white over the gradient on an index route, Ink Strong on paper inside a reading sheet. They are deliberately identical: the same document title should not change size because the ground under it changed.
+- **Card Title** (500, `1.125rem`): post and project names inside glass, in white, shifting to Sky Highlight on hover. Both card kinds use this one role.
+- **Section Label** (600, `0.875rem`, uppercase, wide tracking): subsection headings and column headers. Case marks the boundary, not size — but a label still never renders smaller than the text it heads.
+- **Body** (400 on paper, 450 on glass, `1rem`, `1.125rem` at `lg`, line-height 1.75): prose inside the sheet, capped at `{--container-measure}` — a measured median of 72 characters.
+- **Meta** (450, `0.6875rem`, tabular figures with a slashed zero): feed metadata joined by `·` separators. Figures are tabular because the feed is a column of counts and dates that would otherwise shift line to line.
+
+**The prose ramp.** Inside `.markdown`, heading sizes are `em` so the whole ramp rides the body size the sheet steps up at `lg`: `1.75` / `1.375` / `1.1875` / `1` / `0.9375` / `0.8125`. Below `h3` the ramp reaches body size, so weight and case take over from size — an `h4` set at body size in bold still reads as a heading, and `h6` is marked by uppercase rather than shrunk further. Every step is a visible one; two heading levels that need a ruler to tell apart are one level too many.
 
 ### Named Rules
 
-**The Native Type Rule.** No display webfont. The system stack is a decision, not an omission.
+**The One Family Rule.** Inter for everything that is not code, Source Code Pro for code, and nothing else. The face is settled; a third family needs a job neither can do. Distinctiveness comes from how this one face is cut and driven — `cv11`, the tracking ramp, the weight axis — not from adding another.
+
+**The Stand-In Rule.** The webfont never gets to reflow the page. `Inter Fallback` is a local Arial/Helvetica/Liberation face carrying `size-adjust` and ascent/descent overrides measured against Inter, so it occupies an identical line box while the real face loads. Change Inter and those numbers are re-measured, not guessed.
 
 **The Case-Signals-Role Rule.** Uppercase is a structural label. Forced lowercase is user-authored metadata. Sentence case is content. Never mix the three.
 
-**The Measure Rule.** Prose never exceeds `48rem`. Sheet width is a reading constraint, not a layout preference — widening it to fill a large screen is always wrong.
+**The Measure Rule.** Prose sits at `--container-measure` (`40rem`, a measured median of 72 characters) and never exceeds it. That token is the single source: the sheet's column and the header that titles it both read it, so they cannot drift. Character count is the constraint, not width — change the body size and the token is re-measured against 65–75 characters.
+
+**The Dark-Ground Weight Rule.** Text on the gradient is one notch heavier than the same role on paper: `--font-weight-glass` (450) against 400. Light type on a dark ground reads thinner than its weight, so the ground sets the weight and the paper sheet resets it — the rule lives on `<body>` and is undone in `reading-sheet.astro`, so it holds for anything added later without a per-component decision. Nothing on glass ever goes below 400.
+
+**The Italic Agreement Rule.** `cv11` is applied to the roman only, because Inter's true italic already draws a single-storey `a` and upstream ships no alternate for it. The two agree by construction. If the roman ever drops `cv11`, the italic will disagree with it — check the pair, not just the roman.
 
 ## Layout
 
@@ -214,7 +228,7 @@ The document scrolls normally everywhere. Nothing traps scroll, nothing locks th
 
 **The One Opening Rule.** Every route names itself the same way: on the gradient, above any surface, via page-header — optional eyebrow, `h1`, optional description, then metadata. A reading route's sheet holds the body and nothing else. Titles never come from a `#` in content; they come from frontmatter. This is why a tag looks identical on `/blog` and on the post it links to: both sit on the same ground, in the same dark tone.
 
-**The Shared Column Rule.** A title and the text it titles sit on exactly the same column edges at every breakpoint. On a reading route the header therefore renders through the _sheet's_ padding chain rather than the page container's — same gutter, same `48rem` measure — so the two can never drift apart. Verified identical at 390, 640, 768, 1024, 1280 and 1600.
+**The Shared Column Rule.** A title and the text it titles sit on exactly the same column edges at every breakpoint. On a reading route the header therefore renders through the _sheet's_ padding chain rather than the page container's — same gutter, same `--container-measure` — so the two can never drift apart. Verified identical at 390, 640, 768, 1024, 1280 and 1600.
 
 Home carries the only rail: a `23rem` panel (`26rem` at `xl`) fixed to the full height of the viewport from `lg` up, with the page shell padded to clear it. It is a panel beside the site, not a column inside the page — it runs past the header and footer, scrolls internally, and masks its own top and bottom edges. Below `lg` it disappears and a four-entry activity section takes its place in normal flow under the hero. Grids run one column, two at `sm`, three at `xl` beside the rail and at `lg` on full-width routes.
 
@@ -283,7 +297,7 @@ A single row of chips, top right, identical at every breakpoint — it wraps rat
 
 ### Reading Sheet
 
-The paper surface for long-form routes, holding the body and nothing else — the title, date and tags live on the gradient above it like every other route. It spans the full container width, is `bg-white` with Ink text, `{rounded.xl}` and floating from `md` up, full-bleed and square below it. The reading measure is held by a centred `48rem` column _inside_ the sheet, not by the sheet itself — a reading page must not look narrower than the rest of the site. Code blocks and figures break out of that column on `lg`, since they are scanned rather than read by line. It carries the full `.markdown` block, the only place in the system tuned for light-on-white, and takes no shadow because it sits on near-black.
+The paper surface for long-form routes, holding the body and nothing else — the title, date and tags live on the gradient above it like every other route. It spans the full container width, is `bg-white` with Ink text, `{rounded.xl}` and floating from `md` up, full-bleed and square below it. The reading measure is held by a centred `--container-measure` column _inside_ the sheet, not by the sheet itself — a reading page must not look narrower than the rest of the site. Code blocks and figures break out of that column on `lg`, since they are scanned rather than read by line. It carries the full `.markdown` block, the only place in the system tuned for light-on-white, and takes no shadow because it sits on near-black.
 
 ### Footer
 
@@ -304,7 +318,7 @@ A vertical timeline in a `1.75rem` + content grid: a round node holding an **out
 - **Do** derive every blue from the ramp generated by `--accent`; editing that one value must remain the way to re-tune the site.
 - **Do** decide the route's ground first — atmosphere or reading — then pick glass or paper accordingly.
 - **Do** put every route inside the shared container and let it own the gutters.
-- **Do** keep prose at or under `48rem`.
+- **Do** keep prose at `--container-measure`, and re-measure that token against 65–75 characters whenever the body size changes.
 - **Do** force lowercase on user-authored metadata and uppercase on structural labels.
 - **Do** gate every transform behind `motion-safe:` and pair every hover state with a `focus-visible` equivalent; WCAG 2.2 AA is the target and the current build clears it on every surface.
 
@@ -313,7 +327,7 @@ A vertical timeline in a `1.75rem` + content grid: a round node holding an **out
 - **Don't** introduce a second brand color. Warm hues are glyph-sized punctuation only.
 - **Don't** cast a shadow on the gradient or float a blurred translucent panel on paper.
 - **Don't** add ambient or looping animation. Motion is a response to input, never decoration.
-- **Don't** add a display webfont.
+- **Don't** add a third font family, and don't set light-on-dark text below weight 400.
 - **Don't** lock the viewport or trap scroll. The gradient is fixed; the page is not.
 - **Don't** build the SaaS landing pattern: mesh hero, three feature cards, logo wall, pricing row.
 - **Don't** invent testimonials, metrics, client logos or pricing. None exist.

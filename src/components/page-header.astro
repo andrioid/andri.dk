@@ -22,11 +22,12 @@ const { title, description } = Astro.props;
 		{title}
 	</h1>
 	{
-		/* Capped at the reading measure so a sentence does not run the full grid. */
+		/* Capped at the reading measure so a sentence does not run the full grid.
+		Same token as the sheet's column, so "the reading measure" stays one value. */
 	}
 	{
 		description && (
-			<p class="mt-2 max-w-3xl text-base text-sky-100/80">
+			<p class="mt-2 max-w-measure text-base text-sky-100/80">
 				{description}
 			</p>
 		)

@@ -30,7 +30,7 @@ export function codesnippetToImageContainer({
 			height: "100%",
 			fontSize: DEFAULT_FONT_SIZE,
 			lineHeight: DEFAULT_LINE_HEIGHT,
-			fontFamily: "monospace",
+			fontFamily: "Source Code Pro",
 			whiteSpace: "pre",
 			flexGrow: 1,
 			flexBasis: 0,

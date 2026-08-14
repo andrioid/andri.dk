@@ -1,8 +1,108 @@
 @import "tailwindcss";
 @import "@fontsource-variable/source-code-pro";
 
+/*
+ * Inter is subset here rather than taken from @fontsource-variable/inter,
+ * because fontsource strips the layout features and the type identity depends
+ * on one of them: cv11, the single-storey `a`, applied site-wide below.
+ * Regenerate with ./scripts/subset-inter.sh — that script documents the whole
+ * decision, including why the opsz axis is pinned out.
+ *
+ * Greek, Cyrillic and Vietnamese are not shipped; text in those scripts falls
+ * through unicode-range to the fallback stack instead of charging every visitor
+ * for bytes they will never render.
+ */
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/inter-latin-normal.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/inter-latin-italic.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/inter-latin-ext-normal.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/inter-latin-ext-italic.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/*
+ * Metric-compatible stand-in for Inter, so the swap when the webfont lands does
+ * not reflow the page. size-adjust matches Arial's average advance to Inter's
+ * (813.09 / 755.91 at 100px, measured); the ascent/descent overrides are
+ * Inter's own metrics (0.97 / 0.24 em) divided by that adjustment, so the
+ * fallback occupies an identical line box. Arial's metrics are shared by
+ * Helvetica and Liberation Sans, which covers macOS, Windows and Linux; a
+ * platform with none of them keeps the unadjusted stack below.
+ */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Liberation Sans");
+  size-adjust: 107.5%;
+  ascent-override: 90.2%;
+  descent-override: 22.3%;
+  line-gap-override: 0%;
+}
+
 :root {
   --accent: #59b4ff;
+}
+
+/* The lettering decision. cv11 swaps Inter's double-storey `a` for a
+single-storey one, which is the single biggest change available to this face and
+the reason the font is subset by hand. ss08 rounds the quotes and commas to
+match. Set here rather than per-component so one declaration owns the voice.
+
+Inter's true italic has no cv11 — upstream ships no single-storey alternate for
+it, because the italic `a` is drawn separately. Italic therefore keeps its own
+`a`, which is correct: a true italic is already a different set of letterforms,
+not a slanted roman. */
+html {
+  font-feature-settings:
+    "cv11" 1,
+    "ss08" 1;
+}
+
+/* Selecting text is a text surface, so it belongs to the palette rather than to
+the browser. Derived from --accent like the ramp, so re-tuning the accent
+re-tunes this too. Painting its own background makes it legible on both grounds. */
+::selection {
+  background-color: oklch(from var(--accent) 80% c h);
+  color: oklch(from var(--accent) 15% c h);
 }
 
 @theme inline {
@@ -18,58 +118,81 @@
 
   --font-mono:
     "Source Code Pro Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans:
+    "Inter Variable", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+
+  /* The reading measure, named for its job: ~72 characters of Inter at the
+  18px prose size. Held here so the sheet and the header that titles it can
+  never drift apart. */
+  --container-measure: 40rem;
+
+  /* Light text on a dark ground reads thinner than the same weight on paper, so
+  the gradient gets its own body weight. Only a variable axis can do this: 450
+  is not a weight a static family ships. Paper resets to 400 — see
+  reading-sheet.astro. */
+  --font-weight-glass: 450;
 }
 
 @layer components {
   .markdown {
-    @apply leading-relaxed antialiased;
-    @apply [word-break:break-word] [overflow-wrap:anywhere];
-    @apply text-base lg:text-lg;
+    @apply antialiased;
+    @apply [overflow-wrap:break-word];
+    @apply text-base leading-[1.75] lg:text-lg;
 
-    /* Headings */
+    /* Sizes stay in em so the whole ramp rides the parent's base size, which
+    the line above steps up at lg. Tracking tightens as the size grows: Inter is
+    spaced for UI text, so it needs pulling in at display sizes and leaving
+    alone at label sizes. */
     h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-      @apply font-semibold tracking-tight scroll-mt-24;
+      @apply scroll-mt-24 font-semibold;
+      text-wrap: balance;
     }
-
-    /* Use em for font-sizes within markdown so we can scale it according to parent */
 
     h1 {
       font-size: 1.75em;
-      @apply mt-6 mb-3;
+      letter-spacing: -0.02em;
+      @apply mt-6 mb-3 leading-[1.15];
     }
 
     h2 {
-      font-size: 1.2em;
-      @apply mt-8 mb-3 border-b border-slate-300 pb-1;
+      font-size: 1.375em;
+      letter-spacing: -0.015em;
+      @apply mt-8 mb-3 border-b border-slate-300 pb-1 leading-[1.25];
     }
 
     h3 {
-      font-size: 1.1em;
-      @apply mt-6 mb-2;
+      font-size: 1.1875em;
+      letter-spacing: -0.01em;
+      @apply mt-6 mb-2 leading-[1.35];
     }
 
+    /* Below h3 the size ramp runs out of room before it reaches the body size,
+    so weight and case take over from size — an h4 set at body size still reads
+    as a heading, and h6 is marked by case rather than being shrunk further. */
     h4 {
-      font-weight: bold;
-      @apply text-lg md:text-xl mt-5 mb-2;
+      font-size: 1em;
+      @apply mt-5 mb-2 leading-[1.4] font-bold;
     }
 
     h5 {
-      font-weight: lighter;
-      @apply text-base md:text-lg mt-4 mb-2;
+      font-size: 0.9375em;
+      @apply mt-4 mb-2 leading-[1.4];
     }
 
     h6 {
-      @apply text-sm uppercase tracking-wider mt-4 mb-1;
+      font-size: 0.8125em;
+      @apply mt-4 mb-1 leading-[1.4] tracking-[0.06em] uppercase;
     }
 
     /* Paragraphs */
     p {
-      @apply my-4 leading-7;
+      @apply my-4;
+      text-wrap: pretty;
     }
 
     p:first-child {
@@ -78,7 +201,9 @@
 
     .lead,
     p.lead {
-      @apply text-lg md:text-xl leading-8;
+      font-size: 1.125em;
+      @apply leading-[1.6];
+      text-wrap: pretty;
     }
 
     /* Links */
@@ -89,7 +214,7 @@
 
     /* Inline code */
     code:not(pre code) {
-      @apply rounded px-1.5 py-0.5 text-[0.95em] font-medium font-mono;
+      @apply rounded px-1.5 py-0.5 text-[1em] font-medium font-mono;
       @apply bg-slate-100 text-slate-800;
       @apply border border-slate-200;
     }
@@ -100,7 +225,7 @@
     }
 
     pre code {
-      @apply block min-w-full p-4 text-sm leading-7 font-mono;
+      @apply block min-w-full p-4 text-sm leading-[1.6] font-mono;
     }
 
     /* Blockquotes */
@@ -148,11 +273,14 @@
 
     figcaption {
       @apply mt-2 text-center text-sm text-slate-500;
+      text-wrap: balance;
     }
 
     /* Tables */
     table {
       @apply w-full text-left text-sm md:text-base border-collapse my-6 overflow-hidden rounded-xl;
+      /* Columns of numbers only line up if the digits share an advance. */
+      font-variant-numeric: tabular-nums;
     }
 
     thead th {
