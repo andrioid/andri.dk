@@ -10,31 +10,51 @@ import { twMerge } from "tailwind-merge";
  * shrink relative to the rest of the site — the reading measure is held by the
  * column inside it, not by the paper.
  *
- * The `header` slot renders above the paper, on the gradient, through the
- * identical padding chain as the body. That is the point of putting it here
- * rather than in the page: a title and the text it titles must sit on exactly
- * the same column edges at every breakpoint, not merely similar ones.
+ * A reading route names itself *on the paper*, as the first block of its own
+ * column: title, description and metadata, then a rule, then the body. That is
+ * why the title lives here and not in the page — a document's title and the
+ * text it titles cannot sit on two different left edges if they are the same
+ * column. Index routes still open on the gradient (see page-header.astro);
+ * that difference is the point, a document is not a grid of links.
+ *
+ * Only the way back stays outside on the gradient, aligned with the masthead
+ * and the footer: it belongs to the site, not to the document.
  *
  * No shadow — the sheet sits on near-black, where a cast shadow does nothing.
  */
 interface Props {
+	title: string;
+	description?: string;
+	/** Where this page lives, e.g. the index it belongs to. Doubles as the way back. */
+	breadcrumb?: { href: string; label: string };
 	class?: string;
 }
 
-const { class: className } = Astro.props;
+const { title, description, breadcrumb, class: className } = Astro.props;
 
-// Shared horizontal geometry. Change these together or the two columns drift.
+// The paper's inner padding. The measure below is centred inside it, so this is
+// the only thing standing between the page frame and the reading column.
 const gutter = "px-5 sm:px-8 lg:px-16";
 const measure = "mx-auto max-w-3xl";
 ---
 
-<div class="mx-auto w-full max-w-6xl pb-10 md:px-6 md:pb-16 lg:px-8">
+<div
+	class="mx-auto w-full max-w-6xl pt-6 pb-10 sm:pt-10 md:px-6 md:pb-16 lg:px-8"
+>
 	{
-		Astro.slots.has("header") && (
-			<div class={gutter}>
-				<div class={measure}>
-					<slot name="header" />
-				</div>
+		/* Chrome, not content: small, on the gradient, on the frame edge with the
+		masthead above it — never large enough to read as the page's title. */
+	}
+	{
+		breadcrumb && (
+			<div class="mb-4 px-5 md:px-0">
+				<a
+					href={breadcrumb.href}
+					class="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide text-sky-200 uppercase underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
+				>
+					<span aria-hidden="true">&larr;</span>
+					{breadcrumb.label}
+				</a>
 			</div>
 		)
 	}
@@ -47,6 +67,24 @@ const measure = "mx-auto max-w-3xl";
 		)}
 	>
 		<div class={twMerge(measure, "[&_figure]:lg:-mx-10 [&_pre]:lg:-mx-10")}>
+			<header
+				class="mb-8 border-b border-slate-200 pb-6 sm:mb-10 sm:pb-8"
+			>
+				<h1
+					class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl"
+				>
+					{title}
+				</h1>
+				{
+					description && (
+						<p class="mt-3 text-lg leading-8 text-slate-600 md:text-xl">
+							{description}
+						</p>
+					)
+				}
+				<slot name="meta" />
+			</header>
+
 			<slot />
 		</div>
 	</div>
