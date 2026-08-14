@@ -1,30 +1,58 @@
 ---
-import OptionalLink from "./optional-link.astro";
-import Icon, { IconType } from "./Icon.astro";
 import { twMerge } from "tailwind-merge";
+import Icon, { IconType } from "./Icon.astro";
+import OptionalLink from "./optional-link.astro";
+
+export type Tone = "light" | "dark";
 
 interface Props {
 	icon?: IconType | undefined;
 	url?: string;
+	/** Which ground the pill sits on: paper sheets are light, glass is dark. */
+	tone?: Tone;
 }
 
-const { icon, url } = Astro.props;
+const { icon, url, tone = "light" } = Astro.props;
+
+const TONE: Record<Tone, { frame: string; cap: string; body: string }> = {
+	light: {
+		frame: "border-primary-600 group-hover:border-primary-500",
+		cap: "bg-primary-600 text-white group-hover:bg-primary-500",
+		body: "bg-white text-primary-800",
+	},
+	dark: {
+		frame: "border-white/25 group-hover:border-sky-300/70",
+		cap: "bg-white/15 text-sky-100 group-hover:bg-sky-300/25",
+		body: "bg-white/10 text-sky-100",
+	},
+};
+
+const s = TONE[tone];
 ---
 
 <OptionalLink href={url}>
 	<div
-		class="flex rounded-sm text-xs items-center border border-primary-600 group-hover:border-primary-500 min-h-6 overflow-clip"
+		class={twMerge(
+			"flex min-h-6 items-center overflow-clip rounded-sm border text-xs transition-colors motion-reduce:transition-none",
+			s.frame,
+		)}
 	>
 		{
 			icon && (
-				<span class="text-white bg-primary-600 group-hover:bg-primary-500 px-0.5 h-full items-center inline-flex">
-					<Icon name={icon} class="w-5 h-5 p-0.5" />
+				<span
+					class={twMerge(
+						"inline-flex h-full items-center px-0.5 transition-colors motion-reduce:transition-none",
+						s.cap,
+					)}
+				>
+					<Icon name={icon} class="h-5 w-5 p-0.5" />
 				</span>
 			)
 		}
 		<span
 			class={twMerge(
-				"bg-white rounded-r-sm py-0.5 px-2 font-light lowercase text-primary-800 inline-flex items-center gap-2",
+				"inline-flex items-center gap-2 rounded-r-sm px-2 py-0.5 font-light lowercase",
+				s.body,
 				!icon && "rounded-l-sm",
 			)}
 		>

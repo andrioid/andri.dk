@@ -1,6 +1,8 @@
 ---
 import ActivityFeed from "~/components/activity-feed.astro";
-import Section from "~/components/Section.astro";
+import Card from "~/components/card.astro";
+import Container from "~/components/container.astro";
+import PageHeader from "~/components/page-header.astro";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
 import { getActivity } from "~/lib/activity";
@@ -13,12 +15,14 @@ const items = await getActivity({ limit: 60 });
 	description="Recent posts, stars, repos, gists and bookmarks."
 >
 	<PageContainer>
-		<Section title="Activity" class="bg-gray-200 text-black">
-			<div
-				class="max-w-2xl bg-white px-5 py-6 shadow sm:px-7 sm:py-7 md:rounded-md"
-			>
-				<ActivityFeed items={items} />
-			</div>
-		</Section>
+		<Container class="pb-16">
+			<PageHeader
+				title="Activity"
+				description="Recent posts, stars, repos, gists and bookmarks."
+			/>
+			<Card class="max-w-2xl p-5 sm:p-7">
+				<ActivityFeed items={items} tone="dark" />
+			</Card>
+		</Container>
 	</PageContainer>
 </Layout>

@@ -1,14 +1,13 @@
 ---
-import { Icon } from "astro-icon/components";
-import { KeysWithSuggestions } from "~/lib/utils/typehelpers";
-import Pill from "./pill.astro";
+import Pill, { type Tone } from "./pill.astro";
 import { IconType, supportedIcons } from "./Icon.astro";
 
 interface Props {
 	tag: string;
+	tone?: Tone;
 }
 
-const { tag } = Astro.props;
+const { tag, tone = "light" } = Astro.props;
 
 let iconName: IconType | undefined = undefined;
 if (tag in supportedIcons) {
@@ -16,4 +15,4 @@ if (tag in supportedIcons) {
 }
 ---
 
-<Pill icon={iconName}>{tag}</Pill>
+<Pill icon={iconName} tone={tone}>{tag}</Pill>

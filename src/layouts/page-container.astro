@@ -1,7 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
-import { twMerge } from "tailwind-merge";
+import { Icon } from "astro-icon/components";
+import Container from "~/components/container.astro";
 import NavItems from "~/components/nav-items.astro";
 import ProfileIcon from "~/components/profile-icon.astro";
 import { resumeRaw } from "~/lib/cv";
@@ -12,56 +12,50 @@ type Props = { isHome?: boolean };
 const { isHome = false } = Astro.props;
 ---
 
+{
+	/* The night ground is fixed, not painted on the scroll container: it stays
+	behind reading sheets and index grids alike, so the world never leaves. */
+}
 <div
-	class="flex flex-col h-dvh font-sans overflow-auto md:overflow-hidden bg-linear-to-b from-andri to-black"
+	aria-hidden="true"
+	class="fixed inset-0 -z-10 bg-linear-to-b from-primary-500 to-black"
 >
-	<header class="p-4">
-		<nav class="flex justify-between items-center gap-4">
-			<div class="flex-1">
-				<a href="/" class="">
-					<div class="flex items-center shrink-0 text-white mr-6">
-						<Image
-							alt="avatar"
-							src={andratar}
-							class="rounded-full shadow-2xl w-8 h-8 mr-4 inline-block"
-						/>
-						<span
-							class="font-semibold text-xl tracking-tight inline-block"
-						>
-							{
-								!isHome && (
-									<span class="drop-shadow-md">Andri</span>
-								)
-							}
-						</span>
-					</div>
-				</a>
-			</div>
-			<div class="flex-5">
-				<ul
-					class="flex space-x-y topmenu flex-wrap gap-x-1 gap-y-4 justify-end text-sm"
-				>
-					<NavItems isHome={isHome} />
-				</ul>
-			</div>
+</div>
+
+<div class="flex min-h-dvh flex-col font-sans text-white">
+	<Container as="header" class="py-4">
+		<nav class="flex items-center justify-between gap-4">
+			<a href="/" class="shrink-0">
+				<span class="flex items-center text-white sm:mr-6">
+					<Image
+						alt=""
+						src={andratar}
+						class="inline-block h-8 w-8 rounded-full sm:mr-4"
+					/>
+					{
+						!isHome && (
+							<span class="hidden text-xl font-semibold tracking-tight drop-shadow-md sm:inline-block">
+								Andri
+							</span>
+						)
+					}
+					<span class="sr-only">andri.dk, home</span>
+				</span>
+			</a>
+			<ul class="flex flex-wrap justify-end gap-x-1 gap-y-2 text-sm">
+				<NavItems />
+			</ul>
 		</nav>
-	</header>
-	<main
-		class={twMerge(
-			"grow flex flex-col md:overflow-auto ",
-			!isHome && "bg-gray-200",
-		)}
-	>
+	</Container>
+
+	<main class="grow">
 		<slot />
 	</main>
 
-	<footer
-		id="contact"
-		class="relative p-4 flex justify-center text-4xl shrink gap-2 text-fg"
-	>
-		<a class="hover:text-hover transition-colors mr-2" href="/rss.xml">
+	<footer class="flex shrink-0 justify-center gap-2 p-6 text-4xl">
+		<a class="transition-colors hover:text-hover" href="/rss.xml">
 			<Icon name="tabler:rss" />
-			<span class="sr-only">Email</span>
+			<span class="sr-only">RSS feed</span>
 		</a>
 
 		{resumeRaw.basics.profiles.map((p) => <ProfileIcon profile={p} />)}

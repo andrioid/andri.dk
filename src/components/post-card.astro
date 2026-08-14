@@ -1,0 +1,63 @@
+---
+import Card from "./card.astro";
+import Icon from "./Icon.astro";
+import Tag from "./tag.astro";
+
+export interface Props {
+	title: string;
+	description?: string;
+	date?: Date;
+	link: string;
+	tags?: string[];
+	draft?: boolean;
+}
+
+const { title, description, date, tags, draft = false } = Astro.props;
+
+let link = Astro.props.link;
+if (!link.endsWith("/")) {
+	link += "/"; // Enforce trailing slash
+}
+---
+
+<Card href={link} class="flex h-full flex-col p-5">
+	{
+		date && (
+			<span class="inline-flex items-center gap-1.5 text-xs text-sky-200/85">
+				<Icon name="calendar" class="h-4 w-4" />
+				<time datetime={date.toISOString()}>
+					{date.toLocaleDateString(undefined, {
+						year: "numeric",
+						month: "short",
+						day: "numeric",
+					})}
+				</time>
+			</span>
+		)
+	}
+
+	<h3
+		class="mt-2 text-lg leading-snug font-medium text-white transition-colors group-hover:text-sky-300 motion-reduce:transition-none"
+	>
+		{title}
+	</h3>
+
+	{
+		description && (
+			<p class="mt-2 line-clamp-3 text-sm leading-relaxed text-sky-100/70">
+				{description}
+			</p>
+		)
+	}
+
+	{
+		tags && tags.length > 0 && (
+			<div class="mt-4 flex flex-wrap gap-2 pt-1">
+				{tags.slice(0, 3).map((t) => (
+					<Tag tag={t} tone="dark" />
+				))}
+				{draft && <Tag tag="draft" tone="dark" />}
+			</div>
+		)
+	}
+</Card>

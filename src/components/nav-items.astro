@@ -1,8 +1,23 @@
 ---
 import NavItem from "./NavItem.astro";
+
+const NAV = [
+	{ href: "/blog/", label: "Blog" },
+	{ href: "/projects/", label: "Projects" },
+	{ href: "/uses/", label: "Uses" },
+	{ href: "/now/", label: "Now" },
+];
+
+// trailingSlash is "ignore", so normalise before comparing: /uses and /uses/
+// are the same route, and /blog/2025/post/ is still inside /blog/.
+const path = Astro.url.pathname;
+const current = path.endsWith("/") ? path : `${path}/`;
 ---
 
-<NavItem href="/blog/">Blog</NavItem>
-<NavItem href="/projects/">Projects</NavItem>
-<NavItem href="/uses/">Uses</NavItem>
-<NavItem href="/now/">Now</NavItem>
+{
+	NAV.map(({ href, label }) => (
+		<NavItem href={href} active={current.startsWith(href)}>
+			{label}
+		</NavItem>
+	))
+}

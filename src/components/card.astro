@@ -1,59 +1,35 @@
 ---
-import Icon from "./Icon.astro";
-import Tag from "./tag.astro";
+import { twMerge } from "tailwind-merge";
 
-export interface Props {
-	title: string;
-	description?: string;
-	date?: Date;
-	link: string;
-	tags?: string[];
-	draft?: boolean;
+/**
+ * The glass surface. Everything on an atmosphere route that needs to hold
+ * content sits on one of these: translucent, blurred, hairline-ringed. Never a
+ * drop shadow — a shadow does nothing over the night ground.
+ *
+ * Pass `href` to make the whole surface a link; hover then lifts the ring and
+ * the fill rather than the box.
+ */
+interface Props {
+	href?: string;
+	class?: string;
 }
 
-const { title, date, tags, draft = false } = Astro.props as Props;
-let link = Astro.props.link;
+const { href, class: className } = Astro.props;
 
-if (link[link.length - 1] !== "/") {
-	link += "/"; // Enforce trailing slash
-}
+const base =
+	"rounded-xl bg-primary-900/60 ring-1 ring-white/10 backdrop-blur-md";
+const interactive =
+	"group block transition-colors motion-reduce:transition-none hover:bg-primary-900/75 hover:ring-sky-300/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300";
 ---
 
-<a class="block" href={link}>
-	<div
-		class="flex flex-col p-6 h-full shadow-lg bg-white hover:shadow-2xl text-primary-700 md:rounded-md"
-	>
-		<div class="flex flex-col justify-start">
-			<span class="text-sm inline-flex items-center gap-1 mb-1">
-				<Icon name="calendar" class="h-5 w-5" />
-				{
-					date && (
-						<>
-							<span class="ml-1">
-								{date.toLocaleDateString(undefined, {
-									year: "numeric",
-									month: "short",
-									day: "numeric",
-								})}
-							</span>
-						</>
-					)
-				}
-			</span>
-
-			<div class="mt-1 font-medium text-lg text-primary-500">
-				{title}
-			</div>
+{
+	href ? (
+		<a href={href} class={twMerge(base, interactive, className)}>
+			<slot />
+		</a>
+	) : (
+		<div class={twMerge(base, className)}>
+			<slot />
 		</div>
-		{
-			tags && tags.length > 0 ? (
-				<div class="mt-4 gap-2 flex">
-					{tags.slice(0, 3).map((t) => (
-						<Tag tag={t} />
-					))}
-					{draft ? <Tag tag="draft" /> : null}
-				</div>
-			) : null
-		}
-	</div>
-</a>
+	)
+}

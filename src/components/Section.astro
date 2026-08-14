@@ -1,12 +1,37 @@
 ---
-const { title, class: className } = Astro.props;
+import { twMerge } from "tailwind-merge";
+
+/**
+ * A titled subsection on an atmosphere route. The page's h1 comes from
+ * page-header; this is always an h2 below it.
+ */
+interface Props {
+	title: string;
+	class?: string;
+	/** Optional trailing link, e.g. "All posts". */
+	action?: { href: string; label: string };
+}
+
+const { title, class: className, action } = Astro.props;
 ---
 
-<div class={`md:px-20 lg:px-40 text-xl py-6 ${className}`}>
-	<h2
-		class="ml-6 md:ml-0 font-semibold text-xl md:text-2xl uppercase mb-2"
-	>
-		{title}
-	</h2>
-	<slot />
-</div>
+<section class={twMerge("py-8", className)}>
+	<div class="flex items-baseline justify-between gap-3">
+		<h2 class="text-sm font-semibold tracking-wide text-sky-200 uppercase">
+			{title}
+		</h2>
+		{
+			action && (
+				<a
+					href={action.href}
+					class="text-xs text-sky-200 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
+				>
+					{action.label}
+				</a>
+			)
+		}
+	</div>
+	<div class="mt-4">
+		<slot />
+	</div>
+</section>

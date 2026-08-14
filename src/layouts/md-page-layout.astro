@@ -2,6 +2,7 @@
 // A layout for markdown pages. Not blog posts.
 import Layout from "./Layout.astro";
 import PageContainer from "./page-container.astro";
+import ReadingSheet from "./reading-sheet.astro";
 
 type Props = {
 	frontmatter: {
@@ -17,18 +18,10 @@ if (post.title === undefined)
 
 <Layout title={post.title} description={post.description}>
 	<PageContainer>
-		<div
-			class="pt-4 bg-gray-200 py-2 md:py-10 md:px-10 md:flex justify-center md:grow"
-		>
-			<div
-				class="bg-white py-10 shadow px-5 lg:px-10 flex-1 lg:max-w-6xl"
-			>
-				<article class="mb-6 markdown">
-					<slot />
-				</article>
-
-				<p>&nbsp;</p>
-			</div>
-		</div>
+		<ReadingSheet>
+			<article class="markdown">
+				<slot />
+			</article>
+		</ReadingSheet>
 	</PageContainer>
 </Layout>

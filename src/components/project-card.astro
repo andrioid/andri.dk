@@ -1,55 +1,65 @@
 ---
 import { CollectionEntry, render } from "astro:content";
-import GithubRepo from "./github-repo.astro";
-import Icon from "./Icon.astro";
-import Tag from "./tag.astro";
-import Pill from "./pill.astro";
 import { getStars } from "~/lib/github-cache";
+import Card from "./card.astro";
+import Icon from "./Icon.astro";
+import Pill from "./pill.astro";
+import Tag from "./tag.astro";
 
 interface Props {
-  project: CollectionEntry<"project">;
+	project: CollectionEntry<"project">;
 }
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+// null when GitHub is unreachable or rate-limited: show the repo pill without a
+// number rather than a lone star glyph.
+const stars = project.data.github ? await getStars(project.data.github) : null;
 ---
 
-<div class="md:rounded-md md:shadow bg-white flex flex-col justify-between">
-  <div class="px-4 py-3">
-    <div class="flex justify-between items-start">
-      <div class="">
-        <h3
-          class="text-primary-500 text-xl font-semibold margin-0 leading-none"
-        >
-          {project.data.title}
-        </h3>
-        {
-          project.data.tags && (
-            <div class="flex flex-row gap-1 mt-2">
-              {project.data.github && (
-                <Pill
-                  icon="github"
-                  url={`https://github.com/${project.data.github}`}
-                >
-                  <Icon
-                    name="star-filled"
-                    class="inline w-3.5 h-3.5 text-amber-500"
-                  />
+<Card class="flex flex-col p-5">
+	<h3 class="text-xl leading-tight font-semibold text-white">
+		{project.data.title}
+	</h3>
 
-                  {getStars(project.data.github)}
-                </Pill>
-              )}
+	{
+		(project.data.github || project.data.tags) && (
+			<div class="mt-2.5 flex flex-row flex-wrap gap-1.5">
+				{project.data.github && (
+					<Pill
+						icon="github"
+						tone="dark"
+						url={`https://github.com/${project.data.github}`}
+					>
+						{stars === null ? (
+							"github"
+						) : (
+							<>
+								<Icon
+									name="star-filled"
+									class="inline h-3.5 w-3.5 text-amber-400"
+								/>
+								{stars}
+							</>
+						)}
+					</Pill>
+				)}
 
-              {project.data.tags.sort().map((tag) => (
-                <Tag tag={tag} />
-              ))}
-            </div>
-          )
-        }
-      </div>
-    </div>
-    <div class="text-gray-600 markdown mt-2">
-      <Content />
-    </div>
-  </div>
-</div>
+				{project.data.tags?.sort().map((tag) => (
+					<Tag tag={tag} tone="dark" />
+				))}
+			</div>
+		)
+	}
+
+	{
+		/* Project blurbs are one to three plain paragraphs, so they get simple
+		prose styling rather than the light-ground `.markdown` block. */
+	}
+	<div
+		class="mt-3 space-y-3 text-sm leading-relaxed text-sky-100/80 [&_p]:m-0"
+	>
+		<Content />
+	</div>
+</Card>

@@ -3,17 +3,9 @@
 
 :root {
   --accent: #59b4ff;
-
-  @media (prefers-color-scheme: dark) {
-    --accent: #59b4ff;
-    --color-andri: #033359ff;
-    --color-bg: theme(colors.gray.800);
-    --color-fg: theme(colors.white);
-  }
 }
 
 @theme inline {
-  --color-andri: #59b4ff;
   --color-primary-900: oklch(from var(--accent) 10% c h);
   --color-primary-800: oklch(from var(--accent) 20% c h);
   --color-primary-700: oklch(from var(--accent) 30% c h);
@@ -24,71 +16,12 @@
   --color-primary-200: oklch(from var(--accent) 80% c h);
   --color-primary-100: oklch(from var(--accent) 90% c h);
   --color-hover: theme(colors.pink.500);
-  --color-fg: theme(colors.gray.800);
-  --color-bg: theme(colors.white);
 
   --font-mono:
     "Source Code Pro Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  --spacing-300: 300px;
-  --spacing-350: 350px;
-
-  --height-half-screen: 50vh;
-  --height-one-third-screen: 33vh;
-
-  --width-none: 0px;
-  --width-half-screen: 50vw;
-  --width-one-third-screen: 33vw;
-
-  --bg-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
 }
-
-.andri-tag {
-  @apply inline-block border-gray-600 border rounded-md px-3 py-1 text-sm font-semibold lowercase;
-}
-
-.btn {
-  @apply bg-primary-500 text-white font-semibold py-2 px-4 rounded-sm;
-  @apply transition-colors hover:bg-primary-600;
-  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
-}
-
-.inline-icon {
-  @apply inline;
-  width: 1em;
-  height: 1em;
-  margin-bottom: 0.2em;
-}
-
-.clickable {
-  svg {
-    min-width: 45px;
-    min-height: 45px;
-  }
-}
-
-.topmenu li a {
-  @apply bg-sky-700/80 rounded-md py-2 px-3 text-white hover:bg-white hover:text-sky-900 font-semibold;
-}
-
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@layer base {}
 
 @layer components {
-  .label {
-    @apply rounded-sm px-1.5 py-0.5 text-xs border font-semibold
-  }
-
   .markdown {
     @apply leading-relaxed antialiased;
     @apply [word-break:break-word] [overflow-wrap:anywhere];
@@ -107,13 +40,13 @@
     /* Use em for font-sizes within markdown so we can scale it according to parent */
 
     h1 {
-      font-size: 1.3em;
+      font-size: 1.75em;
       @apply mt-6 mb-3;
     }
 
     h2 {
       font-size: 1.2em;
-      @apply mt-8 mb-3 border-b border-fg/70 pb-1;
+      @apply mt-8 mb-3 border-b border-slate-300 pb-1;
     }
 
     h3 {
@@ -195,8 +128,8 @@
       @apply my-4 list-decimal pl-6 space-y-2;
     }
 
-    li>ul,
-    li>ol {
+    li > ul,
+    li > ol {
       @apply mt-2;
     }
 
@@ -279,11 +212,11 @@
       @apply cursor-pointer select-none px-4 py-3 bg-slate-50 font-medium;
     }
 
-    details[open]>summary {
+    details[open] > summary {
       @apply border-b border-slate-200;
     }
 
-    details>*:not(summary) {
+    details > *:not(summary) {
       @apply px-4 py-3;
     }
 
@@ -299,24 +232,24 @@
     }
 
     /* Spacing refinements */
-    h1+p,
-    h2+p,
-    h3+p,
-    h4+p {
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p {
       @apply mt-2;
     }
 
-    p+h2,
-    ul+h2,
-    ol+h2,
-    pre+h2 {
+    p + h2,
+    ul + h2,
+    ol + h2,
+    pre + h2 {
       @apply mt-8;
     }
 
-    p+h3,
-    ul+h3,
-    ol+h3,
-    pre+h3 {
+    p + h3,
+    ul + h3,
+    ol + h3,
+    pre + h3 {
       @apply mt-6;
     }
 

@@ -1,20 +1,28 @@
 ---
+import Container from "~/components/container.astro";
+import PageHeader from "~/components/page-header.astro";
+import PostCard from "~/components/post-card.astro";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
-import Card from "../../components/card.astro";
-import Section from "../../components/Section.astro";
-import { getPosts } from "../../lib/cms";
+import { getPosts } from "~/lib/cms";
 
 const allPosts = await getPosts();
 ---
 
-<Layout title="Blog posts">
+<Layout
+	title="Blog"
+	description="Posts about building software, infrastructure and the web."
+>
 	<PageContainer>
-		<Section title="Blog posts" class="bg-gray-200 text-black">
-			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+		<Container class="pb-16">
+			<PageHeader
+				title="Blog"
+				description="Notes on building software, infrastructure and the web, going back to 2019."
+			/>
+			<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 				{
 					allPosts.map(({ data: p, ...post }) => (
-						<Card
+						<PostCard
 							title={p.title}
 							link={post.id}
 							description={p.description}
@@ -25,6 +33,6 @@ const allPosts = await getPosts();
 					))
 				}
 			</div>
-		</Section>
+		</Container>
 	</PageContainer>
 </Layout>

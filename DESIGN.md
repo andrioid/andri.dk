@@ -1,28 +1,27 @@
 ---
 name: andri.dk
-description: A night-sky personal site where lit, flat surfaces float over a slow-moving blue-to-black gradient.
+description: A personal site read through one fixed night window — glass panels for browsing, a paper sheet for reading.
 colors:
-  signal-blue: "#59b4ff"
+  accent: "#59b4ff"
   primary-500: "#0067ad"
   primary-600: "#004a8d"
-  night-deep: "#033359"
-  night-gradient-start: "#1e3a8a"
-  night-gradient-end: "#000000"
+  primary-800: "#000d50"
+  primary-900: "#000032"
+  ground-end: "#000000"
   sky-highlight: "#7dd3fc"
-  link-sky: "#0369a1"
-  link-sky-hover: "#075985"
-  hover-pink: "#ec4899"
-  ink: "#1f2937"
+  sky-meta: "#bae6fd"
+  sky-body: "#e0f2fe"
   paper: "#ffffff"
-  worktop: "#e5e7eb"
-  rule-slate: "#cbd5e1"
+  ink: "#1f2937"
+  ink-strong: "#111827"
   quiet-slate: "#64748b"
+  rule-slate: "#cbd5e1"
+  link-sky: "#0369a1"
+  link-sky-deep: "#075985"
   code-night: "#020617"
   code-paper: "#f1f5f9"
-  star-amber: "#f59e0b"
-  skill-operations: "#065f46"
-  skill-programming: "#2460a7"
-  skill-data: "#491d70"
+  star-amber: "#fbbf24"
+  hover-pink: "#ec4899"
 typography:
   display:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
@@ -30,30 +29,42 @@ typography:
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: "normal"
-  headline:
+  page-title:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.25rem, 2vw, 1.5rem)"
+    fontSize: "clamp(1.875rem, 3vw, 2.25rem)"
     fontWeight: 600
-    lineHeight: 1.3
+    lineHeight: 1.2
+    letterSpacing: "-0.015em"
+  article-title:
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.875rem, 3vw, 2.25rem)"
+    fontWeight: 600
+    lineHeight: 1.15
+    letterSpacing: "-0.015em"
+  card-title:
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 500
+    lineHeight: 1.375
     letterSpacing: "normal"
-  title:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "-0.01em"
   body:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.75
     letterSpacing: "normal"
-  label:
+  section-label:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
-    fontSize: "0.6875rem"
+    fontSize: "0.875rem"
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: "0.025em"
+  meta:
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.6875rem"
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: "normal"
   code:
     fontFamily: "Source Code Pro Variable, ui-monospace, SFMono-Regular, Menlo, monospace"
     fontSize: "0.875rem"
@@ -63,50 +74,47 @@ typography:
 rounded:
   sm: "0.25rem"
   md: "0.375rem"
-  lg: "0.5rem"
   xl: "0.75rem"
   full: "9999px"
 spacing:
   xs: "0.25rem"
   sm: "0.5rem"
   md: "1rem"
-  lg: "1.5rem"
+  lg: "1.25rem"
   xl: "2rem"
 components:
   nav-item:
-    backgroundColor: "{colors.link-sky}"
+    backgroundColor: "rgb(255 255 255 / 0.10)"
     textColor: "{colors.paper}"
     rounded: "{rounded.md}"
-    padding: "0.5rem 0.75rem"
-    typography: "{typography.label}"
-  nav-item-hover:
+    padding: "0.5rem 0.625rem"
+    typography: "{typography.section-label}"
+  nav-item-active:
     backgroundColor: "{colors.paper}"
-    textColor: "{colors.night-deep}"
+    textColor: "{colors.primary-800}"
   card:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "1.5rem"
+    backgroundColor: "rgb(0 0 50 / 0.60)"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.xl}"
+    padding: "1.25rem"
   pill:
     backgroundColor: "{colors.paper}"
-    textColor: "{colors.night-deep}"
+    textColor: "{colors.primary-800}"
     rounded: "{rounded.sm}"
     padding: "0.125rem 0.5rem"
     height: "1.5rem"
-  pill-icon:
-    backgroundColor: "{colors.signal-blue}"
-    textColor: "{colors.paper}"
-    padding: "0 0.125rem"
-  skill-tag:
-    backgroundColor: "transparent"
+  pill-dark:
+    backgroundColor: "rgb(255 255 255 / 0.10)"
+    textColor: "{colors.sky-body}"
+    rounded: "{rounded.sm}"
+    padding: "0.125rem 0.5rem"
+    height: "1.5rem"
+  reading-sheet:
+    backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "0.25rem 0.75rem"
-  rail-panel:
-    backgroundColor: "{colors.night-deep}"
-    textColor: "{colors.paper}"
     rounded: "{rounded.xl}"
-    padding: "1rem"
+    padding: "2rem 1.25rem"
+    width: "48rem"
   button:
     backgroundColor: "{colors.primary-500}"
     textColor: "{colors.paper}"
@@ -120,167 +128,179 @@ components:
 
 **Creative North Star: "The Night Window"**
 
-The whole site is a view through one window onto a blue-to-black night sky. The gradient never leaves: it runs top to bottom behind every page, drifting on a 15-second cycle, with two enormous soft-white shapes slowly morphing and rotating behind the glass. Content is what the window frames — flat, clean, lit surfaces that sit calmly on top of all that movement and never compete with it.
+There is exactly one ground: a deep blue-to-black gradient, fixed to the viewport, that never scrolls and never leaves. Every page is something held up in front of it. Where you are browsing, the site hands you glass — translucent, blurred, hairline-ringed panels that let the night show through. Where you are reading, it hands you paper — an opaque white sheet floating in the same window, full-bleed on a phone.
 
-The register is professional with a deliberate streak of whimsy. The precision is real: a single accent hue generates the entire nine-step ramp, labels are tight, spacing is regular, states are fast and small. The whimsy is where it costs nothing — the morphing blobs, the coffee-cup avatar and favicon, lowercase tags, a red heart next to the skills Andri actually likes. Nothing bounces, nothing shouts, but the site is plainly a person's and not a company's.
+The register is flat, clean and precise, with a professional core and a streak of whimsy that never costs legibility. Precision is structural: one accent hue generates the entire ramp, one container sets the horizontal rhythm for every route, one badge carries every piece of metadata in two tones. The whimsy sits in the details — a coffee-cup avatar, lowercase tags, the live feed ticking away in its own column.
 
-Surfaces are flat by default. Depth is a change of medium, not a pile of shadows: on the light worktop, content is paper; on the night gradient, content is glass — translucent, blurred behind, edged with a single hairline ring. The anti-reference is the SaaS landing template: no gradient-mesh hero with three generic feature cards, no logo wall, no pricing tier row.
+Nothing here moves on its own. There is no ambient animation, no drifting gradient, no decorative motion of any kind; the only things that move are responses to input, and they take 200ms. Depth is a change of material rather than a stack of shadows. The confirmed anti-reference is the SaaS landing template: no mesh-gradient hero, no three generic feature cards, no logo wall, no pricing row.
 
 **Key Characteristics:**
 
-- One accent hue (Signal Blue) generating the full primary ramp — no second brand color.
-- A persistent night gradient as the page ground, animated slowly and continuously.
-- Flat, clean surfaces; depth expressed as paper-on-light versus glass-on-dark.
-- Lowercase, badge-forward metadata (pills and tags) as the recurring texture.
-- Small, fast, restrained state changes; whimsy confined to atmosphere and iconography.
+- One fixed gradient ground, shared by every route and never repainted per page.
+- Two materials: glass for browsing surfaces, paper for reading surfaces. They never mix on one screen.
+- One accent hue generating the whole ramp — no second brand color.
+- Lowercase, badge-forward metadata as the recurring texture, in a light and a dark tone.
+- Absolutely no ambient motion; state changes only, ≤200ms, always `motion-safe`-gated.
 
 ## Colors
 
-A single cool blue does all the expressive work; everything else is neutral or a semantic marker.
+One cool blue generates everything; the neutrals are all in service of reading.
 
 ### Primary
 
-- **Signal Blue** (`{colors.signal-blue}`): The brand accent and the mathematical source of the whole `primary-100`–`primary-900` ramp, each step generated as `oklch(from var(--accent) N% c h)`. Appears directly as headings on cards, pill icon chips, feed node rings, and the `andri` gradient origin. Changing this one value re-tunes the entire system.
-- **Night Deep** (`{colors.night-deep}`): The dark-mode gradient origin and the translucent ground of the home activity rail (`primary-900` at 60% with backdrop blur).
+- **Accent** (`{colors.accent}`): The generator. It is never painted directly anywhere — its only job is to be `--accent`, from which `primary-100` through `primary-900` are derived as `oklch(from var(--accent) N% c h)`. Changing this one value re-tunes the site.
+- **Ground Top** (`{colors.primary-500}`): The top stop of the fixed gradient, running to pure black at the bottom. Chosen at this depth so white nav and heading text clear 6:1 against it; anything lighter fails AA at the top of the viewport.
+- **Glass Base** (`{colors.primary-900}`): The fill of every panel, always at 60% with `backdrop-blur-md` behind it.
 
 ### Secondary
 
-- **Link Sky** (`{colors.link-sky}`): Every interactive text link in prose and the top-menu chip background. Deepens to **Link Sky Deep** (`{colors.link-sky-hover}`) on hover, with the underline decoration brightening at the same time.
-- **Sky Highlight** (`{colors.sky-highlight}`): The light-on-dark counterpart — the hero's role line, dark-tone feed titles on hover, and focus outlines over the gradient.
+- **Sky Highlight** (`{colors.sky-highlight}`): The interactive light on the dark ground — hover color for feed titles, and every focus ring over the gradient.
+- **Sky Meta** (`{colors.sky-meta}`) / **Sky Body** (`{colors.sky-body}`): Metadata and secondary prose inside glass, usually at 70–85% opacity.
+- **Link Sky** (`{colors.link-sky}`): Prose links inside the reading sheet, deepening to `{colors.link-sky-deep}` on hover as the underline brightens. This pair lives only on paper.
 
 ### Tertiary
 
-- **Hover Pink** (`{colors.hover-pink}`): Reserved exclusively for footer profile-icon hover. It is the one warm note in the system and its rarity is what makes it read as a wink rather than a second brand color.
-- **Star Amber** (`{colors.star-amber}`): GitHub star counts only.
-- **Skill markers** — Operations green (`{colors.skill-operations}`), Programming blue (`{colors.skill-programming}`), Data purple (`{colors.skill-data}`): category identity on the skills grid; they color the category heading and the tag border/text, never a fill.
+- **Hover Pink** (`{colors.hover-pink}`): Footer profile-icon hover, and nothing else.
+- **Star Amber** (`{colors.star-amber}`): GitHub star glyphs, and nothing else.
 
 ### Neutral
 
-- **Paper** (`{colors.paper}`): Every content surface — cards, project tiles, the article sheet.
-- **Worktop** (`{colors.worktop}`): The page ground on all non-home routes; paper surfaces rest on it.
-- **Ink** (`{colors.ink}`): Default body text.
-- **Quiet Slate** (`{colors.quiet-slate}`): Captions, figcaptions, blockquote footers, code-fence language labels.
-- **Rule Slate** (`{colors.rule-slate}`): Borders, table rules, blockquote bars, link underline decoration at rest.
-- **Code Night** (`{colors.code-night}`) / **Code Paper** (`{colors.code-paper}`): Fenced code blocks, always dark regardless of surrounding surface (Shiki `github-dark`).
+- **Paper** (`{colors.paper}`): The reading sheet, and the light-tone pill body.
+- **Ink** (`{colors.ink}`) / **Ink Strong** (`{colors.ink-strong}`): Body text and article titles on paper.
+- **Quiet Slate** (`{colors.quiet-slate}`) / **Rule Slate** (`{colors.rule-slate}`): Captions and hairline rules inside the sheet.
+- **Code Night** (`{colors.code-night}`) / **Code Paper** (`{colors.code-paper}`): Fenced code, always dark even on the white sheet.
 
 ### Named Rules
 
-**The One Hue Rule.** Signal Blue is the only brand color, and the primary ramp is derived from it rather than hand-picked. Never introduce a second accent; if a new emphasis is needed, take another step on the ramp.
+**The One Hue Rule.** `--accent` is the only brand color and the ramp is derived from it, never hand-picked. If something needs more emphasis, take another step on the ramp.
 
-**The Warm Note Rule.** Warm color (pink, amber, the skill red heart) appears only as a punctuation mark on a single element. The moment warmth covers an area rather than a glyph, it has become a second brand color and is wrong.
+**The Warm Note Rule.** Warm color is glyph-sized punctuation only. The moment pink or amber fills an area, it has become a second brand color and is wrong.
+
+**The Legible Ground Rule.** The gradient's top stop is a contrast decision, not a taste one. Any change to it must keep white text at ≥4.5:1 in the top 100px of the viewport, where the nav lives.
 
 ## Typography
 
-**Display Font:** the platform UI sans stack (`ui-sans-serif, system-ui, …`)
-**Body Font:** the same stack — one family across the whole site
-**Label/Mono Font:** Source Code Pro Variable, for code only
+**Display / Body Font:** the platform UI sans stack (`ui-sans-serif, system-ui, …`)
+**Code Font:** Source Code Pro Variable
 
-**Character:** Deliberately unbranded type. With the gradient, the ramp, and the badge texture already carrying the identity, the type stays neutral, native, and instantly legible — the site's personality is in its light and its surfaces, not its letterforms. Only code changes voice, into a monospace with visible engineering character.
+**Character:** Deliberately unbranded. The gradient, the ramp and the badge texture carry the identity, so the type stays native and instantly legible. Only code changes voice.
 
 ### Hierarchy
 
-- **Display** (700, `2.25rem` → `3.75rem` at `md`, tight leading): the name on the home hero, over the gradient, with a drop shadow for separation. One per page, home only.
-- **Headline** (600, `1.25rem` → `1.5rem` at `md`, uppercase): section titles. Uppercase is what marks a section boundary; size alone does not.
-- **Title** (600, `1.25rem`, leading-none): project names and card titles, set in Signal Blue's mid ramp rather than ink.
-- **Body** (400, `1rem`, `1.125rem` at `lg`, line-height 1.75): prose. Paragraphs run at `leading-7`; a `.lead` opener steps up to `1.125rem`/`1.25rem`. Prose blocks cap at `max-w-prose`.
-- **Label** (600, `0.6875rem`–`0.75rem`, wide tracking, often uppercase or lowercase-forced): feed metadata, tags, table headers, code-fence language tags. Lowercase on pills and tags; uppercase on structural labels.
+- **Display** (700, `2.25rem` → `3.75rem`): the name on the home hero. One per site.
+- **Page Title** (600, `1.875rem` → `2.25rem`): the `h1` on an atmosphere route, in white over the gradient with an optional one-line description beneath.
+- **Article Title** (600, same scale): the `h1` inside a reading sheet, in Ink Strong on paper.
+- **Card Title** (500, `1.125rem`): post and project names inside glass, in white, shifting to Sky Highlight on hover.
+- **Section Label** (600, `0.875rem`, uppercase, wide tracking): subsection headings and column headers. Case marks the boundary, not size.
+- **Body** (400, `1rem`, `1.125rem` at `lg`, line-height 1.75): prose inside the sheet, capped at `48rem` — roughly 75 characters.
+- **Meta** (400, `0.6875rem`): feed metadata joined by `·` separators.
 
 ### Named Rules
 
-**The Native Type Rule.** Do not add a display webfont to carry personality. The system font is a decision, not an omission; new surfaces inherit it.
+**The Native Type Rule.** No display webfont. The system stack is a decision, not an omission.
 
-**The Case-Signals-Role Rule.** Uppercase means "structural label" (section heading, column header). Lowercase-forced means "user-authored metadata" (tag, pill). Sentence case means content. Do not mix the three.
+**The Case-Signals-Role Rule.** Uppercase is a structural label. Forced lowercase is user-authored metadata. Sentence case is content. Never mix the three.
+
+**The Measure Rule.** Prose never exceeds `48rem`. Sheet width is a reading constraint, not a layout preference — widening it to fill a large screen is always wrong.
 
 ## Layout
 
-Full-viewport shell: `h-dvh` column of header, main, footer, with the gradient painted on the shell so it is continuous and never scrolls away. On the home route the page itself does not scroll on desktop — the interior panes scroll independently; on all other routes the shell scrolls normally.
+One container owns the horizontal rhythm on every route: `max-w-6xl`, gutters `1rem` → `1.5rem` → `2rem`. Home included. A page that wants different gutters is a page that is wrong.
 
-Home is a two-column split above `lg`: a centered hero claiming the main column and a fixed-width rail (`23rem`, `26rem` at `xl`) holding the activity stream. Below `lg` they stack, and the hero is deliberately capped at `72dvh` so the first feed entries peek above the fold and the page reads as one thing rather than two.
+The document scrolls normally everywhere. Nothing traps scroll, nothing locks the viewport, and the header and footer are ordinary flow elements — the gradient is what stays fixed, not the chrome.
 
-Content routes sit in a `Section` wrapper with generous side gutters that grow with the viewport (`md:px-20`, `lg:px-40`) and `1.5rem` vertical padding. Index grids are one column, two at `md`, three at `lg`, gap `1rem`. Article pages are a single paper sheet capped at `lg:max-w-6xl` with `2.5rem` vertical and up to `2.5rem` horizontal padding.
+**Route grounds are fixed by kind, not by taste.** Index and browsing routes (`/`, `/blog`, `/projects`, `/activity`) are atmosphere: page header over the gradient, content in glass. Reading routes (blog posts, `/now`, `/uses`) are paper: a centred sheet, full-bleed and square-cornered below `md`, floating with `1.5rem` side margins above it.
 
-Spacing follows Tailwind's 4px base. Cards pad at `1.5rem`, panels at `1rem`–`1.25rem`, badge rows gap at `0.25rem`–`0.5rem`. Breakpoints are the Tailwind defaults (`40rem` / `48rem` / `64rem` / `80rem`); `md` is where gutters and rounding appear, `lg` is where the layout becomes two-dimensional.
+Home is the only two-column route: a hero at `46dvh` (`62dvh` at `lg`) beside a `23rem` rail (`26rem` at `xl`) that is `sticky top-0 h-dvh` and scrolls internally, with a mask fading its top and bottom edges. Below `lg` the rail disappears and a four-entry activity section takes its place in normal flow, directly under the hero. Grids run one column, two at `sm`, three at `lg` on the full-width blog index.
 
-**The Edge-to-Edge Mobile Rule.** Rounding and side gutters are desktop affordances (`md:rounded-md`, `md:px-*`). On phones, surfaces run full-bleed to the screen edge with square corners. Never ship a rounded, inset card on mobile.
-
-## Elevation & Depth
-
-Hybrid, split by ground. On the light worktop, depth is paper: white surfaces carry a real cast shadow (`shadow-lg`) that deepens on hover (`shadow-2xl`), reading as a sheet lifting off a table. On the night gradient, shadows are invisible, so depth comes from medium instead — translucent fills (`primary-900/60`, `white/5`), `backdrop-blur-md`, and 1px rings (`ring-1 ring-white/10`) that brighten on hover or focus.
-
-Surfaces are otherwise flat: no inner bevels, no gradients on components, no stacked shadow layers. The only gradients in the system are the page ground and two fade masks (the feed connector's tail, the scroll mask on the home rail).
-
-### Shadow Vocabulary
-
-- **Sheet** (`box-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1)`): resting state of a card on the worktop.
-- **Sheet Raised** (`box-shadow: 0 25px 50px -12px rgb(0 0 0 / .25)`): hover state of a linked card. The only shadow transition in the system.
-- **Hairline** (`box-shadow: inset 0 0 0 1px currentColor`-equivalent via `ring-1`): the dark-ground substitute for a shadow. Ring opacity, not blur, communicates state.
+Spacing follows Tailwind's 4px base: cards pad at `1.25rem`, the sheet at `1.25rem`/`2rem`, subsections separate by `2rem`.
 
 ### Named Rules
 
-**The Two Grounds Rule.** Ask which ground a surface is on before styling it. Paper on the worktop takes a shadow and an opaque white fill. Glass on the gradient takes a ring, a translucent fill, and backdrop blur — never a shadow, which does nothing over the dark sky.
+**The One Container Rule.** Horizontal rhythm is set in exactly one component. No page declares its own gutters.
+
+**The Full-Bleed Sheet Rule.** On a phone the reading sheet runs edge to edge with square corners — the measure matters more than the margin. Glass cards do the opposite: they stay inset and rounded at every size, because a grid of edge-to-edge panels reads as a broken table.
+
+## Elevation & Depth
+
+No shadows on the night ground — a cast shadow over near-black is invisible, so the system does not pretend otherwise. Depth there is a change of material: 60% fills, `backdrop-blur-md`, and 1px rings at 10% white that brighten to Sky Highlight on hover or focus. Ring opacity, not blur radius, communicates state.
+
+Inside the reading sheet, ordinary paper physics resume at a small scale: images and `kbd` keys carry a `shadow-sm`, because there they sit on white and a shadow means something.
+
+### Shadow Vocabulary
+
+- **Hairline** (`box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1)`): the resting edge of every glass surface.
+- **Hairline Active** (`box-shadow: 0 0 0 1px rgb(125 211 252 / 0.4)`): hover and focus-within on an interactive panel.
+- **Paper Lift** (`box-shadow: 0 1px 2px rgb(0 0 0 / 0.05)`): images and keys inside the sheet only.
+
+### Named Rules
+
+**The Two Materials Rule.** Decide the material before styling anything. Glass takes a ring, a translucent fill and backdrop blur, never a shadow. Paper takes an opaque fill and may take a small shadow. Never put one on the other's ground.
 
 ## Shapes
 
-Small, quiet radii. Badges are barely rounded (`{rounded.sm}`), cards and buttons take `{rounded.md}`, media thumbnails `{rounded.lg}`, and the largest panels — the activity rail, code blocks, callouts, images in prose — `{rounded.xl}`. Only the avatar and the feed's timeline nodes are fully round.
+Quiet, small radii, consistent at every breakpoint: badges `{rounded.sm}`, nav chips and skill tags `{rounded.md}`, every panel and the reading sheet `{rounded.xl}`. Only the avatar and the feed's timeline nodes are fully round.
 
-Borders are hairlines: 1px, low-contrast, used to define an edge rather than draw attention. Pills combine both languages in one silhouette — a filled icon cap on the left, a white body on the right, clipped by `overflow-clip` so the two halves share one continuous outline.
+Borders are hairlines — 1px, low contrast, defining an edge rather than drawing attention. The pill is the one two-part silhouette: a filled icon cap and a body, clipped by `overflow-clip` so both halves share a single outline.
 
-The atmosphere layer is the exception and the source of the whimsy: the two background shapes animate between organic blob radii (`40% 60% 60% 40% / 70% 30% 70% 30%`) and rotate continuously. Freeform geometry belongs to the background only; foreground components are strictly rectilinear with small corners.
+There is no organic or freeform geometry anywhere in the system.
 
 ## Components
 
 ### Buttons
 
-- **Shape:** small corners (`{rounded.sm}`).
-- **Primary:** `primary-500` fill from the generated ramp, white label, semibold, `0.5rem 1rem` padding (5.9:1 on white text).
-- **Hover / Focus:** deepens one ramp step to `primary-600` (8.9:1), color transition only — no lift, no scale. Focus is a 2px offset outline in `primary-500` over light grounds, Sky Highlight over the gradient.
-- **Note:** the site is navigation-led; real buttons are rare. Prefer a link or a nav chip before introducing a button.
+- **Shape:** `{rounded.sm}`.
+- **Primary:** `primary-500` fill from the generated ramp, white label, semibold, `0.5rem 1rem` (5.9:1).
+- **Hover / Focus:** deepens one ramp step to `primary-600` (8.9:1); color only, no lift, no scale. Focus is a 2px offset outline — Sky Highlight over the gradient, `primary-500` on paper.
+- **Note:** the site is navigation-led and currently ships no buttons. Prefer a link or a nav chip before introducing one.
 
 ### Chips
 
-- **Pill** — the system's signature primitive. A `1.5rem`-tall capsule-free rectangle: optional icon cap filled Signal Blue with a white glyph, body in white with `primary-800` lowercase text at `0.75rem`, hairline Signal Blue border, both halves clipped to one outline. Hovering the containing link lightens cap and border one ramp step.
-- **Tag** — a Pill that auto-adopts an icon when the tag name matches a known technology. Used for post tags, project tags, and feed tags; capped at three per card.
-- **Skill tag** — outline-only, `{rounded.md}`, lowercase semibold, bordered and colored by category (green / blue / purple). A red heart glyph marks a preferred skill.
+- **Pill** — the signature primitive, in two tones. **Light** (on paper): white body, `primary-800` lowercase text, Signal-derived border and filled icon cap. **Dark** (on glass): `white/10` body, Sky Body text, `white/25` border, `white/15` cap, all brightening toward Sky Highlight when the containing link is hovered. Both are `1.5rem` tall at `0.75rem` type.
+- **Tag** — a Pill that adopts an icon when its name matches a known technology. Post tags, project tags, feed tags, skills. Capped at three per card.
 
 ### Cards / Containers
 
-- **Corner Style:** `{rounded.md}` at `md` and up; square, full-bleed below.
-- **Background:** Paper; the entire card is a link.
-- **Shadow Strategy:** Sheet at rest, Sheet Raised on hover (see Elevation).
-- **Border:** none — the shadow does the separating.
-- **Internal Padding:** `1.5rem` for post cards, `0.75rem 1rem` for project tiles.
-- **Contents:** dated cards lead with a calendar icon and short date at `0.875rem`, then the title in `primary-500`, then a tag row.
+- **Corner Style:** `{rounded.xl}` at every size.
+- **Background:** Glass Base at 60% with `backdrop-blur-md`.
+- **Border:** 1px ring at 10% white; `40%` Sky Highlight on hover when interactive.
+- **Shadow Strategy:** none. See Elevation.
+- **Internal Padding:** `1.25rem`.
+- **Interactive variant:** pass a link target and the whole surface becomes the anchor, with a `group` hover that lifts the fill to 75% and shifts the title to Sky Highlight.
 
 ### Inputs / Fields
 
-Not part of the shipped system; the site has no forms outside the contact dialog. When one is needed, follow the pill's language: white fill, hairline Signal Blue border, `{rounded.sm}`, and a focus state that brightens the border and adds a 2px offset outline — no glow.
+The site ships no forms. When one arrives, follow the light pill: white fill, hairline border, `{rounded.sm}`, focus brightening the border plus a 2px offset outline. No glow.
 
 ### Navigation
 
-Top-right chip row: each item is a Link Sky pill at 80% opacity with white semibold `0.875rem` text and `{rounded.md}` corners, inverting to a white fill with Night Deep text on hover. Items wrap rather than collapse — there is no hamburger, and the row is the same on every breakpoint. Left of it sits the round coffee avatar, with the wordmark "Andri" shown on every route except home, where the hero already says it.
+A single row of chips, top right, identical at every breakpoint — it wraps rather than collapsing, and there is no hamburger. At rest each chip is glass (`white/10`, `white/15` ring, white semibold `0.875rem`); the current route inverts to a solid white fill with `primary-800` text and carries `aria-current="page"`. Route matching is by path prefix, so a blog post keeps "Blog" lit. Left of the row sits the round coffee avatar, with the "Andri" wordmark appearing from `sm` up on every route except home.
+
+### Reading Sheet
+
+The paper surface for long-form routes. `48rem` maximum, `bg-white`, Ink text, `{rounded.xl}` and floating from `md` up, full-bleed and square below it. It carries the full `.markdown` block — the only place in the system tuned for light-on-white — and takes no shadow, because it sits on near-black.
 
 ### Activity Feed
 
-The signature component. A vertical timeline in a two-column grid (`1.75rem` node column + content): a round `1.75rem` node holding a kind icon, connected downward by a 1px line that fades to transparent on the last entry of a date group. Each row is title, then a `0.6875rem` metadata line joined by `·` separators (verb · source · relative time · star count), then an optional two-line summary and a `16:9` `object-contain` thumbnail.
-
-It ships in two tones against the two grounds: **light** (white node, Signal Blue ring, ink-on-paper text) and **dark** (Night Deep node, Sky Highlight icon, white rings and text). The node blooms to 110% on group hover or focus, gated behind `motion-safe`.
+A vertical timeline in a `1.75rem` + content grid: a round node holding a kind icon, a 1px connector that fades out on the last entry of a date group, then title, a `·`-separated metadata line, an optional two-line summary and a `16:9` thumbnail. It ships in light and dark tones and appears in three places: the sticky home rail, a compact four-entry section on mobile home, and the full `/activity` page.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** derive every new blue from the `primary-100`–`primary-900` ramp, which is generated from `--accent`. Editing `--accent` must remain the way to re-tune the site.
-- **Do** decide the ground first (worktop or gradient), then choose paper-plus-shadow or glass-plus-ring accordingly.
-- **Do** keep rounding and gutters behind `md:` so mobile surfaces stay full-bleed and square.
-- **Do** force lowercase on user-authored metadata (tags, pills) and uppercase on structural labels.
-- **Do** gate every transform or scale behind `motion-safe:` and pair every hover state with a `focus-visible` equivalent; WCAG 2.2 AA is the target.
-- **Do** cap tag rows at three and clamp feed titles and summaries; density is controlled by truncation, not by shrinking type.
+- **Do** derive every blue from the ramp generated by `--accent`; editing that one value must remain the way to re-tune the site.
+- **Do** decide the route's ground first — atmosphere or reading — then pick glass or paper accordingly.
+- **Do** put every route inside the shared container and let it own the gutters.
+- **Do** keep prose at or under `48rem`.
+- **Do** force lowercase on user-authored metadata and uppercase on structural labels.
+- **Do** gate every transform behind `motion-safe:` and pair every hover state with a `focus-visible` equivalent; WCAG 2.2 AA is the target and the current build clears it on every surface.
 
 ### Don't:
 
-- **Don't** introduce a second brand color. Warm hues (pink, amber, red) are glyph-sized punctuation only.
-- **Don't** put a drop shadow on the night gradient, or a translucent blurred panel on the light worktop. The two depth languages do not cross.
-- **Don't** add a display webfont. The native sans stack is the committed choice.
-- **Don't** build the SaaS landing pattern: mesh-gradient hero, three generic feature cards, logo wall, pricing row. It is the confirmed anti-reference.
-- **Don't** apply the morphing-blob geometry to a foreground component. Organic shape belongs to the atmosphere layer only.
-- **Don't** animate content. The only continuous motion in the system is the background gradient and its two shapes; everything else moves for ≤200ms in response to input.
+- **Don't** introduce a second brand color. Warm hues are glyph-sized punctuation only.
+- **Don't** cast a shadow on the gradient or float a blurred translucent panel on paper.
+- **Don't** add ambient or looping animation. Motion is a response to input, never decoration.
+- **Don't** add a display webfont.
+- **Don't** lock the viewport or trap scroll. The gradient is fixed; the page is not.
+- **Don't** build the SaaS landing pattern: mesh hero, three feature cards, logo wall, pricing row.
+- **Don't** invent testimonials, metrics, client logos or pricing. None exist.

@@ -1,0 +1,27 @@
+---
+/**
+ * The h1 for an atmosphere route. Used once per page, above the content.
+ * Reading routes title themselves inside the sheet instead.
+ */
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<header class="pt-10 pb-6 sm:pt-14 sm:pb-8">
+	<h1
+		class="text-3xl font-semibold tracking-tight text-white drop-shadow-md sm:text-4xl"
+	>
+		{title}
+	</h1>
+	{
+		description && (
+			<p class="mt-2 max-w-2xl text-base text-sky-100/80">
+				{description}
+			</p>
+		)
+	}
+</header>
