@@ -1,0 +1,427 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-14T00:00:00.000Z",
+  "title": "Design System: andri.dk",
+  "extensions": {
+    "colorMeta": {
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "#59b4ff",
+        "note": "Source of the generated primary-100..900 ramp via oklch(from var(--accent) N% c h).",
+        "tonalRamp": [
+          "oklch(10% 0.13 250)",
+          "oklch(20% 0.13 250)",
+          "oklch(30% 0.13 250)",
+          "oklch(40% 0.13 250)",
+          "oklch(50% 0.13 250)",
+          "oklch(60% 0.13 250)",
+          "oklch(70% 0.13 250)",
+          "oklch(80% 0.13 250)",
+          "oklch(90% 0.13 250)"
+        ]
+      },
+      "night-deep": {
+        "role": "primary",
+        "displayName": "Night Deep",
+        "canonical": "#033359",
+        "tonalRamp": [
+          "oklch(15% 0.08 245)",
+          "oklch(25% 0.08 245)",
+          "oklch(35% 0.08 245)",
+          "oklch(45% 0.08 245)",
+          "oklch(55% 0.08 245)",
+          "oklch(65% 0.07 245)",
+          "oklch(75% 0.05 245)",
+          "oklch(85% 0.03 245)",
+          "oklch(95% 0.01 245)"
+        ]
+      },
+      "sky-highlight": {
+        "role": "secondary",
+        "displayName": "Sky Highlight",
+        "canonical": "#7dd3fc",
+        "tonalRamp": [
+          "oklch(15% 0.09 230)",
+          "oklch(25% 0.09 230)",
+          "oklch(35% 0.09 230)",
+          "oklch(45% 0.1 230)",
+          "oklch(55% 0.11 230)",
+          "oklch(65% 0.11 230)",
+          "oklch(75% 0.1 230)",
+          "oklch(85% 0.08 230)",
+          "oklch(95% 0.03 230)"
+        ]
+      },
+      "link-sky": {
+        "role": "secondary",
+        "displayName": "Link Sky",
+        "canonical": "#0369a1",
+        "tonalRamp": [
+          "oklch(15% 0.09 235)",
+          "oklch(25% 0.1 235)",
+          "oklch(35% 0.11 235)",
+          "oklch(45% 0.12 235)",
+          "oklch(55% 0.12 235)",
+          "oklch(65% 0.11 235)",
+          "oklch(75% 0.09 235)",
+          "oklch(85% 0.06 235)",
+          "oklch(95% 0.02 235)"
+        ]
+      },
+      "hover-pink": {
+        "role": "tertiary",
+        "displayName": "Hover Pink",
+        "canonical": "#ec4899",
+        "note": "Footer profile-icon hover only. Glyph-sized punctuation, never an area fill.",
+        "tonalRamp": [
+          "oklch(15% 0.15 355)",
+          "oklch(25% 0.18 355)",
+          "oklch(35% 0.2 355)",
+          "oklch(45% 0.22 355)",
+          "oklch(55% 0.23 355)",
+          "oklch(65% 0.22 355)",
+          "oklch(75% 0.17 355)",
+          "oklch(85% 0.11 355)",
+          "oklch(95% 0.04 355)"
+        ]
+      },
+      "star-amber": {
+        "role": "tertiary",
+        "displayName": "Star Amber",
+        "canonical": "#f59e0b",
+        "note": "GitHub star counts only.",
+        "tonalRamp": [
+          "oklch(15% 0.06 75)",
+          "oklch(25% 0.09 75)",
+          "oklch(35% 0.12 75)",
+          "oklch(45% 0.14 75)",
+          "oklch(55% 0.16 75)",
+          "oklch(65% 0.17 75)",
+          "oklch(75% 0.16 75)",
+          "oklch(85% 0.12 75)",
+          "oklch(95% 0.05 75)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1f2937",
+        "tonalRamp": [
+          "oklch(15% 0.02 255)",
+          "oklch(25% 0.02 255)",
+          "oklch(35% 0.02 255)",
+          "oklch(45% 0.02 255)",
+          "oklch(55% 0.02 255)",
+          "oklch(65% 0.02 255)",
+          "oklch(75% 0.01 255)",
+          "oklch(85% 0.01 255)",
+          "oklch(95% 0.005 255)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(65% 0 0)",
+          "oklch(75% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "worktop": {
+        "role": "neutral",
+        "displayName": "Worktop",
+        "canonical": "#e5e7eb",
+        "note": "Page ground on every route except home.",
+        "tonalRamp": [
+          "oklch(15% 0.005 255)",
+          "oklch(25% 0.005 255)",
+          "oklch(35% 0.005 255)",
+          "oklch(45% 0.005 255)",
+          "oklch(55% 0.005 255)",
+          "oklch(65% 0.005 255)",
+          "oklch(75% 0.005 255)",
+          "oklch(85% 0.005 255)",
+          "oklch(95% 0.005 255)"
+        ]
+      },
+      "quiet-slate": {
+        "role": "neutral",
+        "displayName": "Quiet Slate",
+        "canonical": "#64748b",
+        "tonalRamp": [
+          "oklch(15% 0.02 255)",
+          "oklch(25% 0.02 255)",
+          "oklch(35% 0.025 255)",
+          "oklch(45% 0.03 255)",
+          "oklch(55% 0.03 255)",
+          "oklch(65% 0.03 255)",
+          "oklch(75% 0.02 255)",
+          "oklch(85% 0.015 255)",
+          "oklch(95% 0.005 255)"
+        ]
+      },
+      "rule-slate": {
+        "role": "neutral",
+        "displayName": "Rule Slate",
+        "canonical": "#cbd5e1",
+        "note": "Hairline borders, table rules, resting link underline.",
+        "tonalRamp": [
+          "oklch(15% 0.01 255)",
+          "oklch(25% 0.015 255)",
+          "oklch(35% 0.02 255)",
+          "oklch(45% 0.02 255)",
+          "oklch(55% 0.02 255)",
+          "oklch(65% 0.02 255)",
+          "oklch(75% 0.02 255)",
+          "oklch(85% 0.015 255)",
+          "oklch(95% 0.008 255)"
+        ]
+      },
+      "code-night": {
+        "role": "neutral",
+        "displayName": "Code Night",
+        "canonical": "#020617",
+        "note": "Fenced code blocks stay dark on every ground (Shiki github-dark).",
+        "tonalRamp": [
+          "oklch(15% 0.03 265)",
+          "oklch(25% 0.03 265)",
+          "oklch(35% 0.03 265)",
+          "oklch(45% 0.03 265)",
+          "oklch(55% 0.02 265)",
+          "oklch(65% 0.02 265)",
+          "oklch(75% 0.015 265)",
+          "oklch(85% 0.01 265)",
+          "oklch(95% 0.005 265)"
+        ]
+      },
+      "night-gradient-start": {
+        "role": "neutral",
+        "displayName": "Night Gradient Start",
+        "canonical": "#1e3a8a",
+        "note": "Top stop of the persistent page ground; runs to pure black.",
+        "tonalRamp": [
+          "oklch(15% 0.1 265)",
+          "oklch(25% 0.13 265)",
+          "oklch(35% 0.15 265)",
+          "oklch(45% 0.16 265)",
+          "oklch(55% 0.16 265)",
+          "oklch(65% 0.14 265)",
+          "oklch(75% 0.11 265)",
+          "oklch(85% 0.07 265)",
+          "oklch(95% 0.03 265)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name on the home hero, over the gradient, with a drop shadow. One per page, home only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Uppercase section titles. Case marks the section boundary, not size."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and project titles, set in the mid primary ramp rather than ink."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose at leading-7, capped at max-w-prose; steps up one size at lg."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Feed metadata, tags, table headers. Lowercase for user-authored metadata, uppercase for structural labels."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "The only non-system family in the shipped site; fenced blocks and inline code."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sheet",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "purpose": "Resting state of a paper card on the light worktop."
+      },
+      {
+        "name": "sheet-raised",
+        "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+        "purpose": "Hover state of a linked card. The only shadow transition in the system."
+      },
+      {
+        "name": "hairline-ring-light",
+        "value": "0 0 0 1px rgb(147 197 253 / 1)",
+        "purpose": "Light-tone feed node edge; brightens one ramp step on hover or focus."
+      },
+      {
+        "name": "hairline-ring-dark",
+        "value": "0 0 0 1px rgb(255 255 255 / 0.1)",
+        "purpose": "The dark-ground substitute for a shadow. Ring opacity, not blur, carries state."
+      },
+      {
+        "name": "hero-text",
+        "value": "0 10px 8px rgb(0 0 0 / 0.04), 0 4px 3px rgb(0 0 0 / 0.1)",
+        "purpose": "Drop shadow separating hero type from the gradient behind it."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration-state",
+        "value": "200ms",
+        "purpose": "Every input-driven transition. Nothing in the foreground runs longer."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "purpose": "Default easing for hover and focus state changes."
+      },
+      {
+        "name": "gradient-drift",
+        "value": "Gradient 15s ease infinite",
+        "purpose": "The continuous page-ground cycle. Atmosphere layer only."
+      },
+      {
+        "name": "blob-morph",
+        "value": "morph 10s-15s linear infinite alternate, spin 20s-26s linear infinite",
+        "purpose": "The two background shapes behind the glass. Never applied to foreground content."
+      },
+      {
+        "name": "node-bloom",
+        "value": "scale(1.1) over 200ms, gated behind motion-safe",
+        "purpose": "Activity-feed node response to group hover or focus."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "40rem" },
+      { "name": "md", "value": "48rem" },
+      { "name": "lg", "value": "64rem" },
+      { "name": "xl", "value": "80rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Nav Chip",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Top-right navigation item; wraps rather than collapsing, identical at every breakpoint.",
+      "html": "<ul class=\"ds-nav\"><li><a class=\"ds-nav-link\" href=\"/blog/\">Blog</a></li><li><a class=\"ds-nav-link\" href=\"/projects/\">Projects</a></li><li><a class=\"ds-nav-link\" href=\"/uses/\">Uses</a></li></ul>",
+      "css": ".ds-nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; list-style: none; margin: 0; padding: 0; font-size: 0.875rem; } .ds-nav-link { display: inline-block; background: rgb(3 105 161 / 0.8); color: #fff; font-weight: 600; padding: 0.5rem 0.75rem; border-radius: 0.375rem; text-decoration: none; transition: background 200ms cubic-bezier(0,0,0.2,1), color 200ms cubic-bezier(0,0,0.2,1); } .ds-nav-link:hover { background: #fff; color: #075985; } .ds-nav-link:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 2px; }"
+    },
+    {
+      "name": "Post Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Whole-card link for a blog post: date line, title in the mid ramp, tag row. Square and full-bleed below 48rem.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-date\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v4M8 2v4M3 10h18\"/></svg><span>Mar 14, 2026</span></span><span class=\"ds-card-title\">Generating OG images at request time</span><span class=\"ds-card-tags\"><span class=\"ds-pill\"><span class=\"ds-pill-body\">astro</span></span><span class=\"ds-pill\"><span class=\"ds-pill-body\">rust</span></span></span></a>",
+      "css": ".ds-card { display: flex; flex-direction: column; height: 100%; padding: 1.5rem; background: #fff; color: oklch(30% 0.13 250); text-decoration: none; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); transition: box-shadow 200ms cubic-bezier(0,0,0.2,1); } @media (min-width: 48rem) { .ds-card { border-radius: 0.375rem; } } .ds-card:hover { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); } .ds-card:focus-visible { outline: 2px solid #0369a1; outline-offset: 2px; } .ds-card-date { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; margin-bottom: 0.25rem; } .ds-card-date svg { width: 1.25rem; height: 1.25rem; } .ds-card-title { margin-top: 0.25rem; font-size: 1.125rem; font-weight: 500; color: oklch(50% 0.13 250); } .ds-card-tags { display: flex; gap: 0.5rem; margin-top: 1rem; }"
+    },
+    {
+      "name": "Pill",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "The signature primitive: filled icon cap plus white body clipped to one continuous outline. Lowercase, 0.75rem.",
+      "html": "<span class=\"ds-pill\"><span class=\"ds-pill-cap\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z\"/></svg></span><span class=\"ds-pill-body\">github</span></span>",
+      "css": ".ds-pill { display: inline-flex; align-items: center; min-height: 1.5rem; font-size: 0.75rem; border: 1px solid oklch(40% 0.13 250); border-radius: 0.25rem; overflow: clip; transition: border-color 200ms cubic-bezier(0,0,0.2,1); } .ds-pill:hover { border-color: oklch(50% 0.13 250); } .ds-pill-cap { display: inline-flex; align-items: center; align-self: stretch; padding: 0 0.125rem; background: oklch(40% 0.13 250); color: #fff; transition: background 200ms cubic-bezier(0,0,0.2,1); } .ds-pill:hover .ds-pill-cap { background: oklch(50% 0.13 250); } .ds-pill-cap svg { width: 1.25rem; height: 1.25rem; padding: 0.125rem; } .ds-pill-body { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.125rem 0.5rem; background: #fff; color: oklch(20% 0.13 250); font-weight: 300; text-transform: lowercase; }"
+    },
+    {
+      "name": "Skill Tag",
+      "kind": "chip",
+      "refersTo": "skill-tag",
+      "description": "Outline-only category tag from the skills grid; border and text carry the category color, a red heart marks a preferred skill.",
+      "html": "<span class=\"ds-skill-tag\">typescript<svg class=\"ds-skill-heart\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 21s-6.7-4.35-9.33-8.24C.9 9.9 2.2 6 5.6 5.1c2-.53 3.9.32 4.9 1.9l1.5 2.3 1.5-2.3c1-1.58 2.9-2.43 4.9-1.9 3.4.9 4.7 4.8 2.93 7.66C18.7 16.65 12 21 12 21Z\"/></svg></span>",
+      "css": ".ds-skill-tag { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.75rem; font-size: 0.875rem; font-weight: 600; text-transform: lowercase; border: 1px solid #1e40af; color: #1e40af; border-radius: 0.375rem; } .ds-skill-heart { color: #dc2626; width: 0.875rem; height: 0.875rem; }"
+    },
+    {
+      "name": "Activity Row (dark)",
+      "kind": "custom",
+      "refersTo": "rail-panel",
+      "description": "One timeline entry in the home rail: round node, fading connector, title, dot-separated metadata line.",
+      "html": "<div class=\"ds-rail\"><article class=\"ds-act\"><div class=\"ds-act-gutter\"><span class=\"ds-act-node\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M4 4h16v16H4V4Zm2 3v2h12V7H6Zm0 4v2h12v-2H6Zm0 4v2h8v-2H6Z\"/></svg></span><span class=\"ds-act-line\"></span></div><div class=\"ds-act-body\"><a class=\"ds-act-title\" href=\"#\">Generating OG images at request time</a><div class=\"ds-act-meta\"><span>Wrote</span><span class=\"ds-act-sep\">\u00b7</span><span>2d ago</span></div></div></article></div>",
+      "css": ".ds-rail { padding: 1rem; border-radius: 0.75rem; background: rgb(3 51 89 / 0.6); backdrop-filter: blur(12px); box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1); } .ds-act { display: grid; grid-template-columns: 1.75rem 1fr; column-gap: 0.75rem; } .ds-act-gutter { display: flex; flex-direction: column; align-items: center; } .ds-act-node { display: flex; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem; border-radius: 9999px; background: oklch(10% 0.13 250); color: #7dd3fc; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.15); transition: box-shadow 200ms cubic-bezier(0,0,0.2,1), scale 200ms cubic-bezier(0,0,0.2,1); } .ds-act:hover .ds-act-node { box-shadow: 0 0 0 1px rgb(125 211 252 / 0.6); scale: 1.1; } @media (prefers-reduced-motion: reduce) { .ds-act-node { transition: none; } .ds-act:hover .ds-act-node { scale: 1; } } .ds-act-line { flex: 1; width: 1px; margin-top: 0.375rem; background: rgb(255 255 255 / 0.15); } .ds-act-body { min-width: 0; padding-bottom: 1.25rem; } .ds-act-title { font-size: 0.875rem; font-weight: 500; line-height: 1.375; color: #fff; text-decoration: none; text-underline-offset: 4px; transition: color 200ms cubic-bezier(0,0,0.2,1); } .ds-act-title:hover { color: #7dd3fc; text-decoration: underline; } .ds-act-title:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 2px; } .ds-act-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.375rem; margin-top: 0.25rem; font-size: 0.6875rem; color: rgb(186 230 253 / 0.85); } .ds-act-sep { color: rgb(186 230 253 / 0.4); }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Uppercase section title with wide responsive gutters; the case, not the size, marks the boundary.",
+      "html": "<div class=\"ds-section\"><h2 class=\"ds-section-title\">Blog posts</h2></div>",
+      "css": ".ds-section { padding: 1.5rem 0; font-size: 1.25rem; } @media (min-width: 48rem) { .ds-section { padding-left: 5rem; padding-right: 5rem; } } @media (min-width: 64rem) { .ds-section { padding-left: 10rem; padding-right: 10rem; } } .ds-section-title { margin: 0 0 0.5rem 1.5rem; font-size: 1.25rem; font-weight: 600; text-transform: uppercase; } @media (min-width: 48rem) { .ds-section-title { margin-left: 0; font-size: 1.5rem; } }"
+    },
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Rare in this navigation-led site; color-only state change, no lift.",
+      "html": "<button class=\"ds-btn\">Send</button>",
+      "css": ".ds-btn { background: oklch(50% 0.139 246); color: #fff; font-weight: 600; padding: 0.5rem 1rem; border: none; border-radius: 0.25rem; cursor: pointer; transition: background 200ms cubic-bezier(0,0,0.2,1); } .ds-btn:hover { background: oklch(40% 0.139 246); } .ds-btn:focus-visible { outline: 2px solid oklch(50% 0.139 246); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Window",
+    "overview": "The whole site is a view through one window onto a blue-to-black night sky. The gradient never leaves: it runs top to bottom behind every page, drifting on a 15-second cycle, with two enormous soft-white shapes slowly morphing and rotating behind the glass. Content is what the window frames \u2014 flat, clean, lit surfaces that sit calmly on top of all that movement and never compete with it.\n\nThe register is professional with a deliberate streak of whimsy. The precision is real: a single accent hue generates the entire nine-step ramp, labels are tight, spacing is regular, states are fast and small. The whimsy is where it costs nothing \u2014 the morphing blobs, the coffee-cup avatar and favicon, lowercase tags, a red heart next to the skills Andri actually likes. Nothing bounces, nothing shouts, but the site is plainly a person's and not a company's.\n\nSurfaces are flat by default. Depth is a change of medium, not a pile of shadows: on the light worktop, content is paper; on the night gradient, content is glass \u2014 translucent, blurred behind, edged with a single hairline ring. The anti-reference is the SaaS landing template: no gradient-mesh hero with three generic feature cards, no logo wall, no pricing tier row.",
+    "keyCharacteristics": [
+      "One accent hue (Signal Blue) generating the full primary ramp \u2014 no second brand color.",
+      "A persistent night gradient as the page ground, animated slowly and continuously.",
+      "Flat, clean surfaces; depth expressed as paper-on-light versus glass-on-dark.",
+      "Lowercase, badge-forward metadata (pills and tags) as the recurring texture.",
+      "Small, fast, restrained state changes; whimsy confined to atmosphere and iconography."
+    ],
+    "rules": [
+      {
+        "name": "The One Hue Rule",
+        "body": "Signal Blue is the only brand color, and the primary ramp is derived from it rather than hand-picked. Never introduce a second accent; if a new emphasis is needed, take another step on the ramp.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Note Rule",
+        "body": "Warm color (pink, amber, the skill red heart) appears only as a punctuation mark on a single element. The moment warmth covers an area rather than a glyph, it has become a second brand color and is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Native Type Rule",
+        "body": "Do not add a display webfont to carry personality. The system font is a decision, not an omission; new surfaces inherit it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Case-Signals-Role Rule",
+        "body": "Uppercase means \"structural label\" (section heading, column header). Lowercase-forced means \"user-authored metadata\" (tag, pill). Sentence case means content. Do not mix the three.",
+        "section": "typography"
+      },
+      {
+        "name": "The Edge-to-Edge Mobile Rule",
+        "body": "Rounding and side gutters are desktop affordances (md:rounded-md, md:px-*). On phones, surfaces run full-bleed to the screen edge with square corners. Never ship a rounded, inset card on mobile.",
+        "section": "layout"
+      },
+      {
+        "name": "The Two Grounds Rule",
+        "body": "Ask which ground a surface is on before styling it. Paper on the worktop takes a shadow and an opaque white fill. Glass on the gradient takes a ring, a translucent fill, and backdrop blur \u2014 never a shadow, which does nothing over the dark sky.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do derive every new blue from the primary-100\u2013primary-900 ramp, which is generated from --accent. Editing --accent must remain the way to re-tune the site.",
+      "Do decide the ground first (worktop or gradient), then choose paper-plus-shadow or glass-plus-ring accordingly.",
+      "Do keep rounding and gutters behind md: so mobile surfaces stay full-bleed and square.",
+      "Do force lowercase on user-authored metadata (tags, pills) and uppercase on structural labels.",
+      "Do gate every transform or scale behind motion-safe: and pair every hover state with a focus-visible equivalent; WCAG 2.2 AA is the target.",
+      "Do cap tag rows at three and clamp feed titles and summaries; density is controlled by truncation, not by shrinking type."
+    ],
+    "donts": [
+      "Don't introduce a second brand color. Warm hues (pink, amber, red) are glyph-sized punctuation only.",
+      "Don't put a drop shadow on the night gradient, or a translucent blurred panel on the light worktop. The two depth languages do not cross.",
+      "Don't add a display webfont. The native sans stack is the committed choice.",
+      "Don't build the SaaS landing pattern: mesh-gradient hero, three generic feature cards, logo wall, pricing row. It is the confirmed anti-reference.",
+      "Don't apply the morphing-blob geometry to a foreground component. Organic shape belongs to the atmosphere layer only.",
+      "Don't animate content. The only continuous motion in the system is the background gradient and its two shapes; everything else moves for \u2264200ms in response to input."
+    ]
+  }
+}

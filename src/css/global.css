@@ -2,8 +2,6 @@
 @import "@fontsource-variable/source-code-pro";
 
 :root {
-  --background: theme(colors.white);
-  --foreground: theme(colors.gray.800);
   --accent: #59b4ff;
 
   @media (prefers-color-scheme: dark) {
@@ -29,6 +27,9 @@
   --color-fg: theme(colors.gray.800);
   --color-bg: theme(colors.white);
 
+  --font-mono:
+    "Source Code Pro Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
   --spacing-300: 300px;
   --spacing-350: 350px;
 
@@ -46,12 +47,10 @@
   @apply inline-block border-gray-600 border rounded-md px-3 py-1 text-sm font-semibold lowercase;
 }
 
-a.link {
-  @apply text-indigo-900;
-
-  &:hover {
-    @apply underline;
-  }
+.btn {
+  @apply bg-primary-500 text-white font-semibold py-2 px-4 rounded-sm;
+  @apply transition-colors hover:bg-primary-600;
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
 }
 
 .inline-icon {
@@ -72,13 +71,6 @@ a.link {
   @apply bg-sky-700/80 rounded-md py-2 px-3 text-white hover:bg-white hover:text-sky-900 font-semibold;
 }
 
-.btn {
-  @apply bg-blue-500 text-white font-semibold py-2 px-4 rounded;
-}
-
-.btn:hover {
-  @apply bg-blue-700;
-}
 
 @keyframes spin {
   from {
@@ -165,7 +157,7 @@ a.link {
 
     /* Inline code */
     code:not(pre code) {
-      @apply rounded px-1.5 py-0.5 text-[0.95em] font-medium;
+      @apply rounded px-1.5 py-0.5 text-[0.95em] font-medium font-mono;
       @apply bg-slate-100 text-slate-800;
       @apply border border-slate-200;
     }
@@ -176,7 +168,7 @@ a.link {
     }
 
     pre code {
-      @apply block min-w-full p-4 text-sm leading-7;
+      @apply block min-w-full p-4 text-sm leading-7 font-mono;
     }
 
     /* Blockquotes */
@@ -269,7 +261,7 @@ a.link {
 
     /* KBD */
     kbd {
-      @apply inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[0.8em];
+      @apply inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[0.8em] font-mono;
       @apply border-slate-300 bg-white text-slate-700 shadow-sm;
     }
 
