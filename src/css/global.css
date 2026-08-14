@@ -15,7 +15,6 @@
   --color-primary-300: oklch(from var(--accent) 70% c h);
   --color-primary-200: oklch(from var(--accent) 80% c h);
   --color-primary-100: oklch(from var(--accent) 90% c h);
-  --color-hover: theme(colors.pink.500);
 
   --font-mono:
     "Source Code Pro Variable", ui-monospace, SFMono-Regular, Menlo, monospace;

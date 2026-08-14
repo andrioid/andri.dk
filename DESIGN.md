@@ -21,7 +21,6 @@ colors:
   code-night: "#020617"
   code-paper: "#f1f5f9"
   star-amber: "#fbbf24"
-  hover-pink: "#ec4899"
 typography:
   display:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
@@ -160,8 +159,7 @@ One cool blue generates everything; the neutrals are all in service of reading.
 
 ### Tertiary
 
-- **Hover Pink** (`{colors.hover-pink}`): Footer profile-icon hover, and nothing else.
-- **Star Amber** (`{colors.star-amber}`): GitHub star glyphs, and nothing else.
+- **Star Amber** (`{colors.star-amber}`): GitHub star glyphs, and nothing else. It is the system's only warm color — the pink hover went with the old icon-row footer.
 
 ### Neutral
 
@@ -174,7 +172,7 @@ One cool blue generates everything; the neutrals are all in service of reading.
 
 **The One Hue Rule.** `--accent` is the only brand color and the ramp is derived from it, never hand-picked. If something needs more emphasis, take another step on the ramp.
 
-**The Warm Note Rule.** Warm color is glyph-sized punctuation only. The moment pink or amber fills an area, it has become a second brand color and is wrong.
+**The Warm Note Rule.** Warm color is glyph-sized punctuation only — currently one amber star. The moment it fills an area, it has become a second brand color and is wrong.
 
 **The Legible Ground Rule.** The gradient's top stop is a contrast decision, not a taste one. Any change to it must keep white text at ≥4.5:1 in the top 100px of the viewport, where the nav lives.
 
@@ -274,11 +272,17 @@ The site ships no forms. When one arrives, follow the light pill: white fill, ha
 
 ### Navigation
 
-A single row of chips, top right, identical at every breakpoint — it wraps rather than collapsing, and there is no hamburger. At rest each chip is glass (`white/10`, `white/15` ring, white semibold `0.875rem`); the current route inverts to a solid white fill with `primary-800` text and carries `aria-current="page"`. Route matching is by path prefix, so a blog post keeps "Blog" lit. Left of the row sits the round coffee avatar, with the "Andri" wordmark appearing from `sm` up on every route except home.
+A single row of chips, top right, identical at every breakpoint — it wraps rather than collapsing, and there is no hamburger. At rest each chip is glass (`white/10`, `white/15` ring, white semibold `0.875rem`); the current route inverts to a solid white fill with `primary-800` text and carries `aria-current="page"`. Route matching is by path prefix, so a blog post keeps "Blog" lit. Left of the row sits the round coffee avatar plus the "Andri" wordmark from `sm` up — except on home, where the hero already carries both and the masthead would only repeat them, so the chips right-align alone.
 
 ### Reading Sheet
 
-The paper surface for long-form routes. `48rem` maximum, `bg-white`, Ink text, `{rounded.xl}` and floating from `md` up, full-bleed and square below it. It carries the full `.markdown` block — the only place in the system tuned for light-on-white — and takes no shadow, because it sits on near-black.
+The paper surface for long-form routes. It spans the full container width like every other route, is `bg-white` with Ink text, `{rounded.xl}` and floating from `md` up, full-bleed and square below it. The reading measure is held by a centred `48rem` column _inside_ the sheet, not by the sheet itself — a reading page must not look narrower than the rest of the site. Code blocks and figures break out of that column on `lg`, since they are scanned rather than read by line. It carries the full `.markdown` block, the only place in the system tuned for light-on-white, and takes no shadow because it sits on near-black.
+
+### Footer
+
+A three-column colophon closing every route above a hairline rule: **Site** (the five internal routes), **Elsewhere** (the four public profiles), and **This site** (RSS, source repository), with a build line and a copyright-and-licence line beneath. Links are body-size text with a `1rem` leading icon — not the 36px unlabelled glyph row it replaced, which was the largest type on the site and carried no information.
+
+**The Unadvertised Artifact Rule.** `/cv.pdf` and the email address in `resume.json` are reachable but deliberately unlinked. Do not surface them in navigation, the footer, or a call to action; the social profiles are the contact path.
 
 ### Activity Feed
 

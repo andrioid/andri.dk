@@ -106,23 +106,6 @@
           "oklch(95% 0.02 235)"
         ]
       },
-      "hover-pink": {
-        "role": "tertiary",
-        "displayName": "Hover Pink",
-        "canonical": "#ec4899",
-        "note": "Footer profile-icon hover, and nothing else.",
-        "tonalRamp": [
-          "oklch(15% 0.15 355)",
-          "oklch(25% 0.18 355)",
-          "oklch(35% 0.2 355)",
-          "oklch(45% 0.22 355)",
-          "oklch(55% 0.23 355)",
-          "oklch(65% 0.22 355)",
-          "oklch(75% 0.17 355)",
-          "oklch(85% 0.11 355)",
-          "oklch(95% 0.04 355)"
-        ]
-      },
       "star-amber": {
         "role": "tertiary",
         "displayName": "Star Amber",
@@ -383,6 +366,14 @@
       "description": "Uppercase subsection heading with an optional trailing link.",
       "html": "<section class=\"ds-section\"><div class=\"ds-section-head\"><h2 class=\"ds-section-title\">Recent posts</h2><a class=\"ds-section-action\" href=\"/blog/\">All posts</a></div></section>",
       "css": ".ds-section { padding: 2rem 0; } .ds-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; } .ds-section-title { margin: 0; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.025em; text-transform: uppercase; color: #bae6fd; } .ds-section-action { font-size: 0.75rem; color: #bae6fd; text-decoration: none; text-underline-offset: 4px; transition: color 200ms cubic-bezier(0,0,0.2,1); } .ds-section-action:hover { color: #fff; text-decoration: underline; }"
+    },
+    {
+      "name": "Footer Colophon",
+      "kind": "custom",
+      "refersTo": "section-label",
+      "description": "Three-column closing block: internal routes, public profiles, and what the site is made of.",
+      "html": "<footer class=\"ds-foot\"><div class=\"ds-foot-cols\"><nav><h2 class=\"ds-foot-h\">Site</h2><ul class=\"ds-foot-list\"><li><a class=\"ds-foot-link\" href=\"/blog/\">Blog</a></li><li><a class=\"ds-foot-link\" href=\"/projects/\">Projects</a></li></ul></nav><nav><h2 class=\"ds-foot-h\">Elsewhere</h2><ul class=\"ds-foot-list\"><li><a class=\"ds-foot-link\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z\"/></svg>GitHub</a></li></ul></nav><div><h2 class=\"ds-foot-h\">This site</h2><ul class=\"ds-foot-list\"><li><a class=\"ds-foot-link\" href=\"/rss.xml\">RSS feed</a></li></ul></div></div><p class=\"ds-foot-fine\">&copy; 2026 Andri Óskarsson · Writing under CC BY-NC 4.0 · Code under MIT</p></footer>",
+      "css": ".ds-foot { margin-top: 3rem; padding: 2.5rem 0; border-top: 1px solid rgb(255 255 255 / 0.1); font-size: 0.875rem; } .ds-foot-cols { display: grid; gap: 2rem; } @media (min-width: 40rem) { .ds-foot-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } } .ds-foot-h { margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.025em; text-transform: uppercase; color: #bae6fd; } .ds-foot-list { list-style: none; margin: 0.75rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; } .ds-foot-link { display: inline-flex; align-items: center; gap: 0.5rem; color: rgb(224 242 254 / 0.8); text-decoration: none; text-underline-offset: 4px; transition: color 200ms cubic-bezier(0,0,0.2,1); } .ds-foot-link:hover { color: #fff; text-decoration: underline; } .ds-foot-link:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 2px; } .ds-foot-link svg { width: 1rem; height: 1rem; flex-shrink: 0; } .ds-foot-fine { margin: 2rem 0 0; font-size: 0.75rem; color: rgb(186 230 253 / 0.6); }"
     }
   ],
   "narrative": {
@@ -449,6 +440,16 @@
       {
         "name": "The Filled-Means-Counted Rule",
         "body": "Icons in the feed are outline. The only filled glyph is the amber star beside a star count: filled means a number follows.",
+        "section": "components"
+      },
+      {
+        "name": "The Measure-Inside Rule",
+        "body": "The reading measure belongs to a column inside the sheet, never to the sheet itself. A reading page must span the same width as every other route; only its line length is constrained.",
+        "section": "layout"
+      },
+      {
+        "name": "The Unadvertised Artifact Rule",
+        "body": "/cv.pdf and the email address in resume.json are reachable but deliberately unlinked. Do not surface them in navigation, the footer, or a call to action; the social profiles are the contact path.",
         "section": "components"
       }
     ],

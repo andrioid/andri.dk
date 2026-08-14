@@ -1,0 +1,104 @@
+---
+import { Icon } from "astro-icon/components";
+import Container from "./container.astro";
+import { resumeRaw } from "~/lib/cv";
+
+/**
+ * The closing colophon. Three columns: where else to go on the site, where else
+ * to find Andri, and what this site is made of.
+ *
+ * The CV PDF and the email address are deliberately not linked here. /cv.pdf
+ * exists but stays unadvertised, and the profiles are the contact path.
+ */
+const NETWORK_ICON: Record<string, string> = {
+	GitHub: "tabler:brand-github",
+	Mastodon: "tabler:brand-mastodon",
+	Bluesky: "tabler:brand-bluesky",
+	LinkedIn: "tabler:brand-linkedin",
+	Twitter: "tabler:brand-x",
+};
+
+const { profiles } = resumeRaw.basics;
+const year = new Date().getFullYear();
+
+const SITE = [
+	{ href: "/blog/", label: "Blog" },
+	{ href: "/projects/", label: "Projects" },
+	{ href: "/activity/", label: "Activity" },
+	{ href: "/uses/", label: "Uses" },
+	{ href: "/now/", label: "Now" },
+];
+
+const link =
+	"inline-flex items-center gap-2 text-sky-100/80 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none";
+const heading = "text-xs font-semibold tracking-wide text-sky-200 uppercase";
+---
+
+<Container as="footer" class="mt-12 border-t border-white/10 py-10 text-sm">
+	<div class="grid gap-8 sm:grid-cols-3">
+		<nav aria-labelledby="footer-site">
+			<h2 id="footer-site" class={heading}>Site</h2>
+			<ul class="mt-3 space-y-2">
+				{
+					SITE.map((item) => (
+						<li>
+							<a class={link} href={item.href}>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<nav aria-labelledby="footer-elsewhere">
+			<h2 id="footer-elsewhere" class={heading}>Elsewhere</h2>
+			<ul class="mt-3 space-y-2">
+				{
+					profiles.map((p) => (
+						<li>
+							<a class={link} href={p.url} rel="me">
+								<Icon
+									class="h-4 w-4 shrink-0"
+									name={
+										NETWORK_ICON[p.network] ?? "tabler:link"
+									}
+								/>
+								{p.network}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<div>
+			<h2 class={heading}>This site</h2>
+			<ul class="mt-3 space-y-2">
+				<li>
+					<a class={link} href="/rss.xml">
+						<Icon class="h-4 w-4 shrink-0" name="tabler:rss" />
+						RSS feed
+					</a>
+				</li>
+				<li>
+					<a class={link} href="https://github.com/andrioid/andri.dk">
+						<Icon
+							class="h-4 w-4 shrink-0"
+							name="tabler:brand-github"
+						/>
+						Source
+					</a>
+				</li>
+			</ul>
+			<p class="mt-4 text-xs leading-relaxed text-sky-200/60">
+				Built with Astro, self-hosted on Fly.
+			</p>
+		</div>
+	</div>
+
+	<p class="mt-8 text-xs text-sky-200/60">
+		&copy; {year} Andri Óskarsson &middot; Writing under CC BY-NC 4.0 &middot;
+		Code under MIT
+	</p>
+</Container>

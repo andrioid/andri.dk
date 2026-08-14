@@ -1,10 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
 import Container from "~/components/container.astro";
 import NavItems from "~/components/nav-items.astro";
-import ProfileIcon from "~/components/profile-icon.astro";
-import { resumeRaw } from "~/lib/cv";
+import SiteFooter from "~/components/site-footer.astro";
 import andratar from "../../public/img/coffee-art.jpg";
 
 type Props = {
@@ -69,17 +67,7 @@ const hasRail = Astro.slots.has("rail");
 		<slot />
 	</main>
 
-	<Container
-		as="footer"
-		class="flex shrink-0 justify-center gap-2 py-6 text-4xl"
-	>
-		<a class="transition-colors hover:text-hover" href="/rss.xml">
-			<Icon name="tabler:rss" />
-			<span class="sr-only">RSS feed</span>
-		</a>
-
-		{resumeRaw.basics.profiles.map((p) => <ProfileIcon profile={p} />)}
-	</Container>
+	<SiteFooter />
 </div>
 
 {
