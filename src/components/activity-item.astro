@@ -1,0 +1,198 @@
+---
+import type { ActivityEntry, ActivityKind } from "~/lib/activity";
+import { formatEntryDate, hrefFor, isExternal } from "~/lib/activity";
+import Icon, { type IconType } from "./Icon.astro";
+import Tag from "./tag.astro";
+
+type Tone = "light" | "dark";
+
+interface Props {
+	item: ActivityEntry;
+	tone?: Tone;
+	/** Last entry of its date group: the connector fades out instead of running on. */
+	last?: boolean;
+}
+
+/** Closed map: adding a kind without a presentation is a compile error. */
+const KIND_META: Record<ActivityKind, { icon: IconType; verb: string }> = {
+	blog: { icon: "article", verb: "Wrote" },
+	"github-star": { icon: "star-filled", verb: "Starred" },
+	"github-repo": { icon: "repo", verb: "New repo" },
+	"github-gist": { icon: "gist", verb: "Gist" },
+	bookmark: { icon: "bookmark", verb: "Bookmarked" },
+	bluesky: { icon: "bluesky", verb: "Posted" },
+};
+
+type ToneStyles = {
+	node: string;
+	line: string;
+	lineEnd: string;
+	title: string;
+	meta: string;
+	sep: string;
+	summary: string;
+	media: string;
+	gap: string;
+};
+
+const TONE: Record<Tone, ToneStyles> = {
+	light: {
+		node: "bg-white text-primary-500 ring-1 ring-primary-200 group-hover:ring-primary-400 group-focus-within:ring-primary-400",
+		line: "bg-primary-200",
+		lineEnd: "bg-linear-to-b from-primary-200 to-transparent",
+		title: "line-clamp-3 text-base text-primary-800 hover:text-primary-500 focus-visible:outline-primary-500",
+		meta: "text-primary-600",
+		sep: "text-primary-600/50",
+		summary: "text-primary-900/75",
+		media: "bg-primary-900/5 ring-1 ring-primary-900/10",
+		gap: "pb-7",
+	},
+	dark: {
+		node: "bg-primary-900 text-sky-300 ring-1 ring-white/15 group-hover:ring-sky-300/60 group-focus-within:ring-sky-300/60",
+		line: "bg-white/15",
+		lineEnd: "bg-linear-to-b from-white/15 to-transparent",
+		title: "line-clamp-2 text-sm text-white hover:text-sky-300 focus-visible:outline-sky-300",
+		meta: "text-sky-200/85",
+		sep: "text-sky-200/40",
+		summary: "text-sky-100/70",
+		media: "bg-white/5 ring-1 ring-white/10",
+		gap: "pb-5",
+	},
+};
+
+const { item, tone = "light", last = false } = Astro.props;
+const { icon, verb } = KIND_META[item.kind];
+const s = TONE[tone];
+// Own-site rows are stored as absolute https://andri.dk keys, so never link item.url.
+const href = hrefFor(item.url);
+const external = isExternal(item.url);
+// "Wrote · andri.dk" says the same thing twice; the verb already places it here.
+const source = item.kind === "blog" ? undefined : item.source;
+---
+
+<article
+	data-kind={item.kind}
+	class="group grid grid-cols-[1.75rem_1fr] gap-x-3"
+>
+	<div class="flex flex-col items-center">
+		<span
+			class:list={[
+				"flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition duration-200 ease-out",
+				// Tailwind v4 animates the `scale` property, which `transform-none` cannot
+				// cancel, so the bloom is gated on motion-safe instead.
+				"motion-safe:group-hover:scale-110 motion-safe:group-focus-within:scale-110 motion-reduce:transition-none",
+				s.node,
+			]}
+		>
+			<Icon name={icon} class="h-3.5 w-3.5" />
+		</span>
+		<span
+			aria-hidden="true"
+			class:list={["mt-1.5 w-px flex-1", last ? s.lineEnd : s.line]}
+		>
+		</span>
+	</div>
+
+	<div class:list={["min-w-0", s.gap]}>
+		<a
+			href={href}
+			target={external ? "_blank" : undefined}
+			rel={external ? "noopener noreferrer" : undefined}
+			class:list={[
+				"font-medium leading-snug underline-offset-4 transition-colors hover:underline",
+				"focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none",
+				s.title,
+			]}
+		>
+			{item.title}
+		</a>
+
+		<div
+			class:list={[
+				"mt-1 flex flex-wrap items-center gap-x-1.5 text-[0.6875rem]",
+				s.meta,
+			]}
+		>
+			<span>{verb}</span>
+			{
+				source && (
+					<>
+						<span aria-hidden="true" class={s.sep}>
+							·
+						</span>
+						<span>{source}</span>
+					</>
+				)
+			}
+			<span aria-hidden="true" class={s.sep}>·</span>
+			<time datetime={item.date.toISOString()}>
+				{formatEntryDate(item.date)}
+			</time>
+			{
+				item.stars !== undefined && (
+					<>
+						<span aria-hidden="true" class={s.sep}>
+							·
+						</span>
+						<span class="inline-flex items-center gap-1">
+							<Icon
+								name="star-filled"
+								class="h-3 w-3 text-amber-500"
+							/>
+							{item.stars}
+						</span>
+					</>
+				)
+			}
+		</div>
+
+		{
+			item.summary && item.summary !== item.title && (
+				<p
+					class:list={[
+						"mt-1.5 max-w-prose text-sm leading-relaxed line-clamp-2",
+						s.summary,
+					]}
+				>
+					{item.summary}
+				</p>
+			)
+		}
+
+		{
+			item.image && (
+				<a
+					href={href}
+					tabindex="-1"
+					aria-hidden="true"
+					target={external ? "_blank" : undefined}
+					rel={external ? "noopener noreferrer" : undefined}
+					class:list={[
+						"mt-3 block max-w-md overflow-hidden rounded-lg",
+						s.media,
+					]}
+				>
+					{/* Fixed frame reserves the space (no layout shift) while object-contain
+					keeps every thumbnail whole and at its own ratio. */}
+					<img
+						src={item.image}
+						alt=""
+						loading="lazy"
+						decoding="async"
+						class="aspect-16/9 h-auto w-full object-contain"
+					/>
+				</a>
+			)
+		}
+
+		{
+			tone === "light" && item.tags.length > 0 && (
+				<div class="mt-2.5 flex flex-wrap gap-1.5">
+					{item.tags.slice(0, 3).map((tag) => (
+						<Tag tag={tag} />
+					))}
+				</div>
+			)
+		}
+	</div>
+</article>

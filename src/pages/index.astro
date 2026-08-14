@@ -1,12 +1,14 @@
 ---
-export const prerender = true;
+import ActivityFeed from "~/components/activity-feed.astro";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
+import { getActivity } from "~/lib/activity";
 import { resumeProcessed, resumeRaw } from "~/lib/cv";
 import SkillOverview from "./_cmp/skill-overview.astro";
 
 const dt = resumeProcessed;
 const cv = resumeRaw;
+const activity = await getActivity({ limit: 12 });
 ---
 
 <Layout
@@ -16,23 +18,84 @@ const cv = resumeRaw;
 >
 	<PageContainer isHome={true}>
 		<div
-			class="w-full flex-grow flex-col flex justify-center items-center p-4"
+			class="flex min-h-0 w-full grow flex-col gap-8 p-4 lg:flex-row lg:gap-10"
 		>
-			<div class="text-center space-y-4">
-				<h1
-					class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg"
-				>
-					{resumeRaw.basics.name}
-				</h1>
-				<p class="text-large md:text-xl text-sky-300 drop-shadow-lg">
-					{resumeRaw.basics.label}
-				</p>
-				<p class="text-white drop-shadow-sm">
-					{resumeRaw.basics.location.city},
-					{resumeRaw.basics.location.countryCode}
-				</p>
+			{
+				/* Stacked below lg: the hero claims most of the first screen but leaves the
+			feed peeking, so it reads as one page rather than two. */
+			}
+			<div
+				class="flex min-h-[72dvh] flex-col items-center justify-center lg:min-h-0 lg:grow lg:overflow-y-auto"
+			>
+				<div class="text-center space-y-4">
+					<h1
+						class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg"
+					>
+						{resumeRaw.basics.name}
+					</h1>
+					<p class="text-lg md:text-xl text-sky-300 drop-shadow-lg">
+						{resumeRaw.basics.label}
+					</p>
+					<p class="text-white drop-shadow-sm">
+						{resumeRaw.basics.location.city},
+						{resumeRaw.basics.location.countryCode}
+					</p>
+				</div>
+				<SkillOverview dt={dt} />
 			</div>
-			<SkillOverview dt={dt} />
+
+			<aside
+				class="flex w-full shrink-0 flex-col lg:w-[23rem] lg:min-h-0 xl:w-[26rem]"
+			>
+				{
+					/* The hero gradient runs light at the top, so the rail carries its own
+				dark scrim: without it the first entries lose contrast. */
+				}
+				<div
+					class="flex min-h-0 grow flex-col rounded-xl bg-primary-900/60 p-4 ring-1 ring-white/10 backdrop-blur-md sm:p-5"
+				>
+					<div
+						class="flex items-baseline justify-between gap-3 pb-4 lg:pb-2"
+					>
+						<h2
+							class="text-sm font-semibold uppercase tracking-wide text-white"
+						>
+							Activity
+						</h2>
+						<a
+							href="/activity/"
+							class="text-xs text-sky-200 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
+						>
+							All activity
+						</a>
+					</div>
+					<div
+						class="activity-rail min-h-0 grow lg:overflow-y-auto lg:pr-2"
+					>
+						<ActivityFeed items={activity} tone="dark" />
+					</div>
+				</div>
+			</aside>
 		</div>
 	</PageContainer>
 </Layout>
+
+<style>
+	@media (min-width: 64rem) {
+		.activity-rail {
+			/* The fade zones sit on the container, not the content: the top one is
+			exactly the padding, so at rest it dims nothing and only bites while
+			scrolling. The bottom one signals the stream continues past the fold. */
+			padding-top: 0.75rem;
+			mask-image: linear-gradient(
+				to bottom,
+				transparent,
+				#000 0.75rem,
+				#000 calc(100% - 2.5rem),
+				transparent
+			);
+			scrollbar-width: thin;
+			scrollbar-color: rgb(255 255 255 / 0.25) transparent;
+		}
+	}
+</style>

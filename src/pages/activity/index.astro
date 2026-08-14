@@ -1,0 +1,24 @@
+---
+import ActivityFeed from "~/components/activity-feed.astro";
+import Section from "~/components/Section.astro";
+import Layout from "~/layouts/Layout.astro";
+import PageContainer from "~/layouts/page-container.astro";
+import { getActivity } from "~/lib/activity";
+
+const items = await getActivity({ limit: 60 });
+---
+
+<Layout
+	title="Activity"
+	description="Recent posts, stars, repos, gists and bookmarks."
+>
+	<PageContainer>
+		<Section title="Activity" class="bg-gray-200 text-black">
+			<div
+				class="max-w-2xl bg-white px-5 py-6 shadow sm:px-7 sm:py-7 md:rounded-md"
+			>
+				<ActivityFeed items={items} />
+			</div>
+		</Section>
+	</PageContainer>
+</Layout>
