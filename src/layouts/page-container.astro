@@ -7,9 +7,16 @@ import ProfileIcon from "~/components/profile-icon.astro";
 import { resumeRaw } from "~/lib/cv";
 import andratar from "../../public/img/coffee-art.jpg";
 
-type Props = { isHome?: boolean };
+type Props = {
+	isHome?: boolean;
+	/** Reading routes narrow the whole shell so nav, content and footer share one edge. */
+	width?: "wide" | "narrow";
+};
 
-const { isHome = false } = Astro.props;
+const { isHome = false, width = "wide" } = Astro.props;
+
+// A rail is a full-height fixed panel beside the page, not a column inside it.
+const hasRail = Astro.slots.has("rail");
 ---
 
 {
@@ -22,8 +29,13 @@ const { isHome = false } = Astro.props;
 >
 </div>
 
-<div class="flex min-h-dvh flex-col font-sans text-white">
-	<Container as="header" class="py-4">
+<div
+	class:list={[
+		"flex min-h-dvh flex-col font-sans text-white",
+		hasRail && "lg:pr-[23rem] xl:pr-[26rem]",
+	]}
+>
+	<Container as="header" size={width} class="py-4">
 		<nav class="flex items-center justify-between gap-4">
 			<a href="/" class="shrink-0">
 				<span class="flex items-center text-white sm:mr-6">
@@ -52,12 +64,24 @@ const { isHome = false } = Astro.props;
 		<slot />
 	</main>
 
-	<footer class="flex shrink-0 justify-center gap-2 p-6 text-4xl">
+	<Container
+		as="footer"
+		size={width}
+		class="flex shrink-0 justify-center gap-2 py-6 text-4xl"
+	>
 		<a class="transition-colors hover:text-hover" href="/rss.xml">
 			<Icon name="tabler:rss" />
 			<span class="sr-only">RSS feed</span>
 		</a>
 
 		{resumeRaw.basics.profiles.map((p) => <ProfileIcon profile={p} />)}
-	</footer>
+	</Container>
 </div>
+
+{
+	hasRail && (
+		<aside class="fixed inset-y-0 right-0 z-10 hidden w-[23rem] flex-col bg-black/30 ring-1 ring-white/10 backdrop-blur-md lg:flex xl:w-[26rem]">
+			<slot name="rail" />
+		</aside>
+	)
+}

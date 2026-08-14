@@ -4,7 +4,10 @@ import { twMerge } from "tailwind-merge";
 /**
  * The light ground for reading routes: a paper sheet held up in front of the
  * night gradient. Full-bleed and square on a phone so the measure stays wide;
- * centred, rounded and floating from md up.
+ * rounded and floating from md up.
+ *
+ * Its width matches the narrow shell container, so the sheet lines up with the
+ * nav above it rather than floating inside a wider frame.
  *
  * No shadow — the sheet sits on near-black, where a cast shadow does nothing.
  */
@@ -15,7 +18,7 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class="py-0 md:px-6 md:py-12">
+<div class="pb-10 md:pb-16">
 	<div
 		class={twMerge(
 			"mx-auto w-full max-w-3xl bg-white px-5 py-8 text-gray-800 sm:px-8 sm:py-10 md:rounded-xl",

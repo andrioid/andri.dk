@@ -1,0 +1,26 @@
+---
+/**
+ * Placeholder shown while the activity island streams. Deliberately static:
+ * the system has no ambient motion, so no shimmer or pulse.
+ */
+interface Props {
+	rows?: number;
+}
+
+const { rows = 4 } = Astro.props;
+---
+
+<div class="space-y-6" aria-hidden="true">
+	{
+		Array.from({ length: rows }).map(() => (
+			<div class="grid grid-cols-[1.75rem_1fr] gap-x-3">
+				<span class="h-7 w-7 rounded-full bg-white/10" />
+				<div class="space-y-2 pt-1">
+					<span class="block h-3 w-4/5 rounded-sm bg-white/10" />
+					<span class="block h-2 w-2/5 rounded-sm bg-white/5" />
+				</div>
+			</div>
+		))
+	}
+</div>
+<p class="sr-only">Loading recent activity…</p>

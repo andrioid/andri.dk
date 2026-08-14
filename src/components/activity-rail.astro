@@ -1,0 +1,19 @@
+---
+import ActivityFeed from "./activity-feed.astro";
+import { getActivity } from "~/lib/activity";
+
+/**
+ * The activity feed as a deferred server island: the page ships immediately
+ * with the skeleton below, and this streams in when the live collection
+ * answers. No client JS, and a slow GitHub or Bluesky never holds a page.
+ */
+interface Props {
+	limit?: number;
+	tone?: "light" | "dark";
+}
+
+const { limit = 12, tone = "dark" } = Astro.props;
+const items = await getActivity({ limit });
+---
+
+<ActivityFeed items={items} tone={tone} />

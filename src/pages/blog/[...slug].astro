@@ -33,7 +33,7 @@ const someLinks = await socialLinks(slug);
 	description={description}
 	ogImage={new URL(`/blog/${slug}.og`, Astro.site?.origin).toString()}
 >
-	<PageContainer>
+	<PageContainer width="narrow">
 		<ReadingSheet>
 			<header class="mb-8">
 				<h1

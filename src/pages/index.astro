@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import ActivityFeed from "~/components/activity-feed.astro";
+import ActivityRail from "~/components/activity-rail.astro";
+import ActivitySkeleton from "~/components/activity-skeleton.astro";
 import Card from "~/components/card.astro";
 import Container from "~/components/container.astro";
 import PostCard from "~/components/post-card.astro";
@@ -8,20 +10,19 @@ import ProjectCard from "~/components/project-card.astro";
 import Section from "~/components/Section.astro";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
-import { getActivity } from "~/lib/activity";
 import { getPosts } from "~/lib/cms";
 import { resumeProcessed, resumeRaw } from "~/lib/cv";
+import andratar from "../../public/img/coffee-art.jpg";
 import SkillOverview from "./_cmp/skill-overview.astro";
 
 const cv = resumeRaw;
-const activity = await getActivity({ limit: 12 });
-const recentPosts = (await getPosts()).slice(0, 4);
+const recentPosts = (await getPosts()).slice(0, 3);
 
 // "Selected" means the ones with a public repo behind them: verifiable work,
 // not a favourites list.
 const projects = (await getCollection("project"))
 	.filter((p) => !p.data.hidden && p.data.github)
-	.slice(0, 4);
+	.slice(0, 3);
 ---
 
 <Layout
@@ -31,113 +32,104 @@ const projects = (await getCollection("project"))
 >
 	<PageContainer isHome={true}>
 		<Container class="pb-12">
-			<div
-				class="lg:grid lg:grid-cols-[minmax(0,1fr)_23rem] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_26rem]"
+			<section
+				class="flex min-h-[46dvh] flex-col items-center justify-center py-10 text-center lg:min-h-[58dvh] lg:items-start lg:text-left"
 			>
-				<div class="min-w-0">
-					<section
-						class="flex min-h-[46dvh] flex-col justify-center py-10 text-center lg:min-h-[62dvh] lg:text-left"
-					>
-						<h1
-							class="text-4xl font-bold text-white drop-shadow-lg md:text-6xl"
-						>
-							{cv.basics.name}
-						</h1>
-						<p
-							class="mt-3 text-lg text-sky-300 drop-shadow-lg md:text-xl"
-						>
-							{cv.basics.label}
-						</p>
-						<p class="mt-1 text-white/90 drop-shadow-sm">
-							{cv.basics.location.city}, {
-								cv.basics.location.countryCode
-							}
-						</p>
-					</section>
+				<Image
+					alt=""
+					src={andratar}
+					width={320}
+					height={320}
+					class="mb-6 h-28 w-28 rounded-full ring-1 ring-white/20 sm:h-32 sm:w-32"
+				/>
+				<h1
+					class="text-4xl font-bold text-white drop-shadow-lg md:text-6xl"
+				>
+					{cv.basics.name}
+				</h1>
+				<p class="mt-3 text-lg text-sky-300 drop-shadow-lg md:text-xl">
+					{cv.basics.label}
+				</p>
+				<p class="mt-1 text-white/90 drop-shadow-sm">
+					{cv.basics.location.city}, {cv.basics.location.countryCode}
+				</p>
+			</section>
 
+			{
+				/* The rail is a desktop panel; on a phone the stream becomes a
+				short section in normal flow. */
+			}
+			<Section
+				title="Recent activity"
+				class="lg:hidden"
+				action={{ href: "/activity/", label: "All activity" }}
+			>
+				<Card class="p-4">
+					<ActivityRail server:defer limit={4} tone="dark">
+						<ActivitySkeleton slot="fallback" rows={3} />
+					</ActivityRail>
+				</Card>
+			</Section>
+
+			<Section
+				title="Recent posts"
+				action={{ href: "/blog/", label: "All posts" }}
+			>
+				<div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
 					{
-						/* The rail is a desktop column; on a phone the stream
-						becomes a short section in normal flow. */
-					}
-					<Section
-						title="Recent activity"
-						class="lg:hidden"
-						action={{ href: "/activity/", label: "All activity" }}
-					>
-						<Card class="p-4">
-							<ActivityFeed
-								items={activity.slice(0, 4)}
-								tone="dark"
+						recentPosts.map(({ data: p, ...post }) => (
+							<PostCard
+								title={p.title}
+								link={post.id}
+								description={p.description}
+								date={p.date}
+								draft={p.draft}
 							/>
-						</Card>
-					</Section>
-
-					<Section
-						title="Recent posts"
-						action={{ href: "/blog/", label: "All posts" }}
-					>
-						<div class="grid gap-4 sm:grid-cols-2">
-							{
-								recentPosts.map(({ data: p, ...post }) => (
-									<PostCard
-										title={p.title}
-										link={post.id}
-										description={p.description}
-										tags={p.tags}
-										date={p.date}
-										draft={p.draft}
-									/>
-								))
-							}
-						</div>
-					</Section>
-
-					<Section
-						title="Selected projects"
-						action={{ href: "/projects/", label: "All projects" }}
-					>
-						<div class="grid gap-4 sm:grid-cols-2">
-							{
-								projects.map((project) => (
-									<ProjectCard project={project} />
-								))
-							}
-						</div>
-					</Section>
-
-					<Section title="Skills">
-						<SkillOverview dt={resumeProcessed} />
-					</Section>
+						))
+					}
 				</div>
+			</Section>
 
-				<aside class="hidden lg:block">
-					<div class="sticky top-0 h-dvh py-6">
-						<Card class="flex h-full min-h-0 flex-col p-4 sm:p-5">
-							<div
-								class="flex items-baseline justify-between gap-3 pb-2"
-							>
-								<h2
-									class="text-sm font-semibold tracking-wide text-white uppercase"
-								>
-									Activity
-								</h2>
-								<a
-									href="/activity/"
-									class="text-xs text-sky-200 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
-								>
-									All activity
-								</a>
-							</div>
-							<div
-								class="activity-rail min-h-0 grow overflow-y-auto pr-2"
-							>
-								<ActivityFeed items={activity} tone="dark" />
-							</div>
-						</Card>
-					</div>
-				</aside>
-			</div>
+			<Section
+				title="Selected projects"
+				action={{ href: "/projects/", label: "All projects" }}
+			>
+				<div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+					{
+						projects.map((project) => (
+							<ProjectCard project={project} />
+						))
+					}
+				</div>
+			</Section>
+
+			<Section title="Skills">
+				<SkillOverview dt={resumeProcessed} />
+			</Section>
 		</Container>
+
+		<Fragment slot="rail">
+			<div
+				class="flex items-baseline justify-between gap-3 px-5 pt-6 pb-3"
+			>
+				<h2
+					class="text-sm font-semibold tracking-wide text-white uppercase"
+				>
+					Activity
+				</h2>
+				<a
+					href="/activity/"
+					class="text-xs text-sky-200 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
+				>
+					All activity
+				</a>
+			</div>
+			<div class="activity-rail min-h-0 grow overflow-y-auto px-5 pb-6">
+				<ActivityRail server:defer limit={12} tone="dark">
+					<ActivitySkeleton slot="fallback" rows={6} />
+				</ActivityRail>
+			</div>
+		</Fragment>
 	</PageContainer>
 </Layout>
 

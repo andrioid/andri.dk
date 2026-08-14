@@ -6,7 +6,7 @@ colors:
   primary-500: "#0067ad"
   primary-600: "#004a8d"
   primary-800: "#000d50"
-  primary-900: "#000032"
+  glass: "rgb(0 0 0 / 0.30)"
   ground-end: "#000000"
   sky-highlight: "#7dd3fc"
   sky-meta: "#bae6fd"
@@ -93,7 +93,7 @@ components:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.primary-800}"
   card:
-    backgroundColor: "rgb(0 0 50 / 0.60)"
+    backgroundColor: "{colors.glass}"
     textColor: "{colors.paper}"
     rounded: "{rounded.xl}"
     padding: "1.25rem"
@@ -150,7 +150,7 @@ One cool blue generates everything; the neutrals are all in service of reading.
 
 - **Accent** (`{colors.accent}`): The generator. It is never painted directly anywhere — its only job is to be `--accent`, from which `primary-100` through `primary-900` are derived as `oklch(from var(--accent) N% c h)`. Changing this one value re-tunes the site.
 - **Ground Top** (`{colors.primary-500}`): The top stop of the fixed gradient, running to pure black at the bottom. Chosen at this depth so white nav and heading text clear 6:1 against it; anything lighter fails AA at the top of the viewport.
-- **Glass Base** (`{colors.primary-900}`): The fill of every panel, always at 60% with `backdrop-blur-md` behind it.
+- **Glass** (`{colors.glass}`): The fill of every panel — plain black at 30% over `backdrop-blur-md`, never a tinted navy. Because it only darkens, a panel keeps whatever hue the gradient has behind it at that scroll position, which is what makes it read as glass rather than as a blue box.
 
 ### Secondary
 
@@ -205,13 +205,13 @@ One cool blue generates everything; the neutrals are all in service of reading.
 
 ## Layout
 
-One container owns the horizontal rhythm on every route: `max-w-6xl`, gutters `1rem` → `1.5rem` → `2rem`. Home included. A page that wants different gutters is a page that is wrong.
+One container owns the horizontal rhythm on every route: `max-w-6xl`, gutters `1rem` → `1.5rem` → `2rem`. Reading routes narrow the _entire shell_ to `max-w-3xl`, so the nav, the sheet and the footer share one column edge — a sheet floating inside a wider header reads as a mistake. A page that wants different gutters is a page that is wrong.
 
 The document scrolls normally everywhere. Nothing traps scroll, nothing locks the viewport, and the header and footer are ordinary flow elements — the gradient is what stays fixed, not the chrome.
 
 **Route grounds are fixed by kind, not by taste.** Index and browsing routes (`/`, `/blog`, `/projects`, `/activity`) are atmosphere: page header over the gradient, content in glass. Reading routes (blog posts, `/now`, `/uses`) are paper: a centred sheet, full-bleed and square-cornered below `md`, floating with `1.5rem` side margins above it.
 
-Home is the only two-column route: a hero at `46dvh` (`62dvh` at `lg`) beside a `23rem` rail (`26rem` at `xl`) that is `sticky top-0 h-dvh` and scrolls internally, with a mask fading its top and bottom edges. Below `lg` the rail disappears and a four-entry activity section takes its place in normal flow, directly under the hero. Grids run one column, two at `sm`, three at `lg` on the full-width blog index.
+Home carries the only rail: a `23rem` panel (`26rem` at `xl`) fixed to the full height of the viewport from `lg` up, with the page shell padded to clear it. It is a panel beside the site, not a column inside the page — it runs past the header and footer, scrolls internally, and masks its own top and bottom edges. Below `lg` it disappears and a four-entry activity section takes its place in normal flow under the hero. Grids run one column, two at `sm`, three at `xl` beside the rail and at `lg` on full-width routes.
 
 Spacing follows Tailwind's 4px base: cards pad at `1.25rem`, the sheet at `1.25rem`/`2rem`, subsections separate by `2rem`.
 
@@ -262,7 +262,7 @@ There is no organic or freeform geometry anywhere in the system.
 ### Cards / Containers
 
 - **Corner Style:** `{rounded.xl}` at every size.
-- **Background:** Glass Base at 60% with `backdrop-blur-md`.
+- **Background:** Glass — black at 30% with `backdrop-blur-md`.
 - **Border:** 1px ring at 10% white; `40%` Sky Highlight on hover when interactive.
 - **Shadow Strategy:** none. See Elevation.
 - **Internal Padding:** `1.25rem`.
@@ -282,7 +282,9 @@ The paper surface for long-form routes. `48rem` maximum, `bg-white`, Ink text, `
 
 ### Activity Feed
 
-A vertical timeline in a `1.75rem` + content grid: a round node holding a kind icon, a 1px connector that fades out on the last entry of a date group, then title, a `·`-separated metadata line, an optional two-line summary and a `16:9` thumbnail. It ships in light and dark tones and appears in three places: the sticky home rail, a compact four-entry section on mobile home, and the full `/activity` page.
+A vertical timeline in a `1.75rem` + content grid: a round node holding an **outline** kind icon, a 1px connector that fades out on the last entry of a date group, then title, a `·`-separated metadata line, an optional two-line summary and a `16:9` thumbnail. The only filled glyph in the feed is the amber star beside a star count — filled means "a number follows". It ships in light and dark tones and appears in three places: the fixed home rail, a compact four-entry section on mobile home, and the full `/activity` page.
+
+**Deferred by default.** The feed is a server island (`server:defer`): pages ship immediately with a static placeholder and the stream arrives when the live collection answers. A slow GitHub or Bluesky must never hold a page. The placeholder does not pulse or shimmer — the no-ambient-motion rule has no exception for loading states.
 
 ## Do's and Don'ts
 

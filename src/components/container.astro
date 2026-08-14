@@ -3,18 +3,22 @@ import { twMerge } from "tailwind-merge";
 
 /**
  * The one horizontal rhythm for the whole site. Every route sits inside this;
- * nothing declares its own gutters. Home included, no exceptions.
+ * nothing declares its own gutters.
+ *
+ * `narrow` matches the reading measure, so a reading route's header, sheet and
+ * footer share one column edge instead of three.
  */
 interface Props {
 	class?: string;
 	as?: "div" | "section" | "header" | "footer";
+	size?: "wide" | "narrow";
 }
 
-const { class: className, as: Tag = "div" } = Astro.props;
+const { class: className, as: Tag = "div", size = "wide" } = Astro.props;
+
+const width = size === "narrow" ? "max-w-3xl" : "max-w-6xl";
 ---
 
-<Tag
-	class={twMerge("mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className)}
->
+<Tag class={twMerge("mx-auto w-full px-4 sm:px-6 lg:px-8", width, className)}>
 	<slot />
 </Tag>

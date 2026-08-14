@@ -1,13 +1,11 @@
 ---
-import ActivityFeed from "~/components/activity-feed.astro";
+import ActivityRail from "~/components/activity-rail.astro";
+import ActivitySkeleton from "~/components/activity-skeleton.astro";
 import Card from "~/components/card.astro";
 import Container from "~/components/container.astro";
 import PageHeader from "~/components/page-header.astro";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
-import { getActivity } from "~/lib/activity";
-
-const items = await getActivity({ limit: 60 });
 ---
 
 <Layout
@@ -21,7 +19,9 @@ const items = await getActivity({ limit: 60 });
 				description="Recent posts, stars, repos, gists and bookmarks."
 			/>
 			<Card class="max-w-2xl p-5 sm:p-7">
-				<ActivityFeed items={items} tone="dark" />
+				<ActivityRail server:defer limit={60} tone="dark">
+					<ActivitySkeleton slot="fallback" rows={8} />
+				</ActivityRail>
 			</Card>
 		</Container>
 	</PageContainer>
