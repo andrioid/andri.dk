@@ -24,7 +24,7 @@ const allPosts = await getPosts();
 					allPosts.map(({ data: p, ...post }) => (
 						<PostCard
 							title={p.title}
-							link={post.id}
+							id={post.id}
 							description={p.description}
 							tags={p.tags}
 							date={p.date}

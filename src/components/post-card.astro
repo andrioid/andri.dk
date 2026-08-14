@@ -7,17 +7,17 @@ export interface Props {
 	title: string;
 	description?: string;
 	date?: Date;
-	link: string;
+	/** Collection entry id, e.g. "2026/vacation-planner". */
+	id: string;
 	tags?: string[];
 	draft?: boolean;
 }
 
-const { title, description, date, tags, draft = false } = Astro.props;
+const { title, description, date, tags, id, draft = false } = Astro.props;
 
-let link = Astro.props.link;
-if (!link.endsWith("/")) {
-	link += "/"; // Enforce trailing slash
-}
+// Absolute, so a card links to the post from any route it is placed on — not
+// only from /blog/, where a bare id happens to resolve.
+const link = `/blog/${id}/`;
 ---
 
 <Card href={link} class="flex h-full flex-col p-5">

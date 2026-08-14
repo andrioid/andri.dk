@@ -80,7 +80,7 @@ const projects = (await getCollection("project"))
 						recentPosts.map(({ data: p, ...post }) => (
 							<PostCard
 								title={p.title}
-								link={post.id}
+								id={post.id}
 								description={p.description}
 								date={p.date}
 								draft={p.draft}
