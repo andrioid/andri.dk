@@ -78,7 +78,7 @@ export async function getReplies(atUri: string): Promise<Array<Like>> {
 
 function linkAtUri(atUri: string) {
 	const uriParts = atUri.match(
-		/at:\/\/(did:plc:[^\/]+)\/app\.bsky\.feed\.post\/(.+)/,
+		/at:\/\/(did:plc:[^/]+)\/app\.bsky\.feed\.post\/(.+)/,
 	);
 	const did = uriParts?.[1];
 	const postId = uriParts?.[2];

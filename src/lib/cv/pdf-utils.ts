@@ -51,7 +51,7 @@ export function registerFonts() {
 			family: "Awesome",
 			src: fixFontImport("awesome-solid.ttf"),
 		});
-	} catch (err) {
+	} catch {
 		console.error("WTF");
 	}
 }

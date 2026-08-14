@@ -20,7 +20,7 @@ export async function GET() {
 		// simple example: generate items for every md file in /src/pages
 		// see "Generating items" section for required frontmatter and advanced use cases
 		items: posts.map(({ data: p, ...post }) => ({
-			link: `blog/${post.id}` || "/unknown",
+			link: `blog/${post.id}`,
 			title: p.title,
 			description: p.description ?? "",
 			pubDate: p.date,

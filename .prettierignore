@@ -1,1 +1,3 @@
 _redirects
+src/content/
+.claude/

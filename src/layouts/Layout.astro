@@ -19,10 +19,14 @@ const { lang = "en", title, description, ogImage } = Astro.props as Props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="og:title" content={title} />
 		<meta name="twitter:title" content={title} />
-		{description && (
-			<meta name="description" content={description} />
-			<meta name="og:description" content={description} />
-		)}
+		{
+			description && (
+				<>
+					<meta name="description" content={description} />
+					<meta name="og:description" content={description} />
+				</>
+			)
+		}
 		<meta name="author" content={site.author} />
 		<link
 			rel="alternate"
@@ -38,13 +42,20 @@ const { lang = "en", title, description, ogImage } = Astro.props as Props;
 		/>
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="shortcut icon" href="/img/coffee-icon.png" />
-		{ogImage && (
-		<meta property="og:image" content={`${ogImage}`} />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content={`${ogImage}`} />
-
-		)}
-		<script is:inline defer src="https://umami.andri.dk/script.js" data-website-id="34735181-d04a-41ce-9a47-1a4577472bf3"></script>
+		{
+			ogImage && (
+				<>
+					<meta property="og:image" content={`${ogImage}`} />
+					<meta name="twitter:card" content="summary_large_image" />
+					<meta name="twitter:image" content={`${ogImage}`} />
+				</>
+			)
+		}
+		<script
+			is:inline
+			defer
+			src="https://umami.andri.dk/script.js"
+			data-website-id="34735181-d04a-41ce-9a47-1a4577472bf3"></script>
 
 		<title>{`andri.dk | ${title}`}</title>
 	</head>
