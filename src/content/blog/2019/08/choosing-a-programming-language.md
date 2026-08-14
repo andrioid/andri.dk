@@ -11,13 +11,13 @@ title: Choosing a programming language
 
 Imagine that you're a CTO, a Tech Lead or someone that has to make an early technical decision that will effect the company for years to come. What programming language do you choose?
 
-# The cost of abstraction
+## The cost of abstraction
 
 Systems tend to have two types of complexity. Complexity from the business-domain, and complexity from the technical-domain. In my experience, the technical-complexity takes up more room than it should.
 
 There are, of course brilliant programmers out there, who manage complexity really well, regardless of what language they code in. But people have different skill-sets, and a great team has many different types of members.
 
-# Readability
+## Readability
 
 When I took my first programming job, I was looking forward to "writing some awesome code". But, writing code wasn't my primary job. Reading it was.
 
@@ -27,7 +27,7 @@ But what if every feature of our programming language, comes with a cost? If you
 
 To be productive at writing code, we also need to be productive at reading it.
 
-# Dependencies
+## Dependencies
 
 At a certain point we need something from our programming language that isn't a language-feature, but a library feature. We need to open a file, parse HTTP headers, decode JSON, or talk to databases.
 
@@ -39,7 +39,7 @@ Another approach is Javascript's NPM where there is no standard library. Every l
 
 I think this a no-brainer. If we're building something that needs to be reliable for years to come, then we need a standard library that has security updates and advisories when shit happens. And remember, that we don't include dependencies, we adopt them.
 
-# Hiring people
+## Hiring people
 
 At some point, we all need help. And that help usually comes to us by means of hiring people. If it wasn't for this point, I might be programming in Erlang, Elixir and Elm right now. I think these languages are extremely interesting, and not just because they all start with the letter E.
 
@@ -47,7 +47,7 @@ But reality sets in, and we need a pool of people to hire from, that either know
 
 The exception is when an organization has decided to invest in something, has a resources to teach newcomers and is willing to pay premium for talent.
 
-# Performance
+## Performance
 
 Performance is important. But, aim for "good enough" instead of "perfect". "Perfect" will almost certainily have a downside in other parts of this post.
 
@@ -57,7 +57,7 @@ We once programmed in a world of a single CPU. That world is no more. Please pic
 
 A practical example would be a checkout-API call on a webshop. The customer has submitted a payment token, an order, and an email we need to verify. None of these things depend on each other, but all three things need to complete to succeed.
 
-# Developer Experience
+## Developer Experience
 
 To me, a good developer experience consists of the following things.
 
@@ -66,7 +66,7 @@ To me, a good developer experience consists of the following things.
 - There is a good, _reliable_ debugger available.
 - Easy to write and run tests, both locally and in build-systems.
 
-# Final words
+## Final words
 
 We try to plan for the future, but nobody really knows it will bring. So, aim for the next 5 years and then time will tell.
 

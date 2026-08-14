@@ -339,9 +339,9 @@
       "name": "Page Header",
       "kind": "custom",
       "refersTo": "page-title",
-      "description": "The h1 for an atmosphere route, with an optional one-line description.",
-      "html": "<header class=\"ds-pagehead\"><h1 class=\"ds-pagehead-title\">Projects</h1><p class=\"ds-pagehead-desc\">Things I have built and maintain, with the public repos behind them.</p></header>",
-      "css": ".ds-pagehead { padding: 2.5rem 0 1.5rem; } .ds-pagehead-title { margin: 0; font-size: clamp(1.875rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.015em; color: #fff; text-shadow: 0 2px 4px rgb(0 0 0 / 0.2); } .ds-pagehead-desc { margin: 0.5rem 0 0; max-width: 42rem; color: rgb(224 242 254 / 0.8); }"
+      "description": "How every route opens: optional eyebrow linking to the index, h1, optional description, then metadata. On reading routes it renders through the sheet's padding chain so it shares the body's column exactly.",
+      "html": "<header class=\"ds-pagehead\"><a class=\"ds-pagehead-eyebrow\" href=\"/blog/\"><span aria-hidden=\"true\">&larr;</span> Blog</a><h1 class=\"ds-pagehead-title\">Social-media images directly into PNG</h1><div class=\"ds-pagehead-meta\"><time>Dec 29, 2025</time><span class=\"ds-pill ds-pill--dark\"><span class=\"ds-pill-body\">social-media</span></span></div></header>",
+      "css": ".ds-pagehead { padding: 2.5rem 0 1.5rem; } .ds-pagehead-eyebrow { display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.025em; text-transform: uppercase; color: #bae6fd; text-decoration: none; text-underline-offset: 4px; transition: color 200ms cubic-bezier(0,0,0.2,1); } .ds-pagehead-eyebrow:hover { color: #fff; text-decoration: underline; } .ds-pagehead-title { margin: 0.75rem 0 0; font-size: clamp(1.875rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.015em; color: #fff; text-shadow: 0 2px 4px rgb(0 0 0 / 0.2); } .ds-pagehead-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; margin-top: 1rem; font-size: 0.875rem; color: rgb(186 230 253 / 0.85); }"
     },
     {
       "name": "Reading Sheet",
@@ -451,6 +451,16 @@
         "name": "The Unadvertised Artifact Rule",
         "body": "/cv.pdf and the email address in resume.json are reachable but deliberately unlinked. Do not surface them in navigation, the footer, or a call to action; the social profiles are the contact path.",
         "section": "components"
+      },
+      {
+        "name": "The One Opening Rule",
+        "body": "Every route names itself the same way: on the gradient, above any surface, via page-header — optional eyebrow, h1, optional description, then metadata. A reading route's sheet holds the body and nothing else. Titles never come from a # in content; they come from frontmatter.",
+        "section": "layout"
+      },
+      {
+        "name": "The Shared Column Rule",
+        "body": "A title and the text it titles sit on the same column edges at every breakpoint. On reading routes the header renders through the sheet's padding chain, not the page container's, so the two never drift.",
+        "section": "layout"
       }
     ],
     "dos": [

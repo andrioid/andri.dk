@@ -2,6 +2,7 @@
 // Find all blog posts to generate
 import { render } from "astro:content";
 import { BlueSkyInteractions } from "~/components/bluesky-interactions";
+import PageHeader from "~/components/page-header.astro";
 import Tag from "~/components/tag.astro";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
@@ -34,58 +35,65 @@ const someLinks = await socialLinks(slug);
 	ogImage={new URL(`/blog/${slug}.og`, Astro.site?.origin).toString()}
 >
 	<PageContainer>
-		<ReadingSheet>
-			<header class="mb-8">
-				<h1
-					class="text-3xl leading-tight font-semibold tracking-tight text-gray-900 md:text-4xl"
+		<article>
+			<ReadingSheet>
+				<PageHeader
+					slot="header"
+					title={title}
+					description={description}
+					eyebrow={{ href: "/blog/", label: "Blog" }}
 				>
-					{title}
-				</h1>
-				<p class="mt-2 text-sm text-slate-500">
-					<time datetime={date.toISOString()}>
+					<div
+						class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2"
+					>
+						<time
+							datetime={date.toISOString()}
+							class="text-sm text-sky-200/85"
+						>
+							{
+								date.toLocaleDateString(undefined, {
+									year: "numeric",
+									month: "short",
+									day: "numeric",
+								})
+							}
+						</time>
 						{
-							date.toLocaleDateString(undefined, {
-								year: "numeric",
-								month: "short",
-								day: "numeric",
-							})
+							tags && tags.length > 0 && (
+								<div class="flex flex-wrap gap-2">
+									{tags.map((t) => (
+										<Tag tag={t} tone="dark" />
+									))}
+								</div>
+							)
 						}
-					</time>
-				</p>
-				{
-					tags && tags.length > 0 && (
-						<div class="mt-4 flex flex-wrap gap-2">
-							{tags.map((t) => (
-								<Tag tag={t} />
-							))}
-						</div>
-					)
-				}
-			</header>
+					</div>
+				</PageHeader>
 
-			<article class="markdown">
-				{Content && <Content />}
-			</article>
+				<div class="markdown">
+					{Content && <Content />}
+				</div>
 
-			<footer class="mt-10 border-t border-slate-200 pt-6">
-				<p class="text-base font-light text-slate-600 italic">
-					Thank you for reading my blog-post. I write my own articles
-					(typos and all), like a damn monkey without any artificial
-					intelligence help. If you enjoyed it, or even if you hated
-					it. I'd appreciate the feedback.
-				</p>
+				<footer class="mt-10 border-t border-slate-200 pt-6">
+					<p class="text-base font-light text-slate-600 italic">
+						Thank you for reading my blog-post. I write my own
+						articles (typos and all), like a damn monkey without any
+						artificial intelligence help. If you enjoyed it, or even
+						if you hated it. I'd appreciate the feedback.
+					</p>
 
-				{
-					someLinks.atUri && (
-						<div class="mt-6">
-							<BlueSkyInteractions
-								client:only="react"
-								atUri={someLinks.atUri ?? ""}
-							/>
-						</div>
-					)
-				}
-			</footer>
-		</ReadingSheet>
+					{
+						someLinks.atUri && (
+							<div class="mt-6">
+								<BlueSkyInteractions
+									client:only="react"
+									atUri={someLinks.atUri ?? ""}
+								/>
+							</div>
+						)
+					}
+				</footer>
+			</ReadingSheet>
+		</article>
 	</PageContainer>
 </Layout>

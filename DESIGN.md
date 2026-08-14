@@ -207,7 +207,11 @@ One container owns the horizontal rhythm on every route: `max-w-6xl`, gutters `1
 
 The document scrolls normally everywhere. Nothing traps scroll, nothing locks the viewport, and the header and footer are ordinary flow elements — the gradient is what stays fixed, not the chrome.
 
-**Route grounds are fixed by kind, not by taste.** Index and browsing routes (`/`, `/blog`, `/projects`, `/activity`) are atmosphere: page header over the gradient, content in glass. Reading routes (blog posts, `/now`, `/uses`) are paper: a centred sheet, full-bleed and square-cornered below `md`, floating with `1.5rem` side margins above it.
+**Route grounds are fixed by kind, not by taste.** Index and browsing routes (`/`, `/blog`, `/projects`, `/activity`) are atmosphere: content in glass. Reading routes (blog posts, `/now`, `/uses`) are paper: a centred sheet, full-bleed and square-cornered below `md`, floating above it. What does _not_ change by kind is how a page opens — see the rule below.
+
+**The One Opening Rule.** Every route names itself the same way: on the gradient, above any surface, via page-header — optional eyebrow, `h1`, optional description, then metadata. A reading route's sheet holds the body and nothing else. Titles never come from a `#` in content; they come from frontmatter. This is why a tag looks identical on `/blog` and on the post it links to: both sit on the same ground, in the same dark tone.
+
+**The Shared Column Rule.** A title and the text it titles sit on exactly the same column edges at every breakpoint. On a reading route the header therefore renders through the _sheet's_ padding chain rather than the page container's — same gutter, same `48rem` measure — so the two can never drift apart. Verified identical at 390, 640, 768, 1024, 1280 and 1600.
 
 Home carries the only rail: a `23rem` panel (`26rem` at `xl`) fixed to the full height of the viewport from `lg` up, with the page shell padded to clear it. It is a panel beside the site, not a column inside the page — it runs past the header and footer, scrolls internally, and masks its own top and bottom edges. Below `lg` it disappears and a four-entry activity section takes its place in normal flow under the hero. Grids run one column, two at `sm`, three at `xl` beside the rail and at `lg` on full-width routes.
 
@@ -276,7 +280,7 @@ A single row of chips, top right, identical at every breakpoint — it wraps rat
 
 ### Reading Sheet
 
-The paper surface for long-form routes. It spans the full container width like every other route, is `bg-white` with Ink text, `{rounded.xl}` and floating from `md` up, full-bleed and square below it. The reading measure is held by a centred `48rem` column _inside_ the sheet, not by the sheet itself — a reading page must not look narrower than the rest of the site. Code blocks and figures break out of that column on `lg`, since they are scanned rather than read by line. It carries the full `.markdown` block, the only place in the system tuned for light-on-white, and takes no shadow because it sits on near-black.
+The paper surface for long-form routes, holding the body and nothing else — the title, date and tags live on the gradient above it like every other route. It spans the full container width, is `bg-white` with Ink text, `{rounded.xl}` and floating from `md` up, full-bleed and square below it. The reading measure is held by a centred `48rem` column _inside_ the sheet, not by the sheet itself — a reading page must not look narrower than the rest of the site. Code blocks and figures break out of that column on `lg`, since they are scanned rather than read by line. It carries the full `.markdown` block, the only place in the system tuned for light-on-white, and takes no shadow because it sits on near-black.
 
 ### Footer
 

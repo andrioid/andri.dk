@@ -1,19 +1,38 @@
 ---
 /**
- * The h1 for an atmosphere route. Used once per page, above the content.
- * Reading routes title themselves inside the sheet instead.
+ * The h1 for every route, on the gradient above the content. Index routes and
+ * reading routes open identically: eyebrow, title, description, then metadata.
+ *
+ * On a reading route the sheet below holds only the body, so this is the one
+ * place a page names itself.
  */
 interface Props {
 	title: string;
 	description?: string;
+	/** Where this page lives, e.g. the index it belongs to. Doubles as the way back. */
+	eyebrow?: { href: string; label: string };
 }
 
-const { title, description } = Astro.props;
+const { title, description, eyebrow } = Astro.props;
 ---
 
 <header class="pt-10 pb-6 sm:pt-14 sm:pb-8">
+	{
+		eyebrow && (
+			<a
+				href={eyebrow.href}
+				class="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide text-sky-200 uppercase underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
+			>
+				<span aria-hidden="true">&larr;</span>
+				{eyebrow.label}
+			</a>
+		)
+	}
 	<h1
-		class="text-3xl font-semibold tracking-tight text-white drop-shadow-md sm:text-4xl"
+		class:list={[
+			"text-3xl font-semibold tracking-tight text-white drop-shadow-md sm:text-4xl",
+			eyebrow && "mt-3",
+		]}
 	>
 		{title}
 	</h1>
@@ -24,4 +43,5 @@ const { title, description } = Astro.props;
 			</p>
 		)
 	}
+	<slot />
 </header>

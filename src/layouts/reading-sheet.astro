@@ -8,8 +8,12 @@ import { twMerge } from "tailwind-merge";
  *
  * The sheet spans the same width as every other route so reading pages do not
  * shrink relative to the rest of the site — the reading measure is held by the
- * column inside it, not by the paper. Code blocks and figures break out of that
- * column on wide screens, because they are read by scanning, not by line.
+ * column inside it, not by the paper.
+ *
+ * The `header` slot renders above the paper, on the gradient, through the
+ * identical padding chain as the body. That is the point of putting it here
+ * rather than in the page: a title and the text it titles must sit on exactly
+ * the same column edges at every breakpoint, not merely similar ones.
  *
  * No shadow — the sheet sits on near-black, where a cast shadow does nothing.
  */
@@ -18,16 +22,31 @@ interface Props {
 }
 
 const { class: className } = Astro.props;
+
+// Shared horizontal geometry. Change these together or the two columns drift.
+const gutter = "px-5 sm:px-8 lg:px-16";
+const measure = "mx-auto max-w-3xl";
 ---
 
 <div class="mx-auto w-full max-w-6xl pb-10 md:px-6 md:pb-16 lg:px-8">
+	{
+		Astro.slots.has("header") && (
+			<div class={gutter}>
+				<div class={measure}>
+					<slot name="header" />
+				</div>
+			</div>
+		)
+	}
+
 	<div
 		class={twMerge(
-			"bg-white px-5 py-8 text-gray-800 sm:px-8 sm:py-10 md:rounded-xl lg:px-16 lg:py-14",
+			"bg-white py-8 text-gray-800 sm:py-10 md:rounded-xl lg:py-14",
+			gutter,
 			className,
 		)}
 	>
-		<div class="mx-auto max-w-3xl [&_figure]:lg:-mx-10 [&_pre]:lg:-mx-10">
+		<div class={twMerge(measure, "[&_figure]:lg:-mx-10 [&_pre]:lg:-mx-10")}>
 			<slot />
 		</div>
 	</div>

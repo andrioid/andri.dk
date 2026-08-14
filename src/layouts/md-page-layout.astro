@@ -1,5 +1,6 @@
 ---
 // A layout for markdown pages. Not blog posts.
+import PageHeader from "~/components/page-header.astro";
 import Layout from "./Layout.astro";
 import PageContainer from "./page-container.astro";
 import ReadingSheet from "./reading-sheet.astro";
@@ -18,10 +19,22 @@ if (post.title === undefined)
 
 <Layout title={post.title} description={post.description}>
 	<PageContainer>
-		<ReadingSheet>
-			<article class="markdown">
-				<slot />
-			</article>
-		</ReadingSheet>
+		<article>
+			{
+				/* The title comes from frontmatter, never from a `#` in the body:
+			every route names itself the same way, on the gradient. */
+			}
+			<ReadingSheet>
+				<PageHeader
+					slot="header"
+					title={post.title}
+					description={post.description}
+				/>
+
+				<div class="markdown">
+					<slot />
+				</div>
+			</ReadingSheet>
+		</article>
 	</PageContainer>
 </Layout>

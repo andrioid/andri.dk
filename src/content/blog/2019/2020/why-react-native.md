@@ -11,7 +11,7 @@ title: "Tech Choices: Web & Mobile App development"
 
 Tech Choice is where I explain a particular tech choice that I have experience with. I do not claim that it's better than what you're currently using or a silver bullet. All this is, is a fellow developer sharing his experience.
 
-# Web & Mobile App development
+## Web & Mobile App development
 
 Problem statement, alternative ways of doing this. Not for "web pages", but for "web apps".
 

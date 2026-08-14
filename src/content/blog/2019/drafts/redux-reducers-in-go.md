@@ -13,7 +13,7 @@ title: React Redux, with Go reducers in Webassembly
 
 If you're reading this, you must be wondering if this is some sort of a click-bait. Why on earth would someone mix React, Redux, Go and Webassembly? Well, I'll tell you!
 
-# Introduction
+## Introduction
 
 I've been using Redux for a few years on my React projects, and for a couple of years, I've been interested in event-sourcing and Domain Driven Design (DDD). While those two things appear to be unrelated, they're actually quite similar.
 
@@ -32,7 +32,7 @@ We're solving booking for the city's top hair-stylist. Hairford Magnifico!
 - Customer can not book a service-slot if it is already booked
 - Customer can not book a service-slot in the past
 
-# Preperation
+## Preperation
 
 Install Git, Node.js and Go.
 
@@ -44,7 +44,7 @@ cd magnifico-booking
 git init
 ```
 
-# Backend
+## Backend
 
 Backend:
 
@@ -53,7 +53,7 @@ go mod init magnifico-booking/backend
 
 ```
 
-# Frontend
+## Frontend
 
 Frontend:
 
