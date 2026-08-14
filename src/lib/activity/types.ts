@@ -5,6 +5,10 @@ export const REMOTE_KINDS = [
 	"github-star",
 	"github-repo",
 	"github-gist",
+	"tangled-star",
+	"tangled-repo",
+	"book-finished",
+	"book-reading",
 	"bookmark",
 	"bluesky",
 ] as const;
@@ -23,7 +27,12 @@ export const activityItemSchema = z.object({
 	/** Small provenance label, e.g. "github.com" or "zed.dev". */
 	source: z.string().optional(),
 	tags: z.array(z.string()),
+	/** Repo stargazers. */
 	stars: z.number().optional(),
+	/** Bluesky likes on the post. */
+	likes: z.number().optional(),
+	/** Bluesky replies to the post. */
+	replies: z.number().optional(),
 	/** Thumbnail URL: Bluesky image embed or link-preview og:image. */
 	image: z.string().optional(),
 });
@@ -37,14 +46,23 @@ export type ActivityFilter = { limit?: number; kinds?: Array<ActivityKind> };
  * Collision precedence for one normalized URL — lower wins. Deliberate acts (writing,
  * bookmarking, posting) outrank passive ones (starring), and the winner is stable across
  * syncs rather than whichever source ran last.
+ *
+ * The UPSERT in `store.ts` also gates on this: it writes only when the incoming rank is at
+ * or below the stored one. So kinds that are states of one thing rather than rivals — a book
+ * being read and then finished, at one unchanging URL — MUST share a rank, or the later
+ * event cannot overwrite the earlier.
  */
 export const KIND_RANK: Record<ActivityKind, number> = {
 	blog: 0,
 	bookmark: 1,
 	bluesky: 2,
-	"github-repo": 3,
-	"github-gist": 4,
-	"github-star": 5,
+	"book-finished": 3,
+	"book-reading": 3,
+	"github-repo": 4,
+	"tangled-repo": 5,
+	"github-gist": 6,
+	"github-star": 7,
+	"tangled-star": 8,
 };
 
 /**
@@ -61,6 +79,8 @@ export type SourceRow = {
 	source?: string;
 	tags: Array<string>;
 	stars?: number;
+	likes?: number;
+	replies?: number;
 	image?: string;
 };
 

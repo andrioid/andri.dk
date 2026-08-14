@@ -159,7 +159,10 @@ One cool blue generates everything; the neutrals are all in service of reading.
 
 ### Tertiary
 
-- **Star Amber** (`{colors.star-amber}`): GitHub star glyphs, and nothing else. It is the system's only warm color — the pink hover went with the old icon-row footer.
+- **Star Amber** (`{colors.star-amber}`): GitHub and Tangled star glyphs, and nothing else.
+- **Like Red** (`{colors.like-red}`): Bluesky like glyphs, and nothing else. Red for a heart is a convention the whole web already reads, so borrowing it costs less than teaching a cool-hued heart.
+
+These two are the system's entire warm vocabulary, and both exist only at glyph size beside a number — the pink hover that went with the old icon-row footer is not coming back.
 
 ### Neutral
 
@@ -172,7 +175,7 @@ One cool blue generates everything; the neutrals are all in service of reading.
 
 **The One Hue Rule.** `--accent` is the only brand color and the ramp is derived from it, never hand-picked. If something needs more emphasis, take another step on the ramp.
 
-**The Warm Note Rule.** Warm color is glyph-sized punctuation only — currently one amber star. The moment it fills an area, it has become a second brand color and is wrong.
+**The Warm Note Rule.** Warm color is glyph-sized punctuation only — currently an amber star and a red heart, each bound to one meaning and never used for anything else. A third warm hue, or any warm fill larger than a glyph, has become a second brand color and is wrong.
 
 **The Legible Ground Rule.** The gradient's top stop is a contrast decision, not a taste one. Any change to it must keep white text at ≥4.5:1 in the top 100px of the viewport, where the nav lives.
 

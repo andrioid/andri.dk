@@ -21,6 +21,13 @@ ENV MISE_CACHE_PRUNE_AGE="10y"
 
 USER app
 WORKDIR /app
+
+# The activity feed's SQLite cache. Declared as a volume so it survives a container
+# replacement: without it every restart truncates the feed to the current API windows.
+ENV ACTIVITY_DB_PATH=/app/data/activity.sqlite
+RUN mkdir -p /app/data
+VOLUME /app/data
+
 COPY mise.toml package.json package-lock.json ./
 RUN mise trust && mise install
 # Needed for workspace deps
@@ -29,10 +36,11 @@ RUN npm ci
 
 FROM dependencies AS build
 ARG MODEL_BOX_API_KEY
-ENV MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY
 
 COPY . .
-RUN npm run build
+# Passed per-command rather than via ENV: `server-build` derives FROM this stage, so an ENV
+# here would ship the key in the final image's config and be readable via `docker inspect`.
+RUN MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY npm run build
 
 FROM build AS server-build
 EXPOSE 3000

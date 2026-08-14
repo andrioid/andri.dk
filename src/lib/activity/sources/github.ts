@@ -1,6 +1,7 @@
 import { identities } from "../../../constants";
 import type { SourceRow } from "../types";
 import { normalizeUrl } from "../url";
+import { okJson } from "./http";
 
 const API_URL = "https://api.github.com";
 /** GitHub rejects requests without a User-Agent. */
@@ -30,8 +31,9 @@ async function ghFetch<T>(path: string, accept: string): Promise<T> {
 	const res = await fetch(`${API_URL}${path}`, {
 		headers: { Accept: accept, "User-Agent": USER_AGENT },
 	});
-	if (!res.ok) throw new Error(`GitHub ${path} → ${res.status}`);
-	return (await res.json()) as T;
+	// Unauthenticated GitHub reports an exhausted budget as 403 with a reset header, not 429,
+	// so `okJson` turns that into a RateLimitError the sync loop can wait out properly.
+	return okJson<T>(res, `GitHub ${path}`);
 }
 
 export async function fetchStars(): Promise<Array<SourceRow>> {

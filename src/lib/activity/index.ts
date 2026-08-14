@@ -14,7 +14,12 @@ export type ActivityEntry = ActivityItem & { id: string };
 export async function getActivity(opts?: {
 	limit?: number;
 }): Promise<Array<ActivityEntry>> {
-	const { entries = [], error } = await getLiveCollection("activity");
+	// The limit reaches SQLite so the read is bounded: without it every render scanned and
+	// sorted the whole table. Safe to narrow before merging — any remote row in the final
+	// window is necessarily in the newest `limit` remote rows.
+	const { entries = [], error } = await getLiveCollection("activity", {
+		limit: opts?.limit,
+	});
 	if (error) console.warn("activity: live collection failed", error);
 
 	// Blog posts are local and always fresh, so they are never written to SQLite.

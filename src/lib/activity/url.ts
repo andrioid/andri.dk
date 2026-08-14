@@ -42,9 +42,30 @@ export function normalizeUrl(raw: string): string {
 	}
 }
 
-/** True when the URL points somewhere other than this site. */
+/**
+ * True when the URL points somewhere other than this site. Compares the parsed origin, not a
+ * string prefix: `https://andri.dk.evil.com/` shares our prefix but not our origin, and
+ * treating it as own-site would emit it as a relative href and strip `rel="noopener"`.
+ */
 export function isExternal(url: string): boolean {
-	return !url.startsWith(SITE_ORIGIN);
+	try {
+		return new URL(url).origin !== SITE_ORIGIN;
+	} catch {
+		return true;
+	}
+}
+
+/**
+ * True for an http(s) URL. `normalizeUrl` passes anything it cannot parse straight through,
+ * so sources check this before a value becomes a row: a non-web scheme has no working href.
+ */
+export function isWebUrl(raw: string): boolean {
+	try {
+		const { protocol } = new URL(raw);
+		return protocol === "http:" || protocol === "https:";
+	} catch {
+		return false;
+	}
 }
 
 /** Render href: own-site URLs collapse to a trailing-slash path so they route internally. */

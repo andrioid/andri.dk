@@ -19,9 +19,31 @@ const KIND_META: Record<ActivityKind, { icon: IconType; verb: string }> = {
 	"github-star": { icon: "github", verb: "Starred" },
 	"github-repo": { icon: "repo", verb: "New repo" },
 	"github-gist": { icon: "gist", verb: "Gist" },
+	"tangled-star": { icon: "git-branch", verb: "Starred" },
+	"tangled-repo": { icon: "git-branch", verb: "New repo" },
+	"book-finished": { icon: "book", verb: "Finished" },
+	"book-reading": { icon: "book-open", verb: "Reading" },
 	bookmark: { icon: "bookmark", verb: "Bookmarked" },
 	bluesky: { icon: "bluesky", verb: "Posted" },
 };
+
+/**
+ * Counters share the metadata line. Per DESIGN.md a filled glyph means "a number follows", and
+ * warm colour is glyph-sized punctuation: a star is amber, a like is red. Replies carry no hue —
+ * a third warm note would stop reading as punctuation and start reading as a palette.
+ *
+ * Only positive counts render. A zero says nothing a reader needs, and the store already
+ * distinguishes "no likes" from "count unknown" — a distinction the glyph cannot express.
+ */
+const COUNTERS = [
+	{ key: "stars", icon: "star-filled", tint: "text-amber-500" },
+	{ key: "likes", icon: "heart-filled", tint: "text-red-500" },
+	{ key: "replies", icon: "message-filled", tint: undefined },
+] as const satisfies ReadonlyArray<{
+	key: keyof ActivityEntry;
+	icon: IconType;
+	tint?: string;
+}>;
 
 type ToneStyles = {
 	node: string;
@@ -129,20 +151,19 @@ const source = item.kind === "blog" ? undefined : item.source;
 				{formatEntryDate(item.date)}
 			</time>
 			{
-				item.stars !== undefined && (
+				COUNTERS.filter(
+					({ key }) => ((item[key] as number) ?? 0) > 0,
+				).map(({ key, icon, tint }) => (
 					<>
 						<span aria-hidden="true" class={s.sep}>
 							·
 						</span>
 						<span class="inline-flex items-center gap-1">
-							<Icon
-								name="star-filled"
-								class="h-3 w-3 text-amber-500"
-							/>
-							{item.stars}
+							<Icon name={icon} class:list={["h-3 w-3", tint]} />
+							{item[key]}
 						</span>
 					</>
-				)
+				))
 			}
 		</div>
 
@@ -174,11 +195,15 @@ const source = item.kind === "blog" ? undefined : item.source;
 				>
 					{/* Fixed frame reserves the space (no layout shift) while object-contain
 					keeps every thumbnail whole and at its own ratio. */}
+					{/* referrerpolicy: thumbnails are hotlinked from whatever host a
+					bookmarked page or book catalogue nominated, so a reader's visit to
+					this page must not be announced to them. */}
 					<img
 						src={item.image}
 						alt=""
 						loading="lazy"
 						decoding="async"
+						referrerpolicy="no-referrer"
 						class="aspect-16/9 h-auto w-full object-contain"
 					/>
 				</a>

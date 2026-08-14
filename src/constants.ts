@@ -16,4 +16,6 @@ export const identities = {
 	github: "andrioid",
 	blueskyHandle: "andri.dk",
 	blueskyDid: "did:plc:rrrwbar3wv576qpsymwey5p5",
+	/** Same atproto handle; Tangled addresses repos as `tangled.org/<handle>/<name>`. */
+	tangledHandle: "andri.dk",
 };
