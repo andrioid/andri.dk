@@ -9,11 +9,9 @@ import andratar from "../../public/img/coffee-art.jpg";
 
 type Props = {
 	isHome?: boolean;
-	/** Reading routes narrow the whole shell so nav, content and footer share one edge. */
-	width?: "wide" | "narrow";
 };
 
-const { isHome = false, width = "wide" } = Astro.props;
+const { isHome = false } = Astro.props;
 
 // A rail is a full-height fixed panel beside the page, not a column inside it.
 const hasRail = Astro.slots.has("rail");
@@ -35,25 +33,32 @@ const hasRail = Astro.slots.has("rail");
 		hasRail && "lg:pr-[23rem] xl:pr-[26rem]",
 	]}
 >
-	<Container as="header" size={width} class="py-4">
-		<nav class="flex items-center justify-between gap-4">
-			<a href="/" class="shrink-0">
-				<span class="flex items-center text-white sm:mr-6">
-					<Image
-						alt=""
-						src={andratar}
-						class="inline-block h-8 w-8 rounded-full sm:mr-4"
-					/>
-					{
-						!isHome && (
+	<Container as="header" class="py-4">
+		<nav
+			class:list={[
+				"flex items-center gap-4",
+				isHome ? "justify-end" : "justify-between",
+			]}
+		>
+			{
+				/* On home the hero already carries the portrait and the name,
+				so the masthead would just be saying it twice. */
+				!isHome && (
+					<a href="/" class="shrink-0">
+						<span class="flex items-center text-white sm:mr-6">
+							<Image
+								alt=""
+								src={andratar}
+								class="inline-block h-8 w-8 rounded-full sm:mr-4"
+							/>
 							<span class="hidden text-xl font-semibold tracking-tight drop-shadow-md sm:inline-block">
 								Andri
 							</span>
-						)
-					}
-					<span class="sr-only">andri.dk, home</span>
-				</span>
-			</a>
+							<span class="sr-only">andri.dk, home</span>
+						</span>
+					</a>
+				)
+			}
 			<ul class="flex flex-wrap justify-end gap-x-1 gap-y-2 text-sm">
 				<NavItems />
 			</ul>
@@ -66,7 +71,6 @@ const hasRail = Astro.slots.has("rail");
 
 	<Container
 		as="footer"
-		size={width}
 		class="flex shrink-0 justify-center gap-2 py-6 text-4xl"
 	>
 		<a class="transition-colors hover:text-hover" href="/rss.xml">
