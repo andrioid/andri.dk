@@ -37,8 +37,13 @@ const { title, description, eyebrow } = Astro.props;
 		{title}
 	</h1>
 	{
+		/* The description is capped at the reading measure, not narrower: inside
+		a reading route's column that is a no-op and it lines up with the body,
+		while on an index route it still stops a sentence running the full grid. */
+	}
+	{
 		description && (
-			<p class="mt-2 max-w-2xl text-base text-sky-100/80">
+			<p class="mt-2 max-w-3xl text-base text-sky-100/80">
 				{description}
 			</p>
 		)
