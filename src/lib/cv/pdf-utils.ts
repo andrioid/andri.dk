@@ -24,20 +24,26 @@ export function registerFonts() {
 	try {
 		Font.register({
 			family: DEFAULT_FONT,
+			// Order matters. react-pdf resolves an unregistered weight by
+			// walking these in registration order, so `fontWeight: 500` on the
+			// name lands on the last entry at or below 500 — Light. Reordering
+			// this list silently restyles the name.
 			fonts: [
 				{
-					src: fixFontImport("Montserrat-Regular.ttf"),
+					src: fixFontImport("Inter-Regular.ttf"),
 				},
 				{
-					src: fixFontImport("Montserrat-SemiBold.ttf"),
+					// SemiBold fills the bold slot, as Montserrat's did before
+					// it: real Inter Bold is too heavy for a page this dense.
+					src: fixFontImport("Inter-SemiBold.ttf"),
 					fontWeight: 700,
 				},
 				{
-					src: fixFontImport("Montserrat-Light.ttf"),
+					src: fixFontImport("Inter-Light.ttf"),
 					fontWeight: 300,
 				},
 				{
-					src: fixFontImport("Montserrat-Italic.ttf"),
+					src: fixFontImport("Inter-Italic.ttf"),
 					fontStyle: "italic",
 				},
 			],

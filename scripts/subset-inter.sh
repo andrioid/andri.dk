@@ -29,6 +29,9 @@ OUT="src/fonts"
 # The OG render font is server-read by takumi (src/pages/blog/_cmp/takumi.ts),
 # not bundled by Vite, so it lives under public/ like the PDF render fonts.
 OG_OUT="public/fonts/og"
+# The CV render fonts sit beside the other @react-pdf font binaries, which is
+# where pdf-utils.ts resolves them from.
+CV_OUT="public/fonts/pdf"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 
@@ -100,6 +103,71 @@ python3 -m fontTools.subset "$WORK/frozen.ttf" \
 	--unicodes="$LATIN,$LATIN_EXT" \
 	--drop-tables+=DSIG
 
+# The CV render fonts. @react-pdf/renderer resolves a family to one file per
+# weight/style rather than driving an axis, so these are static instances, and
+# they are TTF because that is what its fontkit build reads reliably.
+#
+# The four faces mirror the Montserrat set they replace, one for one, so the
+# existing weight resolution in pdf-utils.ts keeps landing where it used to.
+# Features are frozen for the same reason as the OG font: react-pdf is not
+# asked to apply them at render time.
+#
+# Each instance is renamed. Instancing leaves every cut called "Inter
+# Variable", and the PDF writer keys embedded fonts by PostScript name — so
+# identical names silently collapse all three weights into whichever loaded
+# first, and the CV renders with no bold at all.
+rename_face() {
+	python3 - "$1" "$2" "$3" <<'PY'
+import sys
+from fontTools.ttLib import TTFont
+
+path, family, subfamily = sys.argv[1], sys.argv[2], sys.argv[3]
+font = TTFont(path)
+name = font["name"]
+full = family if subfamily == "Regular" else f"{family} {subfamily}"
+postscript = full.replace(" ", "-")
+for platform, encoding, language in ((3, 1, 0x409), (1, 0, 0)):
+	name.setName(family, 1, platform, encoding, language)
+	name.setName(subfamily, 2, platform, encoding, language)
+	name.setName(full, 4, platform, encoding, language)
+	name.setName(postscript, 6, platform, encoding, language)
+# Typographic names would re-group the cuts under one family downstream.
+for name_id in (16, 17):
+	name.removeNames(name_id)
+font.save(path)
+PY
+}
+
+mkdir -p "$CV_OUT"
+for face in "Light:300" "Regular:400" "SemiBold:600"; do
+	name="${face%%:*}"
+	weight="${face##*:}"
+	python3 -m fontTools.varLib.instancer "$WORK/pinned-normal.ttf" \
+		"wght=$weight" --output="$WORK/cv-$name.ttf" >/dev/null
+	pyftfeatfreeze -f "cv11,ss08" "$WORK/cv-$name.ttf" \
+		"$WORK/cv-$name-frozen.ttf" >/dev/null
+	python3 -m fontTools.subset "$WORK/cv-$name-frozen.ttf" \
+		--output-file="$CV_OUT/Inter-$name.ttf" \
+		--unicodes="$LATIN,$LATIN_EXT" \
+		--drop-tables+=DSIG
+	case "$name" in
+	Regular) rename_face "$CV_OUT/Inter-$name.ttf" "Inter" "Regular" ;;
+	*) rename_face "$CV_OUT/Inter-$name.ttf" "Inter $name" "Regular" ;;
+	esac
+done
+
+# Italic freezes ss08 only: upstream ships no cv11 for the italic, whose `a` is
+# already single-storey by design.
+python3 -m fontTools.varLib.instancer "$WORK/pinned-italic.ttf" \
+	"wght=400" --output="$WORK/cv-Italic.ttf" >/dev/null
+pyftfeatfreeze -f "ss08" "$WORK/cv-Italic.ttf" "$WORK/cv-Italic-frozen.ttf" >/dev/null
+python3 -m fontTools.subset "$WORK/cv-Italic-frozen.ttf" \
+	--output-file="$CV_OUT/Inter-Italic.ttf" \
+	--unicodes="$LATIN,$LATIN_EXT" \
+	--drop-tables+=DSIG
+rename_face "$CV_OUT/Inter-Italic.ttf" "Inter" "Italic"
+
 echo
 echo "Wrote:"
-ls -l "$OUT"/*.woff2 | awk '{printf "  %-40s %6.1f KB\n", $NF, $5/1024}'
+ls -l "$OUT"/*.woff2 "$OG_OUT"/*.woff2 "$CV_OUT"/Inter-*.ttf |
+	awk '{printf "  %-44s %6.1f KB\n", $NF, $5/1024}'

@@ -189,6 +189,14 @@ These two are the system's entire warm vocabulary, and both exist only at glyph 
 
 That one substitution is also why the font is subset by hand: `@fontsource-variable/inter` ships its woff2 files with the layout features stripped, so `cv11` is unreachable from the package. The subset costs about 6KB over fontsource's and pins out the `opsz` axis, which is not driven.
 
+Three renderers draw this face and none of them share a pipeline, so
+`scripts/subset-inter.sh` emits a cut for each: variable woff2 subsets for the
+browser, one feature-frozen woff2 for the social cards, and four static TTFs for
+the CV PDF. The browser is the only one that can apply `cv11` from CSS — takumi
+and react-pdf both need it baked into the default glyphs, so it is. The CV is a
+file people forward around detached from the site, which is exactly why it may
+not quietly fall back to a different typeface.
+
 Inter is spaced for interface text, so the system tightens it as it grows and leaves it alone when small: `-0.025em` at title and display sizes, `0` at body, `+0.025em`/`+0.06em` on the uppercase labels. Tracking is a function of size here, never a per-component decision.
 
 **The weight axis is used as an axis, not as four static weights.** Off-grid values are legitimate and deliberate: `450` for text on glass, `780` for the hero. A weight that no static family ships is the clearest evidence the axis is being driven.

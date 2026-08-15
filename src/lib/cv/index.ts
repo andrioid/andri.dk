@@ -1,4 +1,4 @@
-export const DEFAULT_FONT = "Montserrat";
+export const DEFAULT_FONT = "Inter";
 
 import resume from "./resume.json";
 import { skillTransformed } from "./data-utils";

@@ -8,24 +8,23 @@ export function SkillKeywords({ skill }: { skill: Skill }) {
 		return <>{out.map((C) => C)}</>;
 	}
 
+	// The separator is part of the keyword's own Text node, never a sibling.
+	// As a sibling it is an inline box in its own right, so a line can break
+	// before it and leave a comma stranded at the start of the next line.
 	skill.keywords.forEach((kw, idx) => {
-		if (skill.preferred?.includes(kw)) {
-			out.push(
-				<Text
-					key={kw}
-					style={{
-						textDecoration: "underline",
-					}}
-				>
-					{kw}
-				</Text>,
-			);
-		} else {
-			out.push(<Text key={kw}>{kw}</Text>);
-		}
-		if (skill.keywords && idx < skill.keywords.length - 1) {
-			out.push(<Text key={`${kw}-comma`}>, </Text>);
-		}
+		const isLast = idx === (skill.keywords?.length ?? 0) - 1;
+		const isPreferred = skill.preferred?.includes(kw);
+
+		out.push(
+			<Text key={kw}>
+				{isPreferred ? (
+					<Text style={{ textDecoration: "underline" }}>{kw}</Text>
+				) : (
+					kw
+				)}
+				{isLast ? "" : ", "}
+			</Text>,
+		);
 	});
 	return <>{out.map((C) => C)}</>;
 }
