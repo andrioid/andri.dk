@@ -34,6 +34,12 @@ const { lang = "en", title, description, ogImage } = Astro.props as Props;
 			title="andri.dk - latest posts"
 			href="/rss.xml"
 		/>
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="andri.dk - activity"
+			href="/activity.xml"
+		/>
 
 		<link rel="pingback" href="https://webmention.io/andri.dk/xmlrpc" />
 		<link

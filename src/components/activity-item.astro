@@ -1,6 +1,11 @@
 ---
 import type { ActivityEntry, ActivityKind } from "~/lib/activity";
-import { formatEntryDate, hrefFor, isExternal } from "~/lib/activity";
+import {
+	KIND_VERB,
+	formatEntryDate,
+	hrefFor,
+	isExternal,
+} from "~/lib/activity";
 import Icon, { type IconType } from "./Icon.astro";
 import Tag from "./tag.astro";
 
@@ -13,18 +18,19 @@ interface Props {
 	last?: boolean;
 }
 
-/** Closed map: adding a kind without a presentation is a compile error. */
-const KIND_META: Record<ActivityKind, { icon: IconType; verb: string }> = {
-	blog: { icon: "article", verb: "Wrote" },
-	"github-star": { icon: "github", verb: "Starred" },
-	"github-repo": { icon: "repo", verb: "New repo" },
-	"github-gist": { icon: "gist", verb: "Gist" },
-	"tangled-star": { icon: "git-branch", verb: "Starred" },
-	"tangled-repo": { icon: "git-branch", verb: "New repo" },
-	"book-finished": { icon: "book", verb: "Finished" },
-	"book-reading": { icon: "book-open", verb: "Reading" },
-	bookmark: { icon: "bookmark", verb: "Bookmarked" },
-	bluesky: { icon: "bluesky", verb: "Posted" },
+/** Closed map: adding a kind without an icon is a compile error. Verbs live in the lib, so
+ * the rendered feed and `/activity.xml` name an act identically. */
+const KIND_ICON: Record<ActivityKind, IconType> = {
+	blog: "article",
+	"github-star": "github",
+	"github-repo": "repo",
+	"github-gist": "gist",
+	"tangled-star": "git-branch",
+	"tangled-repo": "git-branch",
+	"book-finished": "book",
+	"book-reading": "book-open",
+	bookmark: "bookmark",
+	bluesky: "bluesky",
 };
 
 /**
@@ -83,7 +89,8 @@ const TONE: Record<Tone, ToneStyles> = {
 };
 
 const { item, tone = "light", last = false } = Astro.props;
-const { icon, verb } = KIND_META[item.kind];
+const icon = KIND_ICON[item.kind];
+const verb = KIND_VERB[item.kind];
 const s = TONE[tone];
 // Own-site rows are stored as absolute https://andri.dk keys, so never link item.url.
 const href = hrefFor(item.url);

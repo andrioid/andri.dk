@@ -66,6 +66,24 @@ export const KIND_RANK: Record<ActivityKind, number> = {
 };
 
 /**
+ * How a kind reads as an act. Shared by the rendered feed and the activity RSS feed, so an
+ * entry is named the same way whichever one prints it. Icons stay in the component: they are
+ * the part of a kind's presentation XML has no use for.
+ */
+export const KIND_VERB: Record<ActivityKind, string> = {
+	blog: "Wrote",
+	"github-star": "Starred",
+	"github-repo": "New repo",
+	"github-gist": "Gist",
+	"tangled-star": "Starred",
+	"tangled-repo": "New repo",
+	"book-finished": "Finished",
+	"book-reading": "Reading",
+	bookmark: "Bookmarked",
+	bluesky: "Posted",
+};
+
+/**
  * What a source knows. `title`, `summary` and `image` may be absent — an atproto bookmark
  * record carries only a URL — and are then supplied by `link_preview` on read.
  */

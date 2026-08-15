@@ -78,7 +78,13 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 				<li>
 					<a class={link} href="/rss.xml">
 						<Icon class="h-4 w-4 shrink-0" name="tabler:rss" />
-						RSS feed
+						Blog feed
+					</a>
+				</li>
+				<li>
+					<a class={link} href="/activity.xml">
+						<Icon class="h-4 w-4 shrink-0" name="tabler:rss" />
+						Activity feed
 					</a>
 				</li>
 				<li>
@@ -91,14 +97,20 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 					</a>
 				</li>
 			</ul>
-			<p class="mt-4 text-xs leading-relaxed text-sky-200/60">
-				Built with Astro, self-hosted at OVH.
-			</p>
 		</div>
 	</div>
 
+	{
+		/* iheartrss.com asks only for a link pointing at it, and sanctions a plain
+		text one — so no 88×31 button: a borrowed wordmark is the logo wall DESIGN.md
+		rules out. The heart is a glyph in running text, not an icon; the feed keeps
+		filled icons for "a number follows". */
+	}
 	<p class="mt-8 text-xs text-sky-200/60">
 		&copy; {year} Andri Óskarsson &middot; Writing under CC BY-NC 4.0 &middot;
-		Code under MIT
+		Code under MIT &middot;{" "}
+		<a class={link} href="https://iheartrss.com/">
+			I <span class="text-red-500">&hearts;</span> RSS
+		</a>
 	</p>
 </Container>

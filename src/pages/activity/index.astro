@@ -4,6 +4,7 @@ import ActivitySkeleton from "~/components/activity-skeleton.astro";
 import Card from "~/components/card.astro";
 import Container from "~/components/container.astro";
 import PageHeader from "~/components/page-header.astro";
+import Pill from "~/components/pill.astro";
 import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
 ---
@@ -17,7 +18,9 @@ import PageContainer from "~/layouts/page-container.astro";
 			<PageHeader
 				title="Activity"
 				description="Recent posts, stars, repos, gists and bookmarks."
-			/>
+			>
+				<Pill icon="rss" tone="dark" url="/activity.xml">feed</Pill>
+			</PageHeader>
 			<Card class="max-w-2xl p-5 sm:p-7">
 				<ActivityRail server:defer limit={60} tone="dark">
 					<ActivitySkeleton slot="fallback" rows={8} />

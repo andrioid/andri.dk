@@ -8,7 +8,7 @@ import {
 } from "./types";
 import { hrefFor, isExternal, normalizeUrl } from "./url";
 
-export { ACTIVITY_KINDS } from "./types";
+export { ACTIVITY_KINDS, KIND_VERB } from "./types";
 export type { ActivityItem, ActivityKind } from "./types";
 export { formatEntryDate, groupActivity } from "./time";
 export { hrefFor, isExternal };
