@@ -1,6 +1,6 @@
 ---
 import ActivityFeed from "./activity-feed.astro";
-import { getActivity } from "~/lib/activity";
+import { getActivity, type ActivityKind } from "~/lib/activity";
 
 /**
  * The activity feed as a deferred server island: the page ships immediately
@@ -10,10 +10,12 @@ import { getActivity } from "~/lib/activity";
 interface Props {
 	limit?: number;
 	tone?: "light" | "dark";
+	/** Restrict the rail to these kinds. Omitted means every kind. */
+	kinds?: Array<ActivityKind>;
 }
 
-const { limit = 12, tone = "dark" } = Astro.props;
-const items = await getActivity({ limit });
+const { limit = 12, tone = "dark", kinds } = Astro.props;
+const items = await getActivity({ limit, kinds });
 ---
 
 <ActivityFeed items={items} tone={tone} />

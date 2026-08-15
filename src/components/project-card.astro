@@ -3,6 +3,7 @@ import { CollectionEntry, render } from "astro:content";
 import { getStars } from "~/lib/github-cache";
 import Card from "./card.astro";
 import Icon from "./Icon.astro";
+import OptionalLink from "./optional-link.astro";
 import Pill from "./pill.astro";
 import Tag from "./tag.astro";
 
@@ -16,11 +17,24 @@ const { Content } = await render(project);
 // null when GitHub is unreachable or rate-limited: show the repo pill without a
 // number rather than a lone star glyph.
 const stars = project.data.github ? await getStars(project.data.github) : null;
+
+// Where the card points: the project's own site if it has one, else its repo. A project
+// with neither keeps a plain title rather than a link to nowhere.
+const link =
+	project.data.url ??
+	(project.data.github
+		? `https://github.com/${project.data.github}`
+		: undefined);
 ---
 
 <Card class="flex flex-col p-5">
 	<h3 class="text-lg leading-snug font-medium text-white">
-		{project.data.title}
+		<OptionalLink
+			href={link}
+			class="transition-colors hover:text-sky-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
+		>
+			{project.data.title}
+		</OptionalLink>
 	</h3>
 
 	{
