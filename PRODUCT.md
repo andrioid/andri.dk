@@ -52,7 +52,7 @@ Three claims a generic dev portfolio could not truthfully copy:
 
 **Constraints**
 
-- Server-rendered and self-hosted: Astro `output: "server"` with the Node middleware adapter, containerized, deployed to Fly. Must stay SSR and self-hostable.
+- Server-rendered and self-hosted: Astro `output: "server"` with the Node middleware adapter, containerized, deployed to with Docker. Must stay SSR and self-hostable.
 - Minimal dependencies. Astro + React + Tailwind is the ceiling; adding libraries needs a reason.
 - Fast, low-JS pages. Client islands only where interaction demands them.
 
