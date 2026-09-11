@@ -63,4 +63,4 @@ There's also another reason for using [atproto](https://atproto.com). If you hav
 
 
 ## Special thanks
-To my wife _Louise_ who designed the logo and for lending me her good taste. _Mads_, _Jens_, _Ryan_, _Stefan_ and _Ulrik_ who kept asking about the project until one of the prototypes made it into production.
+To my wife talented wife _Louise_ for designing the logo, lending me her good taste and for putting up with me for so long. _Mads_, _Jens_, _Ryan_, _Stefan_ and _Ulrik_ who kept asking about the project until one of the prototypes made it into production.
