@@ -1,5 +1,5 @@
-import { Renderer } from "@takumi-rs/core";
 import { createHighlighter } from "shiki";
+import { Renderer } from "takumi-js/node";
 import { codesnippetToImageContainer } from "./code-snippet-to-container";
 
 const highlighter = await createHighlighter({

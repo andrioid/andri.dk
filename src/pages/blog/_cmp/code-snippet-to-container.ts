@@ -1,5 +1,5 @@
-import { container, ContainerNode, text } from "@takumi-rs/helpers";
 import { BundledLanguage, BundledTheme, HighlighterGeneric } from "shiki";
+import { container, ContainerNode, text } from "takumi-js/helpers";
 
 const DEFAULT_FONT_SIZE = 32;
 const DEFAULT_LINE_HEIGHT = 1.3;
@@ -34,10 +34,12 @@ export function codesnippetToImageContainer({
 			whiteSpace: "pre",
 			flexGrow: 1,
 			flexBasis: 0,
-			flexWrap: "wrap", // we only have room for one row, but we dont want to show it
+			// Lines that overflow the bottom wrap into a second column; the gap
+			// between columns pushes it off-canvas so it is never shown.
+			flexWrap: "wrap",
 			minWidth: 0,
 			minHeight: 0,
-			rowGap: "10em",
+			columnGap: "10em",
 			borderRadius: "1rem",
 			padding: "2rem",
 			border: "0.1rem solid rgba(255,255,255,0.2)",

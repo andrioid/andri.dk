@@ -1,8 +1,9 @@
-import { Renderer } from "@takumi-rs/core";
-import ImageResponse from "@takumi-rs/image-response";
 import { CollectionEntry } from "astro:content";
 import { createElement } from "react";
+import type { Renderer } from "takumi-js/node";
+import ImageResponse from "takumi-js/response";
 import { OgPostCard } from "./og";
+import { takumiImages } from "./takumi";
 
 export async function ogCardResponse({
 	post,
@@ -24,6 +25,7 @@ export async function ogCardResponse({
 			},
 			drawDebugBorder: false,
 			renderer,
+			images: takumiImages,
 		},
 	);
 }

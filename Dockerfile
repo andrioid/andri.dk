@@ -35,12 +35,8 @@ COPY packages ./packages/
 RUN npm ci
 
 FROM dependencies AS build
-ARG MODEL_BOX_API_KEY
-
 COPY . .
-# Passed per-command rather than via ENV: `server-build` derives FROM this stage, so an ENV
-# here would ship the key in the final image's config and be readable via `docker inspect`.
-RUN MODEL_BOX_API_KEY=$MODEL_BOX_API_KEY npm run build
+RUN npm run build
 
 FROM build AS server-build
 EXPOSE 3000

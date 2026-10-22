@@ -1,10 +1,11 @@
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import node from "@astrojs/node";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import remarkEmbedImages from "remark-embed-images";
 import { setLayout } from "./src/lib/remark-default-layout";
 
@@ -17,7 +18,7 @@ export default defineConfig({
 	},
 	markdown: {
 		drafts: true,
-		remarkPlugins: [remarkEmbedImages, setLayout],
+		processor: unified({ remarkPlugins: [remarkEmbedImages, setLayout] }),
 		shikiConfig: { theme: "github-dark" },
 	},
 	vite: {
@@ -38,12 +39,4 @@ export default defineConfig({
 	},
 	output: "server",
 	adapter: node({ mode: "middleware" }),
-	env: {
-		schema: {
-			MODEL_BOX_API_KEY: envField.string({
-				context: "server",
-				access: "secret",
-			}),
-		},
-	},
 });

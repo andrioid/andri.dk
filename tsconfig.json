@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    // Enable top-level await, and other modern ESM features.
-    "baseUrl": ".",
     "paths": {
-      "@public/*": ["public/*"],
-      "~/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@lib/*": ["src/lib/*"]
+      "@public/*": ["./public/*"],
+      "~/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@lib/*": ["./src/lib/*"]
     },
     "noUnusedLocals": false,
     "verbatimModuleSyntax": false,

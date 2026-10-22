@@ -1,6 +1,6 @@
 import { Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { Style } from "@react-pdf/types";
-import ReactMarkdown from "markdown-to-jsx";
+import ReactMarkdown from "markdown-to-jsx/react";
 import React from "react";
 import { DEFAULT_FONT } from "..";
 import { Footer } from "./footer";
