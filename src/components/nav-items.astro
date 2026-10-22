@@ -14,10 +14,8 @@ const path = Astro.url.pathname;
 const current = path.endsWith("/") ? path : `${path}/`;
 ---
 
-{
-	NAV.map(({ href, label }) => (
-		<NavItem href={href} active={current.startsWith(href)}>
-			{label}
-		</NavItem>
-	))
-}
+{NAV.map(({ href, label }) => (
+	<NavItem href={href} active={current.startsWith(href)}>
+		{label}
+	</NavItem>
+))}

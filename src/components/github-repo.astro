@@ -18,17 +18,15 @@ const href = `https://github.com/${repo}`;
 	class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 bg-gray-50 px-2.5 py-1 text-sm font-medium text-gray-700 no-underline hover:bg-gray-100 hover:border-gray-400 transition-colors"
 >
 	<BaseIcon name="tabler:brand-github" class="inline w-4 h-4" />
-	{
-		stars !== null ? (
-			<>
-				<BaseIcon
-					name="tabler:star-filled"
-					class="inline w-3.5 h-3.5 text-amber-500"
-				/>
-				<span>{stars.toLocaleString()}</span>
-			</>
-		) : (
-			<span>Star on GitHub</span>
-		)
-	}
+	{stars !== null ? (
+		<>
+			<BaseIcon
+				name="tabler:star-filled"
+				class="inline w-3.5 h-3.5 text-amber-500"
+			/>
+			<span>{stars.toLocaleString()}</span>
+		</>
+	) : (
+		<span>Star on GitHub</span>
+	)}
 </a>

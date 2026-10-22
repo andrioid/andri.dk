@@ -37,18 +37,16 @@ const s = TONE[tone];
 			s.frame,
 		)}
 	>
-		{
-			icon && (
-				<span
-					class={twMerge(
-						"inline-flex h-full items-center px-0.5 transition-colors motion-reduce:transition-none",
-						s.cap,
-					)}
-				>
-					<Icon name={icon} class="h-5 w-5 p-0.5" />
-				</span>
-			)
-		}
+		{icon && (
+			<span
+				class={twMerge(
+					"inline-flex h-full items-center px-0.5 transition-colors motion-reduce:transition-none",
+					s.cap,
+				)}
+			>
+				<Icon name={icon} class="h-5 w-5 p-0.5" />
+			</span>
+		)}
 		<span
 			class={twMerge(
 				"inline-flex items-center gap-2 rounded-r-sm px-2 py-0.5 lowercase",

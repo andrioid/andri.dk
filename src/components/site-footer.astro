@@ -37,38 +37,36 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 <Container as="footer" class="mt-12 border-t border-white/10 py-10 text-sm">
 	<div class="grid gap-8 sm:grid-cols-3">
 		<nav aria-labelledby="footer-site">
-			<h2 id="footer-site" class={heading}>Site</h2>
+			<h2 id="footer-site" class={heading}>
+				Site
+			</h2>
 			<ul class="mt-3 space-y-2">
-				{
-					SITE.map((item) => (
-						<li>
-							<a class={link} href={item.href}>
-								{item.label}
-							</a>
-						</li>
-					))
-				}
+				{SITE.map((item) => (
+					<li>
+						<a class={link} href={item.href}>
+							{item.label}
+						</a>
+					</li>
+				))}
 			</ul>
 		</nav>
 
 		<nav aria-labelledby="footer-elsewhere">
-			<h2 id="footer-elsewhere" class={heading}>Elsewhere</h2>
+			<h2 id="footer-elsewhere" class={heading}>
+				Elsewhere
+			</h2>
 			<ul class="mt-3 space-y-2">
-				{
-					profiles.map((p) => (
-						<li>
-							<a class={link} href={p.url} rel="me">
-								<Icon
-									class="h-4 w-4 shrink-0"
-									name={
-										NETWORK_ICON[p.network] ?? "tabler:link"
-									}
-								/>
-								{p.network}
-							</a>
-						</li>
-					))
-				}
+				{profiles.map((p) => (
+					<li>
+						<a class={link} href={p.url} rel="me">
+							<Icon
+								class="h-4 w-4 shrink-0"
+								name={NETWORK_ICON[p.network] ?? "tabler:link"}
+							/>
+							{p.network}
+						</a>
+					</li>
+				))}
 			</ul>
 		</nav>
 
@@ -100,15 +98,13 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 		</div>
 	</div>
 
-	{
-		/* iheartrss.com asks only for a link pointing at it, and sanctions a plain
+	{/* iheartrss.com asks only for a link pointing at it, and sanctions a plain
 		text one — so no 88×31 button: a borrowed wordmark is the logo wall DESIGN.md
 		rules out. The heart is a glyph in running text, not an icon; the feed keeps
-		filled icons for "a number follows". */
-	}
+		filled icons for "a number follows". */}
 	<p class="mt-8 text-xs text-sky-200/60">
-		&copy; {year} Andri Óskarsson &middot; Writing under CC BY-NC 4.0 &middot;
-		Code under MIT &middot;{" "}
+		&copy; {year} Andri Óskarsson &middot; Writing under CC BY-NC 4.0
+		&middot; Code under MIT &middot;{" "}
 		<a class={link} href="https://iheartrss.com/">
 			I <span class="text-red-500">&hearts;</span> RSS
 		</a>

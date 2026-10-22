@@ -15,15 +15,12 @@ const { isHome = false } = Astro.props;
 const hasRail = Astro.slots.has("rail");
 ---
 
-{
-	/* The night ground is fixed, not painted on the scroll container: it stays
-	behind reading sheets and index grids alike, so the world never leaves. */
-}
+{/* The night ground is fixed, not painted on the scroll container: it stays
+	behind reading sheets and index grids alike, so the world never leaves. */}
 <div
 	aria-hidden="true"
 	class="fixed inset-0 -z-10 bg-linear-to-b from-primary-500 to-black"
->
-</div>
+></div>
 
 <div
 	class:list={[
@@ -70,10 +67,8 @@ const hasRail = Astro.slots.has("rail");
 	<SiteFooter />
 </div>
 
-{
-	hasRail && (
-		<aside class="fixed inset-y-0 right-0 z-10 hidden w-[23rem] flex-col bg-black/30 ring-1 ring-white/10 backdrop-blur-md lg:flex xl:w-[26rem]">
-			<slot name="rail" />
-		</aside>
-	)
-}
+{hasRail && (
+	<aside class="fixed inset-y-0 right-0 z-10 hidden w-[23rem] flex-col bg-black/30 ring-1 ring-white/10 backdrop-blur-md lg:flex xl:w-[26rem]">
+		<slot name="rail" />
+	</aside>
+)}

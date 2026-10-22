@@ -20,16 +20,14 @@ const { title, class: className, action } = Astro.props;
 		<h2 class="text-sm font-semibold tracking-wide text-sky-200 uppercase">
 			{title}
 		</h2>
-		{
-			action && (
-				<a
-					href={action.href}
-					class="text-xs text-sky-200 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
-				>
-					{action.label}
-				</a>
-			)
-		}
+		{action && (
+			<a
+				href={action.href}
+				class="text-xs text-sky-200 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
+			>
+				{action.label}
+			</a>
+		)}
 	</div>
 	<div class="mt-4">
 		<slot />

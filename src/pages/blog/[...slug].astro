@@ -48,28 +48,22 @@ const someLinks = await socialLinks(slug);
 						datetime={date.toISOString()}
 						class="text-sm text-slate-500"
 					>
-						{
-							date.toLocaleDateString(undefined, {
-								year: "numeric",
-								month: "short",
-								day: "numeric",
-							})
-						}
+						{date.toLocaleDateString(undefined, {
+							year: "numeric",
+							month: "short",
+							day: "numeric",
+						})}
 					</time>
-					{
-						tags && tags.length > 0 && (
-							<div class="flex flex-wrap gap-2">
-								{tags.map((t) => (
-									<Tag tag={t} />
-								))}
-							</div>
-						)
-					}
+					{tags && tags.length > 0 && (
+						<div class="flex flex-wrap gap-2">
+							{tags.map((t) => (
+								<Tag tag={t} />
+							))}
+						</div>
+					)}
 				</div>
 
-				<div class="markdown">
-					{Content && <Content />}
-				</div>
+				<div class="markdown">{Content && <Content />}</div>
 
 				<footer class="mt-10 border-t border-slate-200 pt-6">
 					<p class="text-base font-light text-slate-600 italic">
@@ -79,16 +73,14 @@ const someLinks = await socialLinks(slug);
 						if you hated it. I'd appreciate the feedback.
 					</p>
 
-					{
-						someLinks.atUri && (
-							<div class="mt-6">
-								<BlueSkyInteractions
-									client:only="react"
-									atUri={someLinks.atUri ?? ""}
-								/>
-							</div>
-						)
-					}
+					{someLinks.atUri && (
+						<div class="mt-6">
+							<BlueSkyInteractions
+								client:only="react"
+								atUri={someLinks.atUri ?? ""}
+							/>
+						</div>
+					)}
 				</footer>
 			</ReadingSheet>
 		</article>

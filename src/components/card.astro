@@ -21,14 +21,12 @@ const interactive =
 	"group block transition-colors motion-reduce:transition-none hover:bg-black/45 hover:ring-sky-300/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300";
 ---
 
-{
-	href ? (
-		<a href={href} class={twMerge(base, interactive, className)}>
-			<slot />
-		</a>
-	) : (
-		<div class={twMerge(base, className)}>
-			<slot />
-		</div>
-	)
-}
+{href ? (
+	<a href={href} class={twMerge(base, interactive, className)}>
+		<slot />
+	</a>
+) : (
+	<div class={twMerge(base, className)}>
+		<slot />
+	</div>
+)}

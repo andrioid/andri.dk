@@ -18,7 +18,9 @@ const filtered = allProjects.filter((p) => !p.data.hidden);
 				description="Things I have built and maintain, with the public repos behind them."
 			/>
 			<div class="grid gap-4 md:grid-cols-2">
-				{filtered.map((project) => <ProjectCard project={project} />)}
+				{filtered.map((project) => (
+					<ProjectCard project={project} />
+				))}
 			</div>
 		</Container>
 	</PageContainer>

@@ -29,32 +29,25 @@ const { items, tone = "light" } = Astro.props;
 const groups = groupActivity(items);
 ---
 
-{
-	groups.length === 0 && (
-		<p class:list={["text-sm", EMPTY[tone]]}>Nothing to show right now.</p>
-	)
-}
+{groups.length === 0 && (
+	<p class:list={["text-sm", EMPTY[tone]]}>Nothing to show right now.</p>
+)}
 
-{
-	groups.map((group) => (
-		<section class="pt-6 first:pt-0">
-			{/* Indented to the entry text column so labels and titles share one edge. */}
-			<header class="flex items-center gap-3 pb-4 pl-10">
-				<h3 class:list={["text-xs font-semibold", LABEL[tone]]}>
-					{group.label}
-				</h3>
-				<span
-					aria-hidden="true"
-					class:list={["h-px flex-1", RULE[tone]]}
-				/>
-			</header>
-			{group.items.map((item, index) => (
-				<ActivityItem
-					item={item}
-					tone={tone}
-					last={index === group.items.length - 1}
-				/>
-			))}
-		</section>
-	))
-}
+{groups.map((group) => (
+	<section class="pt-6 first:pt-0">
+		{/* Indented to the entry text column so labels and titles share one edge. */}
+		<header class="flex items-center gap-3 pb-4 pl-10">
+			<h3 class:list={["text-xs font-semibold", LABEL[tone]]}>
+				{group.label}
+			</h3>
+			<span aria-hidden="true" class:list={["h-px flex-1", RULE[tone]]} />
+		</header>
+		{group.items.map((item, index) => (
+			<ActivityItem
+				item={item}
+				tone={tone}
+				last={index === group.items.length - 1}
+			/>
+		))}
+	</section>
+))}

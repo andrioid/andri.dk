@@ -118,8 +118,7 @@ const source = item.kind === "blog" ? undefined : item.source;
 		<span
 			aria-hidden="true"
 			class:list={["mt-1.5 w-px flex-1", last ? s.lineEnd : s.line]}
-		>
-		</span>
+		></span>
 	</div>
 
 	<div class:list={["min-w-0", s.gap]}>
@@ -143,24 +142,22 @@ const source = item.kind === "blog" ? undefined : item.source;
 			]}
 		>
 			<span>{verb}</span>
-			{
-				source && (
-					<>
-						<span aria-hidden="true" class={s.sep}>
-							·
-						</span>
-						<span>{source}</span>
-					</>
-				)
-			}
-			<span aria-hidden="true" class={s.sep}>·</span>
+			{source && (
+				<>
+					<span aria-hidden="true" class={s.sep}>
+						·
+					</span>
+					<span>{source}</span>
+				</>
+			)}
+			<span aria-hidden="true" class={s.sep}>
+				·
+			</span>
 			<time datetime={item.date.toISOString()}>
 				{formatEntryDate(item.date)}
 			</time>
-			{
-				COUNTERS.filter(
-					({ key }) => ((item[key] as number) ?? 0) > 0,
-				).map(({ key, icon, tint }) => (
+			{COUNTERS.filter(({ key }) => ((item[key] as number) ?? 0) > 0).map(
+				({ key, icon, tint }) => (
 					<>
 						<span aria-hidden="true" class={s.sep}>
 							·
@@ -170,61 +167,55 @@ const source = item.kind === "blog" ? undefined : item.source;
 							{item[key]}
 						</span>
 					</>
-				))
-			}
+				),
+			)}
 		</div>
 
-		{
-			item.summary && item.summary !== item.title && (
-				<p
-					class:list={[
-						"mt-1.5 max-w-prose text-sm leading-relaxed line-clamp-2",
-						s.summary,
-					]}
-				>
-					{item.summary}
-				</p>
-			)
-		}
+		{item.summary && item.summary !== item.title && (
+			<p
+				class:list={[
+					"mt-1.5 max-w-prose text-sm leading-relaxed line-clamp-2",
+					s.summary,
+				]}
+			>
+				{item.summary}
+			</p>
+		)}
 
-		{
-			item.image && (
-				<a
-					href={href}
-					tabindex="-1"
-					aria-hidden="true"
-					target={external ? "_blank" : undefined}
-					rel={external ? "noopener noreferrer" : undefined}
-					class:list={[
-						"mt-3 block max-w-md overflow-hidden rounded-lg",
-						s.media,
-					]}
-				>
-					{/* Fixed frame reserves the space (no layout shift) while object-contain
+		{item.image && (
+			<a
+				href={href}
+				tabindex="-1"
+				aria-hidden="true"
+				target={external ? "_blank" : undefined}
+				rel={external ? "noopener noreferrer" : undefined}
+				class:list={[
+					"mt-3 block max-w-md overflow-hidden rounded-lg",
+					s.media,
+				]}
+			>
+				{/* Fixed frame reserves the space (no layout shift) while object-contain
 					keeps every thumbnail whole and at its own ratio. */}
-					{/* referrerpolicy: thumbnails are hotlinked from whatever host a
+				{/* referrerpolicy: thumbnails are hotlinked from whatever host a
 					bookmarked page or book catalogue nominated, so a reader's visit to
 					this page must not be announced to them. */}
-					<img
-						src={item.image}
-						alt=""
-						loading="lazy"
-						decoding="async"
-						referrerpolicy="no-referrer"
-						class="aspect-16/9 h-auto w-full object-contain"
-					/>
-				</a>
-			)
-		}
+				<img
+					src={item.image}
+					alt=""
+					loading="lazy"
+					decoding="async"
+					referrerpolicy="no-referrer"
+					class="aspect-16/9 h-auto w-full object-contain"
+				/>
+			</a>
+		)}
 
-		{
-			tone === "light" && item.tags.length > 0 && (
-				<div class="mt-2.5 flex flex-wrap gap-1.5">
-					{item.tags.slice(0, 3).map((tag) => (
-						<Tag tag={tag} />
-					))}
-				</div>
-			)
-		}
+		{tone === "light" && item.tags.length > 0 && (
+			<div class="mt-2.5 flex flex-wrap gap-1.5">
+				{item.tags.slice(0, 3).map((tag) => (
+					<Tag tag={tag} />
+				))}
+			</div>
+		)}
 	</div>
 </article>

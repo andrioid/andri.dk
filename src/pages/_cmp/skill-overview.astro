@@ -9,25 +9,21 @@ type Props = {
 const { dt } = Astro.props;
 ---
 
-{
-	/* Everything visible at once: category identity comes from the heading and
-	the grouping, not from a colour or a tab you have to click. */
-}
+{/* Everything visible at once: category identity comes from the heading and
+	the grouping, not from a colour or a tab you have to click. */}
 <div class="grid gap-6 sm:grid-cols-2">
-	{
-		dt.map((category) => (
-			<section>
-				<h3 class="text-xs font-semibold tracking-wide text-sky-200 uppercase">
-					{category.name}
-				</h3>
-				<ul class="mt-3 flex flex-wrap gap-1.5">
-					{category.keywords.map((skill) => (
-						<li>
-							<Tag tag={skill.name.toLowerCase()} tone="dark" />
-						</li>
-					))}
-				</ul>
-			</section>
-		))
-	}
+	{dt.map((category) => (
+		<section>
+			<h3 class="text-xs font-semibold tracking-wide text-sky-200 uppercase">
+				{category.name}
+			</h3>
+			<ul class="mt-3 flex flex-wrap gap-1.5">
+				{category.keywords.map((skill) => (
+					<li>
+						<Tag tag={skill.name.toLowerCase()} tone="dark" />
+					</li>
+				))}
+			</ul>
+		</section>
+	))}
 </div>

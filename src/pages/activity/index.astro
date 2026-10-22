@@ -19,7 +19,9 @@ import PageContainer from "~/layouts/page-container.astro";
 				title="Activity"
 				description="Recent posts, stars, repos, gists and bookmarks."
 			>
-				<Pill icon="rss" tone="dark" url="/activity.xml">feed</Pill>
+				<Pill icon="rss" tone="dark" url="/activity.xml">
+					feed
+				</Pill>
 			</PageHeader>
 			<Card class="max-w-2xl p-5 sm:p-7">
 				<ActivityRail server:defer limit={60} tone="dark">

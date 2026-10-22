@@ -20,18 +20,16 @@ const allPosts = await getPosts();
 				description="Notes on building software, infrastructure and the web, going back to 2019."
 			/>
 			<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-				{
-					allPosts.map(({ data: p, ...post }) => (
-						<PostCard
-							title={p.title}
-							id={post.id}
-							description={p.description}
-							tags={p.tags}
-							date={p.date}
-							draft={p.draft}
-						/>
-					))
-				}
+				{allPosts.map(({ data: p, ...post }) => (
+					<PostCard
+						title={p.title}
+						id={post.id}
+						description={p.description}
+						tags={p.tags}
+						date={p.date}
+						draft={p.draft}
+					/>
+				))}
 			</div>
 		</Container>
 	</PageContainer>

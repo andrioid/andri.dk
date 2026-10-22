@@ -16,31 +16,21 @@ const { title, description } = Astro.props;
 ---
 
 <header class="pt-10 pb-6 sm:pt-14 sm:pb-8">
-	<h1
-		class="text-3xl font-semibold tracking-tight text-white drop-shadow-md sm:text-4xl"
-	>
+	<h1 class="text-3xl font-semibold tracking-tight text-white drop-shadow-md sm:text-4xl">
 		{title}
 	</h1>
-	{
-		/* Capped at the reading measure so a sentence does not run the full grid.
-		Same token as the sheet's column, so "the reading measure" stays one value. */
-	}
-	{
-		description && (
-			<p class="mt-2 max-w-measure text-base text-sky-100/80">
-				{description}
-			</p>
-		)
-	}
-	{
-		/* The metadata position of the One Opening Rule: badges belonging to the
-		route itself, such as its feed. Most routes pass nothing. */
-	}
-	{
-		Astro.slots.has("default") && (
-			<div class="mt-3 flex flex-wrap gap-2">
-				<slot />
-			</div>
-		)
-	}
+	{/* Capped at the reading measure so a sentence does not run the full grid.
+		Same token as the sheet's column, so "the reading measure" stays one value. */}
+	{description && (
+		<p class="mt-2 max-w-measure text-base text-sky-100/80">
+			{description}
+		</p>
+	)}
+	{/* The metadata position of the One Opening Rule: badges belonging to the
+		route itself, such as its feed. Most routes pass nothing. */}
+	{Astro.slots.has("default") && (
+		<div class="mt-3 flex flex-wrap gap-2">
+			<slot />
+		</div>
+	)}
 </header>
