@@ -5,7 +5,12 @@ import { getPost } from "~/lib/cms";
 import { codesnippetFromMarkdown } from "./_cmp/code-snippet-from-md";
 import { codesnippetToImageContainer } from "./_cmp/code-snippet-to-container";
 import { OgPostCard } from "./_cmp/og";
-import { highlighter, takumiImages, takumiRenderer } from "./_cmp/takumi";
+import {
+	highlighter,
+	loadLang,
+	takumiImages,
+	takumiRenderer,
+} from "./_cmp/takumi";
 
 export const GET: APIRoute = async ({ params, request }) => {
 	const { slug } = params;
@@ -31,7 +36,7 @@ export const GET: APIRoute = async ({ params, request }) => {
 			scenes.push({
 				node: codesnippetToImageContainer({
 					code: snip.code,
-					lang: snip.lang as any,
+					lang: (await loadLang(snip.lang)) as any,
 					highlighter,
 				}),
 				durationMs: 3000,

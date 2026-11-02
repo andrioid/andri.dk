@@ -1,11 +1,6 @@
-import { createHighlighter } from "shiki";
 import { Renderer } from "takumi-js/node";
 import { codesnippetToImageContainer } from "./code-snippet-to-container";
-
-const highlighter = await createHighlighter({
-	themes: ["github-dark"],
-	langs: ["tsx", "ts", "sql", "shell", "js", "bash", "php", "html", "css"],
-});
+import { highlighter, loadLang } from "./takumi";
 
 export async function codesnippetResponse({
 	code,
@@ -19,7 +14,7 @@ export async function codesnippetResponse({
 }): Promise<Response> {
 	const root = codesnippetToImageContainer({
 		code,
-		lang: lang as any, // this comes from markdown
+		lang: (await loadLang(lang)) as any, // this comes from markdown
 		highlighter,
 	});
 	const buffer = await renderer.render(root, {

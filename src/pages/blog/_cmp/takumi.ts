@@ -1,6 +1,10 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { createHighlighter } from "shiki";
+import {
+	type BundledLanguage,
+	bundledLanguages,
+	createHighlighter,
+} from "shiki";
 import { type ImageSource, Renderer } from "takumi-js/node";
 
 // Fonts are registered explicitly so the output is identical on a laptop and in
@@ -49,3 +53,15 @@ export const highlighter = await createHighlighter({
 		"dockerfile",
 	],
 });
+
+/**
+ * Loads a fence language from markdown into the highlighter on demand.
+ * Unknown languages fall back to plain text instead of throwing.
+ */
+export async function loadLang(
+	lang: string,
+): Promise<BundledLanguage | "text"> {
+	if (!(lang in bundledLanguages)) return "text";
+	await highlighter.loadLanguage(lang as BundledLanguage);
+	return lang as BundledLanguage;
+}

@@ -4,7 +4,7 @@ FROM jdxcode/mise:latest AS tools
 FROM debian:trixie-slim AS dependencies
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates curl git \
+    ca-certificates curl git libatomic1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -u 1000 app && mkdir -p /app && chown app:app /app
