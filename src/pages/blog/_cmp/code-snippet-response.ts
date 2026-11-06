@@ -1,6 +1,6 @@
 import { Renderer } from "takumi-js/node";
 import { codesnippetToImageContainer } from "./code-snippet-to-container";
-import { highlighter, loadLang } from "./takumi";
+import { highlighter, loadLang, OG_IMAGE_SIZE } from "./takumi";
 
 export async function codesnippetResponse({
 	code,
@@ -19,8 +19,7 @@ export async function codesnippetResponse({
 	});
 	const buffer = await renderer.render(root, {
 		format: "webp",
-		width: 1200,
-		height: 630,
+		...OG_IMAGE_SIZE,
 		drawDebugBorder: false,
 	});
 	if (!buffer) throw new Error("Unable to create shiki-image");

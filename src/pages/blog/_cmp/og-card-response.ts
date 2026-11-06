@@ -3,7 +3,7 @@ import { createElement } from "react";
 import type { Renderer } from "takumi-js/node";
 import ImageResponse from "takumi-js/response";
 import { OgPostCard } from "./og";
-import { takumiImages } from "./takumi";
+import { OG_IMAGE_SIZE, takumiImages } from "./takumi";
 
 export async function ogCardResponse({
 	post,
@@ -17,8 +17,7 @@ export async function ogCardResponse({
 			post: post,
 		}),
 		{
-			width: 1200,
-			height: 630,
+			...OG_IMAGE_SIZE,
 			format: "webp",
 			headers: {
 				"Cache-Control": "public, max-age=3600",
