@@ -13,7 +13,7 @@ const blogCollection = defineCollection({
 		date: z.string().transform((str) => new Date(str)),
 		draft: z.boolean().optional(),
 		tags: z.array(z.string()).optional(),
-		description: z.string().optional(),
+		description: z.string().min(1),
 		coverImage: z.string().optional(),
 		ogImage: z.string().optional(),
 		language: z.enum(["en", "da", "is"]).default("en"),

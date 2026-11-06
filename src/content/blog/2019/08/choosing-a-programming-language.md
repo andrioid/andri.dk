@@ -7,6 +7,7 @@ tags:
   - programming
   - discussion
 title: Choosing a programming language
+description: "What I'd weigh when picking a programming language for a company: complexity, readability, dependencies, hiring and developer experience."
 ---
 
 Imagine that you're a CTO, a Tech Lead or someone that has to make an early technical decision that will effect the company for years to come. What programming language do you choose?

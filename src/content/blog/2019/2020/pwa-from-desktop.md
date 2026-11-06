@@ -6,6 +6,7 @@ tags:
   - linux
   - pwa
 title: Adding Progressive Web Apps (PWA) to the Linux Desktop (2025)
+description: "The Slack and Teams apps on Linux won't share a single window, but Chrome will. How to add web apps to the Linux desktop."
 ---
 
 At work, we use Microsoft Teams, and we used to (and sort of still) use Slack. I recently switched from a Macbook Pro to a Linux laptop (again), and what annoys me greatly is that when I "share screen/application" in the Slack or Teams app it offers me only to share my entire monitor.

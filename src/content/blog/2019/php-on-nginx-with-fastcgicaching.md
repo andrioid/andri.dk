@@ -9,6 +9,7 @@ tags:
   - nginx
   - blog
 title: PHP on nginx with fastcgi-caching
+description: "An nginx update broke my fastcgi-caching setup. I spent about 2 hours fixing it, so here's the working config."
 ---
 
 I have a little VPS that hosts my blog and other various small projects. With a recent nginx update, my configuration files stopped working and I had to cut fastcgi-caching from my setup. I spent about 2 hours searching for this, so I am putting it up here - in case anyone has uses for it. This setup uses php5-fpm and nginx.

@@ -5,6 +5,7 @@ slug: piping-remote-backups-through-ssh-with-tar
 tags:
   - linux
 title: Piping remote backups through SSH with tar
+description: "Backing up a remote machine by piping tar through SSH, without storing anything on the machine itself. Salvaged from my old site."
 ---
 
 **As a part of my site restoration, this page was salvaged and may not be up to date**

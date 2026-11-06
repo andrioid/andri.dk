@@ -7,6 +7,7 @@ tags:
   - working-from-home
   - tools
 title: "Meetings from Home: Tools"
+description: "Free tools for video calls, chat and collaboration while working from home."
 ---
 
 Are you working from home? Here's a list of some great tools that you can use for free.

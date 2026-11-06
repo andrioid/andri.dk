@@ -1,5 +1,6 @@
 ---
 title: Old dog, new tricks
+description: "An old school programmer's journey into agentic AI. What works, what it costs, and why we shouldn't outsource our thinking."
 date: "2026-05-25"
 tags: [ai, programming, rant]
 ---

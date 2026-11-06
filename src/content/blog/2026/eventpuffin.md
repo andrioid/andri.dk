@@ -1,5 +1,6 @@
 ---
 title: "Announcing EventPuffin"
+description: "EventPuffin is an event-planning platform I built for coordinating with friends and family. No ads, spam or lock-in."
 date: "2026-09-11"
 tags: [project]
 ---

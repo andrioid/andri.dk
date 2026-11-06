@@ -9,6 +9,7 @@ tags:
   - cd
   - hosting
 title: Deploy Static Websites Anywhere
+description: "Build your static site with GitHub Actions and deploy it wherever you want: S3, Netlify, GitHub Pages, Neocities or plain SFTP."
 ---
 
 Before I started my carrier in Software Development, I was a System- and Network Administrator. I used to setup web servers and managed my own little server room. I truly, do not miss upgrading operating-systems on live services or dealing with hardware failure. However, hosting web-pages back then was much easier. You'd get an FTP/SFTP access and you'd upload your files. Then they got served statically...

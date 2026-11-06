@@ -1,5 +1,6 @@
 ---
 title: Why your coding-agent should be writing Go
+description: "Go compiles fast, has strong conventions and few dependencies. That makes it a great fit for coding agents."
 date: "2026-04-01"
 tags: [go, ai]
 ---

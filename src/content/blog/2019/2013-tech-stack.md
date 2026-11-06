@@ -5,6 +5,7 @@ slug: 2013-tech-stack
 tags:
   - blog
 title: 2013 Tech Stack
+description: "A short list of what I spent 2013 learning, including Go, PostgreSQL and KnockoutJS."
 ---
 
 As I do pretty much, every year. 2013 was spent learning new technologies. Here's a short list.

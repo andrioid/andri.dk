@@ -7,6 +7,7 @@ tags:
   - cv
   - projects
 title: Creating a CV in React
+description: "How I generate my CV as a PDF with React, react-pdf and JSON Resume, built alongside my Gatsby site."
 ---
 
 ## TLDR;

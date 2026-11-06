@@ -6,6 +6,7 @@ tags:
   - backend
   - frontend
 title: I'm excited for - 2021 edition
+description: "A short list of the frameworks, languages and tools I'm looking forward to playing with in 2021."
 ---
 
 ### Creating websites, fast

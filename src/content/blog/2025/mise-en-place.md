@@ -8,6 +8,7 @@ tags:
   - devops
   - programming
 title: Replacing Makefile, direnv, asdf and more with Mise
+description: "Mise sets up tools, environment variables and tasks for a project in one place, so nobody loses a day to setting up their dev environment."
 ---
 
 Have you ever joined a new project and then spend an entire day setting up your developer-environment? Worked on a large project where one of the many tech-debts are that nobody updated the runtime for 10 years, and now nobody dares touch it?

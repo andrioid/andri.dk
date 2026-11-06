@@ -1,5 +1,6 @@
 ---
 title: "Software Engineering with Coding Agents"
+description: "How I work with coding agents day to day: giving them context, verifying their work, picking models and harnesses, and running them safely."
 date: "2026-11-02"
 tags: [ai, security]
 ---

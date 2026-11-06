@@ -10,6 +10,7 @@ tags:
     - dx
     - ssg
 title: Open-Graph images with SVG and Go
+description: "md-social, a tool I'm building that generates open-graph images for Markdown posts with SVG and Go. No browser needed."
 draft: true
 ---
 Posts that have social-cards, or og-image attached get more views, and they look much better when shared.

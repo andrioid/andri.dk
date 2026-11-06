@@ -6,6 +6,7 @@ tags:
   - portfolio
   - personal
 title: Breaking the silence
+description: "I haven't blogged since 2014. Sorry about that. A quick note on rebuilding this site with Gatsby."
 ---
 
 As you can see from my frontpage, I haven't blogged since 2014. Sorry about that.

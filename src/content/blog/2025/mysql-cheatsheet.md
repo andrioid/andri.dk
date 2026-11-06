@@ -3,6 +3,7 @@ date: "2025-12-31T00:00:00.000Z"
 tags:
   - MySQL
 title: "MySQL/MariaDB cheatsheet"
+description: "Useful MariaDB/MySQL snippets copied from my notes. Get ready for some YELLING."
 ---
 
 A few useful snippets while using MariaDB/MySQL. Copied from my notes. Get ready for some YELLING.

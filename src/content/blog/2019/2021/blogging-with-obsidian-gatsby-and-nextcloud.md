@@ -7,6 +7,7 @@ tags:
   - nextcloud
   - obsidian
 title: Blogging with Obsidian, Gatsby and Nextcloud
+description: "How I write posts in Obsidian, sync them with Nextcloud and publish them automatically with Gatsby."
 ---
 
 Finding the motivation to blog has always been hard for me. Sometimes, because I have nothing to blog about, and that's fair. But sometimes it is because I'm not on a computer with my Gatsby site setup, or I just want to write something down quick.

@@ -5,6 +5,7 @@ slug: mac-osx-for-windows-users
 tags:
   - mac
 title: Mac OS-X for Windows users
+description: "What confused me about my first Mac after years of Linux and Windows. Salvaged from my old site."
 ---
 
 **As a part of my site restoration, this page was salvaged and may not be up to date** I just got my Macbook a few days ago but I've been a Linux user for 9 years and a Windows user for too long to remember so this was kinda of a shock for me. The purpose of this article is to document what I found strange or hard to find and solutions to what I'd think are common problems for first-time Mac users.

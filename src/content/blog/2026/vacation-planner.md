@@ -1,5 +1,6 @@
 ---
 title: Over-engineering our vacation in 2026
+description: "I need structure, but I hate planning. So I built software to plan our trip to Iceland (reads yak-shaving)."
 date: "2026-06-27"
 tags: [go, gastro]
 ---

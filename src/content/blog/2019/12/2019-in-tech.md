@@ -6,6 +6,7 @@ slug: 2019/12/2019-in-tech
 tags:
   - technology
 title: 2019 in Tech
+description: "My yearly look back at the tech I used in 2019: React, Go, TypeScript, Immer and React Native."
 ---
 
 Every year, or that was my plan back in 2013; I do a review of what technology I've been using during the year and reflect on my experiences.

@@ -1,5 +1,6 @@
 ---
 title: "Gastro: Server side web framework for Go"
+description: "After years of SPAs, I want to build web apps on the server again. So I made Gastro, a Go web framework inspired by Astro."
 date: "2026-04-06"
 tags: [go, webdev]
 ---

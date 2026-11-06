@@ -9,6 +9,7 @@ tags:
   - cd
   - hosting
 title: Host Static Websites on a VPS with TLS
+description: "Hosting doesn't have to be complicated or expensive. A static site with TLS on a $6/mo DigitalOcean droplet, step by step."
 ---
 
 Hosting doesn't have to be complicated or expensive. I'll show you how to host a static site for $6/mo on DigitalOcean ([ref link](https://m.do.co/c/eb735821ebb8)).

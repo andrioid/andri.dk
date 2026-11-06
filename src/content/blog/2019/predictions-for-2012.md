@@ -5,6 +5,7 @@ slug: predictions-for-2012
 tags:
   - blog
 title: Predictions for 2012
+description: "My attempt at predicting 2012 in tech, from the Linux desktop to Apple without Steve Jobs."
 ---
 
 Please don't call me cheesy, but I am going to attempt to do some predictions for the year 2012 - like so many others.
