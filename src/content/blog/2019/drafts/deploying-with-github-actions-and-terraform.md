@@ -7,6 +7,7 @@ tags:
   - hosting
   - cloud
 title: Deploying a Full-Stack app on Google with Terraform
+description: "Using GitHub Actions and Terraform to deploy a full environment on Google Cloud, and tear it down again when nobody's using it."
 ---
 
 In this series, we are going to setup continuous deployment on Github Actions that will deploy a full environment in the cloud. Then we will setup a scheduled action to tear it all down, if we're not using it.

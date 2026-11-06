@@ -8,6 +8,7 @@ tags:
   - docker
   - go
 title: Slim Docker images for your Go application
+description: "A multi-stage Dockerfile for a slim Go image on Alpine that doesn't run as root."
 ---
 
 How to build a slim Docker container for your Go application using multi-stage images.

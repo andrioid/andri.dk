@@ -6,6 +6,7 @@ tags:
   - blog
   - rant
 title: Rant on Moblin, Meego and now Tizen
+description: "Moblin became Meego, and now Meego is becoming Tizen. Developers don't like learning a platform only to see it dropped."
 ---
 
 I spend a great deal of time reading about new technologies. Usually, that leaves me excited with all the new cool upcoming stuff and occasionally I feel like developing on it. For a while, I have been a big fan of the Qt development framework. The API is clean, the IDE is nice and it also allows you to create rich applications in QML without much programming experience. In the video above, the Nokia N9 is demonstrated. This UI, that seems to impress most people - would not be possible without Qt. Now, unfortunately Nokia's new CEO (fresh from Microsoft) decided that Meego was a burning platform and abandoned it. That left Meego in the hands of Intel, who said that "they were fully committed". Which, today, we found out [was a lie](https://meego.com/community/blogs/imad/2011/whats-next-meego). Tizen (or Tarzan as I will remember it) is a joint effort between two hardware companies, Intel and Samsung and Meego will transition into it. **The good:**

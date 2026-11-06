@@ -5,6 +5,7 @@ slug: how-i-lost-my-love-of-programming-and-regained-it
 tags:
   - blog
 title: How I lost my love of programming and regained it
+description: "From growing up with computers in Iceland, through getting fired, to finding my way back to programming."
 ---
 
 As a kid in Iceland, I was always fascinated by all things technical. Be it light-switches at my grandmothers house or what is generally described as the idiot-box. I have always loved this stuff, and still do.

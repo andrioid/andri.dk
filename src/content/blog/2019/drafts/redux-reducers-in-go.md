@@ -9,6 +9,7 @@ tags:
   - go
   - webassembly
 title: React Redux, with Go reducers in Webassembly
+description: "Sharing the same reducers between a Go backend and a React frontend by compiling Go to WebAssembly. Not click-bait, I promise."
 ---
 
 If you're reading this, you must be wondering if this is some sort of a click-bait. Why on earth would someone mix React, Redux, Go and Webassembly? Well, I'll tell you!

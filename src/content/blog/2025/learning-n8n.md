@@ -4,6 +4,7 @@ tags:
   - learning
   - automation
 title: "Learning n8n and using it to promote my blog"
+description: "I spent the holidays learning n8n, and now it summarizes and shares my blog posts automatically."
 ---
 
 I've been having a bunch of fun learning n8n during the holiday vacation. I've hooked it up so that when I write a blog post in my site, it's published to RSS and...

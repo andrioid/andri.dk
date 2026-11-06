@@ -3,6 +3,7 @@ date: "2025-12-29T00:00:00.000Z"
 tags:
   - social-media
 title: Social-media images directly into PNG from JSX with Takumi
+description: "Generating open-graph images for every post from JSX with Takumi, so I don't have to make them by hand."
 ---
 
 Improving engagement of your online content can come down to how it's previewed on social-media services. If you're like me, and not keen on creating these open-graph images by hand for every post then you can generate them programmatically.

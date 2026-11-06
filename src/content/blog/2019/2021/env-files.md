@@ -7,6 +7,7 @@ tags:
   - devops
   - node.js
 title: ENV files
+description: "What environment variables are, and how to make ENV files less awkward to use in development."
 ---
 
 An environmental-variable is a way for the environment (your operating-system, or shell) to share information with future processes. Some ENV vars are global (and set by the OS), others are only useful in a certain context.

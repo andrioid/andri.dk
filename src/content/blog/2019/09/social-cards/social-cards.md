@@ -8,6 +8,7 @@ tags:
   - gatsbyjs
   - open-graph
 title: Announcing gatsby-plugin-social-cards
+description: "A Gatsby plugin that generates social cards for your Markdown posts at build time."
 ---
 
 Ever seen those images shown next to posts on Twitter, Slack or Facebook? Ever wonder where they come from? Me too!

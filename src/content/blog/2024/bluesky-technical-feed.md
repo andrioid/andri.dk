@@ -6,6 +6,7 @@ tags:
   - bluesky
   - atproto
 title: Technical Scrolls for Bluesky
+description: "I built Bluesky feeds that only show tech posts, using Jetstream and a machine-learning classifier."
 ---
 
 I've always been interested in technology, and not much else. When social networks emerged I was excited for all the technical content I'd have access to. Unfortunately big-tech has no interest in allowing us to control how we consume content. Facebook started out with allowing you to select all your interests so that they could better show you interesting things. Typing this out loud now, makes me think I was incredibly naive. Of course they did that so they could show me interesting _ads_. Twitter somehow was different, because I could selectively follow people who posted things that were interesting to me.

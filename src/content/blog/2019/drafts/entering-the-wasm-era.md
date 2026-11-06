@@ -7,6 +7,7 @@ tags:
   - hosting
   - cloud
 title: Entering the era of Webassembly
+description: "Recent developments in WebAssembly, and what it's like to use and write WASM code."
 ---
 
 TOC:

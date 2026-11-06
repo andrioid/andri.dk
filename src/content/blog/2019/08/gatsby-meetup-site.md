@@ -8,6 +8,7 @@ tags:
   - gatsby
   - meetup
 title: Making a Gatsby site from Meetup event data
+description: "Meetup stopped issuing API keys, so I pulled the events from their iCal feed into Gatsby instead."
 ---
 
 As part of my talk preperation for Aalborg Frontend Meetup, I was going to do a walkthrough of a new Gatsby site and use [gatsby-source-meetup](https://www.gatsbyjs.org/packages/gatsby-source-meetup/?=meetup) to import the upcoming events.

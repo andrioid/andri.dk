@@ -7,6 +7,7 @@ tags:
   - react
   - reactnative
 title: "Tech Choices: Web & Mobile App development"
+description: "Why I reach for React and React Native (Web) when building apps for Android, iOS and the web."
 ---
 
 Tech Choice is where I explain a particular tech choice that I have experience with. I do not claim that it's better than what you're currently using or a silver bullet. All this is, is a fellow developer sharing his experience.

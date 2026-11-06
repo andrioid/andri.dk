@@ -5,6 +5,7 @@ slug: automatic-usb-backup-with-ubuntu
 tags:
   - blog
 title: Automatic USB backup with Ubuntu
+description: "Plug in a USB stick, wait for the beep and your important files are backed up. Salvaged from my old site."
 ---
 
 **As a part of my site restoration, this page was salvaged and may not be up to date** Everyone has important files like personal photographs, bank statements, a life's accumulation of porn and so and and so forth that would be hard or impossible to recover if that damn hard drive would fail. I've always been well aware of the dangers of not taking backups but yet still lazy enough to ignore it. Backup for the lazy includes the following steps:

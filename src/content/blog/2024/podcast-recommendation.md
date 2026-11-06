@@ -4,6 +4,7 @@ ogImage: 2024/podcast-recommendation.png
 tags:
   - tech
 title: Tech Podcasts for 2024
+description: "The tech podcasts I enjoy on my bike ride to work."
 ---
 
 Some of the podcasts I enjoy during my bike-trip to work.
