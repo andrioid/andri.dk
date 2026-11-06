@@ -1,13 +1,9 @@
 // The site-level social card, served at /og.webp and referenced as the home
-// page's og:image. Same webp pipeline and size as the per-post cards.
+// page's og:image. Same 1200x630 webp pipeline as the per-post cards.
 import { createElement } from "react";
 import ImageResponse from "takumi-js/response";
 import { resumeRaw } from "~/lib/cv";
-import {
-	OG_IMAGE_SIZE,
-	takumiImages,
-	takumiRenderer,
-} from "./blog/_cmp/takumi";
+import { takumiImages, takumiRenderer } from "./blog/_cmp/takumi";
 import { OgHomeCard } from "./_cmp/og-home";
 
 export async function GET() {
@@ -17,7 +13,8 @@ export async function GET() {
 			tagline: resumeRaw.basics.label,
 		}),
 		{
-			...OG_IMAGE_SIZE,
+			width: 1200,
+			height: 630,
 			format: "webp",
 			headers: {
 				"Cache-Control": "public, max-age=3600",

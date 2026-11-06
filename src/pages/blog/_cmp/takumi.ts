@@ -34,15 +34,7 @@ const takumiImages: ImageSource[] = [
 	{ src: "avatar", data: fontFile("public/img/coffee-art.jpg") },
 ];
 
-/**
- * Output size for every social card. Layouts are designed on a 1200x630 CSS
- * canvas and rendered at 2x, so text stays sharp when LinkedIn or a high-DPI
- * screen scales the image up. Keep in sync with og:image:width/height in
- * Layout.astro.
- */
-const OG_IMAGE_SIZE = { width: 2400, height: 1260, devicePixelRatio: 2 };
-
-export { OG_IMAGE_SIZE, takumiImages, takumiRenderer };
+export { takumiImages, takumiRenderer };
 
 export const highlighter = await createHighlighter({
 	themes: ["github-dark"],
