@@ -12,9 +12,11 @@ import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
 import { getPosts } from "~/lib/cms";
 import { resumeProcessed, resumeRaw } from "~/lib/cv";
+import { isReadable, t } from "~/lib/i18n";
 import andratar from "../../public/img/coffee-art.jpg";
 import SkillOverview from "./_cmp/skill-overview.astro";
 
+const { locale } = Astro.locals;
 const cv = resumeRaw;
 const recentPosts = (await getPosts()).slice(0, 3);
 
@@ -54,9 +56,12 @@ const projects = (await getCollection("project"))
 			{/* The rail is a desktop panel; on a phone the stream becomes a
 				short section in normal flow. */}
 			<Section
-				title="Recent activity"
+				title={t(locale, "home.recentActivity")}
 				class="lg:hidden"
-				action={{ href: "/activity/", label: "All activity" }}
+				action={{
+					href: "/activity/",
+					label: t(locale, "home.allActivity"),
+				}}
 			>
 				<Card class="p-4">
 					<ActivityRail server:defer limit={4} tone="dark">
@@ -66,8 +71,8 @@ const projects = (await getCollection("project"))
 			</Section>
 
 			<Section
-				title="Recent posts"
-				action={{ href: "/blog/", label: "All posts" }}
+				title={t(locale, "home.recentPosts")}
+				action={{ href: "/blog/", label: t(locale, "home.allPosts") }}
 			>
 				<div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
 					{recentPosts.map(({ data: p, ...post }) => (
@@ -77,14 +82,19 @@ const projects = (await getCollection("project"))
 							description={p.description}
 							date={p.date}
 							draft={p.draft}
+							language={p.language}
+							expanded={isReadable(p.language, Astro.locals)}
 						/>
 					))}
 				</div>
 			</Section>
 
 			<Section
-				title="Selected projects"
-				action={{ href: "/projects/", label: "All projects" }}
+				title={t(locale, "home.selectedProjects")}
+				action={{
+					href: "/projects/",
+					label: t(locale, "home.allProjects"),
+				}}
 			>
 				<div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
 					{projects.map((project) => (
@@ -93,7 +103,7 @@ const projects = (await getCollection("project"))
 				</div>
 			</Section>
 
-			<Section title="Skills">
+			<Section title={t(locale, "home.skills")}>
 				<SkillOverview dt={resumeProcessed} />
 			</Section>
 		</Container>
@@ -101,13 +111,13 @@ const projects = (await getCollection("project"))
 		<Fragment slot="rail">
 			<div class="flex items-baseline justify-between gap-3 px-5 pt-6 pb-3">
 				<h2 class="text-sm font-semibold tracking-wide text-white uppercase">
-					Activity
+					{t(locale, "home.activity")}
 				</h2>
 				<a
 					href="/activity/"
 					class="text-xs text-sky-200 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none"
 				>
-					All activity
+					{t(locale, "home.allActivity")}
 				</a>
 			</div>
 			<div class="activity-rail min-h-0 grow overflow-y-auto px-5 pb-6">

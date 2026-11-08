@@ -1,4 +1,5 @@
 ---
+import { formatDate, t, type Locale } from "~/lib/i18n";
 import Card from "./card.astro";
 import Icon from "./Icon.astro";
 import Tag from "./tag.astro";
@@ -11,43 +12,90 @@ export interface Props {
 	id: string;
 	tags?: string[];
 	draft?: boolean;
+	/** The post's language; anything but English gets a badge. */
+	language?: Locale;
+	/**
+	 * Show the description outright. When false it sits behind a toggle, for
+	 * posts in a language the visitor is not known to read.
+	 */
+	expanded?: boolean;
 }
 
-const { title, description, date, tags, id, draft = false } = Astro.props;
+const {
+	title,
+	description,
+	date,
+	tags,
+	id,
+	draft = false,
+	language = "en",
+	expanded = true,
+} = Astro.props;
+const { locale } = Astro.locals;
 
 // Absolute, so a card links to the post from any route it is placed on — not
 // only from /blog/, where a bare id happens to resolve.
 const link = `/blog/${id}/`;
+
+// The title link is stretched over the whole card rather than the card being
+// the link: the description toggle is interactive, and may not nest in an <a>.
+// Hover and focus styles mirror Card's `href` variant.
+const surface =
+	"group relative flex h-full flex-col p-5 transition-colors motion-reduce:transition-none hover:bg-black/45 hover:ring-sky-300/40 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-sky-300";
 ---
 
-<Card href={link} class="flex h-full flex-col p-5">
-	{date && (
-		<span class="inline-flex items-center gap-1.5 text-xs text-sky-200/85">
-			<Icon name="calendar" class="h-4 w-4" />
-			<time datetime={date.toISOString()}>
-				{date.toLocaleDateString(undefined, {
-					year: "numeric",
-					month: "short",
-					day: "numeric",
-				})}
-			</time>
-		</span>
-	)}
+<Card class={surface}>
+	<div class="flex items-center justify-between gap-2">
+		{date && (
+			<span class="inline-flex items-center gap-1.5 text-xs text-sky-200/85">
+				<Icon name="calendar" class="h-4 w-4" />
+				<time datetime={date.toISOString()}>
+					{formatDate(date, locale)}
+				</time>
+			</span>
+		)}
+		{language !== "en" && (
+			<span class="ml-auto rounded-sm bg-white/10 px-1.5 py-0.5 text-[0.65rem] font-semibold tracking-wide text-sky-100 uppercase ring-1 ring-white/20">
+				{language}
+			</span>
+		)}
+	</div>
 
-	<h3 class="mt-2 text-lg leading-snug font-medium text-white transition-colors group-hover:text-sky-300 motion-reduce:transition-none">
-		{title}
+	<h3
+		lang={language}
+		class="mt-2 text-lg leading-snug font-medium text-white transition-colors group-hover:text-sky-300 motion-reduce:transition-none"
+	>
+		<a
+			href={link}
+			class="outline-none after:absolute after:inset-0 after:rounded-xl"
+		>
+			{title}
+		</a>
 	</h3>
 
-	{description && (
-		<p class="mt-2 line-clamp-3 text-sm leading-relaxed text-sky-100/70">
-			{description}
-		</p>
-	)}
+	{description &&
+		(expanded ? (
+			<p
+				lang={language}
+				class="mt-2 line-clamp-3 text-sm leading-relaxed text-sky-100/70"
+			>
+				{description}
+			</p>
+		) : (
+			<details class="relative z-10 mt-2 text-sm">
+				<summary class="w-fit cursor-pointer text-xs text-sky-200/85 hover:text-white">
+					{t(locale, "post.showDescription")}
+				</summary>
+				<p lang={language} class="mt-2 leading-relaxed text-sky-100/70">
+					{description}
+				</p>
+			</details>
+		))}
 
 	{tags && tags.length > 0 && (
 		<div class="mt-4 flex flex-wrap gap-2 pt-1">
-			{tags.slice(0, 3).map((t) => (
-				<Tag tag={t} tone="dark" />
+			{tags.slice(0, 3).map((tag) => (
+				<Tag tag={tag} tone="dark" />
 			))}
 			{draft && <Tag tag="draft" tone="dark" />}
 		</div>

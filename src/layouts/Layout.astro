@@ -11,8 +11,9 @@ export interface Props {
 	ogType?: "website" | "article";
 }
 
+const { locale } = Astro.locals;
 const {
-	lang = "en",
+	lang = locale,
 	title,
 	description,
 	ogImage,
@@ -44,6 +45,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 			title="andri.dk - latest posts"
 			href="/rss.xml"
 		/>
+		{locale !== "en" && (
+			<link
+				rel="alternate"
+				type="application/rss+xml"
+				title={`andri.dk - latest posts (${locale})`}
+				href={`/rss.${locale}.xml`}
+			/>
+		)}
 		<link
 			rel="alternate"
 			type="application/rss+xml"

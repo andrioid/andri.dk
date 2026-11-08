@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Container from "./container.astro";
 import { resumeRaw } from "~/lib/cv";
+import { LOCALES, t } from "~/lib/i18n";
 
 /**
  * The closing colophon. Three columns: where else to go on the site, where else
@@ -21,13 +22,31 @@ const NETWORK_ICON: Record<string, string> = {
 const { profiles } = resumeRaw.basics;
 const year = new Date().getFullYear();
 
+const { locale } = Astro.locals;
+const here = Astro.url.pathname + Astro.url.search;
+
 const SITE = [
-	{ href: "/blog/", label: "Blog" },
-	{ href: "/projects/", label: "Projects" },
-	{ href: "/activity/", label: "Activity" },
-	{ href: "/uses/", label: "Uses" },
-	{ href: "/now/", label: "Now" },
+	{ href: "/blog/", label: t(locale, "nav.blog") },
+	{ href: "/projects/", label: t(locale, "nav.projects") },
+	{ href: "/activity/", label: t(locale, "nav.activity") },
+	{ href: "/uses/", label: t(locale, "nav.uses") },
+	{ href: "/now/", label: t(locale, "nav.now") },
 ];
+
+// The visitor's own language first; English stays one click away.
+const FEEDS =
+	locale === "en"
+		? [{ href: "/rss.xml", label: t(locale, "footer.blogFeed") }]
+		: [
+				{
+					href: `/rss.${locale}.xml`,
+					label: t(locale, "footer.blogFeed"),
+				},
+				{
+					href: "/rss.xml",
+					label: t(locale, "footer.blogFeedEnglish"),
+				},
+			];
 
 const link =
 	"inline-flex items-center gap-2 text-sky-100/80 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none";
@@ -38,7 +57,7 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 	<div class="grid gap-8 sm:grid-cols-3">
 		<nav aria-labelledby="footer-site">
 			<h2 id="footer-site" class={heading}>
-				Site
+				{t(locale, "footer.site")}
 			</h2>
 			<ul class="mt-3 space-y-2">
 				{SITE.map((item) => (
@@ -53,7 +72,7 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 
 		<nav aria-labelledby="footer-elsewhere">
 			<h2 id="footer-elsewhere" class={heading}>
-				Elsewhere
+				{t(locale, "footer.elsewhere")}
 			</h2>
 			<ul class="mt-3 space-y-2">
 				{profiles.map((p) => (
@@ -71,18 +90,20 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 		</nav>
 
 		<div>
-			<h2 class={heading}>This site</h2>
+			<h2 class={heading}>{t(locale, "footer.thisSite")}</h2>
 			<ul class="mt-3 space-y-2">
-				<li>
-					<a class={link} href="/rss.xml">
-						<Icon class="h-4 w-4 shrink-0" name="tabler:rss" />
-						Blog feed
-					</a>
-				</li>
+				{FEEDS.map((feed) => (
+					<li>
+						<a class={link} href={feed.href}>
+							<Icon class="h-4 w-4 shrink-0" name="tabler:rss" />
+							{feed.label}
+						</a>
+					</li>
+				))}
 				<li>
 					<a class={link} href="/activity.xml">
 						<Icon class="h-4 w-4 shrink-0" name="tabler:rss" />
-						Activity feed
+						{t(locale, "footer.activityFeed")}
 					</a>
 				</li>
 				<li>
@@ -91,7 +112,7 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 							class="h-4 w-4 shrink-0"
 							name="tabler:brand-github"
 						/>
-						Source
+						{t(locale, "footer.source")}
 					</a>
 				</li>
 			</ul>
@@ -103,10 +124,33 @@ const heading = "text-sm font-semibold tracking-wide text-sky-200 uppercase";
 		rules out. The heart is a glyph in running text, not an icon; the feed keeps
 		filled icons for "a number follows". */}
 	<p class="mt-8 text-xs text-sky-200/60">
-		&copy; {year} Andri Óskarsson &middot; Writing under CC BY-NC 4.0
-		&middot; Code under MIT &middot;{" "}
+		&copy; {year} Andri Óskarsson &middot;{" "}
+		{t(locale, "footer.writingLicense")} &middot;{" "}
+		{t(locale, "footer.codeLicense")} &middot;{" "}
 		<a class={link} href="https://iheartrss.com/">
 			I <span class="text-red-500">&hearts;</span> RSS
 		</a>
 	</p>
+
+	<nav
+		aria-label={t(locale, "footer.language")}
+		class="mt-4 flex items-center gap-1 text-xs text-sky-200/60"
+	>
+		<span class="mr-1">{t(locale, "footer.language")}:</span>
+		{LOCALES.map((l) => (
+			<a
+				href={`/lang?set=${l}&next=${encodeURIComponent(here)}`}
+				hreflang={l}
+				aria-current={l === locale ? "true" : undefined}
+				class:list={[
+					"rounded-sm px-1.5 py-0.5 uppercase underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 motion-reduce:transition-none",
+					l === locale
+						? "bg-white/15 text-white"
+						: "text-sky-100/80 hover:text-white hover:underline",
+				]}
+			>
+				{l}
+			</a>
+		))}
+	</nav>
 </Container>

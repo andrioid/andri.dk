@@ -7,6 +7,7 @@ import Layout from "~/layouts/Layout.astro";
 import PageContainer from "~/layouts/page-container.astro";
 import ReadingSheet from "~/layouts/reading-sheet.astro";
 import { getPost } from "~/lib/cms";
+import { formatDate } from "~/lib/i18n";
 import { socialLinks } from "./_cmp/social-links-n8n";
 
 const { slug } = Astro.params;
@@ -22,7 +23,7 @@ if (!post) {
 		statusText: "Not found",
 	});
 }
-const { date, title, description, tags } = post.data;
+const { date, title, description, tags, language } = post.data;
 const { Content } = (await render(post)) ?? {};
 
 const someLinks = await socialLinks(slug);
@@ -35,7 +36,7 @@ const someLinks = await socialLinks(slug);
 	ogType="article"
 >
 	<PageContainer>
-		<article>
+		<article lang={language}>
 			<ReadingSheet
 				title={title}
 				description={description}
@@ -49,11 +50,7 @@ const someLinks = await socialLinks(slug);
 						datetime={date.toISOString()}
 						class="text-sm text-slate-500"
 					>
-						{date.toLocaleDateString(undefined, {
-							year: "numeric",
-							month: "short",
-							day: "numeric",
-						})}
+						{formatDate(date, Astro.locals.locale)}
 					</time>
 					{tags && tags.length > 0 && (
 						<div class="flex flex-wrap gap-2">

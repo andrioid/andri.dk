@@ -11,6 +11,7 @@
 export function feedChannel(
 	feedPath: string,
 	pagePath: string,
+	language = "en-us",
 ): { xmlns: Record<string, string>; stylesheet: string; customData: string } {
 	const url = (path: string) => new URL(path, import.meta.env.SITE).href;
 	return {
@@ -19,7 +20,7 @@ export function feedChannel(
 		customData: [
 			`<atom:link rel="self" type="application/rss+xml" href="${url(feedPath)}"/>`,
 			`<atom:link rel="alternate" type="text/html" href="${url(pagePath)}"/>`,
-			`<language>en-us</language>`,
+			`<language>${language}</language>`,
 		].join(""),
 	};
 }
