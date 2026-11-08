@@ -1,11 +1,13 @@
 ---
+import { t } from "~/lib/i18n";
 import NavItem from "./NavItem.astro";
 
+const { locale } = Astro.locals;
 const NAV = [
-	{ href: "/blog/", label: "Blog" },
-	{ href: "/projects/", label: "Projects" },
-	{ href: "/uses/", label: "Uses" },
-	{ href: "/now/", label: "Now" },
+	{ href: "/blog/", label: t(locale, "nav.blog") },
+	{ href: "/projects/", label: t(locale, "nav.projects") },
+	{ href: "/uses/", label: t(locale, "nav.uses") },
+	{ href: "/now/", label: t(locale, "nav.now") },
 ];
 
 // trailingSlash is "ignore", so normalise before comparing: /uses and /uses/
